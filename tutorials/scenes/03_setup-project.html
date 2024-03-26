@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="setup-project">Setup Project</h1>
+
+<p>First we need to setup our project so we can get started.  To set it up, we'll create a new C# solution that contains a <strong>MonoGame Game Library</strong> project and a <strong>MonoGame Cross Platform Desktop</strong> (DesktopGL) project.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>A <strong>MonoGame Game Library</strong> project is just a standard <strong>C# Class Library</strong> project that comes pre-configured with the MonoGame NuGets and a few common files.</p>
+</div>
+<h2 id="create-new-monogame-game-library-project">Create New MonoGame Game Library Project</h2>
+<p>To first start setting up our new project, we'll need to first create a new <strong>MonoGame Game Library</strong> project.  To do this, complete the following:</p>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_visual-studio" role="tab" aria-controls="tabpanel_1_visual-studio" data-tab="visual-studio" tabindex="0" aria-selected="true">Visual Studio</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_visual-studio-code" role="tab" aria-controls="tabpanel_1_visual-studio-code" data-tab="visual-studio-code" tabindex="-1">VS Code</a>
+</li>
+</ul>
+<section id="tabpanel_1_visual-studio" role="tabpanel" data-tab="visual-studio">
+
+<ol>
+<li>Open Visual Studio and select the <strong>Create a New project</strong> option</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/create-new-project.png" alt="Visual Studio Create a new Project"></p>
+<ol start="2">
+<li>In the <strong>Create a new project</strong> window, choose the <strong>MonoGame Game Library (MonoGame Team)</strong> project template and click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/choose-monogame-game-library-template.png" alt="Choose MonoGame Game Library Template."></p>
+<ol start="3">
+<li>Choose a name and location for the project.  For the purpose of this tutorial, I have named it <strong>SceneLibrary</strong>.  Once you have chosen a name and location, click the <strong>Create</strong> button.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/configure-monogame-game-library-project.png" alt="Configure MonoGame Game Library Project"></p>
+<ol start="4">
+<li>Once the project is created, you should see the following in the <strong>Solution Explorer</strong> panel:</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/solution-explorer-panel-result.png" alt="Solution Explorer Panel Result"></p>
+</section>
+<section id="tabpanel_1_visual-studio-code" role="tabpanel" data-tab="visual-studio-code" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li>Create a new directory somewhere on your computer that will hold our project.  For example on your Desktop.  For the purposes of this tutorial, I have called my directory <strong>SceneLibrary</strong></li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/create-directory.png" alt="Create SceneLibrary Directory"></p>
+<ol start="2">
+<li>Next, open Visual Studio Code and choose <strong>Open Folder</strong> in the <strong>Explorer Panel</strong>.  Then choose to open the <strong>SceneLibrary</strong> directory we just created.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/open-folder.png" alt="Open Directory"></p>
+<ol start="3">
+<li>Once the directory is open in Visual Studio Code, open a new <strong>Terminal Panel</strong> by pressing <code>CTRL+`</code> or choosing <strong>View &gt; Terminal</strong> from the top menu</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/view-terminal.png" alt="View Terminal"></p>
+<ol start="4">
+<li>In the <strong>Terminal Panel</strong> that opens at the bottom enter the following commands.  These commands will create a new solution named <strong>SceneLibrary</strong>, then create a new <strong>MonoGame Game Library</strong> project called <strong>SceneLibrary</strong>, and finally add the library to the solution file:</li>
+</ol>
+<pre><code class="lang-sh">dotnet new sln -n SceneLibrary
+dotnet new mglib -n SceneLibrary
+dotent sln add ./SceneLibrary
+</code></pre>
+<p>Once the project is created, you should see the following in the <strong>Explorer</strong> panel:</p>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/solution-explorer.png" alt="Explorer Panel"></p>
+</section>
+</div>
+<h2 id="setup-the-monogame-game-library-project">Setup the MonoGame Game Library Project</h2>
+<p>Next, we need to adjust our <strong>MonoGame Game Library</strong> project for what we are creating. To do this, complete the following</p>
+<div class="tabGroup" id="tabgroup_2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2_visual-studio" role="tab" aria-controls="tabpanel_2_visual-studio" data-tab="visual-studio" tabindex="0" aria-selected="true">Visual Studio</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_visual-studio-code" role="tab" aria-controls="tabpanel_2_visual-studio-code" data-tab="visual-studio-code" tabindex="-1">VS Code</a>
+</li>
+</ul>
+<section id="tabpanel_2_visual-studio" role="tabpanel" data-tab="visual-studio">
+
+<ol>
+<li>For the purposes of what we are creating we do not need the <strong>Content</strong> directory or the <strong>Game1.cs</strong> file here, so delete both of these</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <strong>Content</strong> directory and <strong>Game1.cs</strong> file can be useful when creating a full MonoGame game library, however we don't need them for our purposes.</p>
+</div>
+<ol start="2">
+<li>Right-click on the <strong>SceneLibrary</strong> project and select <strong>Add &gt; New Class</strong></li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/add-new-class.png" alt="Add New Class"></p>
+<ol start="3">
+<li>In the <strong>Add New Item</strong> window, name the new class file <strong>Scene.cs</strong> then click the <strong>Add</strong> button to add it to our project.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/name-scene-cs.png" alt="Name Scene.cs"></p>
+</section>
+<section id="tabpanel_2_visual-studio-code" role="tabpanel" data-tab="visual-studio-code" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li>For the purposes of what we are creating, we do not need the <strong>Content</strong> direcotry or the <strong>Game1.cs</strong> file here, so delete both of these</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <em>Content</em> directory and <em>Game1.cs</em> file can be useful when creating a full MonoGame game library, however we don't need them for our purposes.</p>
+</div>
+<ol start="2">
+<li>In the <strong>Explorer Panel</strong> right-click on the <strong>SceneLibrary</strong> project directory and choose <strong>New File</strong>.  Name the new file <strong>Scene.cs</strong></li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/new-file.png" alt="New File"></p>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/scene-cs.png" alt="Scene.cs File"></p>
+</section>
+</div>
+<h2 id="create-new-monogame-cross-platform-desktop-project">Create new MonoGame Cross Platform Desktop Project</h2>
+<p>Next, we'll need to create a new <strong>MonoGame Cross Platform Desktop</strong> project that we can use to test out our <strong>SceneLibrary</strong> and see it in action when we set it all up.</p>
+<p>To do this, complete the following</p>
+<div class="tabGroup" id="tabgroup_3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_3_visual-studio" role="tab" aria-controls="tabpanel_3_visual-studio" data-tab="visual-studio" tabindex="0" aria-selected="true">Visual Studio</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_3_visual-studio-code" role="tab" aria-controls="tabpanel_3_visual-studio-code" data-tab="visual-studio-code" tabindex="-1">VS Code</a>
+</li>
+</ul>
+<section id="tabpanel_3_visual-studio" role="tabpanel" data-tab="visual-studio">
+
+<ol>
+<li>In the <strong>Solution Explorer</strong> panel, right click on the <strong>SceneLibrary</strong> solution and choose <strong>Add &gt; New Project</strong></li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-project.png" alt="Add New Project"></p>
+<ol start="2">
+<li>In the <strong>Add new project</strong> window, choose the <strong>MonoGame Cross-Platform Desktop Application (MonoGame Team)</strong> project template, then click the <strong>Next</strong> button.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/choose-monogame-crossplatform-template.png" alt="Choose MonoGame Cross-Platform Template"></p>
+<ol start="3">
+<li>In the <strong>Configure your new project</strong> window, enter a name for your project then click the <strong>Create</strong> button.  For the purposes of this tutorial, I have named my project <strong>ExampleGame</strong>.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/configure-monogame-crossplatform-project.png" alt="Configure MonoGame Cross-Platform Project"></p>
+<ol start="4">
+<li>Once created, you're <strong>Solution Explorer</strong> panel should now look similar to the following with both our <strong>MonoGame Cross-Platform Desktop Application</strong> project and the <strong>MonoGame Game Library</strong> project.</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/solution-explorer-result.png" alt="Visual Studio Solution Explorer Final"></p>
+<ol start="5">
+<li>Finally, we need to add a project reference to the <strong>SceneLibrary</strong> project in our <strong>ExampleGame</strong> project. To do this, right-click on the <strong>ExampleGame</strong> project in the <strong>Solution Explorer</strong> and select</li>
+</ol>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-reference.png" alt="Add New Reference"></p>
+<p>Then in the <strong>Reference Manager</strong> window, check the box next to <strong>SceneLibrary</strong> to add it as a reference, then click the <strong>Ok</strong> button at the bottom.</p>
+<p><img src="../../images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/reference-scenelibrary-project.png" alt="Reference Scene Library"></p>
+</section>
+<section id="tabpanel_3_visual-studio-code" role="tabpanel" data-tab="visual-studio-code" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li>In the <strong>Terminal Panel</strong> that we opened previously at the bottom, enter the following commands.  These commands will create a new <strong>MonoGame Cross-Platform Desktop Project</strong> game project, add it to our solution file, then perform a restore on both the <strong>SceneLibrary</strong> and <strong>ExampleGame</strong> projects:</li>
+</ol>
+<pre><code class="lang-sh">dotnet new mgdesktopgl -n ExampleGame
+dotnet sln add ./ExampleGame
+dotnet restore
+</code></pre>
+<p>Once finished, the files in the <strong>Explorer Panel</strong> should like like the following:</p>
+<p><img src="../../images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-crossplatform-project/explorer-panel.png" alt="Scene.cs File"></p>
+</section>
+</div>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that we have our base project setup, on the next page we'll setup the code for our <strong>Scene.cs</strong> class and go over it.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

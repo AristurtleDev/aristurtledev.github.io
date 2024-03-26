@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Circle Collision | Collision Detection Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Circle Collision | Collision Detection Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Not every object in a game can or should be defined as rectangular.  Sometimes we need to use a circle.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/collision-detection/03_circle_collision.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Circle Collision | Collision Detection Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Not every object in a game can or should be defined as rectangular.  Sometimes we need to use a circle.">
+    <meta name="og:image" content="https://aristurtle.net/images/tutorials/collision-detection/axis-aligned-boxes.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/collision-detection/03_circle_collision.html">
+    <meta name="twitter:title" content="Circle Collision | Collision Detection Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Not every object in a game can or should be defined as rectangular.  Sometimes we need to use a circle.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/tutorials/collision-detection/axis-aligned-boxes.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="circle-collision">Circle Collision</h1>
+
+<p>Not every object in a game can or should be defined as rectangular.  Sometimes we need to use a circle.  We can't use AABB collision detection as discussed on the previous page because it is strictly for rectangles only.  Instead, we'll need to use a small amount of trigonometry when it comes to circles.  Don't let this care you though</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The method used on this page to detect collision will only work for a circle.  This means that any given point on the circle's perimeter is equal distance to the center of the circle.  This method of collision detection will not work for ellipses.</p>
+</div>
+<h2 id="defining-a-circle">Defining a Circle</h2>
+<p>Before we begin, let's define a few terms about circles.  First, take a look at the image below</p>
+<p><img src="../../images/tutorials/collision-detection/circle-definition.png" alt="Circle Definition"></p>
+<p>A circle can be defines by two distinct properties</p>
+<ol>
+<li>An x- and y-coordinate position for hte center point of the circle</li>
+<li>The radius of the circle, which is the distance from the center to any given point on the circle's perimeter.</li>
+</ol>
+<p>From the second point above, we can safely assume that given any (x, y) point, if hte distance from that point to the circle's center is less than the radius of the circle, then it will be contained within the circle's perimiter.</p>
+<p>This means that we're going to need a method of calculating the distance between any two points.</p>
+<h2 id="calculating-distance-between-points">Calculating Distance Between Points</h2>
+<p>When it comes to calculating the distance between two points, thankfully Pythagoras has us covered.  Most should be familar with Pythagorean's Theorem</p>
+<p><img src="../../images/tutorials/collision-detection/pythagorean-theorem.png" alt="Pythagorean's Theorem"></p>
+<p>The theorem states that</p>
+<blockquote>
+<p>Given the length of two sides (<strong>A</strong> and <strong>B</strong>) of a right triangle, the hypotenuse (<strong>C</strong>) is equal to √(A<sup>2</sup> + B<sup>2</sup>)</p>
+</blockquote>
+<p>So how can we use this to get the distance between any two points?  Imagine that the two points give are located at the start and end points of the hypotenuse of the triangle.  If we take the distance of the x-coordinates of each point, that will give us the value of <strong>B</strong>, and the distance between the y-coordinates of each point will give us the value of <strong>A</strong></p>
+<p><img src="../../images/tutorials/collision-detection/pythagorean-theorem-calculation.png" alt="Pythagorean's Theorem Calculation"></p>
+<p>Now all we need to do is <strong>plug</strong> those values into the formula √(A<sup>2</sup> + B<sup>2</sup>).  Given the example above that would be √(3<sup>2</sup> + 4<sup>2</sup>) = √(25) = 5.</p>
+<h2 id="detecting-circle-collision">Detecting Circle Collision</h2>
+<p>When it comes to detecting collision between two circles, what we are really checking for is if any given point within one circle's perimeter is contained within the perimeter of another circle.</p>
+<p>We know from the definitions above that any given point that is in a circle's perimeter cannot be any distance further from the center than the length of the radius.  So if all points in one circle are within its radius distance, and all points of another circle are within its radius distance, then the distance between the centers of both circles must be greater than or equal to the sum of their radii; otherwise they are colliding</p>
+<p>To further illustrate this, take a look at the following three scenarios in the image below:</p>
+<p><img src="../../images/tutorials/collision-detection/collision-vs-non-collision.png" alt="Collision vs Non Collision"></p>
+<p>in the first two scenarios, visually w can see that the circles are <strong>not</strong> colliding.  We can prove this by showing the distance between their centers is greater than the sum of the radii.</p>
+<p>In the third scenario, these circles are visually colliding. We can prove it by showing the distance between the centers is less than the sum of the radii.</p>
+<p>So now that we know how to detect a circle collision, let's create teh code in our MonoGame project to handle this.</p>
+<h2 id="the-code">The Code</h2>
+<p>Before we can add circle collision checks code, we first need a way of defining a circle.  Unlike the <code>Rectangle</code> struct, MonoGame does not provide a built-in struct for a circle.  So we need to create one ourselves.</p>
+<p>Create a new class file in the game project called <strong>Circle.cs</strong> and add the following code to it</p>
+<pre><code class="lang-cs">using Microsoft.Xna.Framework;
+
+/// &lt;summary&gt;
+///     A simple structure that defines the values of a circle.
+/// &lt;/summary&gt;
+public struct Circle
+{
+    /// &lt;summary&gt;
+    ///     The center xy-coordinate location of the circle.
+    /// &lt;/summary&gt;
+    public Point Center;
+
+    /// &lt;summary&gt;
+    ///     The length of the radius of the circle.
+    /// &lt;/summary&gt;
+    public int Radius;
+
+    /// &lt;summary&gt;
+    ///     Creates a new Circle structure.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;x&quot;&gt;
+    ///     The x-coordinate position of the center of the circle.
+    /// &lt;/param&gt;
+    /// &lt;param name=&quot;y&quot;&gt;
+    ///     The y-coordinate position of the center of the circle.
+    /// &lt;/param&gt;
+    /// &lt;param name=&quot;radius&quot;&gt;
+    ///     The length of the radius of the circle.
+    /// &lt;/param&gt;
+    public Circle(int x, int y, int radius)
+    {
+        Center = new Point(x, y);
+        Radius = radius;
+    }
+}
+</code></pre>
+<p>For the purposes of this tutorial, these are all the values we'll need for a circle.</p>
+<ul>
+<li>The <code>Center</code> field will be used to hold the x- and y-coordinate location of the center point of the circle.</li>
+<li>The <code>Radius</code> field will hold the value that defines the length of the radius</li>
+<li>The constructor has three parameters, <code>int x</code>, <code>int y</code>, and <code>int radius</code> which are used to instantiate the <code>Center</code> field and the <code>Radius</code> field</li>
+</ul>
+<p>Next, we need to add the collision detection check to our <code>CollisionCheck</code> class.  Open the <strong>CollisionCheck.cs</strong> class file that we created previously and add the following new methods</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Calculates the distance between the center points of two circles.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;circleA&quot;&gt;
+///     The first circle.
+/// &lt;/param&gt;
+/// &lt;param name=&quot;circleB&quot;&gt;
+///     The second circle.
+/// &lt;/param&gt;
+/// &lt;returns&gt;
+///     The distance between the center point of both circles.
+/// &lt;/returns&gt;
+public static float Distance(this Circle circleA, Circle circleB)
+{
+    //  Get the distance between the x-coordinates of each circle.
+    int dx = circleA.Center.X - circleB.Center.X;
+
+    //  Get the distance between the y-coordinates of each circle.
+    int dy = circleA.Center.Y - circleB.Center.Y;
+
+    //  Use Pythagorean's Theorem to calculate the distance between the two and return it.
+    return (float)Math.Sqrt((dx * dx) + (dy * dy));
+}
+
+/// &lt;summary&gt;
+///     Checks for collision between two circle structures.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;circleA&quot;&gt;
+///     The first circle.
+/// &lt;/param&gt;
+/// &lt;param name=&quot;circleB&quot;&gt;
+///     The second circle.
+/// &lt;/param&gt;
+/// &lt;returns&gt;
+///     True if the two circles are colliding; otherwise, false.
+/// &lt;/returns&gt;
+public static bool Circle(Circle circleA, Circle circleB)
+{
+    //  Get the sum of the radii
+    int radii = circleA.Radius + circleB.Radius;
+
+    //  Get the distance from the center of each circle.
+    float distance = Distance(circleA, circleB);
+
+    //  If the distance is less than the radii sum, then it is a collision
+    return distance &lt; radii;
+}
+</code></pre>
+<p>The <code>Distance(Circle, Circle)</code> extension method takes two <code>Circle</code> values and, using Pythagorean's THeorem as discussed before, calculates the distance between the two points and returns the value back.</p>
+<p>The <code>Circle(Circle, Circle)</code> method is where the actual collision checks occurs.</p>
+<ol>
+<li>First, it calculates the sum of hte two radii of the circles.</li>
+<li>Next it then calls the <code>Distance(Circle, Circle)</code> extension method to get the distance between the two centers.</li>
+<li>Finally, it compares the distance to the radii, and if the distance is less than the radii it returns <code>true</code>; otherwise, it returns <code>false</code>.</li>
+</ol>
+<h2 id="testing-for-collision">Testing For Collision</h2>
+<p>Now that we have a way to detect collision between circles, we need to test the code to make sure it's functioning properly.  We're going ot need some graphics to reprsent our circles.  There are many ways of rendering a 2D circle, some more complicated than others.  For the purposes of this tutorial, however, we're going to just use a simple <code>Texture2D</code> to represent out circles.</p>
+<p>The circle image we'll be using is a 64px x 64px white circle.  You can download the already prepared version that is used for this tutorial by right-clicking the circle image below and selecting <strong>Save Image As...</strong></p>
+<p><img src="../../images/tutorials/collision-detection/white-circle.png" alt="White Circle"></p>
+<p>Once downloaded, add the image to the game project using the MGCB Editor.  If you're unfamilar with how to add content files to your game, please read the <a href="https://docs.monogame.net/articles/content/using_mgcb_editor.html">official MonoGame documentation</a></p>
+<p>Now that we have the white circle image added that we can draw to represent out circles, we need to update <code>Game1</code>.  Open the <strong>Game1.cs</strong> class file and perform the following</p>
+<ol>
+<li>Remove the <code>Rectangle _boxA</code> field.</li>
+<li>Remove the <code>Rectangle _boxB</code> field.</li>
+<li>Remove the <code>Texture2D _pixel</code> field.</li>
+<li>Add the following new fields:</li>
+</ol>
+<pre><code class="lang-cs">//  Represents the first circle (A).
+private Circle _circleA;
+
+//  Represents the second circe (B).
+private Circle _circleB;
+
+//  The texture used to draw the circles.
+private Texture2D _circleTexture;
+</code></pre>
+<ul>
+<li><code>_circleA</code> wil hold the values of our first <code>Circle</code> and <code>_circleB</code> will hold the values of our second <code>Circle</code>.</li>
+<li><code>_circleTexture</code> will be used to hold the <code>Texture2D</code> that we'll load from the content manager to render our circles with.</li>
+</ul>
+<p>Next, we need to update the <code>Initialize()</code> method.  Locate the <code>Initialize()</code> method in the <code>Game1</code> class and change it to the following:</p>
+<pre><code>protected override void Initialize()
+{
+    base.Initialize();
+
+    //  Define the x and y center, and the radius of each circle.
+    //  The circle image is 64px x 64px so the radius is 32px.
+    _circleA = new Circle(100, 100, 32);
+    _circleB = new Circle(200, 200, 32);
+}
+</code></pre>
+<p>Here we are now initializing our two circles.  We set the x- and y-location for both, and the radius of both is <code>32</code>.  We used <code>32</code> because the <code>Texture2D</code> image of a circle we are using is 64px x 64px and half of 64px is 32.</p>
+<p>Next, locate the <code>LoadContent()</code> method in the <code>Game1</code> class and change it to the following:</p>
+<pre><code class="lang-cs">protected override void LoadContent()
+{
+    _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+    //  Create the 1x1 pixel texture
+    _pixel = new Texture2D(GraphicsDevice, 1, 1);
+    _pixel.SetData&lt;Color&gt;(new Color[] { Color.White });
+
+    //  Load the circle texture
+    _circleTexture = Content.Load&lt;Texture2D&gt;(&quot;white-circle&quot;);
+
+}
+</code></pre>
+<p>Here we've just added the code to load the white circel image we created and store it int he <code>_circleTexture</code> instance.</p>
+<p>Now, locate the <code>Update(GameTime)</code> method in the <code>Game1</code> class and change it to the following:</p>
+<pre><code class="lang-cs">protected override void Update(GameTime gameTime)
+{
+    //  Update the input states.
+    _prevKeyboardState = _curKeyboardState;
+    _curKeyboardState = Keyboard.GetState();
+
+    MoveCircleA();
+    MoveCircleB();
+
+    //  Check if _boxA and _boxB are colliding.
+    _areColliding = CollisionChecks.Circle(_circleA, _circleB);
+
+    base.Update(gameTime);
+}
+</code></pre>
+<p>Then remove the <code>MoveBoxA</code> and <code>MoveBoxB</code> methods and replace them with the following:</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Moves circle (A) based on keyboard input.
+/// &lt;/summary&gt;
+private void MoveCircleA()
+{
+    if(_curKeyboardState.IsKeyDown(Keys.W))
+    {
+        _circleA.Center.Y--;
+    }
+    else if(_curKeyboardState.IsKeyDown(Keys.S))
+    {
+        _circleA.Center.Y++;
+    }
+
+    if (_curKeyboardState.IsKeyDown(Keys.A))
+    {
+        _circleA.Center.X--;
+    }
+    else if (_curKeyboardState.IsKeyDown(Keys.D))
+    {
+        _circleA.Center.X++;
+    }
+}
+
+/// &lt;summary&gt;
+///     Moves circle (B) based on keyboard input.
+/// &lt;/summary&gt;
+private void MoveCircleB()
+{
+    if (_curKeyboardState.IsKeyDown(Keys.Up))
+    {
+        _circleB.Center.Y--;
+    }
+    else if (_curKeyboardState.IsKeyDown(Keys.Down))
+    {
+        _circleB.Center.Y++;
+    }
+
+    if (_curKeyboardState.IsKeyDown(Keys.Left))
+    {
+        _circleB.Center.X--;
+    }
+    else if (_curKeyboardState.IsKeyDown(Keys.Right))
+    {
+        _circleB.Center.X++;
+    }
+}
+</code></pre>
+<p>To go over the changes we've just made for the <code>Update(GameTime)</code> method</p>
+<ol>
+<li>We update the values of the <code>_prevKeyboardState</code> and <code>_curKeyboardState</code>.</li>
+<li><code>MoveCircleA()</code> is called which checks <strong>W</strong>, <strong>S</strong>, <strong>A</strong>, and <strong>D</strong> key presses to move <code>_boxA</code>.</li>
+<li><code>MoveCircleB()</code> is called, which checks <strong>Up</strong>, <strong>Down</strong>, <strong>Left</strong>, and <strong>Right</strong> key presses to move <code>_boxB</code>.</li>
+<li><code>CollisionChecks.Circle(Circle, Circle)</code> is called, giving it both <code>_circleA</code> and <code>_circleB</code> to check if they are colliding. The result <code>true</code> or <code>false</code> is returned back and stored in <code>_areColliding</code>.</li>
+</ol>
+<p>Finally, we need to draw the circles to the screen.  Locate the <code>Draw(GameTime)</code> method in the <code>Game1</code> class and change it to the following:</p>
+<pre><code class="lang-cs">protected override void Draw(GameTime gameTime)
+{
+    GraphicsDevice.Clear(Color.Black);
+
+    //  Draw the bounding boxes as white rectangles.
+    Color color = Color.White;
+
+    //  If the bounding boxes are colliding, make them red instead.
+    if(_areColliding)
+    {
+        color = Color.Red;
+    }
+
+    _spriteBatch.Begin();
+    _spriteBatch.Draw(texture: _circleTexture,
+                      position: _circleA.Center.ToVector2(),
+                      sourceRectangle: null,
+                      color: color,
+                      rotation: 0.0f,
+                      origin: new Vector2(_circleTexture.Width, _circleTexture.Height) * 0.5f,
+                      scale: 1.0f,
+                      effects: SpriteEffects.None,
+                      layerDepth: 0.0f);
+
+    _spriteBatch.Draw(texture: _circleTexture,
+                      position: _circleB.Center.ToVector2(),
+                      sourceRectangle: null,
+                      color: color,
+                      rotation: 0.0f,
+                      origin: new Vector2(_circleTexture.Width, _circleTexture.Height) * 0.5f,
+                      scale: 1.0f,
+                      effects: SpriteEffects.None,
+                      layerDepth: 0.0f);
+
+    _spriteBatch.End();
+    base.Draw(gameTime);
+}
+</code></pre>
+<p>Just as with the previous tutorial on AABB, we first create a <code>Color</code> instance defaulted to <code>Color.White</code>. Then we check fi the two circles are colliding and, if so, change the color to <code>Color.Red</code> Then we draw the two cicles.</p>
+<p>Here in the <code>_spriteBatch.Draw</code> method I'm using the <code>SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, float, SpriteEffects, float)</code> overload so that we can se the <code>origin</code> parameter to half the width and height of the <code>_circleTexture</code>.  This makes it so when rendered, the cneter of the texture is drawn at hte position given, which makes sense since we use the center of the circle as it's position.</p>
+<p>If you run the game at this point, you should see two white circles on the screen.  Use <strong>W</strong>, <strong>S</strong>, <strong>A</strong>, and <strong>D</strong> keys to move the left circle, and <strong>Up</strong>, <strong>Down</strong>, <strong>Left</strong>, and <strong>Right</strong> keys to move the right circle.  If you make them collide, they will both turn red.  Moving them apart so they are no longer colliding will change them back to white.</p>
+<div class="embeddedvideo"><iframe src="https://aristurtle.net/images/tutorials/collision-detection/circle-collision-demo.mp4" frameborder="0" allowfullscreen="true"></iframe></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>On this page of the tutorial, we defined what a circle is, how to calculate the distance between two circle, and how to check if they are colliding.  When then implemented this into our MonoGame project and tested collision between the two circles in our game.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/18/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

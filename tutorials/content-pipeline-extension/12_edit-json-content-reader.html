@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Edit the JsonContentTypeReader | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Edit the JsonContentTypeReader | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Updating our JsonContentTypeReader to read the xnb file.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/12_edit-json-content-reader.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Edit the JsonContentTypeReader | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Updating our JsonContentTypeReader to read the xnb file.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/12_edit-json-content-reader.html">
+    <meta name="twitter:title" content="Edit the JsonContentTypeReader | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Updating our JsonContentTypeReader to read the xnb file.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="edit-the-jsoncontenttypereader">Edit The <code>JsonContentTypeReader</code></h1>
+
+<p>On the previous page we discussed the anatomy of a <code>ContentTypeReader</code>.  Now that we have an understanding of this, let's make the changes necessary to our <code>JsonContentTypeReader</code> class so that it reads the <code>.xnb</code> file.and returns back the expected result.</p>
+<p>Open the <code>JsonContentTypeReader.cs</code> file and make the following adjustments:</p>
+<pre><code class="lang-csharp" highlight-lines="2,10-12">using Microsoft.Xna.Framework.Content;
+using System.Text.Json;
+
+namespace JsonContentPipeline
+{
+    public class JsonContentTypeReader&lt;T&gt; : ContentTypeReader&lt;T&gt;
+    {
+        protected override T Read(ContentReader input, T existingInstance)
+        {
+            string json = input.ReadString();
+            T result = JsonSerializer.Deserialize&lt;T&gt;(json);
+            return result;
+        }
+    }
+}
+</code></pre>
+<p>For the purposes of the example being used in this tutorial, there was not much we needed to adjust here. We simply just needed the <code>Read(ContentReader, T)</code> method to to read the JSON string from the <code>.xnb</code> file and then serialize it to the <code>T</code> type object and return it.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>That's all for our <code>JsonContentTypeReader</code>.  It simply just reads the JSON string from the <code>.xnb</code> file and serializes it, then returns the object type.</p>
+<p>Now that we have all of this setup, the next step is going to be creating a game project that we can use to test all of this and make sure it's working correctly.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-scene-class">The Scene Class</h1>
+
+<p>In this part of the tutorial, we are going to add the code necessary to our <strong>Scene.cs</strong> class file.  This class will be the foundation for all scenes we create within our game.</p>
+<p>Open the <strong>Scene.cs</strong> class file and replace the content of it with the following.  We'll go over what each part of it is doing after.</p>
+<pre><code class="lang-cs">using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+public abstract class Scene
+{
+    //  A cached reference to our Game instance.
+    protected Game _game;
+
+    //  Used to load scene specific content
+    protected ContentManager _content;
+
+    /// &lt;summary&gt;
+    ///     Creates a new Scene instance.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;game&quot;&gt;
+    ///     A reference to our Game1 instance.
+    /// &lt;/param&gt;
+    /// &lt;exception cref=&quot;ArgumentNullException&quot;&gt;
+    ///     Thrown if the value supplied for &lt;paramref name=&quot;game&quot;/&gt;
+    ///     is null
+    /// &lt;/exception&gt;
+    public Scene(Game game)
+    {
+        //  Ensure the game reference given is not null
+        if (game == null)
+        {
+            throw new ArgumentNullException(nameof(game), &quot;Game cannot be null!&quot;);
+        }
+
+        _game = game;
+    }
+
+    /// &lt;summary&gt;
+    ///     Initializes the Scene
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This is called only once, immediately after the scene becomes
+    ///     the active scene, and before the first Update is called on
+    ///     the scene
+    /// &lt;/remarks&gt;
+    public virtual void Initialize()
+    {
+        _content = new ContentManager(_game.Services);
+        _content.RootDirectory = _game.Content.RootDirectory;
+        LoadContent();
+    }
+
+    /// &lt;summary&gt;
+    ///     Loads the content specific to the Scene.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This is called internally by the Initialize() method.
+    /// &lt;/remarks&gt;
+    protected virtual void LoadContent() { }
+
+    /// &lt;summary&gt;
+    ///     Unloads any content that has been loaded by the scene.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This will be called after the game switches to a new
+    ///     scene.
+    /// &lt;/remarks&gt;
+    public virtual void UnloadContent()
+    {
+        _content.Unload();
+        _content = null;
+    }
+
+    /// &lt;summary&gt;
+    ///     Updates the Scene.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;gameTime&quot;&gt;
+    ///     A snapshot of the frame specific timing values.
+    /// &lt;/param&gt;
+    public virtual void Update(GameTime gameTime) { }
+
+
+    /// &lt;summary&gt;
+    ///     Handles preparing the Scene to draw.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This is called just before the main Draw method.
+    /// &lt;/remarks&gt;
+    /// &lt;param name=&quot;spriteBatch&quot;&gt;&lt;/param&gt;
+    public virtual void BeforeDraw(SpriteBatch spriteBatch, Color clearColor)
+    {
+        _game.GraphicsDevice.Clear(clearColor);
+        spriteBatch.Begin();
+    }
+
+    /// &lt;summary&gt;
+    ///     Draws the Scene to the screen.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This is called immediately after BeforeDraw.
+    /// &lt;/remarks&gt;
+    /// &lt;param name=&quot;spriteBatch&quot;&gt;
+    ///     The SpriteBatch instance used for rendering.
+    /// &lt;/param&gt;
+    public virtual void Draw(SpriteBatch spriteBatch) { }
+
+    /// &lt;summary&gt;
+    ///     Handles ending any drawing the scene is performing.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    ///     This is called immediately after Draw.
+    /// &lt;/remarks&gt;
+    /// &lt;param name=&quot;spriteBatch&quot;&gt;
+    ///     The SpriteBatch instance used for rendering.
+    /// &lt;/param&gt;
+    public virtual void AfterDraw(SpriteBatch spriteBatch)
+    {
+        spriteBatch.End();
+    }
+}
+</code></pre>
+<h2 id="fields">Fields</h2>
+<p>The <code>Scene</code> class has two fields; <code>_game</code> and <code>_content</code>.</p>
+<pre><code class="lang-cs">//  A cached reference to our Game instance.
+protected Game _game;
+
+//  Used to load scene specific content
+protected ContentManager _content;
+</code></pre>
+<p>We can use the <code>_game</code> field to access some of the usual stuff like <code>Game.GraphicsDevice</code>.</p>
+<p>The <code>_content</code> field will be used to load content that is specific to the scene.  This will be a separate <code>ContentManager</code> instance from the one in our <code>Game1</code> instance.  This has two benefits</p>
+<ol>
+<li>All content loaded from the <code>Game1</code> class will act as a sort of global content manager, since it's accessible from any scene through <code>_game.Content</code>.  Thsi would be assets like fonts and audio that are used in multiple scenes</li>
+<li>By each scene having its own content manager, this means we don't have to load every asset up front at runtime; instead we only load the global assets first as to point #1 above.  Then, when we switch to our scene, we can load the scene specific stuff for that scene and unload it when the scene is finished.  This means a smaller memory footprint throughout the game's life cycle.</li>
+</ol>
+<h2 id="constructor">Constructor</h2>
+<p>Next, we'll take a look at the constructor</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Creates a new Scene instance.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;game&quot;&gt;
+///     A reference to our Game1 instance.
+/// &lt;/param&gt;
+/// &lt;exception cref=&quot;ArgumentNullException&quot;&gt;
+///     Thrown if the value supplied for &lt;paramref name=&quot;game&quot;/&gt;
+///     is null
+/// &lt;/exception&gt;
+public Scene(Game game)
+{
+    if (game == null)
+    {
+        throw new ArgumentNullException(nameof(game), &quot;Game cannot be null!&quot;);
+    }
+
+    _game = game;
+}
+</code></pre>
+<p>As far as constructors go, this one is pretty simple.  It takes an instance of the <code>Game</code> class as the only parameter.  A check is made to ensure that the <code>game</code> parameter given isn't null and throws an <code>ArgumentNullException</code> if it is; otherwise, we cache the reference in out <code>_game</code> field.</p>
+<h2 id="initialize">Initialize()</h2>
+<p>The <code>Initialize()</code> method is where all the initializations will be performed for our scene.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Initializes the Scene
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This is called only once, immediately after the scene becomes
+///     the active scene, and before the first Update is called on
+///     the scene
+/// &lt;/remarks&gt;
+public virtual void Initialize()
+{
+    _content = new ContentManager(_game.Services);
+    _content.RootDirectory = _game.Content.RootDirectory;
+    LoadContent();
+}
+</code></pre>
+<p>An important thing to note here is this is where the <code>_content</code> field is initialized, and immediatly the <code>LoadContent()</code> method is called.  This is to ensure that all content is loaded before the implementing scene finishes initializing.  This mimics the same process that the <code>Game</code> class uses in MonoGame.</p>
+<p>In the order of events, <code>Initialize()</code> will be called on the same frame that the scene is set as the active scene, and before the first <code>Update(GameTime)</code> is called on the scene.</p>
+<h2 id="loadcontent">LoadContent()</h2>
+<p>The <code>LoadContent()</code> method is where all the content for the scene will be loaded.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Loads the content specific to the Scene.
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This is called internally by the Initialize() method.
+/// &lt;/remarks&gt;
+protected virtual void LoadContent() { }
+</code></pre>
+<p>As we went over in the <a href="#initialize">Initialize</a> section, <code>LoadContent()</code> is called from within the <code>Initialize()</code> method.</p>
+<h2 id="unloadcontent">UnloadContent()</h2>
+<p>The <code>UnloadContent()</code> method allows us to unload any content loaded by the scene when the scene ends. This cleans up any resources that are no longer needed.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Unloads any content that has been loaded by the scene.
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This will be called after the game switches to a new
+///     scene.
+/// &lt;/remarks&gt;
+public virtual void UnloadContent()
+{
+    _content.Unload();
+    _content = null;
+}
+</code></pre>
+<p>When we switch from one scene to another, <code>UnloadContent()</code> will be called to unload any assets before the next scene is loaded.</p>
+<h2 id="updategametime">Update(GameTime)</h2>
+<p>The <code>Update(GameTime)</code> method is pretty simple.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Updates the Scene.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;gameTime&quot;&gt;
+///     A snapshot of the frame specific timing values.
+/// &lt;/param&gt;
+public virtual void Update(GameTime gameTime) { }
+</code></pre>
+<p>We'll use this to handle all update logic for the scene.</p>
+<h2 id="beforedrawspritebatch-color">BeforeDraw(SpriteBatch, Color)</h2>
+<p>Here, in the <code>BeforeDraw(SpriteBatch, Color)</code> method, we'll handle preparing hte scene for rendering to the screen.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Handles preparing the Scene to draw.
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This is called just before the main Draw method.
+/// &lt;/remarks&gt;
+/// &lt;param name=&quot;spriteBatch&quot;&gt;&lt;/param&gt;
+public virtual void BeforeDraw(SpriteBatch spriteBatch, Color clearColor)
+{
+    _game.GraphicsDevice.Clear(clearColor);
+    spriteBatch.Begin();
+}
+</code></pre>
+<p>This method will take two parameters; a <code>SpriteBatch</code> instance and a <code>Color</code> value.  The base method will clear the backbuffer using the <code>Color</code> value given, then call <code>SpriteBatch.Begin()</code></p>
+<h2 id="drawspritebatch">Draw(SpriteBatch)</h2>
+<p>Immediately after <code>BeforeDraw(SpriteBatch, Color)</code> is called, we'll call <code>Draw(SpriteBatch)</code>.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Draws the Scene to the screen.
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This is called immediately after BeforeDraw.
+/// &lt;/remarks&gt;
+/// &lt;param name=&quot;spriteBatch&quot;&gt;
+///     The SpriteBatch instance used for rendering.
+/// &lt;/param&gt;
+public virtual void Draw(SpriteBatch spriteBatch) { }
+</code></pre>
+<p>This will take in the same <code>SpriteBatch</code> instance that was used in the <code>BeforeDraw(SpriteBatch, Color)</code> method so we can use it to render to the screen.</p>
+<h2 id="afterdrawspritebatch">AfterDraw(SpriteBatch)</h2>
+<p>Finally, we have the <code>AfterDraw(SpriteBatch)</code> method.  This is called immediately after <code>Draw(SpriteBatch)</code>.</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+///     Handles ending any drawing the scene is performing.
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+///     This is called immediately after Draw.
+/// &lt;/remarks&gt;
+/// &lt;param name=&quot;spriteBatch&quot;&gt;
+///     The SpriteBatch instance used for rendering.
+/// &lt;/param&gt;
+public virtual void AfterDraw(SpriteBatch spriteBatch)
+{
+    spriteBatch.End();
+}
+</code></pre>
+<p>This takes the same <code>SpriteBatch</code> instance that was used in the <code>BeforeDraw(SpriteBatch, Color)</code> and <code>Draw(SpriteBatch)</code>.  In the base method, we just simply call <code>SpriteBatch.End()</code> to signal that we are done drawing.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that we have created our <code>Scene</code> class, on the next page we're going to update our <strong>Game1.cs</strong> game file to make use of the <code>Scene</code> class we just created.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

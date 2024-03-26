@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="The ContentWriter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>The ContentWriter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Let&#39;s take a look at the ContentWriter class.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/08_the-content-writer.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="The ContentWriter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Let&#39;s take a look at the ContentWriter class.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/08_the-content-writer.html">
+    <meta name="twitter:title" content="The ContentWriter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Let&#39;s take a look at the ContentWriter class.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-contentwriter">The <code>ContentWriter</code></h1>
+
+<p>The job of the <code>ContentWriter</code> is to take the input from the <code>ContentProcessor</code> and write it to disk as a binary encoded<code>.xnb</code> file.</p>
+<h2 id="the-anatomy-of-a-contentwriter">The Anatomy of a <code>ContentWriter</code></h2>
+<p>When we created the <strong>MonoGame Content Extension Project</strong> it did not give us an out-of-box class for the <code>ContentWriter</code>. So for now so we can discuss it, please create a new class file in the project named <code>JsonContentTypeWriter</code> and replace the content inside it with the follow code:</p>
+<pre><code class="lang-cs">using Microsoft.Xna.Framework.Content.Pipeline;
+using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
+
+using TInput = System.String;
+
+namespace JsonContentPipelineExtension
+{
+    [ContentTypeWriter]
+    internal class JsonContentTypeWriter : ContentTypeWriter&lt;TInput&gt;
+    {
+        protected override void Write(ContentWriter output, TInput value)
+        {
+
+        }
+
+        public override string GetRuntimeReader(TargetPlatform targetPlatform)
+        {
+            return default(string);
+        }
+    }
+}
+</code></pre>
+<p>This is the basic foundation of a <code>ContentWriter</code>.  So let's break it down into specific parts, discuss what they are, and why they matter.</p>
+<h3 id="using-aliases">Using Aliases</h3>
+<p>At this point, seeing the <strong>using aliases</strong> should be familiar.</p>
+<pre><code class="lang-cs">using TInput = System.String;
+</code></pre>
+<p>For the <code>ContentWriter</code> we create on called <code>TInput</code> which is set as the type expected to be given to the <code>ContentWriter</code> as input to write.  This should match the type that is returned from the <code>ContentProcessor</code>.</p>
+<h3 id="the-contenttypewriterattribute">The <code>ContentTypeWriterAttribute</code></h3>
+<p>The next pat is the <code>ContentTypeWriterAttribute</code> tha decorates the class declaration.</p>
+<pre><code class="lang-cs">[ContentTypeWriter]
+</code></pre>
+<p>Unlike it's counterparts in the <code>ContentImporter</code> and <code>ContentProcessor</code>, there are no parameters or properties to configure for this attribute.  It is only required that the class be decorated with this attribute.</p>
+<h3 id="the-contenttypewriter-declaration">The <code>ContentTypeWriter</code> Declaration</h3>
+<p>Next is the declaration of the class itself</p>
+<pre><code class="lang-cs">internal class JsonContentTypeWriter : ContentTypeWriter&lt;TInput&gt;
+</code></pre>
+<p>From this we can see that we are inheriting from the <code>ContentTypeWRiter&lt;T&gt;</code> class.  This base class comes from the <code>Microsoft.Xna.Framework.Content.Pipeline</code> namespace.  It requires one generic <code>T</code> type that specifies the type that this writer expects as input that was returned from the processor.</p>
+<p>In our specific case we have specified tha the type is <code>TInput</code>, which is the alias for <code>System.String</code>.  This means our writer expects a string value as input.</p>
+<h3 id="the-writecontentwriter-tinput-method">The <code>Write(ContentWriter, TInput)</code> Method</h3>
+<p>This method is where all of the writing to the <code>.xnb</code> file happens.  The first parameter given is a <code>ContentWriter</code> instance, which is a derived class from the standard <code>BinaryWriter</code>.  So it provides you with the typical <code>BinaryWriter</code> methods to write common value types like <code>int</code>, <code>float</code>, <code>double</code>, <code>bool</code>, <code>string</code>, etc, but you will also have some common MonoGame specific types that can be written as well like <code>Color</code> and <code>Vector2</code>.</p>
+<p>The second parameter is the <code>TInput</code> parameter which is the input passed to the writer from the processor.  We use the values of this input with the <code>ContentWriter</code> to write them to the <code>.xnb</code> file</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When writing the content to the <code>.xnb</code> file, it is important to note the order in which the content is written.  This is because later when reading the <code>.xnb</code> file with the <code>ContentTypeReader</code>, the read must read the data from the file in the same order that it was written too.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The instance of the <code>ContentWriter</code> that is given as a parameter here is created internally within the framework.  When it is created, it writes an initial header to the <code>.xnb</code> file that is being created that includes a signature to validate it as an <code>.xnb</code> file as well as meta data that specifies the <code>ContentTypeReader</code> to use when loading the <code>.xnb</code> file at runtime.</p>
+<p>Due to this small header information that is written, sometimes the <code>.xnb</code> file you create may be sightly larger than the original input file.</p>
+</div>
+<h3 id="the-getruntimereadertargetplatform-method">The <code>GetRuntimeReader(TargetPlatform)</code> Method.</h3>
+<p>This method is probably the one method that will cause you the most grief.  The reason being is because the return value from this method has to be exactly correct.  If this is not correct, then your content will build fine, but will not load at runtime.</p>
+<p>Recall that I mentioned in the note above that the <code>ContentWriter</code> writes a small header ot the <code>.xnb</code> file, and that part of that header is the <code>ContentTypeReader</code> to use when loading the <code>.xnb</code> file at runtime?  Well, this method is where it gets that information from.</p>
+<p>The return value for this needs to be the <strong>fully-qualified type path</strong> of the <code>ContentTypeReader</code> that will be used to read the content.  A <strong>fully-qualified type path</strong> is a string formatted at <code>[Type Path], [Assembly Name]</code>.</p>
+<p>For instance, if we have our <code>ContentTypeReader</code> in another class library who's assembly is named <code>ContentPipelineThings</code>, and within this assembly, the actual <code>ContentTypeReader</code> path, including namespaces, is <code>ContentPipelineThings.ContentReaders.MyContentReader</code>, then the <strong>fully-qualified type path</strong> would be <code>ContentPipelineThings.ContentReaders.MyContentReader, ContentPipelineThings</code>.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>On the next page, we'll edit the <code>JsonContentTypeWriter</code> class that we just created so that it performs all the logic necessary to write the results from the <code>JsonContentParser</code> to an <code>.xnb</code> file.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1264 @@
+{
+  "sitemap": {
+    "baseUrl": "https://aristurtle.net/",
+    "changefreq": "daily",
+    "priority": 0.1
+  },
+  "source_base_path": "/home/runner/work/aristurtledev.github.io/aristurtledev.github.io/source",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/beats.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/beats.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/droplet.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/droplet.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/echo.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/echo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/ophidian.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/ophidian.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "games/slime-battle-royale.md",
+      "output": {
+        ".html": {
+          "relative_path": "games/slime-battle-royale.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "games/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "games/toc.html"
+        },
+        ".json": {
+          "relative_path": "games/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aristurtle.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aristurtle.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/game_preview.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/game_preview.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/screenshot_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/screenshot_01.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/screenshot_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/screenshot_02.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/screenshot_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/screenshot_03.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/screenshot_04.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/screenshot_04.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/beats/screenshot_05.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/beats/screenshot_05.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/game_preview.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/game_preview.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_01.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_02.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_03.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_04.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_04.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_05.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_05.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/droplet/screenshot_06.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/droplet/screenshot_06.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/echo/cover.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/echo/cover.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/echo/game_preview.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/echo/game_preview.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/echo/screenshot_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/echo/screenshot_01.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/echo/screenshot_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/echo/screenshot_02.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/echo/screenshot_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/echo/screenshot_03.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/game_preview.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/game_preview.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_01.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_02.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_03.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_04.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_04.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_05.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_05.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_06.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_06.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_07.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_07.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_08.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_08.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_09.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_09.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/ophidian/screenshot_10.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/ophidian/screenshot_10.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/slime-battle-royale/game_preview.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/slime-battle-royale/game_preview.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/slime-battle-royale/screenshot_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/slime-battle-royale/screenshot_01.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/slime-battle-royale/screenshot_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/slime-battle-royale/screenshot_02.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/slime-battle-royale/screenshot_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/slime-battle-royale/screenshot_03.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/games/slime-battle-royale/screenshot_04.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/games/slime-battle-royale/screenshot_04.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/platforms/gdq.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/platforms/gdq.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/platforms/itch.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/platforms/itch.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/platforms/ludum.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/platforms/ludum.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/platforms/steam.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/platforms/steam.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/aabb-collision-demo.mp4",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/aabb-collision-demo.mp4"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/axis-aligned-boxes.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/axis-aligned-boxes.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/circle-collision-demo.mp4",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/circle-collision-demo.mp4"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/circle-definition.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/circle-definition.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/collision-vs-non-collision.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/collision-vs-non-collision.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/not-axis-aligned-bounding-boxes.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/not-axis-aligned-bounding-boxes.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/pythagorean-theorem-calculation.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/pythagorean-theorem-calculation.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/pythagorean-theorem.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/pythagorean-theorem.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/collision-detection/white-circle.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/collision-detection/white-circle.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/add-project-reference.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/add-project-reference.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/configure-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/configure-class-library.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/configure-game-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/configure-game-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/content-pipeline-workflow.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/content-pipeline-workflow.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-class-library.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-game-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-game-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/dll-path.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/dll-path.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-add-reference.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-add-reference.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-build.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-build.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/name-extension-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/name-extension-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/reference-added.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/reference-added.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/reference-manager-window.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/reference-manager-window.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-class-lib-cleanup.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-class-lib-cleanup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-class-lib.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-class-lib.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-clean.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-clean.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-dirty.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-dirty.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-reference.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/add-new-reference.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/choose-monogame-crossplatform-template.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/choose-monogame-crossplatform-template.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/configure-monogame-crossplatform-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/configure-monogame-crossplatform-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/reference-scenelibrary-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/reference-scenelibrary-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/solution-explorer-result.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-crossplatform-project/solution-explorer-result.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/choose-monogame-game-library-template.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/choose-monogame-game-library-template.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/configure-monogame-game-library-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/configure-monogame-game-library-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/create-new-project.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/create-new-project.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/solution-explorer-panel-result.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/create-new-monogame-game-library-project/solution-explorer-panel-result.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/add-new-class.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/add-new-class.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/name-scene-cs.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/visual-studio/setup-monogame-game-library-project/name-scene-cs.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-crossplatform-project/explorer-panel.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-crossplatform-project/explorer-panel.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/create-directory.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/create-directory.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/open-folder.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/open-folder.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/solution-explorer.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/solution-explorer.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/view-terminal.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/create-new-monogame-game-library-project/view-terminal.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/new-file.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/new-file.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/scene-cs.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/03_setup-project/vs-code/setup-monogame-game-library-project/scene-cs.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tutorials/scenes/fake-mario.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tutorials/scenes/fake-mario.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/collision-detection/01_introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/collision-detection/01_introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/collision-detection/02_axis-aligned-bounding-box.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/collision-detection/02_axis-aligned-bounding-box.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/collision-detection/03_circle_collision.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/collision-detection/03_circle_collision.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/collision-detection/04_conclusion.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/collision-detection/04_conclusion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "tutorials/collision-detection/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/collision-detection/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/collision-detection/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/01_introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/01_introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/02_content-pipeline-workflow.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/02_content-pipeline-workflow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/03_create-content-pipeline-extension-project.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/03_create-content-pipeline-extension-project.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/04_the-content-importer.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/04_the-content-importer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/05_edit-json-content-importer.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/05_edit-json-content-importer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/06_the-content-processor.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/06_the-content-processor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/07_edit-json-content-processor.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/07_edit-json-content-processor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/08_the-content-writer.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/08_the-content-writer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/09_edit-json-content-writer.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/09_edit-json-content-writer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/10_create-monogame-library.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/10_create-monogame-library.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/11_the-content-reader.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/11_the-content-reader.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/12_edit-json-content-reader.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/12_edit-json-content-reader.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/13_create-game-project.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/13_create-game-project.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/content-pipeline-extension/14_conclusion.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/14_conclusion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "tutorials/content-pipeline-extension/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/content-pipeline-extension/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/scenes/01_introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/01_introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/scenes/02_defining-a-scene.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/02_defining-a-scene.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/scenes/03_setup-project.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/03_setup-project.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/scenes/04_the-scene-class.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/04_the-scene-class.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/scenes/05_updating-game1.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/05_updating-game1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "tutorials/scenes/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/scenes/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/scenes/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "tutorials/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

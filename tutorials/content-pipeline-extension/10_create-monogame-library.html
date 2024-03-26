@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Create a MonoGame Game Library | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Create a MonoGame Game Library | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Let&#39;s create a MonoGame Game Library project for our ContentReader.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/10_create-monogame-library.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Create a MonoGame Game Library | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Let&#39;s create a MonoGame Game Library project for our ContentReader.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/10_create-monogame-library.html">
+    <meta name="twitter:title" content="Create a MonoGame Game Library | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Let&#39;s create a MonoGame Game Library project for our ContentReader.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h2 id="create-a-monogame-game-library">Create a MonoGame Game Library</h2>
+
+<p>For the next part of this tutorial, we will need to create a new <strong>MonoGame Game Library</strong> project and add it to our solution.</p>
+<p>A <strong>MonoGame Game Library</strong> project is just a <strong>C# Class Library</strong> project that comes pre-configured with the necessary NuGets used to reference MonoGame types, as well as a few other directories and files that make it simple to create a library of reusable code between your various MonoGame projects.</p>
+<h2 id="why-create-the-contenttypereader-in-a-separate-project">Why Create the <code>ContentTypeReader</code> In A Separate Project?</h2>
+<p>One of the biggest reasons we are going to create the <strong>MonoGame Game Library</strong> project to put our <code>ContentTypeReader</code> in, instead of our <strong>MonoGame Content Pipeline Extension</strong> project is because the extension project doesn't need to know about or reference the <code>ContentTypeReader</code> itself.  By keeping them in separate projects, our game project will only need to reference the <strong>MonoGame Game Library</strong> project we make since it will need a reference to the <code>ContentTypeReader</code> and this means we don't have to reference the extension project which would include all of it's third party dependencies in the build for our game.</p>
+<h2 id="create-a-new-monogame-game-library">Create A New MonoGame Game Library</h2>
+<p>To create a new <strong>MonoGame Game Library</strong> project and add it to our solution, click <strong>File -&gt; New -&gt; Project</strong> from the top menu in Visual Studio.  This will open the <strong>Add new project</strong> window.  From here, locate the <strong>MonoGame Game Library</strong> project template and select it.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-class-library.png" alt="Create New MonoGame Game Library Project"></p>
+<p>In the <strong>Configure your new project</strong> windows, name the project <code>JsonContentPipeline</code>.  If you are given the drop-down choice of creating a new solution or adding to the existing solution choose the <strong>Add to Solution</strong> option.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/configure-class-library.png" alt="Configure MonoGame Game Library Project"></p>
+<p>Once this is completed, you should now have the new <code>JsonContentPipeline</code> project added to your solution in the <strong>Solution Explorer</strong> panel like so with the following files already created:</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-class-lib.png" alt="Solution Explorer After Adding New Project"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For Visual Studio Code users, you can create a new **MonoGame Game Library project by using the following dotnet cli command</p>
+<pre><code class="lang-sh">dotnet new mglib -n JsonContentPipeline
+</code></pre>
+</div>
+<p>Typically when making a <strong>MonoGame Game Library</strong> project, we can make use of the provided <strong>/Content/</strong> directory and the <strong>Game1.cs</strong> file provided.  However for our content pipeline extension, these are not going to be needed. So delete both the <strong>/Content/</strong> directory and the <strong>Game1.cs</strong> file.</p>
+<p>Next add a new <strong>Class File</strong> to the project named <code>JsonContentTypeReader</code>.  Then replace the code in this file with the following.</p>
+<pre><code class="lang-cs">using Microsoft.Xna.Framework.Content;
+using System;
+
+namespace JsonContentPipeline
+{
+    public class JsonContentTypeReader&lt;T&gt; : ContentTypeReader&lt;T&gt;
+    {
+        protected override T Read(ContentReader input, T existingInstance)
+        {
+            return default(T);
+        }
+    }
+}
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>That's it for this step. We have now created our <strong>MonoGame Game Library</strong> project and added the base template for our <code>JsonContentTypeReader</code> file.  On the next page, we'll dig into the anatomy of a <code>ContentTypeReader</code> class to get an understanding of it before making the edits needed for it to actually read the JSON content.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

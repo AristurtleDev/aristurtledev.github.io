@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="The ContentImporter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>The ContentImporter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Let&#39;s take a look at the ContentImporter class.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/04_the-content-importer.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="The ContentImporter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Let&#39;s take a look at the ContentImporter class.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/04_the-content-importer.html">
+    <meta name="twitter:title" content="The ContentImporter class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Let&#39;s take a look at the ContentImporter class.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-contentimporter">The <code>ContentImporter</code></h1>
+
+<p>The job of the <code>ContentImporter</code> is to read the contents of the file being imported from disk and pass that data to the <code>ContentProcessor</code> where it can be processed.  You will, when able, want to perform some type of validation on the data that is imported to ensure it is the correct type of data expected so that there are no issues during the processing stage.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This can sometimes be tricky to balance when validation of the data also means processing the data.  Just keep in mind there is no right or wrong way to do it, whether you place that validation in the importer or during the processing stage.</p>
+<p>The goal of doing validation in the import stage is so that if an exception needs to be thrown, it's clear to the end user that it occurred during and due to the import stage.</p>
+</div>
+<h2 id="the-anatomy-of-a-contentimporter">The Anatomy of a <code>ContentImporter</code></h2>
+<p>Let's take a look at the anatomy of a <code>ContentImporter</code> by taking a look at the <code>JsonContentImporter</code> class.  If you open this file, you will see the following:</p>
+<pre><code class="lang-cs">using Microsoft.Xna.Framework.Content.Pipeline;
+
+using TImport = System.String;
+
+namespace JsonContentPipelineExtension
+{
+    [ContentImporter(&quot;.txt&quot;, DisplayName = &quot;Importer1&quot;, DefaultProcessor = &quot;Processor1&quot;)]
+    public class JsonContentImporter : ContentImporter&lt;TImport&gt;
+    {
+        public override TImport Import(string filename, ContentImporterContext context)
+        {
+            return default(TImport);
+        }
+    }
+}
+</code></pre>
+<p>So let's break this down into specific parts, discuss what they are, and why they matter.</p>
+<h3 id="using-alias">Using Alias</h3>
+<p>The first part we'll look at is the <strong>using alias</strong></p>
+<pre><code class="lang-cs">using TImport = System.String;
+</code></pre>
+<p>This is not something that is MonoGame specific, but rather a C# language feature. The short explanation is that we are creating an alias here for <code>System.STring</code> called <code>TImport</code>.  This means anywhere in <strong>this</strong> code file that we use the keyword <code>TImport</code> it is the same thing as if we said <code>System.String</code>.</p>
+<p>If you're not familiar with the <strong>using alias</strong> concept in C#, you can read more about it on the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#using-alias">using directive - C# Reference | Microsoft Learn</a> official page.</p>
+<h3 id="the-contentimporterattribute">The <code>ContentImporterAttribute</code></h3>
+<p>The next part we'll look at is the <code>ContentImporterAttribute</code> that decorates the class declaration.</p>
+<pre><code class="lang-cs">[ContentImporter(&quot;.txt&quot;, DisplayName = &quot;Importer1&quot;, DefaultProcessor = &quot;Processor1&quot;)]
+</code></pre>
+<p>This attribute <strong>must</strong> be added to the class that will serve as our content importer.  The first parameter in the attribute, <code>.txt</code>, defines the file extension that our <code>ContentImporter</code> will be associated with.  The <code>DisplayName</code> property allows us to set the display name shown for the importer inside the <strong>MGCB Editor</strong>.  Finally the <code>DefaultProcessor</code> property allows us to set which <code>ContentProcessor</code> will be selected as the default processor in the <strong>MGCB Editor</strong> for the content being imported.</p>
+<p>We'll change the values in a moment, for now we're just discussing what they do.</p>
+<h3 id="the-contentimporter-declaration">The <code>ContentImporter</code> Declaration</h3>
+<p>Next, let's take a look at the declaration of the class itself</p>
+<pre><code class="lang-cs">public class JsonContentImporter : ContentImporter&lt;TImport&gt;
+</code></pre>
+<p>From this we can see that we are inheriting from <code>ContentImporter&lt;T&gt;</code>.  This base class comes from the <code>Microsoft.Xna.Framework.Content.Pipeline</code> namespace.  It also requires a generic <code>T</code> type which specifies the type expected to be returned back from our importer once it finishes importing.</p>
+<p>In our specific case we have specified this type to be <code>TInput</code>, which is the alias for <code>System.String</code>.  This means our importer is expected to return back a string value.</p>
+<h3 id="the-importstring-contentimportercontext-method">The <code>Import(string, ContentImporterContext)</code> Method</h3>
+<p>Inside the class, we are provided with a single method that is overriding from the base class.  This is the <code>Import(string, ContentImporterContext)</code> method</p>
+<pre><code class="lang-cs">public override TImport Import(string filename, ContentImporterContext context)
+</code></pre>
+<p>This method is where we'll do the actual importing of the contents for the file.  This method must also return the <code>&lt;T&gt;</code> type defined in the inheritance, which in our case is <code>TInput</code>, the alias for <code>System.String</code>.  So we must return a string value for this importer.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Sometimes you may want to return more than just a simple string value of the content read.  For instance, maybe you want to import not just the file content, but also meta data about the file such as the file name, creation date, etc.</p>
+<p>In these situations, you can create a simple model class that holds all the information you need and use that as the return type for the <code>ContentImporter</code>.</p>
+</div>
+<p>This method also contains the <code>ContentImporterContext</code> parameter.  This parameter provides additional context for the importer which allows us to do things like adding additional files as dependencies when importing.  This is not something we'll be needing in this tutorial, but I can cover the concepts of doing this in a future one.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>On the next page, we'll edit the <code>JsonContentImporter</code> so that it performs all the logic necessary to import the contents of a JSON file.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

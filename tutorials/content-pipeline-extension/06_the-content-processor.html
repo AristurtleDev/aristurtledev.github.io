@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="The ContentProcessor class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>The ContentProcessor class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Let&#39;s take a look at the ContentProcessor class.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/06_the-content-processor.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="The ContentProcessor class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Let&#39;s take a look at the ContentProcessor class.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/06_the-content-processor.html">
+    <meta name="twitter:title" content="The ContentProcessor class | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Let&#39;s take a look at the ContentProcessor class.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-contentprocessor">The <code>ContentProcessor</code></h1>
+
+<p>The job of the <code>ContentProcessor</code> is to process the content that was imported by the <code>ContentImporter</code> and transform it in anyway necessary before sending it to the <code>ContentWriter</code> to be written to an <code>.xnb</code> file.</p>
+<h2 id="the-anatomy-of-a-contentprocessor">The Anatomy of a <code>ContentProcessor</code></h2>
+<p>Let's take a look at the anatomy of a <code>ContentProcessor</code> by taking a look at the <code>JsonContentProcessor</code> class.  If you open this file, you will see the following:</p>
+<pre><code class="lang-cs">using Microsoft.Xna.Framework.Content.Pipeline;
+
+using TInput = System.String;
+using TOutput = System.String;
+
+namespace JsonContentPipelineExtension
+{
+    [ContentProcessor(DisplayName = &quot;Processor1&quot;)]
+    internal class JsonContentProcessor : ContentProcessor&lt;TInput, TOutput&gt;
+    {
+        public override TOutput Process(TInput input, ContentProcessorContext context)
+        {
+            return default(TOutput);
+        }
+    }
+}
+</code></pre>
+<p>So let's break this down into specific parts, discuss what they are, and why they matter.</p>
+<h3 id="using-aliases">Using Aliases</h3>
+<p>The first part we'll look at is the <strong>using aliases</strong></p>
+<pre><code class="lang-cs">using TInput = System.String;
+using TOutput = System.String;
+</code></pre>
+<p>Just like in the <code>ContentImporter</code> the MonoGame template gives us <strong>using aliases</strong> to define the type that is expected to be input into the processor (<code>TInput</code>) and the type that is expected to be returned from the processor (<code>TOutput</code>) to be sent to the <code>ContentWriter</code>.</p>
+<h3 id="the-contentprocessorattribute">The <code>ContentProcessorAttribute</code></h3>
+<p>The next part we'll look at is the <code>ContentProcessorAttribute</code> that decorates the class declaration.</p>
+<pre><code class="lang-cs">[ContentProcessor(DisplayName = &quot;Processor1&quot;)]
+</code></pre>
+<p>This attribute <strong>must</strong> be added to the class that will serve as our content processor.  It only has the <code>DisplayName</code> property to set which allows us to set the display name shown for the processor inside the <strong>MGCB Editor</strong>.</p>
+<h3 id="the-contentprocessor-declaration">The <code>ContentProcessor</code> Declaration</h3>
+<p>Next, let's take a look at the declaration of the class itself</p>
+<pre><code class="lang-cs">internal class JsonContentProcessor : ContentProcessor&lt;TInput, TOutput&gt;
+</code></pre>
+<p>From this we can see that we are inheriting from <code>ContentProcessor&lt;Tin, TOut&gt;</code>.  This base class comes from the <code>Microsoft.Xna.Framework.Content.Pipeline</code> namespace.  It also requires two generic <code>T</code> types which specify the type that is sent to this processor from the <code>ContentImporter</code> and the type expected to be returned from this processor once it finishes processing.</p>
+<p>In our specific case we have specified that the input type to be <code>TInput</code>, which is the alias for <code>System.String</code> and the output type is <code>TOutput</code> which is also an alias for <code>System.String</code>.  This means our processor expects a string value as input and is expected to return back a string value when finished.</p>
+<h3 id="the-processtinput-contentprocessorcontext-method">The <code>Process(TInput, ContentProcessorContext)</code> Method</h3>
+<p>Inside the class, we are provided with a single method that is overriding from the base class.  This is the <code>Process(TInput, ContentProcessorContext)</code> method.</p>
+<pre><code class="lang-cs">public override TOutput Process(TInput input, ContentProcessorContext context)
+</code></pre>
+<p>This method is where we'll do the actual processing of the data that is sent from the <code>ContentImporter</code>.  Once all processing is done, we then return back the expected return type.</p>
+<p>This method also contains the <code>ContentProcessorContext</code> parameter.  This parameter provides additional context for the processor which allows us to do things like adding additional files as dependencies to be processed.  This is not something we'll be needing in this tutorial, but I can cover the concepts of doing this in a future one.</p>
+<h3 id="properties">Properties</h3>
+<p>One thing that is not given by the out-of-the-box template is properties for the <code>ContentProcessor</code>.  Sometimes you may need for the end user to be able to configure how the processor processes the content.  You can give them these configurations by adding properties to the <code>ContentProcessor</code> class file and decorating them with the <code>DisplayNameAttribute</code>.  Doing this will show them as configurable properties in the <strong>MGCB Editor</strong> for the end user.</p>
+<p>This is something we will do on the next page when we edit the <code>JsonContentProcessor</code> to process our JSON content.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>On the next page, we'll edit the <code>JsonContentProcessor</code> so that it performs all the logic necessary to process the contents of a JSON file.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

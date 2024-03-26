@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Create Game Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Create Game Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Let&#39;s create a game project to test our new extension with.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/13_create-game-project.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Create Game Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Let&#39;s create a game project to test our new extension with.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/13_create-game-project.html">
+    <meta name="twitter:title" content="Create Game Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Let&#39;s create a game project to test our new extension with.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-game-project">Create Game Project</h1>
+
+<p>The final thing we need to cover is how to add the <strong>MonoGame Content Pipeline Extension</strong> to be used in one of our game projects.  On this page, we'll go through the steps of creating a new game project, adding the correct references to both the project and the <strong>MGCB Editor</strong>, then testing out our new JSON content pipeline extension.</p>
+<h2 id="create-a-monogame-project">Create a MonoGame Project</h2>
+<p>We need a game project now to test our content pipeline extension and make sure it's working.  Creating a new MonoGame game project should already be familiar for most, but we'll go through the process anyway.</p>
+<p>In Visual Studio, click the <strong>File &gt; New &gt; Project</strong> menu item to open the <strong>Create a new project</strong> window.  From here choose one of the MonoGame templates.  For this tutorial, I am going to choose the <strong>MonoGame Cross Platform Desktop Project</strong> template.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-game-project.png" alt="Create MonoGame Game project"></p>
+<p>On the <strong>Configure your new project</strong> window, give your project a name.  For this tutorial, I have named mine <strong>ExampleGame</strong>.  Also ensure that the <strong>Solution</strong> drop-down is set to <strong>Add to solution</strong>.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/configure-game-project.png" alt="Configure MonoGame Game project"></p>
+<h2 id="add-project-reference">Add Project Reference</h2>
+<p>Next, we need to add a project reference to our game project that references the <strong>JsonContentPipeline</strong> project that we created which contains the <code>JsonContentTypeReader</code> class.  To do this:</p>
+<ol>
+<li>Right-click the game project in the <strong>Solution Explorer</strong> panel</li>
+<li>In the context menu, select <strong>Add -&gt; Project Reference</strong></li>
+</ol>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/add-project-reference.png" alt="Add Project Reference"></p>
+<ol start="3">
+<li>In the <strong>Reference Manager</strong> window tha opens, check the <strong>JsonContentPipeline</strong> project to add it as a reference to our game project, then click the <strong>OK</strong> button.</li>
+</ol>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/reference-manager-window.png" alt="Reference Manager Window"></p>
+<p>And that's it. Now our game project has a reference to the <strong>JsonContentPipeline</strong> project.</p>
+<h2 id="add-reference-to-mgcb-editor">Add Reference to MGCB Editor</h2>
+<p>Next, we'll need to add a reference to the <strong>JsonContentPipelineExtension</strong> to our <strong>Content.mgcb</strong> file.  The easiest way to do this is by using the <strong>MGCB Editor</strong>.</p>
+<p>First, do a build of the <strong>JsonContentPipelineExtension</strong> project to make sure that the project is build and the <code>.dll</code> is available to reference.</p>
+<p>Next, double-click the <strong>Content.mgcb</strong> file in our project to open it in the <strong>MGCB Editor</strong></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For Visual Studio Code users, you can open the <strong>Content.mgcb</strong> file in the <strong>MGCB Editor</strong> by entering the following command from your project directory</p>
+<pre><code class="lang-sh">dotnet mgcb-editor ./Content/Content.mgcb
+</code></pre>
+</div>
+<p>Once the <strong>MGCB Editor</strong> is open, click the <strong>Content</strong> node in the <strong>Project</strong> panel, then click the box next to the <strong>Reference</strong> property in the <strong>Properties</strong> panel at the bottom.  This will open the <strong>Reference Editor</strong> window</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-add-reference.png" alt="MGCB Add Reference"></p>
+<p>In the <strong>Reference Editor</strong> window, click the <strong>Add</strong> button, then navigate to the build directory of the <strong>JsonContentPipelineExtension</strong> project and select the <strong>JsonContentPipelineExtension.dll</strong> file to add as a reference and click the <strong>Open</strong> button</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/dll-path.png" alt="DLL Path"></p>
+<p>This should now show that it is added in the <strong>Reference Editor</strong> window.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/reference-added.png" alt="Reference Added"></p>
+<p>Click the <strong>Ok</strong> button, the choose <strong>File -&gt; Save</strong> from the <strong>MGCB Editor</strong> top menu to save the file with the new reference added.  After this, you can close the <strong>MGCB Editor</strong> for now, we'll come back to it in a little bit.</p>
+<h2 id="create-an-example-model-class">Create an Example Model Class</h2>
+<p>Next, we need to add an example model class that we can use to test the JSON content loading. This doesn't need to be anything complex, just a simple class with some properties that the JSON can be serialized too.  To do this, add a new class file to the game project named <code>ExampleModel.cs</code>, then add the following code to the file</p>
+<pre><code class="lang-cs">namespace ExampleGame
+{
+    public class ExampleModel
+    {
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int Defense { get; set; }
+        public int Attack { get; set; }
+    }
+}
+</code></pre>
+<p>This is a really simple class that just has an <code>int ID</code> property and two <code>float</code> properties for the X and Y position of the model.</p>
+<h2 id="create-a-contenttypereader-for-our-example-model">Create a ContentTypeReader For Our Example Model</h2>
+<p>One of the tricky things when dealing with loading JSON content is how we wrote the <code>JsonContentTypeReader</code> class.  The class uses the generic <code>&lt;T&gt;</code> parameter, which is going to make it difficult for the <code>Content.Load&lt;T&gt;()</code> method to choose the correct reader.</p>
+<p>To alleviate this specifically for the JSON importer, we need to create a new <strong>ContentTypeReader</strong> in our game class specifically for the <code>ExampleModel</code>.  To do this, create a new class file called <strong>ExampleModelReader.cs</strong> in the game project and add the following code to it:</p>
+<pre><code class="lang-cs">using JsonContentPipeline;
+
+namespace ExampleGame
+{
+    internal class ExampleModelReader : JsonContentTypeReader&lt;ExampleModel&gt; { }
+}
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Creating the additional reader class in out game file is unique to this tutorial situation since we're loading JSON content which can be deserialized to one of many different types.</p>
+<p>In a typical Content Pipeline Extension scenario, your content type that you load would only deserialize to one specific type.</p>
+</div>
+<h2 id="create-the-example-json-file">Create the Example JSON File</h2>
+<p>Next, we need to create the example JSON file that we'll be importing using the <strong>MGCB Editor</strong> and our new extension.  We want the contents of the JSON file to be serializable to the <code>ExampleModel</code> class that we just created.</p>
+<p>To do this, right-click on the <strong>Content</strong> directory for our game in the <strong>Solution Explorer</strong> panel and select <strong>Add &gt; New Item</strong>.  Name the item <strong>example.json</strong>, then click the <strong>Add</strong> button.</p>
+<p>In our newly created <strong>example.json</strong> file add the following code</p>
+<pre><code class="lang-json">{
+  &quot;Name&quot;: &quot;Aristurtle&quot;,
+  &quot;Health&quot;: 100,
+  &quot;Defense&quot;: 50,
+  &quot;Attack&quot;: 20
+}
+</code></pre>
+<p>This is a fairly simple JSON file that will deserialize into an instance of our <code>ExampleModel</code> class.</p>
+<h2 id="add-the-json-file-as-content-in-the-mgcb-editor">Add the JSON File As Content In The MGCB Editor</h2>
+<p>Next, open the <strong>MGCB Editor</strong> again if you closed it previously.  Right-click on the <strong>Content</strong> node in the <strong>Project</strong> panel and select <strong>Add &gt; Existing Item</strong>, then choose our <strong>example.json</strong> file that we just created.</p>
+<p>If you click the <strong>example.json</strong> node in the <strong>Project</strong> panel, you should see that the <strong>Json Importer - Aristurtle</strong> and <strong>Json Processor - Aristurtle</strong> have been automatically selected for the Importer and Processor properties for us.</p>
+<p>You can also see that the <strong>Minify</strong> and <strong>Runtime Type</strong> properties are available to configure from the properties from the <code>JsonContentProcessor</code>. By default the <strong>Runtime Type</strong> is blank, so we'll need to edit it to tell it to use the <code>ExampleModelReader</code> we created earlier.  We have to enter this as a <strong>fully-qualified type name</strong> so enter the following</p>
+<pre><code>ExampleGame.ExampleModelReader, ExampleGame
+</code></pre>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/mgcb-build.png" alt="MGCB Editor Build"></p>
+<p>Once this is configured, you can choose <strong>File &gt; Save</strong> in the MGCB Editor and close it.</p>
+<h2 id="load-the-json-file-using-the-contentmanager">Load the JSON File Using the ContentManager</h2>
+<p>The final thing we need to test is that the <code>ContentManager</code> in the game loads our <strong>example.json</strong> file that was built as a <code>.xnb</code> file properly.  To do this, open the <strong>Game1.cs</strong> file and scroll down to the <code>LoadContent()</code> method and change it to the following.</p>
+<pre><code class="lang-csharp" highlight-lines="6">protected override void LoadContent()
+{
+    _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+    // TODO: use this.Content to load your game content here
+    ExampleModel example = Content.Load&lt;ExampleModel&gt;(&quot;example&quot;);
+}
+</code></pre>
+<p>This one line tells the <code>ContentManager</code> to load the <strong>example.xnb</strong> file and as an <code>ExampleModel</code> type.</p>
+<p>If you put a break point on this line of the code and then start the game as a debug session, you can now step through and see the JSON file being read and returned back an an <code>ExampleModel</code> class instance.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

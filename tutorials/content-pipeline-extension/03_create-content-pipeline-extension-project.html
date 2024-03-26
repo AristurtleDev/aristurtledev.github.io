@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Create the MonoGame Content Pipeline Extension Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Create the MonoGame Content Pipeline Extension Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle </title>
+    <meta name="description" content="Creating a MonoGame Content Pipeline Extension project.">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/03_create-content-pipeline-extension-project.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Create the MonoGame Content Pipeline Extension Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="og:description" content="Creating a MonoGame Content Pipeline Extension project.">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/tutorials/content-pipeline-extension/03_create-content-pipeline-extension-project.html">
+    <meta name="twitter:title" content="Create the MonoGame Content Pipeline Extension Project | MonoGame Content Pipeline Extension Tutorial Series | Aristurtle ">
+    <meta name="twitter:description" content="Creating a MonoGame Content Pipeline Extension project.">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-the-monogame-content-pipeline-extension-project">Create the MonoGame Content Pipeline Extension Project</h1>
+
+<p>The first thing we'll need to do is create a new <strong>MonoGame Content Pipeline Extension</strong> project.  Using this template to create the project will give us some necessary things already pre-configured for us, like the NuGet package references that would be needed.  Open Visual Studio and create a new <strong>MonoGame Content Pipeline Extension</strong> project</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/create-new-project.png" alt="Create new MonoGame Content Pipeline Extension Project"></p>
+<p>For the purposes of this tutorial, I have given the project the name <strong>JsonContentPipelineExtension</strong>. You can name it whatever you would like, just remember that when I use that name to replace it with what you called the project.</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/name-extension-project.png" alt="Name The Project"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For users that are using Visual Studio Code, you can create a new <strong>MonoGame Content Pipeline Extension</strong> project by using the <strong>dotnet cli</strong> with the following command</p>
+<pre><code class="lang-sh">dotnet new mgpipeline -n JsonContentPipelineExtension
+</code></pre>
+</div>
+<p>Once we have our project created, you should have the following project files:</p>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-dirty.png" alt="Initial Project Files in Solution Explorer"></p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Several of the files listed in the project are dependencies that are added by the <code>MonoGame.Framework.Content.Pipeline</code> NuGet reference that the project has.  These can make the <strong>Solution Explorer</strong> window a bit crowded.  While we do need these dependencies there, we can hide them from the <strong>Solution Explorer</strong> view so they are not in our way.  Do do this, double-click the project in the <strong>Solution Explorer</strong> panel to open the <code>.csproj</code> in a text editor. Then, on the line before the <code>&lt;/Project&gt;</code>at the bottom, add the following</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;Content Remove=&quot;\**\*\CppNet.dll&quot; /&gt;
+  &lt;Content Remove=&quot;\**\*\libmojoshader_64.dll&quot; /&gt;
+  &lt;Content Remove=&quot;\**\*\mgfxc*&quot; /&gt;
+  &lt;Content Remove=&quot;\**\*\SharpDX.*&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>Then save the file.  You should instantly notice the dependency files are now not shown in the <strong>Solution Explorer</strong>.</p>
+</div>
+<p>This template gives use an out-of-the-box <code>ContentImporter</code> file called <strong>Importer1.cs</strong> and an out-of-the-box <code>ContentProcessor</code> file called <strong>Processor1.cs</strong>.  These are not very descriptive names for our project so let's rename them</p>
+<ol>
+<li>Rename <code>Importer1.cs</code> to <code>JsonContentImporter.cs</code></li>
+<li>Renamed <code>Processor1.cs</code> to <code>JsonContentProcessor.cs</code></li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When you rename the files in the <strong>Solution Explorer</strong> panel, you may receive a pop-up asking if you would like to perform a rename in the project of all references to the old file name.  Choose <strong>Yes</strong>.</p>
+</div>
+<p><img src="../../images/tutorials/monogame-tutorials/content-pipeline-extension/solution-explorer-clean.png" alt="Project Files in Solution Explorer"></p>
+<h2 id="add-jsoncontentpropertyresult-class">Add JsonContentPropertyResult Class</h2>
+<p>One final thing we'll need to do before moving on is to create a class file that we can use to store the data transferred from the <strong>JsonContentProcessor</strong> to the <strong>JsonContentTypeWriter</strong></p>
+<p>The reason we need to do this is because the JSON, once we read it in is going to just be a <code>string</code> value.  As such, some basic types like <code>string</code> cannot be used as the type for the data that is passed through the workflow because it conflicts with existing built-in importers and processors.  So we need to create a model class that acts as a data transfer object (DTO) for our data.</p>
+<p>To do this, create a new class file in the project named <strong>JsonContentProcessorResult.cs</strong>, then add the following code to the file</p>
+<pre><code class="lang-cs">namespace JsonContentPipelineExtension
+{
+    public class JsonContentResult
+    {
+        public string Json { get; set; }
+        public string RuntimeType { get; set; }
+    }
+}
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>That's it for the initial setup of our <strong>MonoGame Content Pipeline Extension</strong> project.  On the next page, we'll go over the <code>ContentImporter</code> class, the anatomy of it, and adjust it so that it will load our JSON files for this tutorial.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+        <div id="modificationDate" class="my-5">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col text-end">
+              <em><small>Last updated on 10/16/2023 by Christopher Whitley
+            </small></em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
