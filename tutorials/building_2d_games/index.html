@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="building-2d-games-with-monogame">Building 2D Games with MonoGame</h1>
+<p class="text-secondary">A beginner tutorial for building 2D games with MonoGame.</p>
+<p>This tutorial covers game development concepts using the MonoGame framework as our tool.  Throughout each chapter, we will explore game development with MonoGame, introducing new concepts to build upon previous ones as we go. we will create a Snake game, which will serve as the vehicle to apply the concepts learned throughout the tutorial.  The goal of this tutorial is to give you a solid foundation in 2D game development with MonoGame and provide you with reusable modules that you can jump start future projects.</p>
+<h2 id="who-this-is-for">Who This Is For</h2>
+<p>This documentation is meant to be an introduction to game development and MonoGame. Readers should have a foundational understanding of C# and be comfortable with concepts such as classes and objects.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you are just getting started with C# for the first time, I would recommend following the official <a href="https://dotnet.microsoft.com/en-us/learn/csharp">Learn C#</a> tutorials provided by Microsoft. These are free tutorials that teach you programming concepts as well as the C# languages. Once you feel you have a good foundation with that, come back and continue here.</p>
+</div>
+<h2 id="how-this-documentation-is-organized">How This Documentation Is Organized</h2>
+<p>This documentation will introduce game development concepts using the MonoGame framework while walking the reader through the development of a Snake clone. The documentation is organized such that each chapter should be read sequentially, with each introducing new concepts and building off of the previous chapters.</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>This is currently a work in progress and is not finished.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>Summary</th>
+<th>Source Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="01_what_is_monogame/index.html">01: What Is MonoGame</a></td>
+<td>Learn about the history of MonoGame and explore the features it provides developers when creating games.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="02_getting_started/index.html">02: Getting Started</a></td>
+<td>Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="03_the_game1_file/index.html">03: The Game1 File</a></td>
+<td>Explore the contents of the Game1 file generated when creating a new MonoGame project.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="04_content_pipeline/index.html">04: Content Pipeline</a></td>
+<td>Learn the advantages of using the <strong>Content Pipeline</strong> to load assets and go through the processes of loading your first asset</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="05_working_with_textures/index.html">05: Working with Textures</a></td>
+<td>Learn how to load and render textures using the MonoGame content pipeline and <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="06_optimizing_texture_rendering/index.html">06: Optimizing Texture Rendering</a></td>
+<td>Explore optimization techniques when rendering textures using a texture atlas.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="07_the_sprite_class/index.html">07: The Sprite Class</a></td>
+<td>Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="07_the_sprite_class/index.html">08: The AnimatedSprite Class</a></td>
+<td>Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:</p>
+<table>
+<thead>
+<tr>
+<th>Appendix</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conventions-used-in-this-documentation">Conventions Used in This Documentation</h2>
+<p>The following conventions are used in this documentation</p>
+<h3 id="italics">Italics</h3>
+<p><em>Italics</em> are used for emphasis, technical terms, and paths such as file paths including filenames and extensions.</p>
+<h3 id="inline-code-blocks">Inline Code Blocks</h3>
+<p><code>Inline code</code> blocks are used for methods, functions, and variable names when they are discussed with the body a text paragraph.</p>
+<h3 id="code-blocks">Code Blocks</h3>
+<pre><code class="lang-cs">// Example Code Block
+public void Foo() { }
+</code></pre>
+<p>Code blocks are used to show code examples with syntax highlighting</p>
+<h2 id="monogame">MonoGame</h2>
+<p>If you ever have questions about MonoGame or would like to talk with other developers to share ideas or just hang out with us, you can find us in the various MonoGame communities below</p>
+<ul>
+<li><a href="https://discord.gg/monogame">Discord</a></li>
+<li><a href="https://github.com/MonoGame/MonoGame/discussions">GitHub Discussions Forum</a></li>
+<li><a href="https://community.monogame.net/">Community Forums (deprecated)</a></li>
+<li><a href="https://www.reddit.com/r/monogame/">Reddit</a></li>
+<li><a href="https://www.facebook.com/monogamecommunity">Facebook</a></li>
+</ul>
+<h2 id="note-from-author">Note From Author</h2>
+<blockquote>
+<p>I have been using MonoGame for the past several years (since 2017). It was a time in my game development journey where I was looking for something that I had more control over. I didn't want to spend the time to write a full game engine, but I also wanted to have more control than what the current engines at the time (i.e. Unity) offered. At that time, there was a vast amount of resources available for getting started, but none of them felt like they fit a good beginner series. Even now, the resources available still seem this way. They either require the reader to have a great understanding of game development and programming, or they assume the reader has none and instead focuses on teaching programming more than teaching MonoGame. Even still, some relied too heavily on third party libraries, others were simply very bare bones asking the reader to just copy and paste code without explaining the <em>what</em> of it all.</p>
+<p>Since then, I have written various small self contained tutorials on different topics for MonoGame to try and give back to the community for those getting started. I also participate regularly in the community discussion channels, answering questions and offering technical advice, so I'm very familiar with the topics and pain points that users get hung up on when first starting out.</p>
+<p>With this documentation, I hope to take the lessons I've learned and provide a tutorial series that I wish was available when I first started.. To present using MonoGame in a straight forward way, introducing concepts and building off of them as we go along in a way that makes sense and is easy to follow.</p>
+<p>- Christopher Whitley (Aristurtle)</p>
+</blockquote>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Acknowledgments will be added at a later time to recognize everyone that assisted with editing and reviewing this documentation.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
