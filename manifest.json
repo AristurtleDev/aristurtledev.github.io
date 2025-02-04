@@ -1375,46 +1375,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered-example.drawio",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered-example.drawio"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered-example.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered-example.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-centered.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-offcenter.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/logo-wordmark-offcenter.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/06_optimizing_texture_rendering/images/mgcb-editor-copy.png",
       "output": {
         "resource": {

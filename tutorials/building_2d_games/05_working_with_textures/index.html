@@ -186,7 +186,7 @@ _spriteBatch.End();
 <p>In the example above, we multiply the <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> created by <code>0.5f</code> to halve the value instead of dividing it by <code>2.0f</code>. If you are not used to seeing this, it might seem strange at first, but it is actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading <code>* 0.5f</code> is easily understood to be the same thing as <code>/ 2.0f</code> when reading.</p>
 </div>
 <p>We have now set the position to half the window's dimensions, which should center the logo. Let's run the game to see the result.</p>
-<figure><img src="images/logo-off-center.png" alt="Figure 4-8: Attempting to draw the MonoGame logo centered on the game window."><figcaption><p><strong>Figure 4-8: Attempting to draw the MonoGame logo centered on the game window.</strong></p></figcaption></figure>
+<figure><img src="images/logo-off-center.png" alt="Figure 5-2: Attempting to draw the MonoGame logo centered on the game window."><figcaption><p><strong>Figure 5-2: Attempting to draw the MonoGame logo centered on the game window.</strong></p></figcaption></figure>
 <p>The logo is not centered as we expected it to be.  Even though we set the <em>position</em> parameter to the center of the game window, the texture starts drawing from its <em>origin</em>, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not its center.</p>
 <p>One way to correct this is to subtract half the width and height of the texture from the game window's center position like so:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
@@ -197,7 +197,7 @@ _spriteBatch.End();
   Color.White); // color
 </code></pre>
 <p>This offsets the position so that it correctly centers the image to the game window.</p>
-<figure><img src="images/logo-centered.png" alt="Figure 5-2: The MonoGame logo drawn centered on the game window."><figcaption><p><strong>Figure 5-2: The MonoGame logo drawn centered on the game window.</strong></p></figcaption></figure>
+<figure><img src="images/logo-centered.png" alt="Figure 5-3: The MonoGame logo drawn centered on the game window."><figcaption><p><strong>Figure 5-3: The MonoGame logo drawn centered on the game window.</strong></p></figcaption></figure>
 <p>While this works, there is a better approach.  There is a different overload of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)"><strong>SpriteBatch.Draw</strong></a> method that provides additional parameters for complete control over the draw operation. Update your code to:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
   _logo,              // texture
@@ -285,11 +285,11 @@ _spriteBatch.End();
   0.0f);                    // layerDepth
 </code></pre>
 <p>Running the code now shows the rotated image, but not in the expected position:</p>
-<figure><img src="images/logo-rotated-offcenter.png" alt="Figure 5-3: Attempting to draw the MonoGame logo rotated 90° and centered on the game window."><figcaption><p><strong>Figure 5-3: Attempting to draw the MonoGame logo rotated 90° and centered on the game window.</strong></p></figcaption></figure>
+<figure><img src="images/logo-rotated-offcenter.png" alt="Figure 5-4: Attempting to draw the MonoGame logo rotated 90° and centered on the game window."><figcaption><p><strong>Figure 5-4: Attempting to draw the MonoGame logo rotated 90° and centered on the game window.</strong></p></figcaption></figure>
 <p>The reason the sprite did not rotate as expected is because of the <code>origin</code> parameter.</p>
 <h3 id="origin">Origin</h3>
 <p>The <code>origin</code> parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a>, the upper-left corner of the sprite.  To visualize this, see Figure 5-4 below.  The red square represents where the origin is for the sprite, and we can see how it's rotated around this origin point.</p>
-<figure><img src="images/top-left-origin-rotation-example.gif" alt="Figure 5-4: Demonstration of how a sprite is rotated around its origin."><figcaption><p><strong>Figure 5-4: Demonstration of how a sprite is rotated around its origin.</strong></p></figcaption></figure>
+<figure><img src="images/top-left-origin-rotation-example.gif" alt="Figure 5-5: Demonstration of how a sprite is rotated around its origin."><figcaption><p><strong>Figure 5-5: Demonstration of how a sprite is rotated around its origin.</strong></p></figcaption></figure>
 <p>To resolve the rotation issue we had, we only need to change the <code>origin</code> parameter so that instead of defaulting to the upper-left corner of the sprite, it is set to the center of the sprite.  When doing this, we need to set the values based on the sprites width and height, so the center origin will be half the width and height of the sprite. Update the code to:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
   _logo,                    // texture
@@ -307,7 +307,7 @@ _spriteBatch.End();
   0.0f);                    // layerDepth
 </code></pre>
 <p>By moving the sprite's origin point to its center, this not only corrects the point of rotation, but also eliminates the need to offset the position by half the sprite's dimensions. Running the game now shows the log properly centered and rotated 90°.</p>
-<figure><img src="images/logo-rotated-centered.png" alt="Figure 5-5: The MonoGame logo drawn rotated 90° and centered on the game window."><figcaption><p><strong>Figure 5-5: The MonoGame logo drawn rotated 90° and centered on the game window.</strong></p></figcaption></figure>
+<figure><img src="images/logo-rotated-centered.png" alt="Figure 5-6: The MonoGame logo drawn rotated 90° and centered on the game window."><figcaption><p><strong>Figure 5-6: The MonoGame logo drawn rotated 90° and centered on the game window.</strong></p></figcaption></figure>
 <h3 id="scale">Scale</h3>
 <p>The <code>scale</code> parameter specifies the amount of scaling to apply to the sprite when it is rendered.  The default value is <code>1.0f</code>, which can be read as &quot;rendering the sprite at 1x the size&quot;.  Increasing this will scale up the size of the sprite and decreasing it will scale down the sprite.  Let's see an example of this by setting the scale of the logo sprite to <code>1.5f</code>:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
@@ -325,7 +325,7 @@ _spriteBatch.End();
   SpriteEffects.None,       // effects
   0.0f);                    // layerDepth
 </code></pre>
-<figure><img src="images/logo-scaled-1.5x.png" alt="Figure 5-6: The MonoGame logo drawn scaled at 1.5x the size."><figcaption><p><strong>Figure 5-6: The MonoGame logo drawn scaled at 1.5x the size.</strong></p></figcaption></figure>
+<figure><img src="images/logo-scaled-1.5x.png" alt="Figure 5-7: The MonoGame logo drawn scaled at 1.5x the size."><figcaption><p><strong>Figure 5-7: The MonoGame logo drawn scaled at 1.5x the size.</strong></p></figcaption></figure>
 <p>Note that the sprite scaled up from the center.  This is because we still have the <code>origin</code> parameter set as the center of the sprite.  If we instead adjusted the code so the <code>origin</code> parameter was back in the upper-left corner like so:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
   _logo,                    // texture
@@ -341,7 +341,7 @@ _spriteBatch.End();
   0.0f);                    // layerDepth
 </code></pre>
 <p>Then the scaling is applied from the origin in the upper-left corner producing the following result:</p>
-<figure><img src="images/logo-scaled-1.5x-zero-origin.png" alt="Figure 5-7: The MonoGame logo drawn scaled at 1.5x the size with the origin set in the upper-left corner."><figcaption><p><strong>Figure 5-7: The MonoGame logo drawn scaled at 1.5x the size with the origin set in the upper-left corner.</strong></p></figcaption></figure>
+<figure><img src="images/logo-scaled-1.5x-zero-origin.png" alt="Figure 5-8: The MonoGame logo drawn scaled at 1.5x the size with the origin set in the upper-left corner."><figcaption><p><strong>Figure 5-8: The MonoGame logo drawn scaled at 1.5x the size with the origin set in the upper-left corner.</strong></p></figcaption></figure>
 <p>Scaling can also be applied to the x- and y-axes independently by providing it with a <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> value instead of a float value.  For instance, let's scale the x-axis of the sprite by 1.5x and reduce the scale of the y-axis to 0.5x:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
   _logo,                    // texture
@@ -359,7 +359,7 @@ _spriteBatch.End();
   0.0f);
 </code></pre>
 <p>Which will produce the following result:</p>
-<figure><img src="images/logo-scaled-1.5x-0.5x.png" alt="Figure 5-8: The MonoGame logo drawn scaled at 1.5x the size on the x-axis and 0.5x on the y-axis."><figcaption><p><strong>Figure 5-8: The MonoGame logo drawn scaled at 1.5x the size on the x-axis and 0.5x on the y-axis.</strong></p></figcaption></figure>
+<figure><img src="images/logo-scaled-1.5x-0.5x.png" alt="Figure 5-9: The MonoGame logo drawn scaled at 1.5x the size on the x-axis and 0.5x on the y-axis."><figcaption><p><strong>Figure 5-9: The MonoGame logo drawn scaled at 1.5x the size on the x-axis and 0.5x on the y-axis.</strong></p></figcaption></figure>
 <h3 id="spriteeffects">SpriteEffects</h3>
 <p>The <code>effects</code> parameter is used to flip the sprite when rendered on either the horizontal or vertical axis, or both. This value for this parameter will be one of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteEffects"><strong>SpriteEffects</strong></a> enum values.</p>
 <table>
@@ -401,7 +401,7 @@ _spriteBatch.End();
     0.0f);                          // layerDepth
 </code></pre>
 <p>Which will produce the following result:</p>
-<figure><img src="images/logo-flipped-horizontally.png" alt="Figure 5-9: The MonoGame logo flipped horizontally."><figcaption><p><strong>Figure 5-9: The MonoGame logo flipped horizontally.</strong></p></figcaption></figure>
+<figure><img src="images/logo-flipped-horizontally.png" alt="Figure 5-10: The MonoGame logo flipped horizontally."><figcaption><p><strong>Figure 5-10: The MonoGame logo flipped horizontally.</strong></p></figcaption></figure>
 <p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteEffects"><strong>SpriteEffects</strong></a> enum value also uses the <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-flagsattribute"><code>[Flag]</code></a> attribute, which means we can combine both horizontal and vertical flipping together.  To do this, we use the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#logical-or-operator-">bitwise OR operator</a> <code>|</code>.  Update the <code>effect</code> parameter value to the following:</p>
 <pre><code class="lang-cs">_spriteBatch.Draw(
     _logo,                              // texture
@@ -420,7 +420,7 @@ _spriteBatch.End();
     0.0f);                              // layerDepth
 </code></pre>
 <p>Now the sprite is flipped both horizontally and vertically</p>
-<figure><img src="images/logo-flipped-horizontally-and-vertically.png" alt="Figure 5-10: The MonoGame logo flipped horizontally and vertically."><figcaption><p><strong>Figure 5-10: The MonoGame logo flipped horizontally and vertically.</strong></p></figcaption></figure>
+<figure><img src="images/logo-flipped-horizontally-and-vertically.png" alt="Figure 5-11: The MonoGame logo flipped horizontally and vertically."><figcaption><p><strong>Figure 5-11: The MonoGame logo flipped horizontally and vertically.</strong></p></figcaption></figure>
 <h3 id="color-and-opacity">Color and Opacity</h3>
 <p>The <code>color</code> parameter applies a color mask to the sprite when it's rendered.  Note that this is not setting the actual color of the image, just a mask that is applied, like a tint.  The default value is <a href="xref:Microsoft.Xna.Framework.Color.White"><strong>Color.White</strong></a>.  So if we're setting it to <a href="xref:Microsoft.Xna.Framework.Color.White"><strong>Color.White</strong></a>, why does this not affect the tinting of the sprite drawn?</p>
 <p>When the <code>color</code> parameter is applied, each color channel (Red, Green, Blue) of the sprite is multiplied by the corresponding channel in the <code>color</code> parameter, where each channel is represented as a value between <code>0.0f</code> and <code>1.0f</code>.  For <a href="xref:Microsoft.Xna.Framework.Color.White"><strong>Color.White</strong></a>, all color channels are set to <code>1.0f</code> (255 in byte form), so the multiplication looks like this:</p>
@@ -446,7 +446,7 @@ Final Blue = Sprite Blue * 1.0f;
     0.0f); 
 </code></pre>
 <p>This produces the following result:</p>
-<figure><img src="images/logo-green-tint.png" alt="Figure 5-11: The MonoGame logo with a green color tint applied."><figcaption><p><strong>Figure 5-11: The MonoGame logo with a green color tint applied.</strong></p></figcaption></figure>
+<figure><img src="images/logo-green-tint.png" alt="Figure 5-12: The MonoGame logo with a green color tint applied."><figcaption><p><strong>Figure 5-12: The MonoGame logo with a green color tint applied.</strong></p></figcaption></figure>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The icon and the word &quot;GAME&quot; in the logo look black after using a <a href="xref:Microsoft.Xna.Framework.Color.Green"><strong>Color.Green</strong></a> because the Red, Blue Green components of that color are (<code>0.0f</code>, <code>0.5f</code>, <code>0.0f</code>).  The Orange color used in the logo is <a href="xref:Microsoft.Xna.Framework.Color.MonoGameOrange"><strong>Color.MonoGameOrange</strong></a>, which has the component values of (<code>0.9f</code>, <code>0.23f</code>, <code>0.0f</code>).  When multiplying the component values, the result is (<code>0.0f</code>, <code>0.125f</code>, <code>0.0f</code>) which would be Red 0, Green 31, Blue 0 in byte values.  So it's not quite fully black, but it is very close.</p>
@@ -469,11 +469,11 @@ Final Blue = Sprite Blue * 1.0f;
     0.0f); 
 </code></pre>
 <p>Which will produce the following result:</p>
-<figure><img src="images/logo-half-transparency.png" alt="Figure 5-12: The MonoGame logo with half transparency."><figcaption><p><strong>Figure 5-12: The MonoGame logo with half transparency.</strong></p></figcaption></figure>
+<figure><img src="images/logo-half-transparency.png" alt="Figure 5-13: The MonoGame logo with half transparency."><figcaption><p><strong>Figure 5-13: The MonoGame logo with half transparency.</strong></p></figcaption></figure>
 <h3 id="source-rectangle">Source Rectangle</h3>
 <p>The <code>sourceRectangle</code> parameter specifies a specific boundary within the texture that should be rendered.  So far, we've just set this parameter to <code>null</code>, which specifies that the full texture should be rendered.  If we only wanted to render a portion of the texture as the sprite, we can set this parameter value.</p>
 <p>For instance, take the logo image we've been using.  We can break it down into two distinct regions; the MonoGame icon and the MonoGame wordmark.</p>
-<figure><img src="images/logo-texture-regions.png" alt="Figure 5-13: The MonoGame logo broken down into the icon and wordmark regions."><figcaption><p><strong>Figure 5-13: The MonoGame logo broken down into the icon and wordmark regions.</strong></p></figcaption></figure>
+<figure><img src="images/logo-texture-regions.png" alt="Figure 5-14: The MonoGame logo broken down into the icon and wordmark regions."><figcaption><p><strong>Figure 5-14: The MonoGame logo broken down into the icon and wordmark regions.</strong></p></figcaption></figure>
 <p>We can see from Figure 5-13 above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the <code>sourceRectangle</code>.</p>
 <p>Let's see this in action by drawing the icon and the wordmark separately from the same texture.  First, after the call to the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)"><strong>GraphicsDevice.Clear</strong></a> method, add the following variables:</p>
 <pre><code class="lang-cs">Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
@@ -518,7 +518,7 @@ _spriteBatch.Draw(
 <li>Finally, a second <code>_spriteBatch.Draw</code> call is made, this time using the <code>wordmarkSourceRect</code> as the source rectangle so that the wordmark is drawn.</li>
 </ul>
 <p>If you run the game now, you should see the following:</p>
-<figure><img src="images/icon-wordmark-centered.png" alt="Figure 5-14: The MonoGame icon and wordmark, from the logo texture, centered in the game window."><figcaption><p><strong>Figure 5-14: The MonoGame icon and wordmark, from the logo texture, centered in the game window.</strong></p></figcaption></figure>
+<figure><img src="images/icon-wordmark-centered.png" alt="Figure 5-16: The MonoGame icon and wordmark, from the logo texture, centered in the game window."><figcaption><p><strong>Figure 5-16: The MonoGame icon and wordmark, from the logo texture, centered in the game window.</strong></p></figcaption></figure>
 <div class="NOTE">
 <h5>Note</h5>
 <p>Making use of the <code>sourceRectangle</code> parameter to draw different sprites from the same texture is optimization technique that we'll explore further in the next chapter.</p>
@@ -566,7 +566,7 @@ _spriteBatch.Draw(
 <pre><code class="lang-cs">_spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack);
 </code></pre>
 <p>Now we're telling it to use the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack"><strong>SpriteSortMode.FrontToBack</strong></a> sort mode, which will sort the draw calls so that those with a higher <code>layerDepth</code> will be drawn on top of those with a lower one.  Even though we didn't change the order of the <code>_spriteBatch.Draw</code> calls, if you run the game now, you will see the following:</p>
-<figure><img src="images/icon-on-top-of-wordmark.png" alt="Figure 5-15: The MonoGame icon drawn on top of the wordmark."><figcaption><p><strong>Figure 5-15: The MonoGame icon drawn on top of the wordmark.</strong></p></figcaption></figure>
+<figure><img src="images/icon-on-top-of-wordmark.png" alt="Figure 5-17: The MonoGame icon drawn on top of the wordmark."><figcaption><p><strong>Figure 5-17: The MonoGame icon drawn on top of the wordmark.</strong></p></figcaption></figure>
 <p>There are also two additional <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode"><strong>SpriteSortMode</strong></a> values that can be used.  These, however, are situational and can have draw backs when using them, so understanding what they are for is important.</p>
 <p>The first is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Texture"><strong>SpriteSortMode.Texture</strong></a>.  This works similar to <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a> in that draw calls happen in the order they are made.  However, before the draw calls are made, they are sorted by texture.  This can be helpful when using multiple textures to reduce texture swapping, however it can have unintended results with layering if you're not careful.</p>
 <p>The second is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a>.  When using this sort mode, when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring the layer depth, instead of batched and drawn when <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> is called. Using this can cause performance issues and should only be used when necessary.  We'll discuss an example of using this in a later chapter when we discuss shaders, since with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a> you can adjust shader parameters for each individual draw call.</p>

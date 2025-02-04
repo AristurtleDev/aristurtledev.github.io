@@ -256,20 +256,78 @@
 <li><code>T</code> Type Reference: The content type we are loading.</li>
 <li><code>assetName</code> Parameter: A string path that matches the content path of the asset to load.  As mentioned in the <a href="#understanding-content-paths">Understanding Content Paths</a> section, the content path is relative to the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>ContentManager.RootDirectory</strong></a>, minus the extension.  For instance, we added our image to the <em>images</em> folder in the content project, the content path for it will be <code>&quot;images/logo&quot;</code>.</li>
 </ol>
-<p>Let's update the game now to load the image file using the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a>.  First, open the <em>Game1.cs</em> file in your project and add</p>
-<pre><code class="lang-cs">private Texture2D _logo;
+<p>Let's update the game now to load the image file using the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a>.  First, open the <em>Game1.cs</em> file in your project and replace the contents with the following:</p>
+<pre><code class="lang-csharp" highlight-lines="11,32,50-52">using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace MonoGameSnake;
+
+public class Game1 : Game
+{
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
+    private Texture2D _logo;
+
+    public Game1()
+    {
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = &quot;Content&quot;;
+        IsMouseVisible = true;
+    }
+
+    protected override void Initialize()
+    {
+        // TODO: Add your initialization logic here
+
+        base.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        // TODO: use this.Content to load your game content here
+        _logo = Content.Load&lt;Texture2D&gt;(&quot;images/logo&quot;);
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // TODO: Add your update logic here
+
+        base.Update(gameTime);
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+        _spriteBatch.End();
+
+        base.Draw(gameTime);
+    }
+}
 </code></pre>
-<p>beneath where the <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a> and <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> instance member variables are declared.  This adds a new <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D"><strong>Texture2D</strong></a> instance called <code>_logo</code>.  <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D"><strong>Texture2D</strong></a> is the type used to store a reference to 2D image data in MonoGame.</p>
-<p>Next, locate the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method and add the following after <code>_spriteBatch</code> is instantiated:</p>
-<pre><code class="lang-cs">_logo = Content.Load&lt;Texture2D&gt;(&quot;images/logo&quot;);
-</code></pre>
-<p>If you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  This is because we are only loading it and not telling the game to draw it.</p>
-<p>In the next chapter, we'll go more into detail on how to work with textures, for now, locate the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method in the <em>Game1.cs</em> file and add the following after the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)"><strong>GraphicsDevice.Clear</strong></a> method call is made:</p>
-<pre><code class="lang-cs">_spriteBatch.Begin();
-_spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
-_spriteBatch.End();
-</code></pre>
-<p>Run the game and see the logo appear in the window's upper-left corner:</p>
+<p>The key changes we made here are</p>
+<ul>
+<li><p>The <code>_logo</code> member was added to store a reference to the logo texture once we load it.</p>
+</li>
+<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the logo texture is loaded using <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load<t></t></strong></a>.</p>
+</li>
+<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, the logo is rendered using the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>We'll go more into detail about the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> in the next chapter.</p>
+</div>
+</li>
+</ul>
+<p>Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.</p>
 <figure><img src="images/logo-drawn.png" alt="Figure 4-7: The MonoGame logo drawn to the game window."><figcaption><p><strong>Figure 4-7: The MonoGame logo drawn to the game window.</strong></p></figcaption></figure>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
