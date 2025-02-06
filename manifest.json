@@ -1158,8 +1158,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/04_content_pipeline/index.md",
@@ -1471,14 +1471,27 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/08_the_animatedsprite_class/index.md",
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/08_the_animatedsprite_class/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/09_handling_input/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/09_handling_input/index.html"
         }
       },
       "version": ""

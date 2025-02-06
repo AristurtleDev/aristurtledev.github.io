@@ -1,0 +1,687 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-09-handling-input">Chapter 09: Handling Input</h1>
+<p class="text-secondary">Learn how to handle keyboard, mouse, and gamepad input in MonoGame.</p>
+<p>When you play a game, you need ways to control what's happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Keyboard"><strong>Keyboard</strong></a>: Detects which keys are being pressed.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Mouse"><strong>Mouse</strong></a>: Tracks mouse movement, button clicks, and scroll wheel use.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a>: Manages controller input like button presses and joystick movement.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>MonoGame also supports touch and accelerometer input for mobile devices, however this tutorial focuses on desktop input handling using keyboard, mouse, and gamepad controls.</p>
+</div>
+<p>Each of these input types has a <code>GetState</code> method that, when called, checks what is happening with that device at that moment. Think of it like taking a snapshot; when you call <code>GetState</code>, MonoGame looks at that exact moment to see which buttons are pressed, where the mouse is, or how the controller is being used.</p>
+<p>In this chapter you will, we will learn how to use each of these dedicated input classes to handle player input.</p>
+<h2 id="keyboard-input">Keyboard Input</h2>
+<p>The keyboard is often the primary input device for PC games, used for everything from character movement to menu navigation. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.Keyboard"><strong>Keyboard</strong></a> class to handle keyboard input, making it easy to detect which keys are being pressed at any time.  Calling <a href="xref:Microsoft.Xna.Framework.Input.Keyboard.GetState"><strong>Keyboard.GetState</strong></a> will retrieve the current state of the keyboard as a <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState"><strong>KeyboardState</strong></a> struct.</p>
+<h3 id="keyboardstate-struct">KeyboardState Struct</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState"><strong>KeyboardState</strong></a> struct contains methods that can be used to determine if a keyboard key is currently down or up:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyDown(Keys)</strong></a></td>
+<td>Returns <code>true</code> if the specified key is down; otherwise, returns <code>false</code>.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyUp(Keys)</strong></a></td>
+<td>Returns <code>true</code> if the specified key is up; otherwise, returns <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, if we wanted to see if the Space key is down, you could use the following:</p>
+<pre><code class="lang-cs">if(Keyboard.GetState().IsKeyDown(Keys.Space))
+{
+    // The space key is down, so do something.
+}
+</code></pre>
+<h3 id="implementing-keyboard-input">Implementing Keyboard Input</h3>
+<p>Let's implement keyboard controls to move our slime sprite around the screen.  Open the <em>Game1.cs</em> file and perform the following:</p>
+<ol>
+<li><p>First, add the following fields to track the position of the slime and movement speed:</p>
+<pre><code class="lang-cs">private Vector2 _slimePosition;
+private const float MOVEMENT_SPEED = 5.0f;
+</code></pre>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check if the up, down, left, or right arrow keys are pressed, and if any of them are, adjust the slime's position.  Add the following just before the call to <code>base.Update</code>:</p>
+<pre><code class="lang-cs">KeyboardState keyboardState = Keyboard.GetState();
+
+if(keyboardState.IsKeyDown(Keys.Up))
+{
+    _slimePosition.Y -= MOVEMENT_SPEED;
+}
+
+if(keyboardState.IsKeyDown(Keys.Down))
+{
+    _slimePosition.Y += MOVEMENT_SPEED;
+}
+
+if(keyboardState.IsKeyDown(Keys.Left))
+{
+    _slimePosition.X -= MOVEMENT_SPEED;
+}
+
+if(keyboardState.IsKeyDown(Keys.Right))
+{
+    _slimePosition.X += MOVEMENT_SPEED;
+}
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Notice we store the keyboard state in a variable instead of calling <a href="xref:Microsoft.Xna.Framework.Input.Keyboard.GetState"><strong>Keyboard.GetState</strong></a> multiple times. This is more efficient and ensures consistent input checking within a single frame.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Remember that the Y-axis increases downward in MonoGame's coordinate system. This is why we subtract from Y to move up and add to Y to move down.</p>
+</div>
+</li>
+<li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the slime when it is rendered by using the <code>_slimePosition</code> value:</p>
+<pre><code class="lang-cs">_slime.Draw(_spriteBatch, _slimePosition);
+</code></pre>
+</li>
+</ol>
+<p>Running the game now, you can move the slime sprite around using the arrow keys on the keyboard. Try it out!</p>
+<h2 id="mouse-input">Mouse Input</h2>
+<p>The mouse is often the secondary input device for PC games, used for various actions from camera movement to interacting with menus and objects.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.Mouse"><strong>Mouse</strong></a> class to handle mouse input, making it easy to detect which buttons are pressed, the position of the mouse cursor, and the value of the scroll wheel.  Calling <a href="xref:Microsoft.Xna.Framework.Input.Mouse.GetState"><strong>Mouse.GetState</strong></a> will retrieve the current state of the mouse as a <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct.</p>
+<h3 id="mousestate-struct">MouseState Struct</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct contains properties that can be used to determine the state of the mouse buttons, the mouse position, and the scroll wheel value:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.LeftButton"><strong>LeftButton</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the left mouse button.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton"><strong>MiddleButton</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the middle mouse button.  This is often the button when pressing the scroll wheel down as a button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.Position"><strong>Position</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a></td>
+<td>Returns the position of the mouse cursor relative to the bounds of the game window.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.RightButton"><strong>RightButton</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the right mouse button.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue"><strong>ScrollWheelValue</strong></a></td>
+<td><code>int</code></td>
+<td>Returns the <strong>cumulative</strong> scroll wheel value since the start of the game</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.XButton1"><strong>XButton1</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the first extended button on the mouse.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.MouseState.XButton2"><strong>XButton2</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the second extended button on the mouse.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p><a href="xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue"><strong>ScrollWheelValue</strong></a> returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We'll discuss comparing previous and current frame values for inputs in the next chapter.</p>
+</div>
+<p>Unlike keyboard input which uses <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyDown(Keys)</strong></a>/<a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyUp(Keys)</strong></a> methods mouse buttons return a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a>:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState.Pressed</strong></a>: The button is being held down.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState.Released</strong></a>: The button is not being pressed.</li>
+</ul>
+<p>For example, if we wanted to see if the left mouse button is down, you could use the following</p>
+<pre><code class="lang-cs">if(Mouse.GetState().LeftButton == ButtonState.Pressed)
+{
+    // The left button is down, so do something.
+}
+</code></pre>
+<h3 id="implementing-mouse-input">Implementing Mouse Input</h3>
+<p>Let's implement mouse controls to move the bat sprite around the screen to the point that the cursor is clicked at.  Open <em>Game1.cs</em> and perform the following:</p>
+<ol>
+<li><p>First, add the following field to track the position of the bat:</p>
+<pre><code class="lang-cs">private Vector2 _batPosition;
+</code></pre>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> set the initial position of the bat to where it is currently drawn, 10px to the right of the slime.  Add the following <strong>after</strong> the call to <code>base.Initialize()</code></p>
+<pre><code class="lang-cs">_batPosition = new Vector2(_slime.Width + 10, 0);
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Notice that we set the value of the bat position <strong>after</strong> the call to <code>base.Initialize</code>.  Recall from Chapter 03 in the <a href="../03_the_game1_file/index.html#content-loading">Content Loading</a>, that the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method is called during the <code>base.Initialize()</code> call.  Since we are creating the slime sprite inside of <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> we need to ensure it's been created before we can use the <code>Width</code> property of the slime to set the position of the bat in <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>.</p>
+<p>We could have just as easily set the bat's position inside the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method after creating the slime, but I wanted to demonstrate the importance of the call order relationship between <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> and <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a></p>
+</div>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check if the left mouse button is pressed, and if so, adjust the bat's position to the position of the mouse cursor.  Add the following just before the call to <code>base.Update</code>:</p>
+<pre><code class="lang-cs">MouseState mouseState = Mouse.GetState();
+
+if(mouseState.LeftButton == ButtonState.Pressed)
+{
+    _batPosition = mouseState.Position.ToVector2();
+}
+</code></pre>
+</li>
+<li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the bat when it is rendered by using the <code>_batPosition</code> value:</p>
+</li>
+</ol>
+<pre><code class="lang-cs">_bat.Draw(_spriteBatch, _batPosition);
+</code></pre>
+<p>Running the game now, you can move the bat sprite around by clicking the left mouse button on the game screen and it will move to that position.  Try it out!</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When the bat moves to the position of the mouse cursor, notice that it does so relative to the upper-left corner of the bat sprite and not the center of the sprite.  This is because the <code>Origin</code> of the bat sprite is <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a> (upper-left) corner by default.</p>
+</div>
+<h2 id="gamepad-input">Gamepad Input</h2>
+<p>Gamepads are often used as a primary input for a game or an alternative for keyboard and mouse controls.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class to handle gamepad input, making it easy to detect which buttons are pressed and the value of the joysticks. Calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>GamePad.GetState</strong></a> will retrieve the state of the gamepad as a <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct.  Since multiple gamepads can be connected, you will need to supply a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value to specify which gamepad state to retrieve.</p>
+<h3 id="gamepadstate-struct">GamePadState Struct</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct and properties that can be used to get the state of the buttons, dpad, triggers, and joysticks:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.Buttons"><strong>Buttons</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons"><strong>GamePadButtons</strong></a></td>
+<td>Returns a struct that identifies which buttons on the controller are pressed.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.DPad"><strong>DPad</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad"><strong>GamePadDPad</strong></a></td>
+<td>Returns a struct that identifies which directions on the DPad are pressed.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsConnected"><strong>IsConnected</strong></a></td>
+<td><code>bool</code></td>
+<td>Returns a value that indicates whether the controller is connected.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.ThumbSticks"><strong>ThumbSticks</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadThumbSticks"><strong>GamePadThumbSticks</strong></a></td>
+<td>Returns a struct that contains the direction of each thumbstick.  Each thumbstick (left and right) are represented as a <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> value between <code>-1.0f</code> and <code>1.0</code> for the x- and y-axes.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.Triggers"><strong>Triggers</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadTriggers"><strong>GamePadTriggers</strong></a></td>
+<td>Returns a struct that contains the value of each trigger. Each trigger (left and right) are represented as a <code>float</code> value between <code>0.0f</code>, meaning not pressed, and <code>1.0f</code>, meaning fully pressed.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="buttons">Buttons</h4>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.Buttons"><strong>GamePadState.Buttons</strong></a> property returns a <a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons"><strong>GamePadButtons</strong></a> struct that can be used to identify which buttons on the controller are pressed.  This struct contains the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.A"><strong>A</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the A button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.B"><strong>B</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the B button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.Back"><strong>Back</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the Back button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.BigButton"><strong>BigButton</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the BigButton button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.LeftShoulder"><strong>LeftShoulder</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the LeftShoulder button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.LeftStick"><strong>LeftStick</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the LeftStick button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.RightShoulder"><strong>RightShoulder</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the RightShoulder button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.RightStick"><strong>RightStick</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the RightStick button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.Start"><strong>Start</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the Start button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.X"><strong>X</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the X button</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.Y"><strong>Y</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the Y button</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Recall from <a href="../01_what_is_monogame/index.html">Chapter 01</a> that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.</p>
+</div>
+<p>Like with the <a href="#mousestate-struct">mouse input</a>, each of these buttons are represented by a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a> enum value.  For instance, if you wanted to check if the A button is being pressed you could do the following:</p>
+<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+{
+    // Button A is pressed, do something.
+}
+</code></pre>
+<h4 id="dpad">DPad</h4>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.DPad"><strong>DPad</strong></a>  property returns a <a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad"><strong>GamePadDPad</strong></a> struct that can be used to identify which DPad buttons on the controller are pressed. This struct contains the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad.Down"><strong>Down</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the DPad Down button.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad.Down"><strong>Left</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the DPad Left button.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad.Down"><strong>Right</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the DPad Right button.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadDPad.Down"><strong>Up</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a></td>
+<td>Returns the state of the DPad Up Button.</td>
+</tr>
+</tbody>
+</table>
+<p>Like with the <a href="#buttons">Buttons</a>, these also return a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a> enum value to represent the state of the DPad button.  For instance, if you wanted to check if the DPad up button is being pressed, you could do the following:</p>
+<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed)
+{
+    // DPad down is pressed, do something.
+}
+</code></pre>
+<h4 id="thumbsticks">Thumbsticks</h4>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.ThumbSticks"><strong>ThumbSticks</strong></a> property returns a <a href="xref:Microsoft.Xna.Framework.Input.GamePadThumbSticks"><strong>GamePadThumbSticks</strong></a> struct that can be used to retrieve the values of the left and right thumbsticks.  This struct contains the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadThumbSticks.Left"><strong>Left</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>The direction the left thumbstick is pressed.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadThumbSticks.Right"><strong>Right</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>The direction the right thumbstick is pressed.</td>
+</tr>
+</tbody>
+</table>
+<p>The thumbstick values are represented as a <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> value:</p>
+<ul>
+<li>X-axis: A value between <code>-1.0f</code> (pushed fully to the left) and <code>1.0f</code> (pushed fully to the right).</li>
+<li>Y-axis: A value between <code>-1.0f</code> (pushed fully downward) and <code>1.0f</code> (pushed fully upward).</li>
+</ul>
+<p>For example, if you wanted to move a sprite using the left thumbstick, you could do the following</p>
+<pre><code class="lang-cs">Vector2 leftStick = GamePad.GetState(PlayerIndex.One).Thumbsticks.Left;
+leftStick.Y *= -1.0f;
+sprite.Position += leftStick;
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>When the Y-Axis is fully pushed downward, its value is <code>-1.0f</code>.  Recall from <a href="../05_working_with_textures/index.html#drawing-a-texture">Chapter 05</a> that MonoGame uses a coordinate system where the Y values <strong>increase</strong> moving down. This is directly opposite of the value represented by the thumbstick.  To resolve this, the common approach is to multiply the Y value of the thumbstick by <code>-1.0f</code>.  This is why it is done in the example above.</p>
+</div>
+<h4 id="triggers">Triggers</h4>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.Triggers"><strong>Triggers</strong></a> property returns a <a href="xref:Microsoft.Xna.Framework.Input.GamePadTriggers"><strong>GamePadTriggers</strong></a> struct that can be used to retrieve the values of the left and right triggers. This struct contains the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Left"><strong>Left</strong></a></td>
+<td><code>float</code></td>
+<td>The value of the left trigger.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Right"><strong>Right</strong></a></td>
+<td><code>float</code></td>
+<td>The value of the left trigger.</td>
+</tr>
+</tbody>
+</table>
+<p>The trigger values are represented as a float value between <code>0.0f</code> (not pressed) to <code>1.0f</code> (fully pressed). The triggers on a gamepad, however, can be either <em>analog</em> or <em>digital</em> depending the gamepad manufacturer.  For gamepads with <em>digital</em> triggers, the value will always be either <code>0.0f</code> or <code>1.0f</code>, as a digital trigger does not register values in between based on the amount of pressure applied to the trigger.</p>
+<p>For example, if we were creating a racing game, the right trigger could be used for acceleration like the following:</p>
+<pre><code class="lang-cs">float acceleration = GamePad.GetState(PlayerIndex.One).Triggers.Right;
+</code></pre>
+<h3 id="gamepadstate-methods">GamePadState Methods</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct also contains two methods that can be used to get information about the device's inputs as either being up or down:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons)"><strong>IsButtonDown(Buttons)</strong></a></td>
+<td>Returns a value that indicates whether the specified button is down.  Multiple <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> values can be given using the bitwise OR <code>|</code> operator.  When multiple buttons are given, the return value indicates if all buttons specified are down, not just one of them.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsButtonUp(Microsoft.Xna.Framework.Input.Buttons)"><strong>IsButtonUp(Buttons)</strong></a></td>
+<td>Returns a value that indicates whether the specified button is up.  Multiple <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> values can be given using the bitwise OR <code>|</code> operator.  When multiple buttons are given, the return value indicates if all buttons specified are up, not just one of them.</td>
+</tr>
+</tbody>
+</table>
+<p>You can use the <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons)"><strong>IsButtonDown(Buttons)</strong></a> and <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsButtonUp(Microsoft.Xna.Framework.Input.Buttons)"><strong>IsButtonUp(Buttons)</strong></a> methods to get the state of all buttons, including the DPad.  The following is a complete list of all of the <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> enum values:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.A</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.B</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.Back</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.BigButton</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.DPadDown</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.DPadLeft</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.DPadRight</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.DPadUp</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftShoulder</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftStick</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftThumbstickDown</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftThumbstickLeft</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftThumbstickRight</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftThumbstickUp</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.LeftTrigger</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.None</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightShoulder</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightStick</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightStickDown</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightStickLeft</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightStickRight</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightStickUp</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.RightTrigger</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.Start</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.X</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons.Y</strong></a></li>
+</ul>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual joystick values and trigger values, you would need to use the properties instead.</p>
+</div>
+<p>For example, if we wanted to check if the A button on the the first gamepad is pressed, you could use the following:</p>
+<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A))
+{
+    // The A button is pressed, do something.
+}
+</code></pre>
+<h3 id="implementing-gamepad-input">Implementing GamePad Input</h3>
+<p>Let's implement gamepad controls as an alternative method of moving the slime sprite around.  Open the <em>Game1.cs</em> file and perform the following:</p>
+<ol>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, use the value of the left thumbstick to adjust the sprite's position. Since the value of the thumbstick is a range between <code>-1.0f</code> and <code>1.0f</code>, we can multiply those values by the <code>MOVEMENT_SPEED</code>.  This will make the slime move slower or faster depending on how far in the direction the thumbstick is pushed.  Add the following just before the <code>base.Update</code> call:</li>
+</ol>
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+_slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
+_slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
+</code></pre>
+<p>Running the game now, you can move the slime sprite around using the left thumbstick on your gamepad.  Try it out!  Notice that the more you push the thumbstick in a particular direction, the faster the slime moves up to the movement speed cap.</p>
+<h3 id="gamepad-vibration">GamePad Vibration</h3>
+<p>Another thing we can do with a gamepad is tell it to vibrate.  To do this, the <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class has a <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method that requires the player index, and the speed of the left and right vibration motors.  The speed can be any value from <code>0.0f</code> (no vibration) to <code>1.0f</code> (full vibration).</p>
+<p>Let's adjust the current code so that when the A button is pressed on the gamepad, it gives a slight speed boost to the slime as it moves.  When moving with a speed boost, we can apply vibration to the gamepad as feedback to the player.  Update the code you just added to the following:</p>
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if (gamePadState.Buttons.A == ButtonState.Pressed)
+{
+    _slimePos.X += gamePadState.ThumbSticks.Left.X * 1.5f * MOVEMENT_SPEED;
+    _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * 1.5f * MOVEMENT_SPEED;
+    GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+}
+else
+{
+    _slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
+    _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
+    GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+}
+</code></pre>
+<p>Running the game now, when you press the A button, the slime sprite will move slightly faster and you can feel the vibration. Try it out!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this chapter, you learned how to:</p>
+<ul>
+<li>Handle keyboard input to detect key presses.</li>
+<li>Handle mouse input including button clicks and cursor position.</li>
+<li>Work with gamepad controls including buttons, thumbsticks, and vibration.</li>
+<li>Implement movement controls using different input methods.</li>
+<li>Consider controller-specific details like coordinate systems and analog vs digital input.</li>
+</ul>
+<p>In the next chapter, we'll learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>Why do we store the result of GetState() in a variable instead of calling it multiple times?</p>
+<details>
+<summary>Question 1 Answer</summary>
+<blockquote>
+<p>Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each GetState() call polls the device, which can impact performance if called repeatedly.</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>What's the main difference between how keyboard and mouse/gamepad button states are checked?</p>
+<details>
+<summary>Question 2 Answer</summary>
+<blockquote>
+<p>Keyboard input uses IsKeyUp/IsKeyDown methods, while mouse and gamepad buttons return a ButtonState enum value (Pressed or Released).</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>When using thumbstick values for movement, why do we multiply the Y value by -1?</p>
+<details>
+<summary>Question 3 Answer</summary>
+<blockquote>
+<p>The thumbstick Y-axis values (-1.0f down to 1.0f up) are inverted compared to MonoGame's screen coordinate system (Y increases downward). Multiplying by -1 aligns the thumbstick direction with screen movement.</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>What's the difference between analog and digital trigger input on a gamepad?</p>
+<details>
+<summary>Question 4 Answer</summary>
+<blockquote>
+<p>Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.</p>
+</blockquote>
+</details><br>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
