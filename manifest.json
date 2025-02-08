@@ -1484,6 +1484,46 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/09_handling_input/images/ps-controller-back.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/09_handling_input/images/ps-controller-back.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/09_handling_input/images/ps-controller-front.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/09_handling_input/images/ps-controller-front.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/09_handling_input/images/xbox-controller-back.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/09_handling_input/images/xbox-controller-back.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/09_handling_input/images/xbox-controller-front.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/09_handling_input/images/xbox-controller-front.svg"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],

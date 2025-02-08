@@ -123,7 +123,8 @@
 <ul>
 <li><a href="xref:Microsoft.Xna.Framework.Input.Keyboard"><strong>Keyboard</strong></a>: Detects which keys are being pressed.</li>
 <li><a href="xref:Microsoft.Xna.Framework.Input.Mouse"><strong>Mouse</strong></a>: Tracks mouse movement, button clicks, and scroll wheel use.</li>
-<li><a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a>: Manages controller input like button presses and joystick movement.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a>: Manages controller input like button presses and thumbstick movement.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.TouchPanel"><strong>TouchPanel</strong></a>: Manages touch input on devices with a touch panel such as mobile phones and tablets.</li>
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
@@ -154,11 +155,17 @@
 </tbody>
 </table>
 <p>For example, if we wanted to see if the Space key is down, you could use the following:</p>
-<pre><code class="lang-cs">if(Keyboard.GetState().IsKeyDown(Keys.Space))
+<pre><code class="lang-cs">KeyboardState keyboardState = Keyboard.GetState();
+
+if(keyboardState.IsKeyDown(Keys.Space))
 {
     // The space key is down, so do something.
 }
 </code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Notice we store the keyboard state in a variable instead of calling <a href="xref:Microsoft.Xna.Framework.Input.Keyboard.GetState"><strong>Keyboard.GetState</strong></a> multiple times. This is more efficient and ensures consistent input checking within a single frame.</p>
+</div>
 <h3 id="implementing-keyboard-input">Implementing Keyboard Input</h3>
 <p>Let's implement keyboard controls to move our slime sprite around the screen.  Open the <em>Game1.cs</em> file and perform the following:</p>
 <ol>
@@ -190,13 +197,9 @@ if(keyboardState.IsKeyDown(Keys.Right))
     _slimePosition.X += MOVEMENT_SPEED;
 }
 </code></pre>
-<div class="TIP">
-<h5>Tip</h5>
-<p>Notice we store the keyboard state in a variable instead of calling <a href="xref:Microsoft.Xna.Framework.Input.Keyboard.GetState"><strong>Keyboard.GetState</strong></a> multiple times. This is more efficient and ensures consistent input checking within a single frame.</p>
-</div>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Remember that the Y-axis increases downward in MonoGame's coordinate system. This is why we subtract from Y to move up and add to Y to move down.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Why are we subtracting from the Y position when moving up instead of adding?  Recall from <a href="../05_working_with_textures/index.html#drawing-a-texture">Chapter 05</a> that MonoGame uses a coordinate system where the Y value <strong>increases</strong> moving down.  So in order to move <strong>up</strong> the screen, we need to reduce the Y value.</p>
 </div>
 </li>
 <li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the slime when it is rendered by using the <code>_slimePosition</code> value:</p>
@@ -265,7 +268,9 @@ if(keyboardState.IsKeyDown(Keys.Right))
 <li><a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState.Released</strong></a>: The button is not being pressed.</li>
 </ul>
 <p>For example, if we wanted to see if the left mouse button is down, you could use the following</p>
-<pre><code class="lang-cs">if(Mouse.GetState().LeftButton == ButtonState.Pressed)
+<pre><code class="lang-cs">MouseState mouseState = Mouse.GetState();
+
+if(mouseState.LeftButton == ButtonState.Pressed)
 {
     // The left button is down, so do something.
 }
@@ -306,9 +311,9 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <p>When the bat moves to the position of the mouse cursor, notice that it does so relative to the upper-left corner of the bat sprite and not the center of the sprite.  This is because the <code>Origin</code> of the bat sprite is <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a> (upper-left) corner by default.</p>
 </div>
 <h2 id="gamepad-input">Gamepad Input</h2>
-<p>Gamepads are often used as a primary input for a game or an alternative for keyboard and mouse controls.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class to handle gamepad input, making it easy to detect which buttons are pressed and the value of the joysticks. Calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>GamePad.GetState</strong></a> will retrieve the state of the gamepad as a <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct.  Since multiple gamepads can be connected, you will need to supply a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value to specify which gamepad state to retrieve.</p>
+<p>Gamepads are often used as a primary input for a game or an alternative for keyboard and mouse controls.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class to handle gamepad input, making it easy to detect which buttons are pressed and the value of the thumbsticks. Calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>GamePad.GetState</strong></a> will retrieve the state of the gamepad as a <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct.  Since multiple gamepads can be connected, you will need to supply a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value to specify which gamepad state to retrieve.</p>
 <h3 id="gamepadstate-struct">GamePadState Struct</h3>
-<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct and properties that can be used to get the state of the buttons, dpad, triggers, and joysticks:</p>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState"><strong>GamePadState</strong></a> struct and properties that can be used to get the state of the buttons, dpad, triggers, and thumbsticks:</p>
 <table>
 <thead>
 <tr>
@@ -416,9 +421,37 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <div class="NOTE">
 <h5>Note</h5>
 <p>Recall from <a href="../01_what_is_monogame/index.html">Chapter 01</a> that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.</p>
+<table>
+<thead>
+<tr>
+<th>Front</th>
+<th>Back</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xbox</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images/xbox-controller-front.svg" alt="Front Of Controller"></td>
+<td><img src="images/xbox-controller-back.svg" alt="Back Of Controller"></td>
+</tr>
+<tr>
+<td>Playstation</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images/ps-controller-front.svg" alt="Front Of Controller"></td>
+<td><img src="images/ps-controller-back.svg" alt="Back Of Controller"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>Like with the <a href="#mousestate-struct">mouse input</a>, each of these buttons are represented by a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a> enum value.  For instance, if you wanted to check if the A button is being pressed you could do the following:</p>
-<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.Buttons.A == ButtonState.Pressed)
 {
     // Button A is pressed, do something.
 }
@@ -457,7 +490,9 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 </tbody>
 </table>
 <p>Like with the <a href="#buttons">Buttons</a>, these also return a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a> enum value to represent the state of the DPad button.  For instance, if you wanted to check if the DPad up button is being pressed, you could do the following:</p>
-<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed)
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.DPad.Down == ButtonState.Pressed)
 {
     // DPad down is pressed, do something.
 }
@@ -491,13 +526,17 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <li>Y-axis: A value between <code>-1.0f</code> (pushed fully downward) and <code>1.0f</code> (pushed fully upward).</li>
 </ul>
 <p>For example, if you wanted to move a sprite using the left thumbstick, you could do the following</p>
-<pre><code class="lang-cs">Vector2 leftStick = GamePad.GetState(PlayerIndex.One).Thumbsticks.Left;
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+Vector2 leftStick = gamePadState.Thumbsticks.Left;
 leftStick.Y *= -1.0f;
+
 sprite.Position += leftStick;
 </code></pre>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>When the Y-Axis is fully pushed downward, its value is <code>-1.0f</code>.  Recall from <a href="../05_working_with_textures/index.html#drawing-a-texture">Chapter 05</a> that MonoGame uses a coordinate system where the Y values <strong>increase</strong> moving down. This is directly opposite of the value represented by the thumbstick.  To resolve this, the common approach is to multiply the Y value of the thumbstick by <code>-1.0f</code>.  This is why it is done in the example above.</p>
+<p>Notice that we inverted the y-axis value of the thumbstick by multiplying it by <code>-1.0f</code>. This is necessary because the thumbstick y-axis values range from <code>-1.0f</code> (down) to <code>1.0f</code> (up).  The y-axis of the screen coordinates in MonoGame <strong>increases</strong> downward, as we saw in <a href="../05_working_with_textures/index.html#drawing-a-texture">Chapter 05</a> and in the <a href="#implementing-keyboard-input">Implementing Keyboard Input</a> section above.</p>
+<p>This inversion aligns the thumbstick's y-axis value with the screen movement.</p>
 </div>
 <h4 id="triggers">Triggers</h4>
 <p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadState.Triggers"><strong>Triggers</strong></a> property returns a <a href="xref:Microsoft.Xna.Framework.Input.GamePadTriggers"><strong>GamePadTriggers</strong></a> struct that can be used to retrieve the values of the left and right triggers. This struct contains the following properties:</p>
@@ -542,7 +581,7 @@ sprite.Position += leftStick;
 </tr>
 <tr>
 <td><a href="xref:Microsoft.Xna.Framework.Input.GamePadState.IsButtonUp(Microsoft.Xna.Framework.Input.Buttons)"><strong>IsButtonUp(Buttons)</strong></a></td>
-<td>Returns a value that indicates whether the specified button is up.  Multiple <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> values can be given using the bitwise OR <code>|</code> operator.  When multiple buttons are given, the return value indicates if all buttons specified are up, not just one of them.</td>
+<td>Returns a value that indicates whether the specified button is up.  Multiple <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> values can be given using the bitwise OR <code>  |</code> operator.  When multiple buttons are given, the return value indicates if all buttons specified are up, not just one of them.</td>
 </tr>
 </tbody>
 </table>
@@ -577,10 +616,12 @@ sprite.Position += leftStick;
 </ul>
 <div class="CAUTION">
 <h5>Caution</h5>
-<p>While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual joystick values and trigger values, you would need to use the properties instead.</p>
+<p>While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual thumbstick values and trigger values, you would need to use the properties instead.</p>
 </div>
 <p>For example, if we wanted to check if the A button on the the first gamepad is pressed, you could use the following:</p>
-<pre><code class="lang-cs">if(GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A))
+<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.IsButtonDown(Buttons.A))
 {
     // The A button is pressed, do something.
 }
@@ -591,6 +632,7 @@ sprite.Position += leftStick;
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, use the value of the left thumbstick to adjust the sprite's position. Since the value of the thumbstick is a range between <code>-1.0f</code> and <code>1.0f</code>, we can multiply those values by the <code>MOVEMENT_SPEED</code>.  This will make the slime move slower or faster depending on how far in the direction the thumbstick is pushed.  Add the following just before the <code>base.Update</code> call:</li>
 </ol>
 <pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
 _slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
 _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
 </code></pre>
@@ -614,12 +656,266 @@ else
 }
 </code></pre>
 <p>Running the game now, when you press the A button, the slime sprite will move slightly faster and you can feel the vibration. Try it out!</p>
+<h2 id="touchpanel-input">TouchPanel Input</h2>
+<p>For mobile devices such as Android/iOS phones and tablets, the primary input device is the touch panel screen.  Touching a location on the screen is similar to clicking a location on your computer with a mouse.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel"><strong>TouchPanel</strong></a> class to handle touch input.</p>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel"><strong>TouchPanel</strong></a> class offers two ways of retrieving information about touch input:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> retrieves a <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection"><strong>TouchCollection</strong></a> struct that contains <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation"><strong>TouchLocation</strong></a> values for each point of touch on the touch panel.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a> retrieves a <a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample"><strong>GestureSample</strong></a> struct that contains information about recent gestures that have been performed like a vertical or horizontal drag across the screen.</li>
+</ul>
+<h3 id="touchcollection">TouchCollection</h3>
+<p>When calling <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> a <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection"><strong>TouchCollection</strong></a> struct is returned.  This collection contains a <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation"><strong>TouchLocation</strong></a> value for each point of touch.</p>
+<h4 id="touchlocation">TouchLocation</h4>
+<p>Each <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation"><strong>TouchLocation</strong></a> value in a touch collection contains the following properties</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.Id"><strong>Id</strong></a></td>
+<td><code>int</code></td>
+<td>The id of the touch location.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.Position"><strong>Position</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>The position of the touch location.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.Pressure"><strong>Pressure</strong></a></td>
+<td><code>float</code></td>
+<td>The amount of pressure applied at the touch location. <strong>(Only available for Android devices.)</strong></td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>State</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState"><strong>TouchLocationState</strong></a></td>
+<td>The current state of the touch location.</td>
+</tr>
+</tbody>
+</table>
+<p>The important properties of the location are the <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.Position"><strong>Position</strong></a> and the <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>State</strong></a> The position property will tell us the location of the touch event, and the state can be one of the following values:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Invalid</strong></a></td>
+<td>This touch location position is invalid.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Moved</strong></a></td>
+<td>This touch location position was updated or pressed at the same position.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Pressed</strong></a></td>
+<td>This touch location was pressed.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Released</strong></a></td>
+<td>This touch location was released.</td>
+</tr>
+</tbody>
+</table>
+<p>When the state is moved or pressed, then we know that location on the touch panel is being touched.  So we can capture it and use it like the following:</p>
+<pre><code class="lang-cs">TouchCollection touchCollection = TouchPanel.GetState();
+
+foreach(TouchLocation touchLocation in touchCollection)
+{
+    if(touchLocation.State == TouchLocationState.Pressed || touchLocation.State == TouchLocationState.Moved)
+    {
+        // The the location at touchLocation.Position is currently being pressed,
+        // so we can act on that information.
+    }
+}
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Unlike mouse input which only tracks a single point, <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel"><strong>TouchPanel</strong></a> supports multiple simultaneous touch points. The <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection"><strong>TouchCollection</strong></a> contains all active touch points, which is why we loop through them in the sample above.</p>
+</div>
+<p>The state of a touch location progresses through the states typically in order of:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Pressed</strong></a>: Initial contact with the screen.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Moved</strong></a> : Touch point moved while maintaining contact.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Released</strong></a>: Contact with screen ended.</li>
+<li><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State"><strong>Invalid</strong></a> : Touch data is invalid (using when tracking data is lost).</li>
+</ul>
+<h3 id="gesturesample">GestureSample</h3>
+<p>When calling <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a> a <a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample"><strong>GestureSample</strong></a> struct containing the information about recent gestures that have been performed is returned.  The <a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample"><strong>GestureSample</strong></a> struct contains the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.Delta"><strong>Delta</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>Gets the delta information about the first touch-point in the gesture sample.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.Delta2"><strong>Delta2</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>Gets the delta information about the second touch-point in the gesture sample.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.GestureType"><strong>GestureType</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>GestureType</strong></a></td>
+<td>Gets the type of the gesture.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.Position"><strong>Position</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>Gets the position of the first touch-point in the gesture sample.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.Position2"><strong>Position2</strong></a></td>
+<td><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></td>
+<td>Gets the position of the second touch-point in the gesture sample.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Gestures have two delta properties and two position properties.  This is because some gestures require multiple touch inputs to perform, such as performing a pinch to zoom in or out.  You would need the location of both touch points to determine the correct zoom to apply during the gesture.</p>
+</div>
+<p>To determine what type of gesture is performed, we can get that from the <a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureSample.GestureType"><strong>GestureType</strong></a> property which will be one of the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Gesture Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>DoubleTap</strong></a></td>
+<td>The user double tapped the device twice which is always preceded by a Tap gesture.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>DragComplete</strong></a></td>
+<td>States completion of a drag gesture (VerticalDrag, HorizontalDrag, or FreeDrag).</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>Flick</strong></a></td>
+<td>States that a touch was combined with  a quick swipe.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>FreeDrag</strong></a></td>
+<td>The user touched a point and the performed a free-form drag.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>Hold</strong></a></td>
+<td>The user touched a single point for approximately one second.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>HorizontalDrag</strong></a></td>
+<td>The user touched the screen and performed either a left-to-right or right-to-left drag gesture.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>None</strong></a></td>
+<td>No gesture.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>Pinch</strong></a></td>
+<td>The user converged or diverged two touch-points on the screen which is like a two-finger drag.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>PinchComplete</strong></a></td>
+<td>An in-progress pinch gesture was completed.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>Tap</strong></a></td>
+<td>The user touched a single point.</td>
+</tr>
+<tr>
+<td><a href="xref:Microsoft.Xna.Framework.Input.Touch.GestureType"><strong>VerticalDrag</strong></a></td>
+<td>The user touched the screen and performed either a top-to-bottom or bottom-to-top drag gesture.</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Before gestures can be detected, they have to be enabled using <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.EnabledGestures"><strong>TouchPanel.EnabledGestures</strong></a>.  This can be done in <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Game.Initialize</strong></a> like the following:</p>
+<pre><code class="lang-cs">protected override void Initialize()
+{
+    base.Initialize();
+
+   // Enable gestures we want to handle
+   TouchPanel.EnabledGestures = 
+       GestureType.Tap |
+       GestureType.HorizontalDrag |
+       GestureType.VerticalDrag;
+}
+</code></pre>
+</div>
+<p>The following is an example of using a gesture to detect horizontal and vertical drags:</p>
+<pre><code class="lang-cs">while(TouchPanel.IsGestureAvailable)
+{
+    GestureSample gesture = TouchPanel.ReadGesture();
+
+    if(gesture.GestureType == GestureType.HorizontalDrag)
+    {
+        // A horizontal drag from left-to-right or right-to-left occurred.
+        // You can use the Delta property to determine how much movement
+        // occurred during the swipe.
+        float xDragAmount = gesture.Delta.X;
+
+        // Now do something with that information.
+    }
+
+    if(gesture.GestureType == GestureType.VerticalDrag)
+    {
+        // A vertical drag from top-to-bottom or bottom-to-top occurred.
+        // You can use the Delta property to determine how much movement
+        // occurred during the swipe.
+        float yDragAmount = gesture.Delta.Y;
+
+        // Now do something with that information.
+    }
+}
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Notice above that we use a <code>while</code> loop with <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable"><strong>TouchPanel.IsGestureAvailable</strong></a> as the condition for the loop.  The reason we do this is because when a user performs a gesture, such as a horizontal drag across the screen, very quickly, what can often occurs is a series of multiple small drag gestures are registered and queued.</p>
+<p>Each time <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a> is called, it will dequeue the next gesture.  So to ensure that we handle the complete gesture, we loop the gesture queue until there are none left.</p>
+</div>
+<h3 id="implementing-touchpanel-input-optional">Implementing TouchPanel Input (Optional)</h3>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This section is optional. This tutorial does not go into detail on creating mobile projects where a touch screen would be available for input.  However, the following code is implemented as a reference.</p>
+</div>
+<p>Let's implement touch controls to move the bat sprite around the screen to the point that the screen is touched, similar to what we did for mouse controls in the <a href="#implementing-mouse-input">Implementing Mouse Input</a> section above.  Open <em>Game1.cs</em> and perform the following:</p>
+<ol>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check for a touch location and move the bat sprite to that location if a touch occurs.  Add the following just before the <code>base.Update</code> call:</li>
+</ol>
+<pre><code class="lang-cs">TouchCollection touchCollection = TouchPanel.GetState();
+
+if(touchCollection.Count &gt; 0)
+{
+    TouchLocation touchLocation = touchCollection[0];
+    _batSprite.Position = touchLocation.Position;
+}
+</code></pre>
+<p>If you have your development environment setup for mobile development, running the game now, you can touch the screen to move the bat to the point that was touched.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you learned how to:</p>
 <ul>
 <li>Handle keyboard input to detect key presses.</li>
 <li>Handle mouse input including button clicks and cursor position.</li>
 <li>Work with gamepad controls including buttons, thumbsticks, and vibration.</li>
+<li>Understand touch input for mobile devices including touch points and gestures.</li>
 <li>Implement movement controls using different input methods.</li>
 <li>Consider controller-specific details like coordinate systems and analog vs digital input.</li>
 </ul>
