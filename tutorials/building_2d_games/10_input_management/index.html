@@ -307,8 +307,6 @@ public enum MouseButton
 <div class="NOTE">
 <h5>Note</h5>
 <p>Each enum value corresponds directly to a button property in MouseState:</p>
-</div>
-<blockquote>
 <ul>
 <li><code>Left</code>: Maps to <a href="xref:Microsoft.Xna.Framework.Input.MouseState.LeftButton"><strong>MouseState.LeftButton</strong></a>.</li>
 <li><code>Middle</code>: Maps to <a href="xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton"><strong>MouseState.MiddleButton</strong></a>.</li>
@@ -316,12 +314,13 @@ public enum MouseButton
 <li><code>XButton1</code>: Maps to <a href="xref:Microsoft.Xna.Framework.Input.MouseState.XButton1"><strong>MouseState.XButton1</strong></a>.</li>
 <li><code>XButton2</code>: Maps to <a href="xref:Microsoft.Xna.Framework.Input.MouseState.XButton2"><strong>MouseState.XButton2</strong></a>.</li>
 </ul>
-</blockquote>
+</div>
 <h2 id="the-mouseinfo-class">The MouseInfo Class</h2>
 <p>To manage mouse input effectively, we need to track both current and previous states, as well as provide easy access to mouse position, scroll wheel values, and button states. The <code>MouseInfo</code> class will encapsulate all of this functionality, making it easier to:</p>
 <ul>
 <li>Track current and previous mouse states.</li>
-<li>Track the mouse position and detect movement.</li>
+<li>Track the mouse position.</li>
+<li>Check the change in mouse position between frames and if it was moved.</li>
 <li>Track scroll wheel changes.</li>
 <li>Detect when mouse buttons are pressed or released</li>
 <li>Check if mouse buttons are being held down</li>
@@ -392,7 +391,34 @@ public bool WasMoved =&gt; CurrentState.X != PreviousState.X || CurrentState.Y !
 <li><code>Position</code>: Gets/sets the cursor position as a <a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a>.</li>
 <li><code>X</code>: Gets/sets just the horizontal position.</li>
 <li><code>Y</code>: Gets/sets just the vertical position.</li>
-<li><code>WasMoved</code>: Indicates if the cursor moved this frame.</li>
+</ul>
+<p>Next, we'll add properties for determining if the mouse cursor moved between game frames and if so how much:</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+/// Gets the difference in the mouse cursor position between the previous and current frame.
+/// &lt;/summary&gt;
+public Point PositionDelta =&gt; CurrentState.Position - PreviousState.Position;
+
+/// &lt;summary&gt;
+/// Gets the difference in the mouse cursor x-position between the previous and current frame.
+/// &lt;/summary&gt;
+public int XDelta =&gt; CurrentState.X - PreviousState.X;
+
+/// &lt;summary&gt;
+/// Gets the difference in the mouse cursor y-position between the previous and current frame.
+/// &lt;/summary&gt;
+public int YDelta =&gt; CurrentState.Y - PreviousState.Y;
+
+/// &lt;summary&gt;
+/// Gets a value that indicates if the mouse cursor moved between the previous and current frames.
+/// &lt;/summary&gt;
+public bool WasMoved =&gt; PositionDelta != Point.Zero;
+</code></pre>
+<p>The properties provide different ways of detecting mouse movement between frames:</p>
+<ul>
+<li><code>PositionDelta</code>: Gets how much the cursor moved between frames as a <a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a>.</li>
+<li><code>XDelta</code>: Gets how much the cursor moved horizontally between frames.</li>
+<li><code>YDelta</code>: Gets how much the cursor moved vertically between frames.</li>
+<li><code>WasMoved</code>: Indicates if the cursor moved between frames.</li>
 </ul>
 <p>Finally, we'll add properties for handling the scroll wheel:</p>
 <pre><code class="lang-cs">/// &lt;summary&gt;
@@ -425,7 +451,7 @@ public MouseInfo()
     CurrentState = Mouse.GetState();
 }
 </code></pre>
-<p>The constructor</p>
+<p>The constructor:</p>
 <ul>
 <li>Creates an empty state for <code>PreviousState</code> since there is no previous input yet.</li>
 <li>Gets the current mouse state as our starting point for <code>CurrentState</code>.</li>
@@ -580,9 +606,10 @@ public void SetPosition(int x, int y)
 </div>
 <p>That's it for the <code>MouseInfo</code> class, next we'll move onto gamepad input.</p>
 <h2 id="the-gamepadinfo-class">The GamePadInfo Class</h2>
-<p>To manage gamepad input effectively, we need to track both current and previous states, as well as provide easy access to the thumbstick values, trigger values, and button states. The <code>GamePadInfo</code> class will encapsulate all of this functionality, making it easier to:</p>
+<p>To manage gamepad input effectively, we need to track both current and previous states, is the gamepad still connected, as well as provide easy access to the thumbstick values, trigger values, and button states. The <code>GamePadInfo</code> class will encapsulate all of this functionality, making it easier to:</p>
 <ul>
-<li>Track current and previous mouse states.</li>
+<li>Track current and previous gamepad states.</li>
+<li>Check if the gamepad is still connected.</li>
 <li>Track the position of the left and right thumbsticks.</li>
 <li>Check the values of the left and right triggers.</li>
 <li>Detect when gamepad buttons are pressed or released.</li>
@@ -747,7 +774,7 @@ public bool WasButtonJustReleased(Buttons button)
 <li><code>WasButtonJustReleased</code>: Returns true only on the frame when a button changes from down-to-up.</li>
 </ul>
 <p>Finally, we'll add methods for controlling gamepad vibration:</p>
-<pre><code class="lang-cs"> /// &lt;summary&gt;
+<pre><code class="lang-cs">/// &lt;summary&gt;
 /// Sets the vibration for all motors of this gamepad.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;strength&quot;&gt;The strength of the vibration from 0.0f (none) to 1.0f (full).&lt;/param&gt;
