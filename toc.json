@@ -1,2 +1,2 @@
 
-{"items":[{"name":"Games","href":"games/index.html","topicHref":"games/index.html"},{"name":"MonoGame Tutorials","href":"tutorials/index.html","tocHref":"tutorials/toc.html","topicHref":"tutorials/index.html"},{"name":"MonoGame.Aseprite","href":"https://monogameaseprite.net","topicHref":"https://monogameaseprite.net"}]}
+{"items":[{"name":"Games","href":"games/index.html","topicHref":"games/index.html"},{"name":"MonoGame Tutorials","href":"tutorials/index.html","tocHref":"tutorials/toc.json","topicHref":"tutorials/index.html"},{"name":"MonoGame.Aseprite","href":"https://monogameaseprite.net","topicHref":"https://monogameaseprite.net"}]}

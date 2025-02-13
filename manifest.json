@@ -71,11 +71,11 @@
       "type": "Toc",
       "source_relative_path": "games/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "games/toc.html"
-        },
         ".json": {
           "relative_path": "games/toc.json"
+        },
+        ".html": {
+          "relative_path": "games/toc.html"
         }
       },
       "version": ""
@@ -954,11 +954,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""
@@ -1158,8 +1158,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/04_content_pipeline/index.md",
@@ -1471,8 +1471,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/08_the_animatedsprite_class/index.md",
@@ -1525,8 +1525,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/09_handling_input/index.md",
@@ -1551,6 +1551,100 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/aabb-collision-example.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/images/aabb-collision-example.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/aabb-vs-non-aabb.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/images/aabb-vs-non-aabb.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/circle-collision.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/images/circle-collision.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/reflection-diagram.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/images/reflection-diagram.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink",
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/blocking-collision-example.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/blocking-collision-example.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bounce-collision-example.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bounce-collision-example.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-bat-collision.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-bat-collision.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/trigger-collision-example.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/trigger-collision-example.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
@@ -1567,11 +1661,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/building_2d_games/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/toc.html"
-        },
         ".json": {
           "relative_path": "tutorials/building_2d_games/toc.json"
+        },
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/toc.html"
         }
       },
       "version": ""
@@ -1620,11 +1714,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/collision-detection/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/collision-detection/toc.html"
-        },
         ".json": {
           "relative_path": "tutorials/collision-detection/toc.json"
+        },
+        ".html": {
+          "relative_path": "tutorials/collision-detection/toc.html"
         }
       },
       "version": ""
@@ -1773,11 +1867,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/content-pipeline-extension/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/content-pipeline-extension/toc.html"
-        },
         ".json": {
           "relative_path": "tutorials/content-pipeline-extension/toc.json"
+        },
+        ".html": {
+          "relative_path": "tutorials/content-pipeline-extension/toc.html"
         }
       },
       "version": ""
@@ -1846,11 +1940,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/scenes/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/scenes/toc.html"
-        },
         ".json": {
           "relative_path": "tutorials/scenes/toc.json"
+        },
+        ".html": {
+          "relative_path": "tutorials/scenes/toc.html"
         }
       },
       "version": ""
@@ -1859,11 +1953,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/toc.html"
-        },
         ".json": {
           "relative_path": "tutorials/toc.json"
+        },
+        ".html": {
+          "relative_path": "tutorials/toc.html"
         }
       },
       "version": ""
