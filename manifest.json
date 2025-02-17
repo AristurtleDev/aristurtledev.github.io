@@ -1158,8 +1158,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/04_content_pipeline/index.md",
@@ -1471,8 +1471,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/08_the_animatedsprite_class/index.md",
@@ -1525,8 +1525,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/09_handling_input/index.md",
@@ -1592,8 +1592,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/11_collision_detection/index.md",
@@ -1640,6 +1640,79 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/trigger-collision-example.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/bounce.wav",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/bounce.wav"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/collect.wav",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/collect.wav"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/theme.mp3",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/files/theme.mp3"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/song-properties.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/song-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/sound-effect-properties.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/sound-effect-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/xact-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/images/xact-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/12_soundeffects_and_music/index.html"
         }
       },
       "version": ""

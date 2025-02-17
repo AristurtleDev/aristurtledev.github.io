@@ -341,7 +341,7 @@ namespace MonoGameLibrary;
 
 public readonly struct Circle : IEquatable&lt;Circle&gt;
 {
-    
+
 }
 </code></pre>
 <div class="NOTE">
@@ -762,7 +762,7 @@ Vector2 _previousSlimePosition = _slimePosition;
         {
             // The bat is closest to the right edge, so get the right edge normal
             // and move the new position so that the right edge of the bat will
-            // be flush with the right edge of the screen.            
+            // be flush with the right edge of the screen.
             normal = -Vector2.UnitX;
             newPosition.X = screenBounds.Right - _bat.Width;
         }
@@ -784,7 +784,7 @@ Vector2 _previousSlimePosition = _slimePosition;
         }
 
         // Reflect the velocity about the normal
-        _batVelocity = Vector2.Reflect(_batVelocity, normal);        
+        _batVelocity = Vector2.Reflect(_batVelocity, normal);
     }
 
     // Set the new position of the bat
@@ -797,7 +797,7 @@ Vector2 _previousSlimePosition = _slimePosition;
 </div>
 </li>
 <li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, call the new <code>UpdateBatMovement</code> method just after the <code>_bat.Update(gameTime)</code> call:</p>
-<pre><code class="lang-cs">UpdateBatMovement();    
+<pre><code class="lang-cs">UpdateBatMovement();
 </code></pre>
 </li>
 <li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, update the collision response when the slime and bat collide so that it spawns the bat in a new random position and assigns a random velocity:</p>
