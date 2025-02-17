@@ -170,33 +170,40 @@ if(keyboardState.IsKeyDown(Keys.Space))
 private const float MOVEMENT_SPEED = 5.0f;
 </code></pre>
 </li>
-<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check if the up, down, left, or right arrow keys are pressed, and if any of them are, adjust the slime's position.  Add the following just before the call to <code>base.Update</code>:</p>
-<pre><code class="lang-cs">KeyboardState keyboardState = Keyboard.GetState();
-
-if(keyboardState.IsKeyDown(Keys.Up))
+<li><p>Next, add the following method which checks if the up, down, left, or right arrow keys are pressed, and if any of them are, adjusts the slime's position:</p>
+<pre><code class="lang-cs">private void HandleKeyboardInput()
 {
-    _slimePosition.Y -= MOVEMENT_SPEED;
-}
+    KeyboardState keyboardState = Keyboard.GetState();
 
-if(keyboardState.IsKeyDown(Keys.Down))
-{
-    _slimePosition.Y += MOVEMENT_SPEED;
-}
+    if(keyboardState.IsKeyDown(Keys.Up))
+    {
+        _slimePosition.Y -= MOVEMENT_SPEED;
+    }
 
-if(keyboardState.IsKeyDown(Keys.Left))
-{
-    _slimePosition.X -= MOVEMENT_SPEED;
-}
+    if(keyboardState.IsKeyDown(Keys.Down))
+    {
+        _slimePosition.Y += MOVEMENT_SPEED;
+    }
 
-if(keyboardState.IsKeyDown(Keys.Right))
-{
-    _slimePosition.X += MOVEMENT_SPEED;
+    if(keyboardState.IsKeyDown(Keys.Left))
+    {
+        _slimePosition.X -= MOVEMENT_SPEED;
+    }
+
+    if(keyboardState.IsKeyDown(Keys.Right))
+    {
+        _slimePosition.X += MOVEMENT_SPEED;
+    }
 }
 </code></pre>
 <div class="IMPORTANT">
 <h5>Important</h5>
 <p>Why are we subtracting from the Y position when moving up instead of adding?  Recall from <a href="../05_working_with_textures/index.html#drawing-a-texture">Chapter 05</a> that MonoGame uses a coordinate system where the Y value <strong>increases</strong> moving down.  So in order to move <strong>up</strong> the screen, we need to reduce the Y value.</p>
 </div>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, call the new <code>HandleKeyboardInput</code> method just before the call to <code>base.Update</code>:</p>
+<pre><code class="lang-cs">HandleKeyboardInput();
+</code></pre>
 </li>
 <li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the slime when it is rendered by using the <code>_slimePosition</code> value:</p>
 <pre><code class="lang-cs">_slime.Draw(_spriteBatch, _slimePosition);
@@ -287,20 +294,27 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <p>We could have just as easily set the bat's position inside the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method after creating the slime, but I wanted to demonstrate the importance of the call order relationship between <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> and <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a></p>
 </div>
 </li>
-<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check if the left mouse button is pressed, and if so, adjust the bat's position to the position of the mouse cursor.  Add the following just before the call to <code>base.Update</code>:</p>
-<pre><code class="lang-cs">MouseState mouseState = Mouse.GetState();
-
-if(mouseState.LeftButton == ButtonState.Pressed)
+<li><p>Next, add the following method which checks if the left mouse button is pressed, and if so, adjusts the bat's position to the position of the mouse cursor:</p>
+<pre><code class="lang-cs">private void HandleMouseInput()
 {
-    _batPosition = mouseState.Position.ToVector2();
+    MouseState mouseState = Mouse.GetState();
+
+    if(mouseState.LeftButton == ButtonState.Pressed)
+    {
+        _batPosition = mouseState.Position.ToVector2();
+    }
 }
 </code></pre>
 </li>
-<li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the bat when it is rendered by using the <code>_batPosition</code> value:</p>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, call the new <code>HandleMouseInput</code> method after the <code>HandleKeyboardInput</code> call:</p>
+<pre><code class="lang-cs">HandleMouseInput();
+</code></pre>
 </li>
-</ol>
+<li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, update the position of the bat when it is rendered by using the <code>_batPosition</code> value:</p>
 <pre><code class="lang-cs">_bat.Draw(_spriteBatch, _batPosition);
 </code></pre>
+</li>
+</ol>
 <p>Running the game now, you can move the bat sprite around by clicking the left mouse button on the game screen and it will move to that position.  Try it out!</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -420,26 +434,26 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <table>
 <thead>
 <tr>
-<th>Front</th>
-<th>Back</th>
+<th style="text-align: left;">Front</th>
+<th style="text-align: left;">Back</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Xbox</td>
-<td></td>
+<td style="text-align: left;">Xbox</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td><img src="images/xbox-controller-front.svg" alt="Front Of Controller"></td>
-<td><img src="images/xbox-controller-back.svg" alt="Back Of Controller"></td>
+<td style="text-align: left;"><img src="images/xbox-controller-front.svg" alt="Front Of Controller"></td>
+<td style="text-align: left;"><img src="images/xbox-controller-back.svg" alt="Back Of Controller"></td>
 </tr>
 <tr>
-<td>Playstation</td>
-<td></td>
+<td style="text-align: left;">Playstation</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td><img src="images/ps-controller-front.svg" alt="Front Of Controller"></td>
-<td><img src="images/ps-controller-back.svg" alt="Back Of Controller"></td>
+<td style="text-align: left;"><img src="images/ps-controller-front.svg" alt="Front Of Controller"></td>
+<td style="text-align: left;"><img src="images/ps-controller-back.svg" alt="Back Of Controller"></td>
 </tr>
 </tbody>
 </table>
@@ -625,30 +639,45 @@ if(gamePadState.IsButtonDown(Buttons.A))
 <h3 id="implementing-gamepad-input">Implementing GamePad Input</h3>
 <p>Let's implement gamepad controls as an alternative method of moving the slime sprite around.  Open the <em>Game1.cs</em> file and perform the following:</p>
 <ol>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, use the value of the left thumbstick to adjust the sprite's position. Since the value of the thumbstick is a range between <code>-1.0f</code> and <code>1.0f</code>, we can multiply those values by the <code>MOVEMENT_SPEED</code>.  This will make the slime move slower or faster depending on how far in the direction the thumbstick is pushed.  Add the following just before the <code>base.Update</code> call:</li>
-</ol>
-<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+<li><p>Add the following method which takes the value of the left thumbstick and uses it to adjust the sprite's position:</p>
+<pre><code class="lang-cs">private void HandleGamepadInput()
+{
+    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-_slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
-_slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
+    _slimePosition.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
+    _slimePosition.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
+}
 </code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Since the value of the thumbstick is a range between <code>1.0f</code> and <code>1.0f</code>, we can multiply those values by the <code>MOVEMENT_SPEED</code>.  This will make the slime move slower or faster depending on how far in the direction the thumbstick is pushed.</p>
+</div>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, call the new <code>HandleGamepadInput</code> method after the <code>HandleMouseInput</code> call:</p>
+<pre><code class="lang-cs">HandleGamepadInput();
+</code></pre>
+</li>
+</ol>
 <p>Running the game now, you can move the slime sprite around using the left thumbstick on your gamepad.  Try it out!  Notice that the more you push the thumbstick in a particular direction, the faster the slime moves up to the movement speed cap.</p>
 <h3 id="gamepad-vibration">GamePad Vibration</h3>
 <p>Another thing we can do with a gamepad is tell it to vibrate.  To do this, the <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class has a <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method that requires the player index, and the speed of the left and right vibration motors.  The speed can be any value from <code>0.0f</code> (no vibration) to <code>1.0f</code> (full vibration).</p>
-<p>Let's adjust the current code so that when the A button is pressed on the gamepad, it gives a slight speed boost to the slime as it moves.  When moving with a speed boost, we can apply vibration to the gamepad as feedback to the player.  Update the code you just added to the following:</p>
-<pre><code class="lang-cs">GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+<p>Let's adjust the current code so that when the A button is pressed on the gamepad, it gives a slight speed boost to the slime as it moves.  When moving with a speed boost, we can apply vibration to the gamepad as feedback to the player.  Update the <code>HandleGamePadInput</code> method to the following:</p>
+<pre><code class="lang-cs">private void HandleGamepadInput()
+{
+    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-if (gamePadState.Buttons.A == ButtonState.Pressed)
-{
-    _slimePos.X += gamePadState.ThumbSticks.Left.X * 1.5f * MOVEMENT_SPEED;
-    _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * 1.5f * MOVEMENT_SPEED;
-    GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
-}
-else
-{
-    _slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
-    _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
-    GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+    if (gamePadState.Buttons.A == ButtonState.Pressed)
+    {
+        _slimePosition.X += gamePadState.ThumbSticks.Left.X * 1.5f * MOVEMENT_SPEED;
+        _slimePosition.Y -= gamePadState.ThumbSticks.Left.Y * 1.5f * MOVEMENT_SPEED;
+        GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+    }
+    else
+    {
+        _slimePosition.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
+        _slimePosition.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
+        GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+    }
 }
 </code></pre>
 <p>Running the game now, when you press the A button, the slime sprite will move slightly faster and you can feel the vibration. Try it out!</p>
@@ -894,16 +923,24 @@ foreach(TouchLocation touchLocation in touchCollection)
 </div>
 <p>Let's implement touch controls to move the bat sprite around the screen to the point that the screen is touched, similar to what we did for mouse controls in the <a href="#implementing-mouse-input">Implementing Mouse Input</a> section above.  Open <em>Game1.cs</em> and perform the following:</p>
 <ol>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, check for a touch location and move the bat sprite to that location if a touch occurs.  Add the following just before the <code>base.Update</code> call:</li>
-</ol>
-<pre><code class="lang-cs">TouchCollection touchCollection = TouchPanel.GetState();
-
-if(touchCollection.Count &gt; 0)
+<li><p>Add the following method which checks for a touch location and moves the bat sprite to that location if a touch occurs:</p>
+<pre><code class="lang-cs">private void HandleTouchInput()
 {
-    TouchLocation touchLocation = touchCollection[0];
-    _batSprite.Position = touchLocation.Position;
+    TouchCollection touchCollection = TouchPanel.GetState();
+
+    if (touchCollection.Count &gt; 0)
+    {
+        TouchLocation touchLocation = touchCollection[0];
+        _batPosition = touchLocation.Position;
+    }
 }
 </code></pre>
+</li>
+<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, call the new <code>HandleTouchInput</code> method after the <code>HandleGamePadInput</code> call:</p>
+<pre><code class="lang-cs">HandleTouchInput()
+</code></pre>
+</li>
+</ol>
 <p>If you have your development environment setup for mobile development, running the game now, you can touch the screen to move the bat to the point that was touched.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you learned how to:</p>

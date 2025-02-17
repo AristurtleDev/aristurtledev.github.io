@@ -125,7 +125,18 @@
 <p>The term &quot;frame&quot; in animation refers to a single image in an animation sequence. This is different from a game frame, which represents one complete render cycle of your game.</p>
 </div>
 <p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 8-1 below shows three frames that make up a bat's wing-flapping animation:</p>
-<figure><img src="images/bat-animation-example.gif" alt="Figure 8-1: Animation example of a bat flapping its wings."><figcaption><p><strong>Figure 8-1: Animation example of a bat flapping its wings.</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/bat-animation-example.gif" alt="Figure 8-1: Animation example of a bat flapping its wings"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 8-1: Animation example of a bat flapping its wings</strong></td>
+</tr>
+</tbody>
+</table>
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
 <p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../07_the_sprite_class/">Chapter 07</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
@@ -628,7 +639,18 @@ public class Game1 : Game
 <li>The slime bounces between two frames</li>
 <li>The bat's wings flap in a continuous cycle</li>
 </ul>
-<figure><img src="images/slime-bat-animated.gif" alt="Figure 8-2: The slime and bat sprite animating.."><figcaption><p><strong>Figure 8-2: The slime and bat sprite animating.</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/slime-bat-animated.gif" alt="Figure 8-2: The slime and bat sprite animating"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 8-2: The slime and bat sprite animating</strong></td>
+</tr>
+</tbody>
+</table>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
 <ul>

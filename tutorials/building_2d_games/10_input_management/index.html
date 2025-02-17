@@ -885,52 +885,61 @@ public static void Update(GameTime gameTime)
 <pre><code class="lang-cs">InputManager.Update(gameTime);
 </code></pre>
 </li>
-<li><p>Now let's update our game controls to use the <code>InputManager</code>.  First replace the exit condition code with the following:</p>
-<pre><code class="lang-cs">GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
-
-if(gamePadOne.WasButtonJustPressed(Buttons.Back) || InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
-{
-    Exit();
-}
-</code></pre>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Notice how we store a reference to <code>GamePadInfo</code> for player one. This makes our code more readable and efficient since we don't need to access the <code>GamePads</code> array multiple times.</p>
-</div>
+<li><p>Next, remove the <code>if</code> statement in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> that checks for the gamepad back button or the keyboard escape key being pressed and then exits the game.</p>
 </li>
-<li><p>Finally, replace the keyboard, mouse, and gamepad movement controls we implemented previously with the following:</p>
-<pre><code class="lang-cs">if(InputManager.Keyboard.IsKeyDown(Keys.Up))
+<li><p>Finally, update the game controls to use the <code>InputManager</code>.  Replace the <code>HandleKeyboardInput</code>, <code>HandleMouseInput</code> and <code>HandleGamePadInput</code> methods with the following:</p>
+<pre><code class="lang-cs">private void HandleKeyboardInput()
 {
-    _slimePos.Y -= MOVEMENT_SPEED;
-}
-if (InputManager.Keyboard.IsKeyDown(Keys.Down))
-{
-    _slimePos.Y += MOVEMENT_SPEED;
-}
-if (InputManager.Keyboard.IsKeyDown(Keys.Left))
-{
-    _slimePos.X -= MOVEMENT_SPEED;
-}
-if (InputManager.Keyboard.IsKeyDown(Keys.Right))
-{
-    _slimePos.X += MOVEMENT_SPEED;
+    if (InputManager.Keyboard.IsKeyDown(Keys.Escape))
+    {
+        Exit();
+    }
+    if (InputManager.Keyboard.IsKeyDown(Keys.Up))
+    {
+        _slimePosition.Y -= MOVEMENT_SPEED;
+    }
+    if (InputManager.Keyboard.IsKeyDown(Keys.Down))
+    {
+        _slimePosition.Y += MOVEMENT_SPEED;
+    }
+    if (InputManager.Keyboard.IsKeyDown(Keys.Left))
+    {
+        _slimePosition.X -= MOVEMENT_SPEED;
+    }
+    if (InputManager.Keyboard.IsKeyDown(Keys.Right))
+    {
+        _slimePosition.X += MOVEMENT_SPEED;
+    }
 }
 
-if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
+private void HandleMouseInput()
 {
-    _batPosition = InputManager.Mouse.Position.ToVector2();
+    if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
+    {
+        _batPosition = InputManager.Mouse.Position.ToVector2();
+    }
 }
 
-if (gamePadOne.IsButtonDown(Buttons.A))
+private void HandleGamepadInput()
 {
-    _slimePos.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
-    _slimePos.Y -= gamePadOne.LeftThumbStick.Y * 1.5f * MOVEMENT_SPEED;
-    gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
-}
-else
-{
-    _slimePos.X += gamePadOne.LeftThumbStick.X * MOVEMENT_SPEED;
-    _slimePos.Y -= gamePadOne.LeftThumbStick.Y * MOVEMENT_SPEED;
+    GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
+
+    if(gamePadOne.IsButtonDown(Buttons.Back))
+    {
+        Exit();
+    }
+
+    if (gamePadOne.IsButtonDown(Buttons.A))
+    {
+        _slimePosition.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
+        _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * 1.5f * MOVEMENT_SPEED;
+        gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
+    }
+    else
+    {
+        _slimePosition.X += gamePadOne.LeftThumbStick.X * MOVEMENT_SPEED;
+        _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * MOVEMENT_SPEED;
+    }
 }
 </code></pre>
 </li>

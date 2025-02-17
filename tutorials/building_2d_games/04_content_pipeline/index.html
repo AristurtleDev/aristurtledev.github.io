@@ -140,7 +140,18 @@
 <li>Load the compiled asset at runtime using the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a>.</li>
 </ol>
 <p>The following image illustrates this workflow:</p>
-<figure><img src="images/content-pipeline-workflow-full.png" alt="Figure 4-1: MonoGame Content Pipeline Workflow"><figcaption><p><strong>Figure 4-1: MonoGame Content Pipeline Workflow</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/content-pipeline-workflow-full.png" alt="Figure 4-1: MonoGame Content Pipeline Workflow"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>FigFigure 4-1: MonoGame Content Pipeline Workflowure</strong></td>
+</tr>
+</tbody>
+</table>
 <p>For the same amount of steps, you also get the benefit of the assets being pre-processed and compiled to an optimized format for the target platform.  For instance, image files can be compiled using <a href="https://en.wikipedia.org/wiki/S3_Texture_Compression">DXT compression</a>, which is a format that is understood by GPUs without needing to be decompressed first, reducing the memory footprint.</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -148,7 +159,18 @@
 </div>
 <p>For this tutorial series, we are going to focus on using the content pipeline workflow to load assets.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.</p>
 <p>To get started and to walk through the process, we'll start with loading an image file.  Right-click the following image of the MonoGame logo and save it named <em>logo.png</em> somewhere on your on your computer, such as your desktop.</p>
-<figure><img src="images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-2: MonoGame Horizontal Logo</strong></td>
+</tr>
+</tbody>
+</table>
 <h2 id="opening-the-mgcb-editor">Opening the MGCB Editor</h2>
 <p>The <em>MonoGame Content Builder Editor (MGCB Editor)</em> is a GUI tool that can be used to edit your content project.  The content project is the <em>Content.mgcb</em> file in your game project directory.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  To open the <em>Content.mgcb</em> content project file in the MGCB Editor, perform the following based on your editor:</p>
 <div class="tabGroup" id="tabgroup_1">
@@ -166,7 +188,18 @@
 <section id="tabpanel_1_vscode" role="tabpanel" data-tab="vscode">
 
 <p>To open the <em>Content.mgcb</em> content project file in the MGCB Editor with Visual Studio Code, you can use the <em>MonoGame for VSCode</em> extension.  You should have installed this extension in <a href="../02_getting_started/index.html#installing-the-monogame-for-vscode-extension">Chapter 02</a>.  With this extension install, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:</p>
-<figure><img src="images/mgcb-editor-icon.png" alt="Figure 4-3: MonoGame for VSCode extension icon"><figcaption><p><strong>Figure 4-3: MonoGame for VSCode extension icon</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-editor-icon.png" alt="Figure 4-3: MonoGame for VSCode extension icon"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-3: MonoGame for VSCode extension icon</strong></td>
+</tr>
+</tbody>
+</table>
 <p>Clicking the MonoGame logo here will open the <em>Content.mgcb</em> content project file from the current project in the MGCB Editor.</p>
 </section>
 <section id="tabpanel_1_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
@@ -184,7 +217,18 @@
 </div>
 
 <p>Once you have the <em>Content.mgcb</em> content project file for your game project opened in the MGCB Editor, you should see a window similar to the following:</p>
-<figure><img src="images/mgcb-editor.png" alt="Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window"><figcaption><p><strong>Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-editor.png" alt="Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window</strong></td>
+</tr>
+</tbody>
+</table>
 <h2 id="adding-assets-in-the-mgcb-editor">Adding Assets in the MGCB Editor</h2>
 <p>Now that the <em>Content.mgcb</em> content project file is opened in the MGCB Editor, we can add the assets to it that we want to include in our game.  For now, we're just going to add the image file of the MonoGame logo that you downloaded previously.  To do this, perform the following:</p>
 <ol>
@@ -196,7 +240,18 @@
 <li>Navigate to the <em>logo.png</em> file you downloaded and choose it</li>
 </ol>
 <p>After adding an existing file, you will be prompted with a pop-up asking if you would like to <em>Copy the file to the directory</em> or <em>Add a link</em>.</p>
-<figure><img src="images/add-file-popup.png" alt="Figure 4-5: Add Existing File Popup"><figcaption><p><strong>Figure 4-5: Add Existing File Popup</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/add-file-popup.png" alt="Figure 4-5: Add Existing File Popup"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-5: Add Existing File Popup</strong></td>
+</tr>
+</tbody>
+</table>
 <p>For the purposes of this tutorial, choose the <em>Copy the file to the directory</em> option, then click the <em>Add</em> button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:</p>
 <ul>
 <li><p><strong>Copy the file to the directory</strong>: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in the original source file will not be reflected in the copy.</p>
@@ -205,7 +260,18 @@
 </li>
 </ul>
 <p>After adding the <em>logo.png</em> file, your project node should look similar to the following:</p>
-<figure><img src="images/mgcb-logo-added.png" alt="Figure 4-6: Logo image added to the MGCB Editor"><figcaption><p><strong>Figure 4-6: Logo image added to the MGCB Editor</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-logo-added.png" alt="Figure 4-6: Logo image added to the MGCB Editor"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-6: Logo image added to the MGCB Editor</strong></td>
+</tr>
+</tbody>
+</table>
 <p>After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved.  To save changes, you can perform one of the following:</p>
 <ul>
 <li>Choose <em>File &gt; Save</em> from the top menu.</li>
@@ -328,7 +394,18 @@ public class Game1 : Game
 </li>
 </ul>
 <p>Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.</p>
-<figure><img src="images/logo-drawn.png" alt="Figure 4-7: The MonoGame logo drawn to the game window."><figcaption><p><strong>Figure 4-7: The MonoGame logo drawn to the game window.</strong></p></figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/logo-drawn.png" alt="Figure 4-7: The MonoGame logo drawn to the game window"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-7: The MonoGame logo drawn to the game window</strong></td>
+</tr>
+</tbody>
+</table>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
 <ul>
