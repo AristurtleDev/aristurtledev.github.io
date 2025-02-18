@@ -172,7 +172,7 @@ float circle2Radius = 5;
 // c^2 = 3^2 + 4^2
 // c^2 = 9 + 16
 // c^2 = 25
-float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position); 
+float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position);
 
 // r^2 = (5 + 5)^2
 // r^2 = (10)^2
@@ -182,7 +182,7 @@ int radiiSquared = (circle1Radius + circle2Radius) * (circle1Radius + circle2Rad
 // They do not overlap since 100 is not less than 25
 if(radii &lt; distanceSquared)
 {
-    
+
 }
 </code></pre>
 <div class="TIP">
@@ -350,7 +350,7 @@ Rectangle blockingBounds = new Rectangle(
 );
 
 // Detect if they are colliding
-if(spriteBounds.Intersects(blockingBounds)) 
+if(spriteBounds.Intersects(blockingBounds))
 {
     // Respond by not allowing the sprite to move by setting
     // the location back to the previous location.
@@ -389,7 +389,7 @@ Rectangle screenBounds = new Rectangle(
 );
 
 // Detect if the sprite is contained within the bounds of the screen
-if(!screenBounds.Contains(spriteBounds)) 
+if(!screenBounds.Contains(spriteBounds))
 {
     // Respond by not allowing the sprite to move to move outside the screen
     // bounds by setting the location back to the previous location.
@@ -514,7 +514,7 @@ if(!screenBounds.Contains(batBounds))
     }
 
     // Reflect the velocity about the normal
-    _batVelocity = Vector2.Reflect(_ballVelocity, normal); 
+    _batVelocity = Vector2.Reflect(_ballVelocity, normal);
 }
 
 // Set the new position of the ball
@@ -541,7 +541,7 @@ namespace MonoGameLibrary;
 
 public readonly struct Circle : IEquatable&lt;Circle&gt;
 {
-    
+
 }
 </code></pre>
 <div class="NOTE">
@@ -742,8 +742,6 @@ Circle slimeBounds = new Circle(
 </code></pre>
 </li>
 <li><p>Finally, after creating the bounding rectangle for the circle, add the following to perform a distance based collision check:</p>
-</li>
-</ol>
 <pre><code class="lang-cs">// Use distance based checks to determine if the slime is within the
 // bounds of the game screen, and if it's outside that screen edge,
 // move it back inside.
@@ -765,6 +763,8 @@ else if(slimeBounds.Bottom &gt; screenBounds.Bottom)
     _slimePosition.Y = screenBounds.Bottom - _slime.Height;
 }
 </code></pre>
+</li>
+</ol>
 <p>Running the game now, try moving the slime outside the edges of the game window.  You'll see that it's now being prevented from doing so:</p>
 <table>
 <thead>
