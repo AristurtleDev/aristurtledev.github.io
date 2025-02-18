@@ -43,7 +43,7 @@
 
 .games-list .game .game-container {
     width: 65rem;
-    
+
 }
 
 .platform-image {
@@ -112,4 +112,15 @@
 .platform-button.button-ludum:hover,
 .platform-button.button-gdq:hover {
     background-color: #090b0c;
+}
+
+th video,
+td video {
+  width: 100%;
+  height: 100%
+}
+
+th:has(a img[alt^="Figure"]),
+td:has(a img[alt^="Figure"]) {
+  width: 50%;
 }
