@@ -1158,8 +1158,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/04_content_pipeline/index.md",
@@ -1471,8 +1471,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/08_the_animatedsprite_class/index.md",
@@ -1525,8 +1525,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/09_handling_input/index.md",
@@ -1582,6 +1582,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/circle-distance-right-triangle.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/images/circle-distance-right-triangle.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/11_collision_detection/images/reflection-diagram.svg",
       "output": {
         "resource": {
@@ -1592,8 +1602,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/11_collision_detection/index.md",
@@ -1606,40 +1616,30 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/blocking-collision-example.webm",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bat-bouncing-off-screen-edges.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/blocking-collision-example.webm"
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bat-bouncing-off-screen-edges.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bounce-collision-example.webm",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bat-respawns-when-eaten.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bounce-collision-example.webm"
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/bat-respawns-when-eaten.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-bat-collision.webm",
+      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-contained-within-screen.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-bat-collision.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_collision_detection/videos/trigger-collision-example.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/trigger-collision-example.webm"
+          "relative_path": "tutorials/building_2d_games/11_collision_detection/videos/slime-contained-within-screen.webm"
         }
       },
       "version": ""
