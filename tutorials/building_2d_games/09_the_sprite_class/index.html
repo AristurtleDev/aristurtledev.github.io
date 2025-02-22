@@ -117,9 +117,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-07-the-sprite-class">Chapter 07: The Sprite Class</h1>
+<h1 id="chapter-09-the-sprite-class">Chapter 09: The Sprite Class</h1>
 <p class="text-secondary">Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.</p>
-<p>In <a href="../06_optimizing_texture_rendering/index.html">Chapter 06</a>, you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:</p>
+<p>In <a href="../08_optimizing_texture_rendering/index.html">Chapter 08</a>, you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:</p>
 <ul>
 <li>Color mask for tinting.</li>
 <li>Origin for rotation and scale.</li>
@@ -267,7 +267,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position)
 </li>
 </ul>
 <h2 id="create-sprites-with-the-textureatlas-class">Create Sprites With The TextureAtlas Class</h2>
-<p>While the <code>GetRegion</code> method of the <code>TextureAtlas</code> class we created in <a href="../06_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 06</a> works well for retrieving regions, creating sprites requires multiple steps:</p>
+<p>While the <code>GetRegion</code> method of the <code>TextureAtlas</code> class we created in <a href="../08_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 08</a> works well for retrieving regions, creating sprites requires multiple steps:</p>
 <ol>
 <li>Get the region by name.</li>
 <li>Store it in a variable.</li>

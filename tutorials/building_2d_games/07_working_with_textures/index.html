@@ -117,9 +117,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-05-working-with-textures">Chapter 05: Working with Textures</h1>
+<h1 id="chapter-07-working-with-textures">Chapter 07: Working with Textures</h1>
 <p class="text-secondary">Learn how to load and render textures using the MonoGame content pipeline and SpriteBatch.</p>
-<p>Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as <em>Sprites</em>.  In <a href="../04_content_pipeline/index.html#loading-assets">Chapter 04</a>, you went through the steps of using the <strong>Content Pipeline</strong> to load the MonoGame <em>logo.png</em> texture and rendering it to the screen.</p>
+<p>Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as <em>Sprites</em>.  In <a href="../06_content_pipeline/index.html#loading-assets">Chapter 06</a>, you went through the steps of using the <strong>Content Pipeline</strong> to load the MonoGame <em>logo.png</em> texture and rendering it to the screen.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn how to render a texture with the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>.</li>
@@ -142,7 +142,7 @@
 <p>The order of method calls when rendering using the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> is important.  <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> must be called before any <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)"><strong>SpriteBatch.Draw</strong></a> calls are made.  When finished, <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> must be called before another <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> can be called.  If these methods are called out of order, an exception will be thrown.</p>
 </div>
 <p>As mentioned in <a href="../03_the_game1_file/index.html#the-game-loop">Chapter 03</a>, all rendering should be done inside the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method. The <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method's responsibility is to render the game state that was calculated in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>; it should not contain any game logic or complex calculations.</p>
-<p>At the end of <a href="../04_content_pipeline/index.html#loading-assets">Chapter 04</a>, you added the following code to the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> in the <em>Game1.cs</em> file:</p>
+<p>At the end of <a href="../06_content_pipeline/index.html#loading-assets">Chapter 06</a>, you added the following code to the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> in the <em>Game1.cs</em> file:</p>
 <pre><code class="lang-cs">_spriteBatch.Begin();
 _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 _spriteBatch.End();

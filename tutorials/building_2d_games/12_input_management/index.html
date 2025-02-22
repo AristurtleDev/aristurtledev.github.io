@@ -117,9 +117,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-10-input-management">Chapter 10: Input Management</h1>
+<h1 id="chapter-12-input-management">Chapter 12: Input Management</h1>
 <p class="text-secondary">Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input.</p>
-<p>In <a href="../09_handling_input/index.html">Chapter 09</a>, you learned how to handle input from various devices like keyboard, mouse, and gamepad. While checking if an input is currently down works well for continuous actions like movement, many game actions should only happen once when an input is first pressed; think firing a weapon or jumping. To handle these scenarios, we need to compare the current input state with the previous frame's state to detect when an input changes from up to down.</p>
+<p>In <a href="../11_handling_input/index.html">Chapter 11</a>, you learned how to handle input from various devices like keyboard, mouse, and gamepad. While checking if an input is currently down works well for continuous actions like movement, many game actions should only happen once when an input is first pressed; think firing a weapon or jumping. To handle these scenarios, we need to compare the current input state with the previous frame's state to detect when an input changes from up to down.</p>
 <p>In this chapter you will:</p>
 <ul>
 <li>Learn the difference between an input being down versus being pressed</li>
@@ -291,7 +291,7 @@ public bool WasKeyJustReleased(Keys key)
 </div>
 <p>That's it for the <code>KeyboardInfo</code> class, let's move on to mouse input next.</p>
 <h2 id="mousebutton-enum">MouseButton Enum</h2>
-<p>Recall from the <a href="../09_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we'll create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
+<p>Recall from the <a href="../11_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we'll create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
 <p>In the <em>Input</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>MouseButton.cs</em> with the following code:</p>
 <pre><code class="lang-cs">namespace MonoGameLibrary.Input;
 
@@ -632,7 +632,7 @@ public class GamePadInfo
 <p>We use vibration in gamepads to provide haptic feedback to the player.  The <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the <code>GamePadInfo</code> class:</p>
 <pre><code class="lang-cs">private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
 </code></pre>
-<p>Recall from the <a href="../09_handling_input/index.html#gamepad-input">previous chapter</a> that a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.</p>
+<p>Recall from the <a href="../11_handling_input/index.html#gamepad-input">previous chapter</a> that a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.</p>
 <pre><code class="lang-cs">/// &lt;summary&gt;
 /// Gets the index of the player this gamepad is for.
 /// &lt;/summary&gt;
@@ -804,44 +804,52 @@ public void StopVibration()
 </div>
 <p>That's it for the <code>GamePadInfo</code> class.  Next, let's create the actual input manager.</p>
 <h2 id="the-inputmanager-class">The InputManager Class</h2>
-<p>Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The <code>InputManager</code> class will be static, providing easy access to all input states from anywhere in our game.</p>
+<p>Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The <code>InputManager</code> class will be a <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> like we discussed previously in <a href="../05_game_components/index.html">Chapter 05</a>.</p>
 <p>In the <em>Input</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>InputManager.cs</em> with this initial structure:</p>
 <pre><code class="lang-cs">using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
 
-public static class InputManager
+public class InputManager : GameComponent
 {
 
 }
 </code></pre>
 <h3 id="inputmanager-properties">InputManager Properties</h3>
-<p>The InputManager class needs properties to access each type of input device. Add these properties:</p>
+<p>The <code>InputManager</code> class needs properties to access each type of input device. Add these properties:</p>
 <pre><code class="lang-cs">/// &lt;summary&gt;
 /// Gets the state information of keyboard input.
 /// &lt;/summary&gt;
-public static KeyboardInfo Keyboard { get; private set; }
+public KeyboardInfo Keyboard { get; private set; }
 
 /// &lt;summary&gt;
 /// Gets the state information of mouse input.
 /// &lt;/summary&gt;
-public static MouseInfo Mouse { get; private set; }
+public MouseInfo Mouse { get; private set; }
 
 /// &lt;summary&gt;
 /// Gets the state information of a gamepad.
 /// &lt;/summary&gt;
-public static GamePadInfo[] GamePads { get; private set; }
+public GamePadInfo[] GamePads { get; private set; }
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The <code>GamePads</code> property is an array because MonoGame supports up to four gamepads simultaneously. Each gamepad is associated with a PlayerIndex (0-3).</p>
 </div>
+<h3 id="inputmanager-constructor">InputManager Constructor</h3>
+<p>The <code>InputManager</code> needs a constructor that accept a <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> parameter due to inheriting from the <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> class.  Add the following constructor:</p>
+<pre><code class="lang-cs">/// &lt;summary&gt;
+/// Creates a new InputManager.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;game&quot;&gt;The game this input manager belongs to.&lt;/param&gt;
+public InputManager(Game game) : base(game) { }
+</code></pre>
 <h3 id="inputmanager-methods">InputManager Methods</h3>
-<p>First, we need a method to initialize our input devices:</p>
+<p>First, override the <code>Initialize</code> method so that we can ensure that the states for each input devices are initialized:</p>
 <pre><code class="lang-cs">/// &lt;summary&gt;
 /// Initializes this input manager.
 /// &lt;/summary&gt;
-public static void Initialize()
+public override void Initialize()
 {
     Keyboard = new KeyboardInfo();
     Mouse = new MouseInfo();
@@ -853,12 +861,12 @@ public static void Initialize()
     }
 }
 </code></pre>
-<p>Next, we'll add a method to update all input states:</p>
+<p>Next override the <code>Update</code> method so that the states of the input devices are updated:</p>
 <pre><code class="lang-cs">/// &lt;summary&gt;
 /// Updates the state information for the keyboard, mouse, and gamepad inputs.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the timing values for the current frame.&lt;/param&gt;
-public static void Update(GameTime gameTime)
+public override void Update(GameTime gameTime)
 {
     Keyboard.Update();
     Mouse.Update();
@@ -869,62 +877,63 @@ public static void Update(GameTime gameTime)
     }
 }
 </code></pre>
-<div class="TIP">
-<h5>Tip</h5>
-<p>By centralizing input updates in the <code>InputManager</code>, we ensure all input states are updated consistently each frame. You only need to call <code>InputManager.Update</code> once in your game's <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method.</p>
-</div>
 <h3 id="implementing-the-inputmanager-class">Implementing the InputManager Class</h3>
 <p>Now that we have our input management system complete, let's update our game to use it. Instead of tracking input states directly, we'll use the <code>InputManager</code> to handle all our input detection. Open <em>Game1.cs</em> and make the following changes:</p>
-<p>Let's update the input code in our game now to instead use the <code>InputManager</code> class to manage tracking input states which inputs are active. Open the <em>Game1.cs</em> file and perform the following:</p>
 <ol>
-<li><p>First we need to set up the <code>InputManager</code>.  In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>, add this initialization code just before <code>base.Initialize()</code>:</p>
-<pre><code class="lang-cs">InputManager.Initialize();
+<li><p>Add the <code>MonoGameLibrary.Input</code> using directive so we can access the <code>InputManager</code> class:</p>
+<pre><code class="lang-cs">using MonoGameLibrary.Input;
 </code></pre>
 </li>
-<li><p>Next, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, we need to ensure input states are updated each frame.  Add the following as the first line of code inside the <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method:</p>
-<pre><code class="lang-cs">InputManager.Update(gameTime);
+<li><p>Add a field for the <code>InputManager</code> class:</p>
+<pre><code class="lang-cs">private InputManager _input;
 </code></pre>
 </li>
-<li><p>Next, remove the <code>if</code> statement in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> that checks for the gamepad back button or the keyboard escape key being pressed and then exits the game.</p>
+<li><p>In the constructor, create the <code>InputManager</code> and add it to to the game component collection:</p>
+<pre><code class="lang-cs">// Create and add the input manager component to the game's component collection
+_input = new InputManager(this);
+Components.Add(_input);
+</code></pre>
 </li>
-<li><p>Finally, update the game controls to use the <code>InputManager</code>.  Replace the <code>HandleKeyboardInput</code>, <code>HandleMouseInput</code> and <code>HandleGamePadInput</code> methods with the following:</p>
+<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, remove the <code>if</code> statement that checks for the gamepad back button or keyboard escape key being pressed and then calls exit.  We're going to move this to the individual handle input methods in a moment.</p>
+</li>
+<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> move the <code>base.Update(gameTime)</code> call from being the last line of the method to the first line of the method.  We do this because game components are updated during the <code>base.Update(gameTime)</code> call and we want to ensure that input is updated before we start handling input checks.</p>
+</li>
+<li><p>Update the <code>HandleKeyboardInput</code> method to use the new <code>InputManager</code>:</p>
 <pre><code class="lang-cs">private void HandleKeyboardInput()
 {
-    if (InputManager.Keyboard.IsKeyDown(Keys.Escape))
+    if (_input.Keyboard.IsKeyDown(Keys.Escape))
     {
         Exit();
     }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Up))
+
+    if (_input.Keyboard.IsKeyDown(Keys.Up))
     {
         _slimePosition.Y -= MOVEMENT_SPEED;
     }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Down))
+
+    if (_input.Keyboard.IsKeyDown(Keys.Down))
     {
         _slimePosition.Y += MOVEMENT_SPEED;
     }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Left))
+
+    if (_input.Keyboard.IsKeyDown(Keys.Left))
     {
         _slimePosition.X -= MOVEMENT_SPEED;
     }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Right))
+
+    if (_input.Keyboard.IsKeyDown(Keys.Right))
     {
         _slimePosition.X += MOVEMENT_SPEED;
     }
 }
-
-private void HandleMouseInput()
+</code></pre>
+</li>
+<li><p>Update the <code>HandleGamePadInput</code> method to use the new <code>InputManager</code>:</p>
+<pre><code class="lang-cs">private void HandleGamepadInput()
 {
-    if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
-    {
-        _batPosition = InputManager.Mouse.Position.ToVector2();
-    }
-}
+    GamePadInfo gamePadOne = _input.GamePads[(int)PlayerIndex.One];
 
-private void HandleGamepadInput()
-{
-    GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
-
-    if(gamePadOne.IsButtonDown(Buttons.Back))
+    if (gamePadOne.IsButtonDown(Buttons.Back))
     {
         Exit();
     }
@@ -942,6 +951,8 @@ private void HandleGamepadInput()
     }
 }
 </code></pre>
+</li>
+<li><p>Remove the <code>HandleMouseInput</code> and the <code>HandleTouchInput</code> methods, we no longer need these since they were just for example purposes.</p>
 </li>
 </ol>
 <p>The key improvements in this implementation are:</p>
@@ -961,10 +972,6 @@ private void HandleGamepadInput()
 </ul>
 </li>
 </ol>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Using <code>WasButtonJustPressed</code> instead of <code>IsButtonDown</code> for the mouse control means the bat only moves when you first click, not continuously while holding the button. This gives you more precise control over movement.</p>
-</div>
 <p>Running the game now, you will be able to control it the same as before, only now we're using our new <code>InputManager</code> class instead.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you learned how to:</p>

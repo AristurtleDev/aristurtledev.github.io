@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-05-game-components">Chapter 05: Game Components</h1>
+<p class="text-secondary">Learn about MonoGame's component system and how to create reusable game components that automatically update and draw.</p>
+<p>In <a href="../03_the_game1_file/index.html#the-game-loop">Chapter 03</a> you learned about the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class and how MonoGame manages the game loop through its <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> and <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> methods. While you could implement all your game's logic directly in these methods, MonoGame provides a component system that helps organize code into reusable pieces.</p>
+<p>In this chapter, you will:</p>
+<ul>
+<li>Learn about MonoGame's component interfaces and base classes.</li>
+<li>Understand how components integrate with the game loop.</li>
+<li>Create reusable game components.</li>
+<li>Manage components through the game's component collection.</li>
+</ul>
+<p>Let's start by understanding what game components are and how they work.</p>
+<h2 id="understanding-game-components">Understanding Game Components</h2>
+<p>Game components are self-contained pieces of game functionality that can be easily added to or removed from a game. Components can:</p>
+<ul>
+<li>Automatically receive updates each frame.</li>
+<li>Handle their own drawing if needed.</li>
+<li>Be enabled or disabled as needed.</li>
+<li>Clean up their resources when disposed.</li>
+</ul>
+<p>MonoGame provides several interfaces and base classes for creating components:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a>: Interface for components that need to update each frame.</li>
+<li><a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a>: Interface for components that need to draw to the screen.</li>
+<li><a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>: Base class for updateable components.</li>
+<li><a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a>: Base class for components that both update and draw.</li>
+</ul>
+<h3 id="the-iupdatable-interface">The IUpdatable Interface</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a> interface defines the contract for objects that can be updated each frame. It contains the following members:</p>
+<pre><code class="lang-cs">public interface IUpdateable
+{
+    bool Enabled { get; }
+    int UpdateOrder { get; }
+    event EventHandler&lt;EventArgs&gt; EnabledChanged;
+    event EventHandler&lt;EventArgs&gt; UpdateOrderChanged;
+    void Update(GameTime gameTime);
+}
+</code></pre>
+<p>Key aspects of <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a>:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.IUpdateable.Enabled"><strong>Enabled</strong></a>: Controls whether the component should receive updates.</li>
+<li><a href="xref:Microsoft.Xna.Framework.IUpdateable.UpdateOrder"><strong>UpdateOrder</strong></a>: Determines the order components are updated relative to each other.</li>
+<li><a href="xref:Microsoft.Xna.Framework.IUpdateable.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>: The method called each frame to update the component's state.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <a href="xref:Microsoft.Xna.Framework.IUpdateable.EnabledChanged"><strong>EnabledChanged</strong></a> and <a href="xref:Microsoft.Xna.Framework.IUpdateable.UpdateOrderChanged"><strong>UpdateOrderChanged</strong></a> events notify when these properties change. This allows other components to react to these changes if needed.</p>
+</div>
+<h3 id="the-idrawable-interface">The IDrawable Interface</h3>
+<p>The <a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a> interface defines the contract for objects that can draw to the screen. It contains the following members:</p>
+<pre><code class="lang-cs">public interface IDrawable
+{
+    bool Visible { get; }
+    int DrawOrder { get; }
+    event EventHandler&lt;EventArgs&gt; VisibleChanged;
+    event EventHandler&lt;EventArgs&gt; DrawOrderChanged;
+    void Draw(GameTime gameTime);
+}
+</code></pre>
+<p>Key aspects of <a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a>:</p>
+<ul>
+<li><a href="xref:Microsoft.Xna.Framework.IDrawable.Visible"><strong>Visible</strong></a>: Controls whether the component should be drawn.</li>
+<li><a href="xref:Microsoft.Xna.Framework.IDrawable.DrawOrder"><strong>DrawOrder</strong></a>: Determines the order components are drawn relative to each other.</li>
+<li><a href="xref:Microsoft.Xna.Framework.IDrawable.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>: The method called each frame to draw the component.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Like <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a>, the events notify when these properties change.</p>
+</div>
+<h3 id="the-gamecomponent-class">The GameComponent Class</h3>
+<p>While you could implement <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a> directly, MonoGame provides the <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> base class that handles most of the boilerplate code. Let's convert our existing <code>FramesPerSecondCounter</code> from <a href="../04_creating_a_class_library/index.html#creating-our-first-library-module">Chapter 04</a> into a proper game component:</p>
+<pre><code class="lang-cs">using System;
+using Microsoft.Xna.Framework;
+
+namespace MonoGameLibrary;
+
+/// &lt;summary&gt;
+/// Tracks and calculates the number of frames rendered per second.
+/// &lt;/summary&gt;
+public class FramesPerSecondCounter : GameComponent
+{
+    /// A static TimeSpan representing one second, used for FPS calculation intervals.
+    private static readonly TimeSpan s_oneSecond = TimeSpan.FromSeconds(1);
+
+    /// Tracks the number of frames rendered in the current second.
+    private int _frameCounter;
+
+    /// Tracks the elapsed time since the last FPS calculation.
+    private TimeSpan _elapsedTime;
+
+    /// &lt;summary&gt;
+    /// Gets the current frames per second calculation.
+    /// &lt;/summary&gt;
+    public float FramesPerSecond { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Creates a new FramesPerSecondCounter.
+    /// &lt;/summary&gt;
+    public FramesPerSecondCounter(Game game) : base(game)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// Updates the FPS calculation based on elapsed game time.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game's timing values.&lt;/param&gt;
+    public override void Update(GameTime gameTime)
+    {
+        _elapsedTime += gameTime.ElapsedGameTime;
+
+        if (_elapsedTime &gt; s_oneSecond)
+        {
+            FramesPerSecond = _frameCounter;
+            _frameCounter = 0;
+            _elapsedTime -= s_oneSecond;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Increments the frame counter. Should be called once per frame during the game's Draw method.
+    /// &lt;/summary&gt;
+    public void UpdateCounter()
+    {
+        _frameCounter++;
+    }
+}
+</code></pre>
+<p>Key changes from our original implementation:</p>
+<ul>
+<li>The class now inherits from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>.</li>
+<li>Added constructor requiring a <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> reference.</li>
+<li><code>Update</code> is now an override of the base component's method.</li>
+</ul>
+<p>The <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> class:</p>
+<ul>
+<li>Requires a reference to the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> instance it belongs to.</li>
+<li>Implements <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a> and handles the events.</li>
+<li>Virtual <a href="xref:Microsoft.Xna.Framework.GameComponent.Initialize"><strong>Initialize</strong></a> and <a href="xref:Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> methods you can override.</li>
+</ul>
+<p>Using this component is simpler than our previous implementation.  Open <em>Game1.cs</em> and make the following changes:</p>
+<ol>
+<li><p>In the constructor, replace the code creating the <code>FramesPerSecondCounter</code> with the following which will also add it to the game's component collection:</p>
+<pre><code class="lang-cs">// Create and add the component to the game's components collection
+_fpsCounter = new FramesPerSecondCounter(this);
+Components.Add(_fpsCounter);
+</code></pre>
+</li>
+<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, remove the <code>_fpsCounter.Update(gameTime)</code> call.  This is no longer needed.</p>
+</li>
+</ol>
+<p>The <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method should now look like it did originally:</p>
+<pre><code class="lang-cs">protected override void Update(GameTime gameTime)
+{
+    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        Exit();
+
+    // TODO: Add your update logic here
+    
+    base.Update(gameTime);
+}
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>When <code>base.Update(gameTime)</code> is called, the game handles updating all <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IUpdateable</strong></a> components in the games's <a href="xref:Microsoft.Xna.Framework.GameComponentCollection"><strong>GameComponentCollection</strong></a>.  You don't need to manually update them in your game's <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method anymore.</p>
+</div>
+<p>Running the game now, the <code>FramesPerSecondCounter</code> is created, added to the game's component collection, and automatically updated.  You should still see the calculated FPS displayed as the game's window title.</p>
+<h3 id="the-drawablegamecomponent-class">The DrawableGameComponent Class</h3>
+<p>For components that need both update and draw functionality, MonoGame provides the <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a> class. This class inherits from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> and implements <a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a>.</p>
+<p>Let's modify our FPS counter so that it uses <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a> instead of <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>:</p>
+<pre><code class="lang-cs">using System;
+using Microsoft.Xna.Framework;
+
+namespace MonoGameLibrary;
+
+/// &lt;summary&gt;
+/// Tracks and calculates the number of frames rendered per second.
+/// &lt;/summary&gt;
+public class FramesPerSecondCounter : DrawableGameComponent
+{
+    /// A static TimeSpan representing one second, used for FPS calculation intervals.
+    private static readonly TimeSpan s_oneSecond = TimeSpan.FromSeconds(1);
+
+    /// Tracks the number of frames rendered in the current second.
+    private int _frameCounter;
+
+    /// Tracks the elapsed time since the last FPS calculation.
+    private TimeSpan _elapsedTime;
+
+    /// &lt;summary&gt;
+    /// Gets the current frames per second calculation.
+    /// &lt;/summary&gt;
+    public float FramesPerSecond { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Creates a new FramesPerSecondCounter.
+    /// &lt;/summary&gt;
+    public FramesPerSecondCounter(Game game) : base(game)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// Updates the FPS calculation based on elapsed game time.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game's timing values.&lt;/param&gt;
+    public override void Update(GameTime gameTime)
+    {
+        _elapsedTime += gameTime.ElapsedGameTime;
+
+        if (_elapsedTime &gt; s_oneSecond)
+        {
+            FramesPerSecond = _frameCounter;
+            _frameCounter = 0;
+            _elapsedTime -= s_oneSecond;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Draws the FPS calculation to the window title.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game's timing values.&lt;/param&gt;
+    public override void Draw(GameTime gameTime)
+    {
+        // Increment the frame counter only during draw.
+        _frameCounter++;
+        Game.Window.Title = $&quot;FPS: {FramesPerSecond}&quot;;
+    }
+}
+</code></pre>
+<p>Key changes from the <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> implementation:</p>
+<ul>
+<li>The class now inherits from <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a>.</li>
+<li>Removed the <code>UpdateCounter</code> method.</li>
+<li>An override for the base component's <code>Draw</code> method was added.</li>
+<li>The update to the windows title was moved to the <code>Draw</code> method here.</li>
+</ul>
+<p><a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a> provides:</p>
+<ul>
+<li>All the features of <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>.</li>
+<li>Implementation of <a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a>.</li>
+<li>Access to the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice"><strong>GraphicsDevice</strong></a>.</li>
+<li>Virtual <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent.LoadContent"><strong>LoadContent</strong></a>,  <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent.UnloadContent"><strong>UnloadContent</strong></a>, and <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> methods you can override.</li>
+</ul>
+<p>Using this component now is even simpler than our previous implementation.  Open <em>Game1.cs</em> and, in <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, remove the <code>_fpsCounter.Update</code> call and the <code>Window.Title</code> change.  The Draw method should now look like it did originally:</p>
+<pre><code class="lang-cs">protected override void Draw(GameTime gameTime)
+{
+    GraphicsDevice.Clear(Color.CornflowerBlue);
+
+    // TODO: Add your drawing code here
+
+    base.Draw(gameTime);
+}
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Just like in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, when <code>base.Draw(gameTime)</code> is called, the game handles drawing all <a href="xref:Microsoft.Xna.Framework.IUpdateable"><strong>IDrawable</strong></a> components in the games's <a href="xref:Microsoft.Xna.Framework.GameComponentCollection"><strong>GameComponentCollection</strong></a>.  You don't need to manually draw them in your game's <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method anymore.</p>
+</div>
+<p>Running the game now, the <code>FramesPerSecondCounter</code> is created, added to the game's component collection, and automatically updated and drawn.  You should still see the calculated FPS displayed as the game's window title.</p>
+<h2 id="component-order-and-dependencies">Component Order and Dependencies</h2>
+<p>When you have multiple components, you might need to control their update and draw order. Components provide two ways to handle this:</p>
+<ol>
+<li><p>Using the <a href="xref:Microsoft.Xna.Framework.IUpdateable.UpdateOrder"><strong>UpdateOrder</strong></a> and <a href="xref:Microsoft.Xna.Framework.IDrawable.DrawOrder"><strong>DrawOrder</strong></a> properties:</p>
+<pre><code class="lang-cs">public class ExampleComponent : DrawableGameComponent
+{
+    public ExampleComponent(Game game) : base(game)
+    {
+        // Update after components with order 0.
+        UpdateOrder = 1;
+
+        // Draw after components with order 0.
+        DrawOrder = 1; 
+    }
+}
+</code></pre>
+</li>
+<li><p>Using the <a href="xref:Microsoft.Xna.Framework.GameComponentCollection"><strong>GameComponentCollection</strong></a> to order components:</p>
+<pre><code class="lang-cs">// Components are updated/drawn in the order they're added
+// Updated/draw first.
+Components.Add(backgroundComponent);
+
+// Updated/draw second.
+Components.Add(playerComponent);
+
+// Updated/drawn last.
+Components.Add(uiComponent);
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Use <a href="xref:Microsoft.Xna.Framework.IUpdateable.UpdateOrder"><strong>UpdateOrder</strong></a> and <a href="xref:Microsoft.Xna.Framework.IDrawable.DrawOrder"><strong>DrawOrder</strong></a> when components have specific dependencies. Use the Components collection order for general layering.</p>
+</div>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Let's review what you accomplished in this chapter:</p>
+<ul>
+<li>Learned about MonoGame's component interfaces and their purposes.</li>
+<li>Explored the <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> and <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a> base classes.</li>
+<li>Converted our FPS counter into a proper game component.</li>
+<li>Understood how to manage component order and dependencies.</li>
+</ul>
+<p>In the next chapter, we'll learn about the Content Pipeline and how to load game assets.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What is the main difference between <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> and <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a>?</p>
+<details>
+<summary>Question 1 Answer</summary>
+<blockquote>
+<p><a href="xref:Microsoft.Xna.Framework.DrawableGameComponent"><strong>DrawableGameComponent</strong></a> inherits from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a> and adds drawing capabilities by implementing <a href="xref:Microsoft.Xna.Framework.IDrawable"><strong>IDrawable</strong></a>. This makes it suitable for components that need both update and draw functionality.</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>How does MonoGame handle calling <a href="xref:Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> and <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> on components?</p>
+<details>
+<summary>Question 2 Answer</summary>
+<blockquote>
+<p>The <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class automatically calls <a href="xref:Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> during <code>base.Update()</code> and <a href="xref:Microsoft.Xna.Framework.DrawableGameComponent.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> during <code>base.Draw()</code> on all components in its <a href="xref:Microsoft.Xna.Framework.Game.Components"><strong>Components</strong></a> collection. Components are processed in order based on their <a href="xref:Microsoft.Xna.Framework.IUpdateable.UpdateOrder"><strong>UpdateOrder</strong></a>/<a href="xref:Microsoft.Xna.Framework.IDrawable.DrawOrder"><strong>DrawOrder</strong></a> properties and the order they were added to the collection.</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>What advantages did we gain by converting our FPS counter to a proper game component?</p>
+ <details>
+ <summary>Question 3 Answer</summary>
+<blockquote>
+<p>Converting to a game component:</p>
+<ul>
+<li>Eliminated manual <code>Update</code> and <code>Draw</code> calls in the game class.</li>
+<li>Provided automatic lifecycle management.</li>
+<li>Made the component more reusable.</li>
+<li>Added enable/disable functionality.</li>
+</ul>
+</blockquote>
+ </details><br>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

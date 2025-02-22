@@ -117,7 +117,7 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-08-the-animatedsprite-class">Chapter 08: The AnimatedSprite Class</h1>
+<h1 id="chapter-10-the-animatedsprite-class">Chapter 10: The AnimatedSprite Class</h1>
 <p class="text-secondary">Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.</p>
 <p>While packing images into a texture atlas and managing them through our <code>Sprite</code> class improves performance and organization, games need animation to bring their visuals to life. 2D animation in games works much like a flip book; a sequence of individual images (<em>frames</em>) displayed in rapid succession creates the illusion of movement. Each frame represents a specific point in the sprite's animation, and when these frames are cycled through quickly, our eyes perceive fluid motion.</p>
 <div class="NOTE">
@@ -138,7 +138,7 @@
 </tbody>
 </table>
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
-<p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../07_the_sprite_class/">Chapter 07</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
+<p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../09_the_sprite_class/index.html">Chapter 09</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
 <p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
 <pre><code class="lang-cs">using System;
@@ -198,7 +198,7 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 <p>The default 100 milliseconds delay provides a good starting point for most animations, roughly equivalent to 10 animation frame changes per second.</p>
 </div>
 <h2 id="creating-animations-with-the-textureatlas-class">Creating Animations With The TextureAtlas Class</h2>
-<p>The <code>TextureAtlas</code> class we created in <a href="../06_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 06</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <em>atlas.png</em> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our <em>atlas-definition.xml</em> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.  Open the <em>atlas-definition.xml</em> file and replace the contents with the following:</p>
+<p>The <code>TextureAtlas</code> class we created in <a href="../08_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 08</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <em>atlas.png</em> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our <em>atlas-definition.xml</em> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.  Open the <em>atlas-definition.xml</em> file and replace the contents with the following:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;TextureAtlas&gt;
     &lt;Texture&gt;images/atlas&lt;/Texture&gt;
@@ -535,7 +535,7 @@ public void Update(GameTime gameTime)
 </div>
 <p>The <code>Draw</code> method inherited from the base <code>Sprite</code> class remains unchanged, as it will automatically use whatever frame is currently set as the sprite's region.</p>
 <h2 id="creating-animatedsprites-with-the-textureatlas-class">Creating AnimatedSprites With The TextureAtlas Class</h2>
-<p>Similar to the update we did to the <code>TextureAtlas</code> class in <a href="../07_the_sprite_class/index.html#create-sprites-with-the-textureatlas-class">Chapter 07</a>, creating an <code>AnimatedSprite</code> from the atlas would require</p>
+<p>Similar to the update we did to the <code>TextureAtlas</code> class in <a href="../09_the_sprite_class/index.html#create-sprites-with-the-textureatlas-class">Chapter 09</a>, creating an <code>AnimatedSprite</code> from the atlas would require</p>
 <ol>
 <li>Get the animation by name.</li>
 <li>Store it in a variable.</li>

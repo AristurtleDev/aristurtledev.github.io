@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="04-creating-a-class-library">04: Creating a Class Library</h1>
+<p class="text-secondary">Learn how to create and structure a reusable MonoGame class library to organize game components and share code between projects.</p>
+<p>One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this.  Instead of creating these modules directly in our game project, we can create a <em>class library</em> and add them to that.  Creating a class library offers several advantages, including:</p>
+<ol>
+<li><strong>Reusability</strong>: The classes can be easily reused in future game projects by simply adding a reference to the library.</li>
+<li><strong>Organization</strong>: Keeps game-specific code separate from reusable library code.</li>
+<li><strong>Maintainability</strong>: Changes to the library can benefit all games that use it.</li>
+<li><strong>Testing</strong>: The library code can be tested independently of any specific game.</li>
+</ol>
+<p>A class library is a project type that compiles into a <a href="https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries">Dynamic Link Library</a> (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the <em>MonoGame Game Library</em> project template that can be used to create a class library.</p>
+<p>In this chapter you will:</p>
+<ul>
+<li>Learn about class libraries and their benefits for game development.</li>
+<li>Create a MonoGame class library project using templates.</li>
+<li>Add library references to your game project.</li>
+<li>Structure your library for reusability.</li>
+<li>Set up the foundation for creating shared game components.</li>
+</ul>
+<h2 id="adding-the-class-library">Adding the Class Library</h2>
+<p>MonoGame offers the <em>MonoGame Game Library</em> project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.</p>
+<p>To use the template to add the class library, perform the following:</p>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_vscode" role="tab" aria-controls="tabpanel_1_vscode" data-tab="vscode" tabindex="0" aria-selected="true">Visual Studio Code</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_vs2022" role="tab" aria-controls="tabpanel_1_vs2022" data-tab="vs2022" tabindex="-1">Visual Studio 2022</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_dotnetcli" role="tab" aria-controls="tabpanel_1_dotnetcli" data-tab="dotnetcli" tabindex="-1">dotnet CLI</a>
+</li>
+</ul>
+<section id="tabpanel_1_vscode" role="tabpanel" data-tab="vscode">
+
+<p>To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:</p>
+<ol>
+<li>In the <em>Solution Explorer</em> panel, right-click the <em>MonoGameSnake</em> solution.</li>
+<li>Chose <em>New Project</em> from the context menu.</li>
+<li>Enter &quot;Monogame Game Library&quot; and select it as the template to use.</li>
+<li>Name the project &quot;MonoGameLibrary&quot;.</li>
+<li>When prompted for a location, use the default option, which will put the new project in a folder next to your game project.</li>
+<li>Select &quot;Create Project&quot;.</li>
+</ol>
+</section>
+<section id="tabpanel_1_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
+
+<p>To add the class library using the MonoGame Game Library project template in Visual Studio 2022, perform the following:</p>
+<ol>
+<li>Right-click the <em>MonoGameSnake</em> solution in the Solution Explorer panel.</li>
+<li>Choose Add &gt; New Project from the context menu.</li>
+<li>Enter &quot;MonoGame Game Library&quot; in the search box, select that template, then click Next.</li>
+<li>Name the project &quot;MonoGameLibrary&quot;.</li>
+<li>The location by default will put the new project in a folder next to your game project; you do not need to adjust this.</li>
+<li>Click &quot;Create&quot;.</li>
+</ol>
+</section>
+<section id="tabpanel_1_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
+
+<p>To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:</p>
+<ol>
+<li>Open a new Command Prompt or Terminal window in the same directory as the <em>MonoGameSnake.sln</em> solution file.</li>
+<li>Enter the command <code>dotnet new mglib -n MonoGameLibrary</code> to create the project, placing it in a folder next to your game project.</li>
+<li>Enter the command <code>dotnet sln MonoGameSnake.sln add ./MonoGameLibrary/MonoGameLibrary.csproj</code> to add the newly created class library project to the <em>MonoGameSnake.sln</em> solution file.</li>
+</ol>
+</section>
+</div>
+<h2 id="adding-a-reference-to-the-class-library">Adding a Reference To The Class Library</h2>
+<p>Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:</p>
+<div class="tabGroup" id="tabgroup_2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2_vscode" role="tab" aria-controls="tabpanel_2_vscode" data-tab="vscode" tabindex="0" aria-selected="true">Visual Studio Code</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_vs2022" role="tab" aria-controls="tabpanel_2_vs2022" data-tab="vs2022" tabindex="-1">Visual Studio 2022</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_dotnetcli" role="tab" aria-controls="tabpanel_2_dotnetcli" data-tab="dotnetcli" tabindex="-1">dotnet CLI</a>
+</li>
+</ul>
+<section id="tabpanel_2_vscode" role="tabpanel" data-tab="vscode">
+
+<p>To add the game library project as a reference to the game project in Visual Studio Code:</p>
+<ol>
+<li>In the Solution Explorer panel, right-click the <em>MonoGameSnake</em> project.</li>
+<li>Choose &quot;Add Project Reference&quot; from the context menu.</li>
+<li>Choose *MonoGameLibrary&quot; from the available options.</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The Solution Explorer panel in VSCode is provided by the C# Dev Kit extension that was installed in <a href="../02_getting_started/index.html#install-the-c-dev-kit-extension">Chapter 02</a>.  If you do not see this panel, you can open it by</p>
+<ol>
+<li>Opening the <em>Command Palette</em> (View &gt; Command Palette).</li>
+<li>Enter &quot;Explorer: Focus on Solution Explorer View&quot; and select the command.</li>
+</ol>
+</div>
+</section>
+<section id="tabpanel_2_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
+
+<p>To add the game library project as a reference to the game project in Visual Studio 2022:</p>
+<ol>
+<li>In the Solution Explorer panel, right-click the <em>MonoGameSnake</em> project.</li>
+<li>Select Add &gt; Project Reference from the context menu.</li>
+<li>Check the box for the <em>MonoGameLibrary</em> project.</li>
+<li>Click Ok.</li>
+</ol>
+</section>
+<section id="tabpanel_2_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
+
+<p>To add the game library project as a reference to the game project with the dotnet CLI:</p>
+<ol>
+<li>Open a new Command Prompt or Terminal window in the same directory as the <em>MonoGameSnake.csproj</em> C# project file.</li>
+<li>Enter the command <code>dotnet add ./MonoGameSnake.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj</code>.  This will add the <em>MonoGameLibrary</em> reference to the <em>MonoGameSnake</em> game project.</li>
+</ol>
+</section>
+</div>
+<h3 id="clean-up">Clean Up</h3>
+<p>When using the <em>MonoGame Game Library</em> project template, the generated project contains file similar to a standard MonoGame game project, including a <em>dotnet-tools.json</em> manifest file, a <em>Content.mgcb</em> file, and a <em>Game1.cs</em> file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the <em>MonoGameLibrary</em> project directory and delete them:</p>
+<ol>
+<li>The <em>.config/</em> directory.</li>
+<li>The <em>Content/</em> directory</li>
+<li>The <em>Game1.cs</em> file.</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.</p>
+<p>If you would like more information on this, Simon Jackson has written the article <a href="https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html">Going cross-platform with MonoGame</a> which covers this in more detail.</p>
+</div>
+<h2 id="creating-our-first-library-module">Creating Our First Library Module</h2>
+<p>Let's validate our class library setup by creating a simple component that counts frames per second (FPS). This will demonstrate that we can successfully create classes in our library and use them in our game.</p>
+<p>Create a new file called <em>FramesPerSecondCounter.cs</em> in the root of the <em>MonoGameLibrary</em> project and add the following code:</p>
+<pre><code class="lang-cs">using System;
+using Microsoft.Xna.Framework;
+
+namespace MonoGameLibrary;
+
+/// &lt;summary&gt;
+/// Tracks and calculates the number of frames rendered per second.
+/// &lt;/summary&gt;
+public class FramesPerSecondCounter
+{
+    /// A static TimeSpan representing one second, used for FPS calculation intervals.
+    private static readonly TimeSpan s_oneSecond = TimeSpan.FromSeconds(1);
+
+    /// Tracks the number of frames rendered in the current second.
+    private int _frameCounter;
+
+    /// Tracks the elapsed time since the last FPS calculation.
+    private TimeSpan _elapsedTime;
+
+    /// &lt;summary&gt;
+    /// Gets the current frames per second calculation.
+    /// &lt;/summary&gt;
+    public float FramesPerSecond { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Creates a new FramesPerSecondCounter.
+    /// &lt;/summary&gt;
+    public FramesPerSecondCounter() { }
+
+    /// &lt;summary&gt;
+    /// Updates the FPS calculation based on elapsed game time.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game's timing values.&lt;/param&gt;
+    public void Update(GameTime gameTime)
+    {
+        _elapsedTime += gameTime.ElapsedGameTime;
+
+        if (_elapsedTime &gt; s_oneSecond)
+        {
+            FramesPerSecond = _frameCounter;
+            _frameCounter = 0;
+            _elapsedTime -= s_oneSecond;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Increments the frame counter. Should be called once per frame during the game's Draw method.
+    /// &lt;/summary&gt;
+    public void UpdateCounter()
+    {
+        _frameCounter++;
+    }
+}
+</code></pre>
+<p>This class:</p>
+<ul>
+<li>Tracks how many frames are rendered each second.</li>
+<li>Updates the FPS calculation based on elapsed time.</li>
+<li>Provides the current FPS through a property.</li>
+</ul>
+<p>Now let's use this counter in our game. Open <em>Game1.cs</em> and make the following changes:</p>
+<ol>
+<li><p>Add the using directive for our library at the top:</p>
+<pre><code class="lang-cs">using MonoGameLibrary;
+</code></pre>
+</li>
+<li><p>Add a field for the FPS counter:</p>
+<pre><code class="lang-cs">private FramesPerSecondCounter _fpsCounter;
+</code></pre>
+</li>
+<li><p>In the constructor, create a new instance:</p>
+<pre><code class="lang-cs">_fpsCounter = new FramesPerSecondCounter();
+</code></pre>
+</li>
+<li><p>In Update, add:</p>
+<pre><code class="lang-cs">_fpsCounter.Update(gameTime);
+</code></pre>
+</li>
+<li><p>In Draw, just before <code>base.Draw()</code>, add:</p>
+<pre><code class="lang-cs">_fpsCounter.UpdateCounter();
+Window.Title = $&quot;FPS: {_fpsCounter.FramesPerSecond}&quot;;
+</code></pre>
+</li>
+</ol>
+<p>When you run the game now, you'll see the current FPS displayed in the window title bar. This confirms that:</p>
+<ul>
+<li>Our class library project is correctly set up.</li>
+<li>The game project can reference and use library classes.</li>
+<li>The basic structure for creating reusable components works.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/game_showing_fps.png" alt="Figure 4-1: The game window showing the frames per second in the title bar of the window"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-1: The game window showing the frames per second in the title bar of the window</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>While this FPS counter is a simple example, it demonstrates the pattern we'll use throughout the tutorial: create reusable components in the library project, then reference and use them in games. This same approach will work for more complex components like sprite management, input handling, and collision detection.</p>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>If you receive an error stating that the following:</p>
+<p><em>The type or namespace name 'FramesPerSecondCounter' could not be found (are you missing a using directive or an assembly reference?)</em></p>
+<p>This means either you forgot to add the <code>using MonoGameLibrary;</code> using directive to the top of the <em>Game1.cs</em> class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the <a href="#adding-a-reference-to-the-class-library">Add a Refernece to the Class Library</a> section above and that you added the using directive.</p>
+</div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Let's review what you accomplished in this chapter:</p>
+<ul>
+<li>Learned about class libraries and their advantages for game development:
+<ul>
+<li>Code reusability across projects</li>
+<li>Better organization and separation of concerns</li>
+<li>Improved maintainability</li>
+<li>Easier testing</li>
+</ul>
+</li>
+<li>Created a MonoGame class library project</li>
+<li>Added the library as a reference to your game project</li>
+<li>Created your first reusable component and referenced and used it in the game project.</li>
+</ul>
+<p>In the next chapter, we'll go over MonoGame's Game Component system and how we can use it with our class library.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What are the main benefits of using a class library for game development?</p>
+<details>
+<summary>Question 1 Answer</summary>
+<blockquote>
+<p>The main benefits are:</p>
+<ul>
+<li><strong>Reusability</strong>: Code can be easily shared between different game projects</li>
+<li><strong>Organization</strong>: Separates reusable code from game-specific code</li>
+<li><strong>Maintainability</strong>: Changes to shared code benefit all games using the library</li>
+<li><strong>Testing</strong>: Library code can be tested independently of specific games</li>
+</ul>
+</blockquote>
+</details><br>
+</li>
+<li><p>Why should you use the MonoGame Game Library template instead of a standard class library template?</p>
+<details>
+<summary>Question 2 Answer</summary>
+<blockquote>
+<p>The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.</p>
+</blockquote>
+</details><br>
+</li>
+<li><p>What happens if you don't add a reference to your class library in your game project?</p>
+ <details>
+ <summary>Question 3 Answer</summary>
+<blockquote>
+<p>Without adding a reference, your game project will be unaware of any code in the class library. You won't be able to use any of the classes or components from the library in your game.</p>
+</blockquote>
+ </details><br>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

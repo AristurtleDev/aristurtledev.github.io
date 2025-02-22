@@ -117,14 +117,13 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-06-optimizing-texture-rendering">Chapter 06: Optimizing Texture Rendering</h1>
+<h1 id="chapter-08-optimizing-texture-rendering">Chapter 08: Optimizing Texture Rendering</h1>
 <p class="text-secondary">Explore optimization techniques when rendering textures using a texture atlas.</p>
-<p>In <a href="../05_working_with_textures/index.html">Chapter 05</a>, you learned how to load and render textures using <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>. While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.</p>
+<p>In <a href="../07_working_with_textures/index.html">Chapter 07</a>, you learned how to load and render textures using <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>. While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn about texture swapping and its impact on performance.</li>
 <li>Explore texture atlases as a solution for optimizing texture rendering.</li>
-<li>Explore class libraries and the benefits of using them.</li>
 <li>Create reusable classes to optimize and simplify texture management and rendering.</li>
 </ul>
 <p>By the end of this chapter, you'll understand how to organize your game's textures for optimal performance and have a flexible texture atlas management system for your future game projects.</p>
@@ -209,130 +208,10 @@ protected override void Draw(GameTime gameTime)
 }
 </code></pre>
 <p>While using the single texture with source rectangles solves the potential performance issues, managing multiple source rectangles in variables can become complex as your game grows.  In the Pong example above, we're already tracking the source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different images, each potentially needing their own position, rotation, scale, and other rendering properties.</p>
-<p>To better organize this complexity, we can apply object-oriented design principles to create classes that encapsulates the information needed.  Before creating these classes though, let's create a <em>class library</em> to put them in.</p>
-<h2 id="creating-a-class-library">Creating A Class Library</h2>
-<p>Instead of adding the classes we will create directly to the game <em>MonoGameSnake</em> game project, we can create a <em>class library</em> and add it to that.  Creating a class library offers several advantages, including:</p>
-<ol>
-<li><strong>Reusability</strong>: The classes can be easily reused in future game projects by simply adding a reference to the library.</li>
-<li><strong>Organization</strong>: Keeps game-specific code separate from reusable library code.</li>
-<li><strong>Maintainability</strong>: Changes to the library can benefit all games that use it.</li>
-<li><strong>Testing</strong>: The library code can be tested independently of any specific game.</li>
-</ol>
-<p>A class library is a project type that compiles into a <a href="https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries">Dynamic Link Library</a> (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the <em>MonoGame Game Library</em> project template that can be used to create a class library.</p>
-<h3 id="adding-the-class-library">Adding the Class Library</h3>
-<p>MonoGame offers the <em>MonoGame Game Library</em> project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.</p>
-<p>To use the template to add the class library, perform the following</p>
-<div class="tabGroup" id="tabgroup_1">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_1_vscode" role="tab" aria-controls="tabpanel_1_vscode" data-tab="vscode" tabindex="0" aria-selected="true">Visual Studio Code</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_1_vs2022" role="tab" aria-controls="tabpanel_1_vs2022" data-tab="vs2022" tabindex="-1">Visual Studio 2022</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_1_dotnetcli" role="tab" aria-controls="tabpanel_1_dotnetcli" data-tab="dotnetcli" tabindex="-1">dotnet CLI</a>
-</li>
-</ul>
-<section id="tabpanel_1_vscode" role="tabpanel" data-tab="vscode">
-
-<p>To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:</p>
-<ol>
-<li>In the <em>Solution Explorer</em> panel, right-click the <em>MonoGameSnake</em> solution.</li>
-<li>Chose <em>New Project</em> from the context menu.</li>
-<li>Enter &quot;Monogame Game Library&quot; and select it as the template to use.</li>
-<li>Name the project &quot;MonoGameLibrary&quot;.</li>
-<li>When prompted for a location, use the default option, which will put the new project in a folder next to your game project.</li>
-<li>Select &quot;Create Project&quot;.</li>
-</ol>
-</section>
-<section id="tabpanel_1_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
-
-<p>To add the class library using the MonoGame Game Library project template in Visual Studio 2022, perform the following:</p>
-<ol>
-<li>Right-click the <em>MonoGameSnake</em> solution in the Solution Explorer panel.</li>
-<li>Choose Add &gt; New Project from the context menu.</li>
-<li>Enter &quot;MonoGame Game Library&quot; in the search box, select that template, then click Next.</li>
-<li>Name the project &quot;MonoGameLibrary&quot;.</li>
-<li>The location by default will put the new project in a folder next to your game project; you do not need to adjust this.</li>
-<li>Click &quot;Create&quot;.</li>
-</ol>
-</section>
-<section id="tabpanel_1_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
-
-<p>To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:</p>
-<ol>
-<li>Open a new Command Prompt or Terminal window in the same directory as the <em>MonoGameSnake.sln</em> solution file.</li>
-<li>Enter the command <code>dotnet new mglib -n MonoGameLibrary</code> to create the project, placing it in a folder next to your game project.</li>
-<li>Enter the command <code>dotnet sln MonoGameSnake.sln add ./MonoGameLibrary/MonoGameLibrary.csproj</code> to add the newly created class library project to the <em>MonoGameSnake.sln</em> solution file.</li>
-</ol>
-</section>
-</div>
-<h3 id="adding-a-reference-to-the-class-library">Adding a Reference To The Class Library</h3>
-<p>Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:</p>
-<div class="tabGroup" id="tabgroup_2">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_2_vscode" role="tab" aria-controls="tabpanel_2_vscode" data-tab="vscode" tabindex="0" aria-selected="true">Visual Studio Code</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_2_vs2022" role="tab" aria-controls="tabpanel_2_vs2022" data-tab="vs2022" tabindex="-1">Visual Studio 2022</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_2_dotnetcli" role="tab" aria-controls="tabpanel_2_dotnetcli" data-tab="dotnetcli" tabindex="-1">dotnet CLI</a>
-</li>
-</ul>
-<section id="tabpanel_2_vscode" role="tabpanel" data-tab="vscode">
-
-<p>To add the game library project as a reference to the game project in Visual Studio Code:</p>
-<ol>
-<li>In the Solution Explorer panel, right-click the <em>MonoGameSnake</em> project.</li>
-<li>Choose &quot;Add Project Reference&quot; from the context menu.</li>
-<li>Choose *MonoGameLibrary&quot; from the available options.</li>
-</ol>
-<div class="TIP">
-<h5>Tip</h5>
-<p>The Solution Explorer panel in VSCode is provided by the C# Dev Kit extension that was installed in <a href="../02_getting_started/index.html#install-the-c-dev-kit-extension">Chapter 02</a>.  If you do not see this panel, you can open it by</p>
-<ol>
-<li>Opening the <em>Command Palette</em> (View &gt; Command Palette).</li>
-<li>Enter &quot;Explorer: Focus on Solution Explorer View&quot; and select the command.</li>
-</ol>
-</div>
-</section>
-<section id="tabpanel_2_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
-
-<p>To add the game library project as a reference to the game project in Visual Studio 2022:</p>
-<ol>
-<li>In the Solution Explorer panel, right-click the <em>MonoGameSnake</em> project.</li>
-<li>Select Add &gt; Project Reference from the context menu.</li>
-<li>Check the box for the <em>MonoGameLibrary</em> project.</li>
-<li>Click Ok.</li>
-</ol>
-</section>
-<section id="tabpanel_2_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
-
-<p>To add the game library project as a reference to the game project with the dotnet CLI:</p>
-<ol>
-<li>Open a new Command Prompt or Terminal window in the same directory as the <em>MonoGameSnake.csproj</em> C# project file.</li>
-<li>Enter the command <code>dotnet add ./MonoGameSnake.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj</code>.  This will add the <em>MonoGameLibrary</em> reference to the <em>MonoGameSnake</em> game project.</li>
-</ol>
-</section>
-</div>
-<h3 id="clean-up">Clean Up</h3>
-<p>When using the <em>MonoGame Game Library</em> project template, the generated project contains file similar to a standard MonoGame game project, including a <em>dotnet-tools.json</em> manifest file, a <em>Content.mgcb</em> file, and a <em>Game1.cs</em> file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the <em>MonoGameLibrary</em> project directory and delete them:</p>
-<ol>
-<li>The <em>.config/</em> directory.</li>
-<li>The <em>Content/</em> directory</li>
-<li>The <em>Game1.cs</em> file.</li>
-</ol>
-<div class="TIP">
-<h5>Tip</h5>
-<p>These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.</p>
-<p>If you would like more information on this, Simon Jackson has written the article <a href="https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html">Going cross-platform with MonoGame</a> which covers this in more detail.</p>
-</div>
+<p>To better organize this complexity, we can apply object-oriented design principles to create classes that encapsulates the information needed.</p>
 <h2 id="the-textureregion-class">The TextureRegion Class</h2>
-<p>In <a href="../05_working_with_textures/index.html#source-rectangle">Chapter 05</a>, we learned about using the <code>sourceRectangle</code> parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called <code>TextureRegion</code>.</p>
-<p>We're going to add this class to the class library we just created.  Perform the following:</p>
+<p>In <a href="../07_working_with_textures/index.html#source-rectangle">Chapter 07</a>, we learned about using the <code>sourceRectangle</code> parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called <code>TextureRegion</code>.</p>
+<p>We're going to add this class to the class library we created in <a href="../04_creating_a_class_library/index.html">Chapter 04</a>.  Perform the following:</p>
 <ol>
 <li>Add new directory in the <em>MonoGameLibrary</em> project named <code>Graphics</code></li>
 <li>Create a new file named <em>TextureRegion.cs</em> inside the <em>Graphics</em> directory you just created.</li>
@@ -351,7 +230,7 @@ public class TextureRegion
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <em>TextureRegion.cs</em> class file is placed in the <em>MonoGame/Graphics</em> directory and the class uses the <code>MonoGame.Graphics</code> <a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview">namespace</a> to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.</p>
+<p>The <em>TextureRegion.cs</em> class file is placed in the <em>MonoGame/Graphics</em> directory and the class uses the <code>MonoGameLibrary.Graphics</code> <a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview">namespace</a> to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.</p>
 </div>
 <h3 id="textureregion-members">TextureRegion Members</h3>
 <p>The <code>TextureRegion</code> class will utilize four properties to define and manage a region within a texture.  Add the following properties:</p>
@@ -492,7 +371,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float r
 </ol>
 <div class="TIP">
 <h5>Tip</h5>
-<p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../04_content_pipeline/index.html#adding-assets-in-the-mgcb-editor">Adding Assets in the MGCB Editor</a> section of Chapter 04.</p>
+<p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../06_content_pipeline/index.html#adding-assets-in-the-mgcb-editor">Adding Assets in the MGCB Editor</a> section of Chapter 04.</p>
 </div>
 <p>Replace the contents of <em>Game1.cs</em> with the following code:</p>
 <pre><code class="lang-csharp" highlight-lines="12,32-36,51-56">using Microsoft.Xna.Framework;
@@ -826,7 +705,7 @@ public class Game1 : Game
 </code></pre>
 <p>The key changes in this implementation are:</p>
 <ol>
-<li>Added a <code>TextureREgion</code> member <code>_bat</code> alongside our existing <code>_slime</code>.</li>
+<li>Added a <code>TextureRegion</code> member <code>_bat</code> alongside our existing <code>_slime</code>.</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>:
 <ul>
 <li>Created a <code>TextureAtlas</code> with the atlas texture.</li>
@@ -972,8 +851,6 @@ public class Game1 : Game
 <li>Learned about texture swapping and its impact on performance</li>
 <li>Explored texture atlases as a solution for optimizing texture rendering</li>
 <li>Learned what a class library is and the benefits of using one.</li>
-<li>Created a new MonoGame Game Library project.</li>
-<li>Added the library project as a reference to the game project.</li>
 <li>Created reusable <code>TextureRegion</code> and <code>TextureAtlas</code> classes to optimize and simplify texture management.</li>
 <li>Learned how to include assets in the content pipeline that should only be copied and not processed.</li>
 </ul>
@@ -1001,28 +878,6 @@ public class Game1 : Game
 </ul>
 </blockquote>
 </details><br>
-</li>
-<li><p>Name an advantage of using a class library for game development.</p>
- <details>
- <summary>Question 3 Answer</summary>
-<blockquote>
-<p>Any of the following are advantages of using a class library:</p>
-<ul>
-<li>Reusability: The classes can be easily reused in future game projects by simply adding a reference to the library.</li>
-<li>Organization: It keeps game-specific code separate from reusable library code.</li>
-<li>Maintainability: Changes to the library can benefit all games that use it.</li>
-<li>Testing: The library code can be tested independently of any specific game.</li>
-</ul>
-</blockquote>
- </details><br>
-</li>
-<li><p>Why should we use the MonoGame Game Library template instead of a standard class library template?</p>
- <details>
- <summary>Question 4 Answer</summary>
-<blockquote>
-<p>The MonoGame Game Library template automatically sets up the correct MonoGame framework references and configuration, saving time and ensuring compatibility.</p>
-</blockquote>
- </details><br>
 </li>
 </ol>
 

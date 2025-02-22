@@ -117,9 +117,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-11-collision-detection">Chapter 11: Collision Detection</h1>
+<h1 id="chapter-13-collision-detection">Chapter 13: Collision Detection</h1>
 <p class="text-secondary">Learn how to implement collision detection between game objects and handle collision responses like blocking, triggering events, and bouncing.</p>
-<p>In <a href="../10_input_management/index.html">Chapter 10</a>, you learned how to manage player input to control game objects. However, for objects in your game to interact with each other, collecting items, hitting obstacles, or triggering events, you need to detect when these objects come into contact. This is accomplished through collision detection.</p>
+<p>In <a href="../12_input_management/index.html">Chapter 12</a>, you learned how to manage player input to control game objects. However, for objects in your game to interact with each other, collecting items, hitting obstacles, or triggering events, you need to detect when these objects come into contact. This is accomplished through collision detection.</p>
 <p>In this chapter you will:</p>
 <ul>
 <li>Understand different collision shapes and their use cases.</li>
@@ -172,7 +172,7 @@ float circle2Radius = 5;
 // c^2 = 3^2 + 4^2
 // c^2 = 9 + 16
 // c^2 = 25
-float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position);
+float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position); 
 
 // r^2 = (5 + 5)^2
 // r^2 = (10)^2
@@ -182,7 +182,7 @@ int radiiSquared = (circle1Radius + circle2Radius) * (circle1Radius + circle2Rad
 // They do not overlap since 100 is not less than 25
 if(radii &lt; distanceSquared)
 {
-
+    
 }
 </code></pre>
 <div class="TIP">
@@ -217,12 +217,12 @@ if(radii &lt; distanceSquared)
 <tr>
 <td><a href="xref:Microsoft.Xna.Framework.Rectangle.Bottom"><strong>Bottom</strong></a></td>
 <td><code>int</code></td>
-<td>Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to <a href="xref:Microsoft.Xna.Framework.Rectangle.Y">**Rectangle.Y</a> plus the height of the rectangle.</td>
+<td>Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to <a href="xref:Microsoft.Xna.Framework.Rectangle.Y"><strong>Rectangle.Y</strong></a> plus the height of the rectangle.</td>
 </tr>
 <tr>
 <td><a href="xref:Microsoft.Xna.Framework.Rectangle.Left"><strong>Left</strong></a></td>
 <td><code>int</code></td>
-<td>Returns the x-coordinate location of the left edge of the rectangle.  This is equal to <a href="Microsoft.Xna.Framework.Rectangle.X"><strong>Rectangle.X</strong></a>.</td>
+<td>Returns the x-coordinate location of the left edge of the rectangle.  This is equal to <a href="xref:Microsoft.Xna.Framework.Rectangle.X"><strong>Rectangle.X</strong></a>.</td>
 </tr>
 <tr>
 <td><a href="xref:Microsoft.Xna.Framework.Rectangle.Right"><strong>Right</strong></a></td>
@@ -350,7 +350,7 @@ Rectangle blockingBounds = new Rectangle(
 );
 
 // Detect if they are colliding
-if(spriteBounds.Intersects(blockingBounds))
+if(spriteBounds.Intersects(blockingBounds)) 
 {
     // Respond by not allowing the sprite to move by setting
     // the location back to the previous location.
@@ -362,7 +362,7 @@ _spriteLocation = newLocation;
 <p>Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the <a href="xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)"><strong>Rectangle.Contains</strong></a> method that we can use to determine this.  <a href="xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)"><strong>Rectangle.Contains</strong></a> can check if any of the following are completely contained within the bounds of the rectangle;</p>
 <ul>
 <li><a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a></li>
-<li><a href="xref:Microsof.Xna.Framework.Rectangle"><strong>Rectangle</strong></a></li>
+<li><a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a></li>
 <li><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></li>
 </ul>
 <p>For example, if we wanted to perform a blocking collision response that ensure a sprite remained contained within the bounds of the game screen:</p>
@@ -389,7 +389,7 @@ Rectangle screenBounds = new Rectangle(
 );
 
 // Detect if the sprite is contained within the bounds of the screen
-if(!screenBounds.Contains(spriteBounds))
+if(!screenBounds.Contains(spriteBounds)) 
 {
     // Respond by not allowing the sprite to move to move outside the screen
     // bounds by setting the location back to the previous location.
@@ -514,7 +514,7 @@ if(!screenBounds.Contains(batBounds))
     }
 
     // Reflect the velocity about the normal
-    _batVelocity = Vector2.Reflect(_ballVelocity, normal);
+    _batVelocity = Vector2.Reflect(_ballVelocity, normal); 
 }
 
 // Set the new position of the ball
@@ -541,7 +541,7 @@ namespace MonoGameLibrary;
 
 public readonly struct Circle : IEquatable&lt;Circle&gt;
 {
-
+    
 }
 </code></pre>
 <div class="NOTE">
@@ -879,7 +879,7 @@ if(normal != Vector2.Zero)
 </tr>
 </tbody>
 </table>
-<p>Finally, let's add a trigger response when the slime &quot;eats&quot; the bat, causing the bat to respawn at a random location on the screen with a new random velocity.  In <a href="xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> after we set the new position for the bat, add the following</p>
+<p>Finally, let's add a trigger response when the slime &quot;eats&quot; the bat, causing the bat to respawn at a random location on the screen with a new random velocity.  In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> after we set the new position for the bat, add the following</p>
 <pre><code class="lang-cs">if (slimeBounds.Intersects(batBounds))
 {
     // Divide the width  and height of the screen into equal columns and

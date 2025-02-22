@@ -117,9 +117,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-12-soundeffects-and-music">Chapter 12: SoundEffects and Music</h1>
+<h1 id="chapter-14-soundeffects-and-music">Chapter 14: SoundEffects and Music</h1>
 <p class="text-secondary">Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once.</p>
-<p>In <a href="../11_collision_detection/index.html">Chapter 11</a>, we implemented collision detection to enable interactions between game objects; the slime can now &quot;eat&quot; the bat, which respawns in a random location, while the bat bounces off screen edges. While these mechanics work visually, our game lacks an important element of player feedback: audio.</p>
+<p>In <a href="../13_collision_detection/index.html">Chapter 13</a>, we implemented collision detection to enable interactions between game objects; the slime can now &quot;eat&quot; the bat, which respawns in a random location, while the bat bounces off screen edges. While these mechanics work visually, our game lacks an important element of player feedback: audio.</p>
 <p>Audio plays a crucial role in game development by providing immediate feedback for player actions and creating atmosphere. Sound effects alert players when events occur (like collisions or collecting items), while background music helps establish mood and atmosphere.</p>
 <p>In this chapter, you will:</p>
 <ul>
@@ -178,7 +178,7 @@
 <li>Individual volume control per instance.</li>
 </ul>
 <h3 id="music">Music</h3>
-<p>The <a href="xref:Microsoft.Xna.Framework.Audio.Song"><strong>Song</strong></a> class handles longer audio pieces like background music.  The key characteristics of songs are:</p>
+<p>The <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> class handles longer audio pieces like background music.  The key characteristics of songs are:</p>
 <ul>
 <li>Streamed from storage rather than loaded into memory.</li>
 <li>Only one song can be played at a time.</li>
@@ -204,7 +204,7 @@
 <p>The processor that are available for audio files file:</p>
 <ul>
 <li><strong>Sound Effects</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a>.  This is  automatically selected for <em>.wav</em> files.</li>
-<li><strong>Soung</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Audio.Song"><strong>Song</strong></a>.  This is automatically selected for <em>.mp3</em>, <em>.ogg</em>, and <em>.wma</em> files.</li>
+<li><strong>Soung</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a>.  This is automatically selected for <em>.mp3</em>, <em>.ogg</em>, and <em>.wma</em> files.</li>
 </ul>
 <table>
 <thead>
@@ -229,7 +229,7 @@
 <pre><code class="lang-cs">SoundEffect soundEffect = Content.Load&lt;SoundEffect&gt;(&quot;soundEffect&quot;);
 </code></pre>
 <h3 id="loading-music">Loading Music</h3>
-<p>Loading music is similar, only we specify the <a href="xref:Microsoft.Xna.Framework.Audio.Song"><strong>Song</strong></a> type instead.</p>
+<p>Loading music is similar, only we specify the <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> type instead.</p>
 <pre><code class="lang-cs">Song song = Content.Load&lt;Song&gt;(&quot;song&quot;);
 </code></pre>
 <h2 id="playing-sound-effects">Playing Sound Effects</h2>
@@ -319,7 +319,7 @@ MediaPlayer.Play(_backgroundMusic);
 </code></pre>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>While <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> instances can be played simultaneously, trying to play a new <a href="xref:Microsoft.Xna.Framework.Audio.Song"><strong>Song</strong></a> while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.</p>
+<p>While <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> instances can be played simultaneously, trying to play a new <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.</p>
 </div>
 <h2 id="audio-management">Audio Management</h2>
 <p>While playing sounds and music is straightforward, a complete game needs to handle various audio states and cleanup. An audio manager that will:</p>
@@ -708,17 +708,17 @@ _audioManager.PlaySong(&quot;audio/theme&quot;);
 </code></pre>
 </li>
 <li><p>Update <code>HandleKeyboardInput</code> to add new inputs to control the audio manager:</p>
-<pre><code class="lang-cs">if (InputManager.Keyboard.WasKeyJustPressed(Keys.M))
+<pre><code class="lang-cs">if (_input.Keyboard.WasKeyJustPressed(Keys.M))
 {
     _audioManager.ToggleMute();
 }
 
-if (InputManager.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+if (_input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
 {
     _audioManager.IncreaseVolume(0.1f);
 }
 
-if (InputManager.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+if (_input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
 {
     _audioManager.DecreaseVolume(0.1f);
 }
