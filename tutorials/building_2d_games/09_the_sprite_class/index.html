@@ -133,19 +133,15 @@
 <p>A sprite in our game represents a visual object created from a texture region along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.</p>
 <p>By creating a <code>Sprite</code> class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.</p>
 <p>In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Sprite.cs</em>.  Add the following code for the foundation of the <code>Sprite</code> class to the <em>Sprite.cs</em> file:</p>
-<pre><code class="lang-cs">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Sprite
-{
-
-}
-</code></pre>
-<h3 id="properties">Properties</h3>
+public class Sprite { }
+</code></pre><h3 id="properties">Properties</h3>
 <p>The <code>Sprite</code> class will utilize properties that mirror the parameters used in <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable%7BMicrosoft.Xna.Framework.Rectangle%7D,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> so the rendering parameter for each sprite is self contained.  Add the following properties:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets or Sets the source texture region represented by this sprite.
 /// &lt;/summary&gt;
 public TextureRegion Region { get; set; }
@@ -221,7 +217,7 @@ public float Height =&gt; Region.Height * Scale.Y;
 </div>
 <h3 id="constructors">Constructors</h3>
 <p>The <code>Sprite</code> class will provide two ways to create a new sprite.  Add the following constructors:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new sprite.
 /// &lt;/summary&gt;
 public Sprite() { }
@@ -238,7 +234,7 @@ public Sprite(TextureRegion region)
 <p>The default constructor creates an empty sprite that can be configured later, while the parameterized constructor allows you to specify the source texture region for the sprite.</p>
 <h3 id="methods">Methods</h3>
 <p>Finally, the <code>Sprite</code> class provides the following two methods:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Sets the origin of this sprite to the center
 /// &lt;/summary&gt;
 public void CenterOrigin()
@@ -274,7 +270,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position)
 <li>Create a new sprite with that region.</li>
 </ol>
 <p>We can simplify this process by adding a sprite creation method to the <code>TextureAtlas</code> class. Open <em>TextureAtlas.cs</em> and add the following method:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new sprite using the region from this texture atlas with the specified name.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;regionName&quot;&gt;The name of the region to create the sprite with.&lt;/param&gt;
@@ -284,21 +280,24 @@ public Sprite CreateSprite(string regionName)
     TextureRegion region = GetRegion(regionName);
     return new Sprite(region);
 }
-</code></pre>
-<h2 id="using-the-sprite-class">Using the Sprite Class</h2>
+</code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
 <p>Let's adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="12-13,36-38,55-59">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="13-17,40-44,62-66">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Graphics;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    // Defines the slime sprite.
     private Sprite _slime;
+
+    // Defines the bat sprite.
     private Sprite _bat;
 
     public Game1()
@@ -322,8 +321,10 @@ public class Game1 : Game
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
 
-        // Create the slime and bat sprites
+        // Create the slime sprite from the atlas.
         _slime = atlas.CreateSprite(&quot;slime&quot;);
+
+        // Create the bat sprite from the atlas.
         _bat = atlas.CreateSprite(&quot;bat&quot;);
     }
 
@@ -339,14 +340,16 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
+        // Begin the sprite batch to prepare for rendering.
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the slime sprite
+        // Draw the slime sprite.
         _slime.Draw(_spriteBatch, Vector2.One);
 
-        // Draw the bat sprite  10px to the right of the slime.
+        // Draw the bat sprite 10px to the right of the slime.
         _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0));
 
+        // Always end the sprite batch when finished.
         _spriteBatch.End();
 
         base.Draw(gameTime);
@@ -363,12 +366,12 @@ public class Game1 : Game
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/slime-and-bat-rendered.png" alt="Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window"></th>
+<th style="text-align: center;"><img src="images/slime-and-bat-rendered.png" alt="Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window</strong></td>
+<td style="text-align: center;"><strong>Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window</strong></td>
 </tr>
 </tbody>
 </table>
@@ -379,36 +382,20 @@ public class Game1 : Game
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the benefit of using a Sprite class instead of managing texture regions directly?</p>
-<details>
-<summary>Question 1 Answer</summary>
-<blockquote>
-<p>The <code>Sprite</code> class encapsulates all rendering properties (position, rotation, scale, etc.) into a single, reusable component. This makes it easier to manage multiple instances of the same type of sprite without having to track properties through individual variables.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The <code>Sprite</code> class encapsulates all rendering properties (position, rotation, scale, etc.) into a single, reusable component. This makes it easier to manage multiple instances of the same type of sprite without having to track properties through individual variables.</p>
+</div>
 </li>
 <li><p>Why do the <code>Width</code> and <code>Height</code> properties of a Sprite take the Scale property into account?</p>
-<details>
-<summary>Question 2 Answer</summary>
-<blockquote>
-<p>The <code>Width</code> and <code>Height</code> properties account for scaling to make it easier to position sprites relative to each other without having to manually calculate the scaled dimensions. This is particularly useful when sprites are rendered at different scales.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The <code>Width</code> and <code>Height</code> properties account for scaling to make it easier to position sprites relative to each other without having to manually calculate the scaled dimensions. This is particularly useful when sprites are rendered at different scales.</p>
+</div>
 </li>
 <li><p>When using the <code>CenterOrigin</code> method, why is the origin calculated using the region's dimensions rather than the sprite's scaled dimensions?</p>
-<details>
-<summary>Question 3 Answer</summary>
-<blockquote>
-<p>The origin needs to be set based on the texture region's actual dimensions because it represents the point around which scaling and rotation are applied. Using the scaled dimensions would result in incorrect positioning since the origin would change based on the current scale factor.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The origin needs to be set based on the texture region's actual dimensions because it represents the point around which scaling and rotation are applied. Using the scaled dimensions would result in incorrect positioning since the origin would change based on the current scale factor.</p>
+</div>
 </li>
 <li><p>What advantage does the <code>TextureAtlas.CreateSprite</code> method provide over using <code>GetRegion</code>?</p>
-<details>
-<summary>Question 4 Answer</summary>
-<blockquote>
-<p>The <code>CreateSprite</code> method simplifies sprite creation by combining multiple steps (getting the region, storing it, creating a sprite) into a single method call. This reduces code repetition and makes sprite creation more straightforward.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The <code>CreateSprite</code> method simplifies sprite creation by combining multiple steps (getting the region, storing it, creating a sprite) into a single method call. This reduces code repetition and makes sprite creation more straightforward.</p>
+</div>
 </li>
 </ol>
 
@@ -435,5 +422,6 @@ public class Game1 : Game
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>

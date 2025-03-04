@@ -120,10 +120,6 @@
 <h1 id="chapter-03-the-game1-file">Chapter 03: The Game1 File</h1>
 <p class="text-secondary">Explore the contents of the Game1 file generated when creating a new MonoGame project.</p>
 <p>After you created a new MonoGame project using the <em>MonoGame Cross-Platform Desktop Application</em> template in <a href="../02_getting_started/index.html#creating-your-first-monogame-application">Chapter 02</a>, you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the <em>Game1.cs</em> file.</p>
-<div class="TIP">
-<h5>Tip</h5>
-<p>For an in-depth look at all files created in a MonoGame project when using the MonoGame templates, refer to <a href="#">Appendix 02: MonoGame Project Overview</a>.</p>
-</div>
 <h2 id="exploring-the-game1-class">Exploring the Game1 Class</h2>
 <p>At the core of a MonoGame project is the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class.  This class handles the initialization of graphics services, initialization of the game, loading content, updating, and rendering the game.  When you create a new Monogame project, this <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class is implemented as the <code>Game1</code> class that you can customize as needed for your specific game.</p>
 <div class="TIP">
@@ -131,51 +127,10 @@
 <p>While the default template names the class <code>Game1</code>, you're free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as <code>Game1</code>.</p>
 </div>
 <p>Locate the <em>Game1.cs</em> file that was generated when you created the MonoGame project and open it.  The default content will be:</p>
-<pre><code class="lang-cs">using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace MonoGameSnake;
-
-public class Game1 : Game
-{
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-
-    public Game1()
-    {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = &quot;Content&quot;;
-        IsMouseVisible = true;
-    }
-
-    protected override void Initialize()
-    {
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-    }
-
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        base.Update(gameTime);
-    }
-
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        base.Draw(gameTime);
-    }
-}
-
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>This class provides the following structure:</p>
 <ol>
 <li><strong>Graphics and Rendering</strong>: The class declares two core graphics components; the <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a> for interacting with the Graphics Processing Unit (GPU) and the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> for 2D rendering.</li>
@@ -198,25 +153,22 @@ public class Game1 : Game
 </table>
 <h2 id="graphics-and-rendering">Graphics and Rendering</h2>
 <p>The graphics pipeline in monogame starts with two components: the <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a> and <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>.</p>
-<pre><code class="lang-cs">private GraphicsDeviceManager _graphics;
-private SpriteBatch _spriteBatch;
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>The <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a> initializes and the connection to the graphics hardware.  It handles tasks such as setting the screen resolution, toggling between fullscreen and windowed mode, and managing the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice"><strong>GraphicsDevice</strong></a>, which is the interface between your game and the Graphics Processing Unit (GPU) the game is running on. The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> optimizes 2D rendering by batching similar draw calls together, improving draw performance when rendering multiple sprites.</p>
 <h2 id="initialization">Initialization</h2>
 <p>MonoGame's initialization process for your game follows a specific sequence.  The constructor runs first, which handles basic setup like creating the <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a>, setting the content directory, and the visibility of the mouse.</p>
-<pre><code class="lang-cs">public Game1()
-{
-    _graphics = new GraphicsDeviceManager(this);
-    Content.RootDirectory = &quot;Content&quot;;
-    IsMouseVisible = true;
-}
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>After that, the <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> method executes, providing a dedicated place for additional configuration and initializations.</p>
-<pre><code class="lang-cs">protected override void Initialize()
-{
-    base.Initialize();
-}
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>This separation allows you to perform setup tasks in a logical order; core systems in the constructor and game-specific initializations in the <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> method.  The call to <code>base.Initialize()</code> should never be removed, as this is where the graphics device is initialized for the target platform.</p>
 <div class="TIP">
 <h5>Tip</h5>
@@ -224,30 +176,18 @@ private SpriteBatch _spriteBatch;
 </div>
 <h2 id="content-loading">Content Loading</h2>
 <p>The <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method serves as the place for asset management. Here you can load textures, sound effects, music, and other game assets.  We will cover loading assets in the coming chapters as we discuss each asset type that can be loaded.  In a new project, the only task it performs is initializing a new instance of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>.</p>
-<pre><code class="lang-cs">protected override void LoadContent()
-{
-    _spriteBatch = new SpriteBatch(GraphicsDevice);
-}
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>This method is only call once during the startup of the game, but <em>when</em> it is called can be a little confusing at first.  In the <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> method shown above, when the <code>base.Initialize</code> call is executed, the final task it performs is calling the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method.  This means any initializations you need to perform that have a dependency on assets being loaded should be done <em>after</em> the <code>base.Initialize</code> call and not <em>before</em> it.</p>
 <h2 id="the-game-loop">The Game Loop</h2>
 <p>MonoGame implements a <em>game loop</em> by calling <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> and <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> over and over until the game is told to exit. Recall at the end of <a href="../02_getting_started/index.html#creating-your-first-monogame-application">Chapter 02</a> when you ran the project for the first time, I mentioned that there is a lot going on behind the scenes? This game loop is what I was referring to.</p>
 <p>MonoGame is executing the <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method and then the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method 60 times per second.</p>
-<pre><code class="lang-cs">protected override void Update(GameTime gameTime)
-{
-    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-        Exit();
-
-    base.Update(gameTime);
-}
-
-protected override void Draw(GameTime gameTime)
-{
-    GraphicsDevice.Clear(Color.CornflowerBlue);
-
-    base.Draw(gameTime);
-}
-</code></pre>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div>
 <p>The <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> method at the moment is not doing much, only checking for input from a controller or keyboard to determine if the game should exit. However, the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method is doing more than what it appears to at first glance.</p>
 <p>The first line is executing the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)"><strong>Clear</strong></a> method of the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice"><strong>GraphicsDevice</strong></a> property using the color <a href="xref:Microsoft.Xna.Framework.Color.CornflowerBlue"><strong>CornflowerBlue</strong></a>. Recall that the <a href="xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice"><strong>GraphicsDevice</strong></a> object is your direct interface between the game and what is rendered to the screen. Every time the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method is called, this line of code of erasing the contents of the game window and refilling it with the color specified. Without clearing the contents of the screen first, every draw call would draw the new frame render over top of the previous render, and you'd end up with something like the old solitaire win screen</p>
 <table>
@@ -273,41 +213,23 @@ protected override void Draw(GameTime gameTime)
 <li>You learned what a game loop is and how it is implemented in MonoGame.</li>
 </ul>
 <p>In the next chapter, you will start working with sprites and learn how to load and render them.</p>
-<h2 id="see-also">See Also</h2>
-<p>This chapter briefly touched on the <em>Game1.cs</em> file and the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class. For an in-depth detailed discussion of all files created in a MonoGame project, including a full overview of the order of execution for a MonoGame game, see <a href="#">Appendix 02: MonoGame Project Overview</a>.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Can the <code>Game1</code> class be renamed or is it required to be called <code>Game1</code></p>
- <details>
- <summary>Question 1 Answer</summary>
-<blockquote>
-<p>It is not a requirement that it be called <code>Game1</code>.  This is just the default name given to it by the templates when creating a new MonoGame game project.</p>
-</blockquote>
- </details><br>
+<div class="question-answer"><p>It is not a requirement that it be called <code>Game1</code>.  This is just the default name given to it by the templates when creating a new MonoGame game project.</p>
+</div>
 </li>
 <li><p>What is the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> used for?</p>
- <details>
- <summary>Question 2 Answer</summary>
-<blockquote>
-<p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> provides an optimized method of rendering 2D graphics, like sprites, onto the screen</p>
-</blockquote>
- </details><br>
+<div class="question-answer"><p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> provides an optimized method of rendering 2D graphics, like sprites, onto the screen</p>
+</div>
 </li>
 <li><p>When is the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method executed and why is it important to know this?</p>
- <details>
- <summary>Question 3 Answer</summary>
-<blockquote>
-<p><a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> is executed during the <code>base.Initialize()</code> method call within the <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> method.  It is important to know this because anything being initialized that is dependent on content loaded should be done <strong>after</strong> the <code>base.Initialize()</code> call and not <strong>before</strong>.</p>
-</blockquote>
- </details><br>
+<div class="question-answer"><p><a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> is executed during the <code>base.Initialize()</code> method call within the <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> method.  It is important to know this because anything being initialized that is dependent on content loaded should be done <strong>after</strong> the <code>base.Initialize()</code> call and not <strong>before</strong>.</p>
+</div>
 </li>
 <li><p>How does MonoGame provide a <em>delta time</em> value?</p>
- <details>
- <summary>Question 4 Answer</summary>
-<blockquote>
-<p>Through the <a href="xref:Microsoft.Xna.Framework.GameTime"><strong>GameTime</strong></a> parameter that is given to both the <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> and the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> methods.</p>
-</blockquote>
- </details><br>
+<div class="question-answer"><p>Through the <a href="xref:Microsoft.Xna.Framework.GameTime"><strong>GameTime</strong></a> parameter that is given to both the <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> and the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> methods.</p>
+</div>
 </li>
 </ol>
 
@@ -334,5 +256,6 @@ protected override void Draw(GameTime gameTime)
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>

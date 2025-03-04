@@ -138,12 +138,12 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/xact-editor.png" alt="Figure 12-1: Microsoft Cross-Platform Audio Creation Tool"></th>
+<th style="text-align: center;"><img src="images/xact-editor.png" alt="Figure 14-1: Microsoft Cross-Platform Audio Creation Tool"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 12-1: Microsoft Cross-Platform Audio Creation Tool</strong></td>
+<td style="text-align: center;"><strong>Figure 14-1: Microsoft Cross-Platform Audio Creation Tool</strong></td>
 </tr>
 </tbody>
 </table>
@@ -204,19 +204,19 @@
 <p>The processor that are available for audio files file:</p>
 <ul>
 <li><strong>Sound Effects</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a>.  This is  automatically selected for <em>.wav</em> files.</li>
-<li><strong>Soung</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a>.  This is automatically selected for <em>.mp3</em>, <em>.ogg</em>, and <em>.wma</em> files.</li>
+<li><strong>Song</strong>: Processes the audio file as a <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a>.  This is automatically selected for <em>.mp3</em>, <em>.ogg</em>, and <em>.wma</em> files.</li>
 </ul>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/sound-effect-properties.png" alt="Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files"></th>
-<th style="text-align: center;"><img src="images/song-properties.png" alt="Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files"></th>
+<th style="text-align: center;"><a href="images/sound-effect-properties.png">!Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files</a></th>
+<th style="text-align: center;"><a href="images/song-properties.png">!Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files</a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files</strong></td>
-<td style="text-align: center;"><strong>Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files</strong></td>
+<td style="text-align: center;"><strong>Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files</strong></td>
+<td style="text-align: center;">**Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files</td>
 </tr>
 </tbody>
 </table>
@@ -226,38 +226,27 @@
 </div>
 <h3 id="loading-sound-effects">Loading Sound Effects</h3>
 <p>To load a sound effect, we use <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load</strong></a> with the <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> type:</p>
-<pre><code class="lang-cs">SoundEffect soundEffect = Content.Load&lt;SoundEffect&gt;(&quot;soundEffect&quot;);
-</code></pre>
-<h3 id="loading-music">Loading Music</h3>
+<pre><code class="lang-csharp">// Loading a SoundEffect using the content pipeline
+SoundEffect soundEffect = Content.Load&lt;SoundEffect&gt;(&quot;soundEffect&quot;);
+</code></pre><h3 id="loading-music">Loading Music</h3>
 <p>Loading music is similar, only we specify the <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> type instead.</p>
-<pre><code class="lang-cs">Song song = Content.Load&lt;Song&gt;(&quot;song&quot;);
-</code></pre>
-<h2 id="playing-sound-effects">Playing Sound Effects</h2>
+<pre><code class="lang-csharp">// Loading a Song using the content pipeline
+Song song = Content.Load&lt;Song&gt;(&quot;song&quot;);
+</code></pre><h2 id="playing-sound-effects">Playing Sound Effects</h2>
 <p>Sound effects are played using the <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> class. This class provides two ways to play sounds:</p>
 <ol>
 <li><p>Direct playback using <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play"><strong>SoundEffect.Play</strong></a>:</p>
-<pre><code class="lang-cs">// Load the sound effect
+<pre><code class="lang-csharp">// Loading a SoundEffect using the content pipeline
 SoundEffect soundEffect = Content.Load&lt;SoundEffect&gt;(&quot;soundEffect&quot;);
 
 // Play the sound effect with default settings
 soundEffect.Play();
-</code></pre>
-</li>
+</code></pre></li>
 <li><p>Creating an instance using <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance"><strong>SoundEffect.CreateInstance</strong></a>:</p>
-<pre><code class="lang-cs">// Load the sound effect
-SoundEffect soundEffect = Content.Load&lt;SoundEffect&gt;(&quot;soundEffect&quot;);
-
-// Create an instance we can control
-SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-
-// Adjust the properties of the instance as needed
-soundEffectInstance.IsLooped = true;    // Make it loop
-soundEffectInstance.Volume = 0.5f;      // Set half volume.
-
-// Play the sound effect using the instance.
-soundEffectInstance.Play();
-</code></pre>
-</li>
+<div class="WARNING">
+Warning
+<p>It looks like the sample you are looking for does not exist.</p>
+</div></li>
 </ol>
 <ul>
 <li>Use <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play"><strong>SoundEffect.Play</strong></a> for simple sound effects that you just want to play once.</li>
@@ -302,7 +291,10 @@ soundEffectInstance.Play();
 </table>
 <h2 id="playing-music">Playing Music</h2>
 <p>Unlike sound effects, music is played through the <a href="xref:Microsoft.Xna.Framework.Media.MediaPlayer"><strong>MediaPlayer</strong></a> class. This static class manages playback of <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> instances and provides global control over music playback:</p>
-<pre><code class="lang-cs">// Set whether the song should repeat when finished
+<pre><code class="lang-csharp">// Loading a Song using the content pipeline
+Song song = Content.Load&lt;Song&gt;(&quot;song&quot;);
+
+// Set whether the song should repeat when finished
 MediaPlayer.IsRepeating = true;
 
 // Adjust the volume (0.0f to 1.0f)
@@ -315,7 +307,7 @@ if(MediaPlayer.State == MediaState.Playing)
 }
 
 // Start playing the background music
-MediaPlayer.Play(_backgroundMusic);
+MediaPlayer.Play(song);
 </code></pre>
 <div class="IMPORTANT">
 <h5>Important</h5>
@@ -333,7 +325,7 @@ MediaPlayer.Play(_backgroundMusic);
 <h3 id="the-audiomanager-class">The AudioManager Class</h3>
 <p>To effectively manage audio in our games, we will create an <code>AudioManager</code> class that handles loading, playing, and controlling both sound effects and music. This manager will be implemented as a <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>, allowing it to receive automatic updates and cleanup.</p>
 <p>In the <em>Audio</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>AudioManager.cs</em> with this initial structure:</p>
-<pre><code class="lang-cs">using System;
+<pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -341,10 +333,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MonoGameLibrary.Audio;
 
-public class AudioManager : GameComponent
-{
-
-}
+public class AudioManager : GameComponent { }
 </code></pre>
 <div class="TIP">
 <h5>Tip</h5>
@@ -352,7 +341,7 @@ public class AudioManager : GameComponent
 </div>
 <h4 id="audiomanager-members">AudioManager Members</h4>
 <p>The <code>AudioManager</code> class needs to track various audio resources and states. Add these private fields:</p>
-<pre><code class="lang-cs">private readonly Dictionary&lt;string, SoundEffect&gt; _soundEffects;
+<pre><code class="lang-csharp">private readonly Dictionary&lt;string, SoundEffect&gt; _soundEffects;
 private readonly Dictionary&lt;string, Song&gt; _songs;
 private readonly List&lt;SoundEffectInstance&gt; _activeSoundEffectInstances;
 private float _previousMusicVolume;
@@ -367,14 +356,13 @@ private float _previousSoundEffectVolume;
 </ul>
 <h3 id="audiomanager-properties">AudioManager Properties</h3>
 <p>The AudioManager provides a property to track its mute state.  Add the following property:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets a value that indicates if audio is muted.
 /// &lt;/summary&gt;
 public bool IsMuted { get; private set; }
-</code></pre>
-<h3 id="audiomanager-constructor">AudioManager Constructor</h3>
+</code></pre><h3 id="audiomanager-constructor">AudioManager Constructor</h3>
 <p>The constructor initializes our collections and sets up the component.  Add the following constructor:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new AudioManager instance.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;game&quot;&gt;The game this audio manager will belong too..&lt;/param&gt;
@@ -385,12 +373,11 @@ public AudioManager(Game game)
     _songs = new Dictionary&lt;string, Song&gt;();
     _activeSoundEffectInstances = new List&lt;SoundEffectInstance&gt;();
 }
-</code></pre>
-<h3 id="audiomanager-methods">AudioManager Methods</h3>
+</code></pre><h3 id="audiomanager-methods">AudioManager Methods</h3>
 <p>The <code>AudioManager</code> class provides several categories of methods to handle different aspects of audio management.  Each group of methods serves a specific purpose in managing game audio, from basic playback to more complex state management.</p>
 <h4 id="game-component-methods">Game Component Methods</h4>
 <p>Add the following methods to the manager which override key methods from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Initializes this Audio manager.
 /// &lt;/summary&gt;
 public override void Initialize()
@@ -456,7 +443,7 @@ protected override void Dispose(bool disposing)
 </ul>
 <h4 id="content-management-methods">Content Management Methods</h4>
 <p>Add the following methods to handle handle loading audio content into the manager:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Adds the sound effect with the specified asset name to this audio manager.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the sound effect to add.&lt;/param&gt;
@@ -474,7 +461,7 @@ public void AddSong(string assetName)
 {
     Song song = Game.Content.Load&lt;Song&gt;(assetName);
     _songs.Add(assetName, song);
-}    
+}
 </code></pre>
 <ul>
 <li><code>AddSoundEffect</code>: Loads a sound effect from the content pipeline using the provided asset name and stores it in the <code>_soundEffects</code> dictionary for later use.</li>
@@ -482,7 +469,7 @@ public void AddSong(string assetName)
 </ul>
 <h4 id="playback-methods">Playback Methods</h4>
 <p>Add the following methods to control audio playback:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Plays the sound effect with the specified name.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the sound effect to play.&lt;/param&gt;
@@ -525,7 +512,7 @@ public void PlaySong(string assetName)
     Song song = _songs[assetName];
 
     // Check if the media player is already playing, if so, stop it
-    if(MediaPlayer.State == MediaState.Playing)
+    if (MediaPlayer.State == MediaState.Playing)
     {
         MediaPlayer.Stop();
     }
@@ -539,7 +526,7 @@ public void PlaySong(string assetName)
 </ul>
 <h4 id="state-control-methods">State Control Methods</h4>
 <p>Add the following methods to manage the overall state of audio playback:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Pauses all audio.
 /// &lt;/summary&gt;
 public void PauseAudio()
@@ -621,7 +608,7 @@ public void ToggleMute()
 </ul>
 <h4 id="volume-control-methods">Volume Control Methods</h4>
 <p>Finally, add the following methods to adjusting the volume of all audio:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Increases volume of all audio by the specified amount.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;amount&quot;&gt;The amount to increase the audio by.&lt;/param&gt;
@@ -679,60 +666,398 @@ public void DecreaseVolume(float amount)
 </ul>
 </li>
 </ol>
-<p>Next, let's implement the <code>AudioManager</code> game component that was created in our game to manage audio. Open the <em>Game1.cs</em> file and perform the following:</p>
+<p>Next, let's implement the <code>AudioManager</code> game component that was created in our game to manage audio. Open the <em>Game1.cs</em> and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="6,38-39,53-57,73-74,90-97,198-199,222-223,280-296">using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
+using MonoGameLibrary.Audio;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+
+namespace DungeonSlime;
+
+public class Game1 : Game
+{
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
+
+    // Defines the slime animated sprite.
+    private AnimatedSprite _slime;
+
+    // Defines the bat animated sprite.
+    private AnimatedSprite _bat;
+
+    // Tracks the position of the slime.
+    private Vector2 _slimePosition;
+
+    // Speed multiplier when moving.
+    private const float MOVEMENT_SPEED = 5.0f;
+
+    // Tracks the input manager
+    private InputManager _input;
+
+    // Tracks the position of the bat.
+    private Vector2 _batPosition;
+
+    // Tracks the velocity of the bat.
+    private Vector2 _batVelocity;
+
+    // Tracks the audio manager
+    private AudioManager _audio;
+
+    public Game1()
+    {
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = &quot;Content&quot;;
+        IsMouseVisible = true;
+
+        // Create the instance of the input manager.
+        _input = new InputManager(this);
+
+        // Add it to the game's component collection
+        Components.Add(_input);
+
+        // Create the instance of the audio manager.
+        _audio = new AudioManager(this);
+
+        // Add it to the game's component collection
+        Components.Add(_audio);
+    }
+
+    protected override void Initialize()
+    {
+        // TODO: Add your initialization logic here
+
+        base.Initialize();
+
+        // Set the initial position of the bat to be 10px
+        // to the right of the slime.
+        _batPosition = new Vector2(_slime.Width + 10, 0);
+
+        // Assign the initial random velocity to the bat.
+        AssignRandomBatVelocity();
+
+        // Start playing the background music
+        _audio.PlaySong(&quot;audio/theme&quot;);
+    }
+
+    protected override void LoadContent()
+    {
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        // Create the texture atlas from the XML configuration file
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
+
+        // Create the slime animated sprite from the atlas.
+        _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+
+        // Create the bat animated sprite from the atlas.
+        _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+
+        // Load the bounce sound effect
+        _audio.AddSoundEffect(&quot;audio/bounce&quot;);
+
+        // Load the collect sound effect
+        _audio.AddSoundEffect(&quot;audio/collect&quot;);
+
+        // Load the theme song
+        _audio.AddSong(&quot;audio/theme&quot;);
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        // base.Update first so that components are updated before we perform
+        // additional game logic
+        base.Update(gameTime);
+
+        // Update the slime animated sprite.
+        _slime.Update(gameTime);
+
+        // Update the bat animated sprite.
+        _bat.Update(gameTime);
+
+        // Check for keyboard input and handle it.
+        CheckKeyboardInput();
+
+        // Check for gamepad input and handle it.
+        CheckGamePadInput();
+
+        // Create a bounding rectangle for the screen
+        Rectangle screenBounds = new Rectangle(
+            0,
+            0,
+            GraphicsDevice.PresentationParameters.BackBufferWidth,
+            GraphicsDevice.PresentationParameters.BackBufferHeight
+        );
+
+        // Creating a bounding circle for the slime
+        Circle slimeBounds = new Circle(
+            (int)(_slimePosition.X + (_slime.Width * 0.5f)),
+            (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
+            (int)(_slime.Width * 0.5f)
+        );
+
+        // Use distance based checks to determine if the slime is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // move it back inside.
+        if (slimeBounds.Left &lt; screenBounds.Left)
+        {
+            _slimePosition.X = screenBounds.Left;
+        }
+        else if (slimeBounds.Right &gt; screenBounds.Right)
+        {
+            _slimePosition.X = screenBounds.Right - _slime.Width;
+        }
+
+        if (slimeBounds.Top &lt; screenBounds.Top)
+        {
+            _slimePosition.Y = screenBounds.Top;
+        }
+        else if (slimeBounds.Bottom &gt; screenBounds.Bottom)
+        {
+            _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+        }
+
+        // Calculate the new position of the bat based on the velocity
+        Vector2 newBatPosition = _batPosition + _batVelocity;
+
+        // Create a bounding circle for the bat
+        Circle batBounds = new Circle(
+            (int)(newBatPosition.X + (_bat.Width * 0.5f)),
+            (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
+            (int)(_bat.Width * 0.5f)
+        );
+
+        Vector2 normal = Vector2.Zero;
+
+        // Use distance based checks to determine if the bat is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // reflect it about the screen edge normal
+        if (batBounds.Left &lt; screenBounds.Left)
+        {
+            normal.X = Vector2.UnitX.X;
+            newBatPosition.X = screenBounds.Left;
+        }
+        else if (batBounds.Right &gt; screenBounds.Right)
+        {
+            normal.X = -Vector2.UnitX.X;
+            newBatPosition.X = screenBounds.Right - _bat.Width;
+        }
+
+        if (batBounds.Top &lt; screenBounds.Top)
+        {
+            normal.Y = Vector2.UnitY.Y;
+            newBatPosition.Y = screenBounds.Top;
+        }
+        else if (batBounds.Bottom &gt; screenBounds.Bottom)
+        {
+            normal.Y = -Vector2.UnitY.Y;
+            newBatPosition.Y = screenBounds.Bottom - _bat.Height;
+        }
+
+        // If the normal is anything but Vector2.Zero, this means the bat had
+        // moved outside the screen edge so we should reflect it about the
+        // normal.
+        if (normal != Vector2.Zero)
+        {
+            _batVelocity = Vector2.Reflect(_batVelocity, normal);
+
+            // Play bounce sound
+            _audio.PlaySoundEffect(&quot;audio/bounce&quot;);
+        }
+
+        _batPosition = newBatPosition;
+
+        if (slimeBounds.Intersects(batBounds))
+        {
+            // Divide the width  and height of the screen into equal columns and
+            // rows based on the width and height of the bat.
+            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
+            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+
+            // Choose a random row and column based on the total number of each
+            int column = Random.Shared.Next(0, totalColumns);
+            int row = Random.Shared.Next(0, totalRows);
+
+            // Change the bat position by setting the x and y values equal to
+            // the column and row multiplied by the width and height.
+            _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
+
+            // Assign a new random velocity to the bat
+            AssignRandomBatVelocity();
+
+            // Play collect sound
+            _audio.PlaySoundEffect(&quot;audio/collect&quot;);
+        }
+    }
+
+    private void AssignRandomBatVelocity()
+    {
+        // Generate a random angle
+        float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
+
+        // Convert angle to a direction vector
+        float x = (float)Math.Cos(angle);
+        float y = (float)Math.Sin(angle);
+        Vector2 direction = new Vector2(x, y);
+
+        // Multiply the direction vector by the movement speed
+        _batVelocity = direction * MOVEMENT_SPEED;
+    }
+
+    private void CheckKeyboardInput()
+    {
+        // Exit the game if the escape key is pressed.
+        if (_input.Keyboard.IsKeyDown(Keys.Escape))
+        {
+            Exit();
+        }
+
+        // If the space key is held down, the movement speed increases by 1.5
+        float speed = MOVEMENT_SPEED;
+        if (_input.Keyboard.IsKeyDown(Keys.Space))
+        {
+            speed *= 1.5f;
+        }
+
+        // If the W or Up keys are down, move the slime up on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.W) || _input.Keyboard.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= speed;
+        }
+
+        // if the S or Down keys are down, move the slime down on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.S) || _input.Keyboard.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += speed;
+        }
+
+        // If the A or Left keys are down, move the slime left on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.A) || _input.Keyboard.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= speed;
+        }
+
+        // If the D or Right keys are down, move the slime right on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.D) || _input.Keyboard.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += speed;
+        }
+
+        // If the M key is pressed, toggle mute state for audio
+        if(_input.Keyboard.WasKeyJustPressed(Keys.M))
+        {
+            _audio.ToggleMute();
+        }
+
+        // If the + button is pressed, increase the volume
+        if(_input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+        {
+            _audio.IncreaseVolume(0.1f);
+        }
+
+        // If the - key is pressed, decrease the volume
+        if(_input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+        {
+            _audio.DecreaseVolume(0.1f);
+        }
+    }
+
+    private void CheckGamePadInput()
+    {
+        // Get the info for player one's gamepad.
+        GamePadInfo gamePadOne = _input.GamePads[(int)PlayerIndex.One];
+
+        // If the A button is held down, the movement speed increases by 1.5
+        // and the gamepad vibrates as feedback to the player.
+        float speed = MOVEMENT_SPEED;
+        if (gamePadOne.IsButtonDown(Buttons.A))
+        {
+            speed *= 1.5f;
+            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
+        }
+        else
+        {
+            gamePadOne.StopVibration();
+        }
+
+        // Check thumbstick first since it has priority over which gamepad input
+        // is movement.  It has priority since the thumbstick values provide a
+        // more granular analog value that can be used for movement.
+        if (gamePadOne.LeftThumbStick != Vector2.Zero)
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * speed;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * speed;
+        }
+        else
+        {
+            // If DPadUp is down, move the slime up on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadUp))
+            {
+                _slimePosition.Y -= speed;
+            }
+
+            // If DPadDown is down, move the slime down on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadDown))
+            {
+                _slimePosition.Y += speed;
+            }
+
+            // If DPapLeft is down, move the slime left on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadLeft))
+            {
+                _slimePosition.X -= speed;
+            }
+
+            // If DPadRight is down, move the slime right on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadRight))
+            {
+                _slimePosition.X += speed;
+            }
+        }
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // Begin the sprite batch to prepare for rendering.
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+        // Draw the slime sprite.
+        _slime.Draw(_spriteBatch, _slimePosition);
+
+        // Draw the bat sprite.
+        _bat.Draw(_spriteBatch, _batPosition);
+
+        // Always end the sprite batch when finished.
+        _spriteBatch.End();
+
+        base.Draw(gameTime);
+    }
+}
+</code></pre>
+<p>The key changes made here are:</p>
 <ol>
-<li><p>Add the following using namespace at the top so we have access to the <code>AudioManager</code> class we created:</p>
-<pre><code class="lang-cs">using MonoGameLibrary.Audio;
-</code></pre>
+<li>The <code>using MonoGameLibrary.Audio</code> using directive was added so we can use the new <code>AudioManager</code> class.</li>
+<li>The field <code>_audio</code> was added to track and access the <code>AudioManager</code>.</li>
+<li>In the constructor, a new instance of the <code>AudioManager</code> is created and added to the game's component collection.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the bounce, collect, and theme sound effects and song are added to the audio manager.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a> the audio manager is told to start play the theme song.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> the following changes were made:
+<ol>
+<li>When it is detected that the bat should bounce off the edge of the screen, the bounce sound effect is played</li>
+<li>When it is detected that the slime eats the bat, the collect sound effect is played.</li>
+</ol>
 </li>
-<li><p>Add a new private field to access the <code>AudioManager</code> with:</p>
-<pre><code class="lang-cs">private AudioManager _audioManager;
-</code></pre>
-</li>
-<li><p>In the constructor, add the following to create a new instance of the audio manager and add it as a game component:</p>
-<pre><code class="lang-cs">// Create and add the audio manager
-_audioManager = new AudioManager(this);
-Components.Add(_audioManager);
-</code></pre>
-</li>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, add the following to load audio through the manager:</p>
-<pre><code class="lang-cs">// Load audio content
-_audioManager.AddSoundEffect(&quot;audio/bounce&quot;);
-_audioManager.AddSoundEffect(&quot;audio/collect&quot;);
-_audioManager.AddSong(&quot;audio/theme&quot;);
-</code></pre>
-</li>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>, after the call to <code>base.Initialize()</code>, tell the audio manager to start playing the background music:</p>
-<pre><code class="lang-cs">// Start playing background music
-_audioManager.PlaySong(&quot;audio/theme&quot;);
-</code></pre>
-</li>
-<li><p>Update <code>HandleKeyboardInput</code> to add new inputs to control the audio manager:</p>
-<pre><code class="lang-cs">if (_input.Keyboard.WasKeyJustPressed(Keys.M))
-{
-    _audioManager.ToggleMute();
-}
-
-if (_input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
-{
-    _audioManager.IncreaseVolume(0.1f);
-}
-
-if (_input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
-{
-    _audioManager.DecreaseVolume(0.1f);
-}
-</code></pre>
-</li>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, play the bounce sound effect after calculating the reflection vector for the bat if it hit the edge of the screen:</p>
-<pre><code class="lang-cs">// Play bounce sound through the manager
-_audioManager.PlaySoundEffect(&quot;audio/bounce&quot;);
-</code></pre>
-</li>
-<li><p>Finally, in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> when it is detected that the slime intersects (&quot;eats&quot;) the bat, play the collect sound effect:</p>
-<pre><code class="lang-cs">// Play collect sound through the manager
-_audioManager.PlaySoundEffect(&quot;audio/collect&quot;);
-</code></pre>
+<li>In <code>CheckKeyboardInput</code>, the following changes were made:
+<ol>
+<li>When the M key is pressed, the audio mute is toggled on/off.</li>
+<li>When the + key is pressed, the audio volume is increased.</li>
+<li>WHen the - key is pressed, the audio volume is decreased.</li>
+</ol>
 </li>
 </ol>
 <p>Running the game now, the background music will start playing when the game launches, the bounce sound effect will play each time the bat bounces off the edge of the screen, and the collect sound effect will play each time the slime eats the bat.  In addition, you can use the following controls to control the audio through the audio manager:</p>
@@ -765,28 +1090,16 @@ _audioManager.PlaySoundEffect(&quot;audio/collect&quot;);
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are the two main classes MonoGame provides for audio playback and how do they differ?</p>
-<details>
-<summary>Question 1 Answer</summary>
-<blockquote>
-<p>MonoGame provides <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> for short audio clips (loaded entirely into memory, multiple can play at once) and <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> for longer audio like music (streamed from storage, only one can play at a time).</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>MonoGame provides <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> for short audio clips (loaded entirely into memory, multiple can play at once) and <a href="xref:Microsoft.Xna.Framework.Media.Song"><strong>Song</strong></a> for longer audio like music (streamed from storage, only one can play at a time).</p>
+</div>
 </li>
 <li><p>What is the advantage of using the content pipeline for loading audio files?</p>
-<details>
-<summary>Question 2 Answer</summary>
-<blockquote>
-<p>The content pipeline processes audio files into an optimized format for your target platform, manages asset copying to the output directory, and provides a consistent way to load content at runtime through the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a>.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The content pipeline processes audio files into an optimized format for your target platform, manages asset copying to the output directory, and provides a consistent way to load content at runtime through the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a>.</p>
+</div>
 </li>
 <li><p>Why did we create the <code>AudioManager</code> as a game component?</p>
-<details>
-<summary>Question 3 Answer</summary>
-<blockquote>
-<p>By inheriting from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>, the <code>AudioManager</code> receives automatic updates and cleanup through the game's component system.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>By inheriting from <a href="xref:Microsoft.Xna.Framework.GameComponent"><strong>GameComponent</strong></a>, the <code>AudioManager</code> receives automatic updates and cleanup through the game's component system.</p>
+</div>
 </li>
 </ol>
 
@@ -813,5 +1126,6 @@ _audioManager.PlaySoundEffect(&quot;audio/collect&quot;);
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>

@@ -1005,10 +1005,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/02_getting_started/images/cornflower-blue.png",
+      "source_relative_path": "tutorials/building_2d_games/02_getting_started/images/game-window.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/02_getting_started/images/cornflower-blue.png"
+          "relative_path": "tutorials/building_2d_games/02_getting_started/images/game-window.png"
         }
       },
       "version": ""
@@ -1024,6 +1024,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/02_getting_started/index.md",
       "output": {
@@ -1065,6 +1068,7 @@
     },
     {
       "log_codes": [
+        "codesnippet-not-found",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -1087,11 +1091,24 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/index.md",
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_game_components/images/game_showing_fps.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_game_components/images/game_showing_fps.png"
         }
       },
       "version": ""
@@ -1185,6 +1202,26 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-logo-added.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-file-popup.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-file-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-folder-popup.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-folder-popup.png"
         }
       },
       "version": ""
@@ -1504,6 +1541,7 @@
     },
     {
       "log_codes": [
+        "InvalidFileLink",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -1736,6 +1774,7 @@
     },
     {
       "log_codes": [
+        "codesnippet-not-found",
         "UidNotFound"
       ],
       "type": "Conceptual",

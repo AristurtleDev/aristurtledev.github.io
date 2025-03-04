@@ -134,7 +134,7 @@
 <p>A texture swap occurs when the GPU needs to switch between different textures during rendering. While each individual swap may seem trivial, the cumulative effect in a complex game can significantly impact performance.</p>
 </div>
 <p>For example, let's explore the following simplified draw calls for an example Pong game:</p>
-<pre><code class="lang-cs">// Using the paddle texture to render the left player paddle.
+<pre><code class="lang-csharp">// Using the paddle texture to render the left player paddle.
 // The paddle texture is bound to the GPU.
 _spriteBatch.Draw(paddleTexture, leftPaddlePosition, Color.White);
 
@@ -155,7 +155,7 @@ _spriteBatch.Draw(paddleTexture, rightPaddlePosition, Color.White);
 <p>These texture swaps, while negligible in this example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.</p>
 <h3 id="attempting-to-optimize-draw-order">Attempting to Optimize Draw Order</h3>
 <p>One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps  For example, if we reorder the draw calls from the previous example so that both paddles are drawn first and then the ball, the number of texture swaps is reduced from two to one:</p>
-<pre><code class="lang-cs">// Render the left and right paddles first.
+<pre><code class="lang-csharp">// Render the left and right paddles first.
 // This reduces the number of texture swaps needed from two to one.
 _spriteBatch.Draw(paddleTexture, _leftPaddlePosition, Color.White);
 _spriteBatch.Draw(paddleTexture, _rightPaddlePosition, Color.White);
@@ -168,21 +168,21 @@ _spriteBatch.Draw(ballTexture, _ballPosition, Color.White);
 <h5>Note</h5>
 <p>Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you're loading and tracking a single texture instead of many individual ones.</p>
 </div>
-<p>In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 6-1 below:</p>
+<p>In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 8-1 below:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/pong-atlas.png" alt="Figure 6-1: Pong Texture Atlas Example"></th>
+<th style="text-align: center;"><img src="images/pong-atlas.png" alt="Figure 8-1: Pong Texture Atlas Example"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 6-1: Pong Texture Atlas Example</strong></td>
+<td style="text-align: center;"><strong>Figure 8-1: Pong Texture Atlas Example</strong></td>
 </tr>
 </tbody>
 </table>
 <p>Now when we draw these images, we would be using the same texture and just specify the source rectangles for the paddle or ball when needed, completely eliminating texture swaps.</p>
-<pre><code class="lang-cs">private Texture2D _textureAtlas;
+<pre><code class="lang-csharp">private Texture2D _textureAtlas;
 private Rectangle _paddleSourceRect;
 private Rectangle _ballSourceRect;
 
@@ -217,16 +217,15 @@ protected override void Draw(GameTime gameTime)
 <li>Create a new file named <em>TextureRegion.cs</em> inside the <em>Graphics</em> directory you just created.</li>
 </ol>
 <p>Add the following code for the foundation of the <code>TextureRegion</code> class to the <em>TextureRegion.cs</em> file:</p>
-<pre><code class="lang-cs">using System.Diagnostics;
-using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class TextureRegion
-{
-
-}
+/// &lt;summary&gt;
+/// Represents a rectangular region within a texture.
+/// &lt;/summary&gt;
+public class TextureRegion { }
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -234,7 +233,7 @@ public class TextureRegion
 </div>
 <h3 id="textureregion-members">TextureRegion Members</h3>
 <p>The <code>TextureRegion</code> class will utilize four properties to define and manage a region within a texture.  Add the following properties:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets or Sets the source texture this texture region is part of.
 /// &lt;/summary&gt;
 public Texture2D Texture { get; set; }
@@ -257,7 +256,7 @@ public int Height =&gt; SourceRectangle.Height;
 <p>The <code>Texture</code> and <code>SourceRectangle</code> properties work together to define where the region is located: <code>Texture</code> specifies which texture contains the region, while <code>SourceRectangle</code> defines its exact location and size within that texture. The <code>Width</code> and <code>Height</code> properties provide convenient access to the region's dimensions without having to access the SourceRectangle property directly.</p>
 <h3 id="textureregion-constructor">TextureRegion Constructor</h3>
 <p>The <code>TextureRegion</code> class will provide two ways to create a new texture region.  Add the following constructors:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new texture region.
 /// &lt;/summary&gt;
 public TextureRegion() { }
@@ -279,7 +278,7 @@ public TextureRegion(Texture2D texture, int x, int y, int width, int height)
 <p>The default constructor creates an empty texture region that can be configured later, while the parameterized constructor allows you to define the region's source texture and boundary in a single step. This second constructor provides a convenient way to create texture regions when you know the exact location and dimensions within the source texture upfront.</p>
 <h3 id="textureregion-methods">TextureRegion Methods</h3>
 <p>Finally, the <code>TextureRegion</code> class will provide three overloaded Draw methods to render the texture region. Add the following methods:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Submit this texture region for drawing in the current batch.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;spriteBatch&quot;&gt;The spritebatch instance used for batching draw calls.&lt;/param&gt;
@@ -347,122 +346,10 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float r
 <li>A second overload exposes all rendering parameters while allowing for a single float value to be applied to both axes for scaling.</li>
 <li>The third overload is the most flexible, offering all rendering parameters and independent x- and y-axis scaling.</li>
 </ul>
-<h3 id="using-the-textureregion-class">Using the TextureRegion Class</h3>
-<p>Let's put our new <code>TextureRegion</code> class to use by creating a simple game scene. So far, we've been practicing using textures with the MonoGame logo.  Now we will use a new texture atlas that contains various sprites we'll need for our game.</p>
-<p>Download the texture atlas by right-clicking the following image and saving it as <em>atlas.png</em>:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><img src="images/atlas.png" alt="Figure 6-2: The texture atlas for our game"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 6-2: The texture atlas for our game</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Add this texture atlas to your content project using the MGCB Editor:</p>
-<ol>
-<li>Open the <em>Content.mgcb</em> file in the MGCB Editor</li>
-<li>In the editor, right-click the <em>images</em> directory and choose <em>Add &gt; Existing item...</em>.</li>
-<li>Navigate to and choose the <em>atlas.png</em> file you downloaded to add it.</li>
-<li>Save the changes and close the MGCB Editor.</li>
-</ol>
-<div class="TIP">
-<h5>Tip</h5>
-<p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../06_content_pipeline/index.html#adding-assets-in-the-mgcb-editor">Adding Assets in the MGCB Editor</a> section of Chapter 04.</p>
-</div>
-<p>Replace the contents of <em>Game1.cs</em> with the following code:</p>
-<pre><code class="lang-csharp" highlight-lines="12,32-36,51-56">using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGameLibrary.Graphics;
-
-namespace MonoGameSnake;
-
-public class Game1 : Game
-{
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-    private TextureRegion _slime;
-
-    public Game1()
-    {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = &quot;Content&quot;;
-        IsMouseVisible = true;
-    }
-
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
-
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // Load the atlas texture using the content manager
-        Texture2D atlasTexture = Content.Load&lt;Texture2D&gt;(&quot;images/atlas&quot;);
-
-        // create a texture region from the atlas for the slime sprite
-        _slime = new TextureRegion(atlasTexture, 0, 160, 40, 40);
-    }
-
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        base.Update(gameTime);
-    }
-
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        _spriteBatch.Begin();
-
-        // Draw the slime texture region
-        _slime.Draw(_spriteBatch, Vector2.One, Color.White);
-
-        _spriteBatch.End();
-
-        base.Draw(gameTime);
-    }
-}
-</code></pre>
-<p>Let's examine the key changes in the code:</p>
-<ol>
-<li>We added a <code>TextureRegion</code> member <code>_slime</code> to store our sprite from the atlas.</li>
-<li>In the <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> method, we created a texture region by
-<ul>
-<li>Loading the atlas texture using the content manager</li>
-<li>Created a <code>TextureRegion</code> that defines the slime's location in the atlas at position 0,160 with the size 40x40.</li>
-</ul>
-</li>
-<li>Update the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method to render the slime texture region using the <code>TextureRegion.Draw</code> method.</li>
-</ol>
-<p>Running the game now shows the slime sprite in the upper-left corner of the game window:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><img src="images/slime-rendered.png" alt="Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window</strong></td>
-</tr>
-</tbody>
-</table>
 <h2 id="the-textureatlas-class">The TextureAtlas Class</h2>
 <p>In the <a href="#what-is-a-texture-atlas">What is a Texture Atlas</a> section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the <code>TextureRegion</code> class we just created.  Now, we'll create the <code>TextureAtlas</code> class to represent the collection of the regions that make up all of our sprites.</p>
 <p>Just like the <code>TextureRegion</code> class, we're going to add this to the class library.  In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>TextureAtlas.cs</em>.  Add the following code for the foundation fo the <code>TextureAtlas</code> class to the <em>TextureAtlas.cs</em> file:</p>
-<pre><code class="lang-cs">using System.Collections.Generic;
+<pre><code class="lang-csharp">using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -472,14 +359,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class TextureAtlas
-{
-
-}
-</code></pre>
-<h3 id="textureatlas-members">TextureAtlas Members</h3>
+public class TextureAtlas { }
+</code></pre><h3 id="textureatlas-members">TextureAtlas Members</h3>
 <p>The <code>TextureAtlas</code> class needs two key members to manage texture regions. Add the following:</p>
-<pre><code class="lang-cs">private Dictionary&lt;string, TextureRegion&gt; _regions;
+<pre><code class="lang-csharp">private Dictionary&lt;string, TextureRegion&gt; _regions;
 
 /// &lt;summary&gt;
 /// Gets or Sets the source texture represented by this texture atlas.
@@ -489,7 +372,7 @@ public Texture2D Texture { get; set; }
 <p>The private <code>_regions</code> dictionary stores named texture regions, allowing us to retrieve specific regions by name, while the <code>Texture</code> property holds the source texture that contains all the regions. Together, these members enable the atlas to manage multiple texture regions from a single source texture.</p>
 <h3 id="textureatlas-constructors">TextureAtlas Constructors</h3>
 <p>The <code>TextureAtlas</code> class will provide two ways to create a new atlas.  Add the following constructors:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new texture atlas.
 /// &lt;/summary&gt;
 public TextureAtlas()
@@ -510,7 +393,7 @@ public TextureAtlas(Texture2D texture)
 <p>The default constructor creates an empty atlas that can be configured later, while the parameterized constructor allows you to specify the source texture immediately. Both constructors initialize the <code>_regions</code> dictionary so that it's ready to be used either way.</p>
 <h3 id="textureatlas-methods">TextureAtlas Methods</h3>
 <p>Finally, The <code>TextureAtlas</code> class will provide methods for managing texture regions and creating atlases from configuration files. Add the following methods:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new region and adds it to this texture atlas.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;name&quot;&gt;The name to give the texture region.&lt;/param&gt;
@@ -627,21 +510,49 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 </ul>
 </li>
 </ol>
-<h3 id="using-the-textureatlas-class">Using the TextureAtlas Class</h3>
-<p>Let's put our new <code>TextureAtlas</code> class to use by exploring two approaches; creating an atlas manually and using XML configuration.</p>
-<p>First, let's create the texture atlas in code.  Replace the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="13,36-45,65-66">using Microsoft.Xna.Framework;
+<h2 id="using-the-textureatlas-class">Using the TextureAtlas Class</h2>
+<p>Let's put our new <code>TextureAtlas</code> class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we've been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we'll need for our game.</p>
+<p>Download the texture atlas by right-clicking the following image and saving it as atlas.png:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/atlas.png" alt="Figure 8-2: The texture atlas for our game"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 8-2: The texture atlas for our game</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Add this texture atlas to your content project using the MGCB Editor:</p>
+<ol>
+<li>Open the <em>Content.mgcb</em> file in the MGCB Editor</li>
+<li>In the editor, right-click the <em>images</em> directory and choose <em>Add &gt; Existing item...</em>.</li>
+<li>Navigate to and choose the <em>atlas.png</em> file you downloaded to add it.</li>
+<li>Save the changes and close the MGCB Editor.</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../06_content_pipeline/index.html#adding-assets-in-the-mgcb-editor">Adding Assets in the MGCB Editor</a> section of Chapter 04.</p>
+</div>
+<p>First, we'll explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of <em>Game1.cs</em> with the following:</p>
+<pre><code class="lang-csharp" highlight-lines="13-17,37-53,71-75">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Graphics;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    // texture region that defines the slime sprite in the atlas.
     private TextureRegion _slime;
+
+    // texture region that defines the bat sprite in the atlas.
     private TextureRegion _bat;
 
     public Game1()
@@ -668,12 +579,16 @@ public class Game1 : Game
         //  Create a TextureAtlas instance from the atlas
         TextureAtlas atlas = new TextureAtlas(atlasTexture);
 
-        //  Create and add the slime and bad regions
+        // add the slime region to the atlas.
         atlas.AddRegion(&quot;slime&quot;, 0, 160, 40, 40);
+
+        // add the bat region to the atlas.
         atlas.AddRegion(&quot;bat&quot;, 80, 160, 40, 40);
 
-        // Retrieve the slime and bat regions
+        // retrieve the slime region from the atlas.
         _slime = atlas.GetRegion(&quot;slime&quot;);
+
+        // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
     }
 
@@ -689,7 +604,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
+        // Begin the sprite batch to prepare for rendering.
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime texture region.
         _slime.Draw(_spriteBatch, Vector2.One, Color.White);
@@ -697,6 +613,7 @@ public class Game1 : Game
         // Draw the bat texture region 10px to the right of the slime.
         _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0), Color.White);
 
+        // Always end the sprite batch when finished.
         _spriteBatch.End();
 
         base.Draw(gameTime);
@@ -705,9 +622,12 @@ public class Game1 : Game
 </code></pre>
 <p>The key changes in this implementation are:</p>
 <ol>
-<li>Added a <code>TextureRegion</code> member <code>_bat</code> alongside our existing <code>_slime</code>.</li>
+<li>The <code>_logo</code> field was removed.</li>
+<li>The <code>FramesPerSecondCounter</code> component that was added in the constructor was removed.</li>
+<li>Added  <code>TextureRegion</code> members for the slime and bat sprites.</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>:
 <ul>
+<li>Removed loading the logo texture.</li>
 <li>Created a <code>TextureAtlas</code> with the atlas texture.</li>
 <li>Added regions for both the slime and the bat.</li>
 <li>Retrieved the regions using their names.</li>
@@ -719,12 +639,12 @@ public class Game1 : Game
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/slime-and-bat-rendered.png" alt="Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window"></th>
+<th style="text-align: center;"><img src="images/slime-and-bat-rendered.png" alt="Figure 8-3: The slime and bat texture regions being rendered in the upper-left corner of the game window"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window</strong></td>
+<td style="text-align: center;"><strong>Figure 8-3: The slime and bat texture regions being rendered in the upper-left corner of the game window</strong></td>
 </tr>
 </tbody>
 </table>
@@ -741,8 +661,7 @@ public class Game1 : Game
         &lt;Region name=&quot;bat&quot; x=&quot;80&quot; y=&quot;160&quot; width=&quot;40&quot; height=&quot;40&quot; /&gt;
     &lt;/Regions&gt;
 &lt;/TextureAtlas&gt;
-</code></pre>
-</li>
+</code></pre></li>
 <li><p>Open the <em>Content.mgcb</em> file in the MGCB Editor</p>
 </li>
 <li><p>In the editor, right-click the <em>images</em> directory and choose <em>Add . Existing item...</em>.</p>
@@ -753,12 +672,12 @@ public class Game1 : Game
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/mgcb-editor-copy.png" alt="Figure 6-5: The atlas-definition.xml file added to the content project with the Build Action property set to Copy"></th>
+<th style="text-align: center;"><img src="images/mgcb-editor-copy.png" alt="Figure 8-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 6-5: The atlas-definition.xml file added to the content project with the Build Action property set to Copy</strong></td>
+<td style="text-align: center;"><strong>Figure 8-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy</strong></td>
 </tr>
 </tbody>
 </table>
@@ -770,20 +689,22 @@ public class Game1 : Game
 </div>
 </li>
 <li><p>Replace the contents of <em>Game1.cs</em> with the following code:</p>
-</li>
-</ol>
-<pre><code class="lang-csharp" highlight-lines="33-38">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="37-38">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Graphics;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    // texture region that defines the slime sprite in the atlas.
     private TextureRegion _slime;
+
+    // texture region that defines the bat sprite in the atlas.
     private TextureRegion _bat;
 
     public Game1()
@@ -807,8 +728,10 @@ public class Game1 : Game
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
 
-        // Retrieve the slime and bat regions
+        // retrieve the slime region from the atlas.
         _slime = atlas.GetRegion(&quot;slime&quot;);
+
+        // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
     }
 
@@ -824,7 +747,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
+        // Begin the sprite batch to prepare for rendering.
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime texture region.
         _slime.Draw(_spriteBatch, Vector2.One, Color.White);
@@ -832,19 +756,21 @@ public class Game1 : Game
         // Draw the bat texture region 10px to the right of the slime.
         _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0), Color.White);
 
+        // Always end the sprite batch when finished.
         _spriteBatch.End();
 
         base.Draw(gameTime);
     }
 }
-</code></pre>
+</code></pre></li>
+</ol>
 <p>The key improvements here is in <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, where we now:</p>
 <ul>
 <li>Create an atlas from the XML configuration file.</li>
 <li>Let the <code>TextureAtlas.FromFile</code> method handle texture loading and region creation.</li>
 </ul>
 <p>This configuration based approached is advantageous because we can now add new and modify existing regions within the atlas without having to change code and/or recompile.  This also keeps the sprite definitions separate from the game logic.</p>
-<p>Running the game now will show the same results as Figure 6-5 above, with the slime and bat texture regions rendered in the upper-left corner of the game window.</p>
+<p>Running the game now will show the same results as Figure 8-3 above, with the slime and bat texture regions rendered in the upper-left corner of the game window.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
 <ul>
@@ -858,26 +784,18 @@ public class Game1 : Game
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is a texture swap and why can it impact performance?</p>
-<details>
-<summary>Question 1 Answer</summary>
-<blockquote>
-<p>A texture swap occurs when the GPU needs to unbind one texture and bind another between draw calls. While individual swaps may seem trivial, they can significantly impact performance in games with many sprites as each swap is an expensive GPU operation.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>A texture swap occurs when the GPU needs to unbind one texture and bind another between draw calls. While individual swaps may seem trivial, they can significantly impact performance in games with many sprites as each swap is an expensive GPU operation.</p>
+</div>
 </li>
 <li><p>Name a benefit of using a texture atlas.</p>
-<details>
-<summary>Question 2 Answer</summary>
-<blockquote>
-<p>Any of the following are benefits of using a texture atlas:</p>
+<div class="question-answer"><p>Any of the following are benefits of using a texture atlas:</p>
 <ul>
 <li>Eliminates texture swaps by using a single texture</li>
 <li>Reduces memory usage</li>
 <li>Simplifies asset management</li>
 <li>Improves rendering performance</li>
 </ul>
-</blockquote>
-</details><br>
+</div>
 </li>
 </ol>
 
@@ -904,5 +822,6 @@ public class Game1 : Game
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>

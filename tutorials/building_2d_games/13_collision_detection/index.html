@@ -141,16 +141,16 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/circle-distance-right-triangle.svg" alt="Figure 11-1: Showing the distance between the center of two circles forms a right triange"></th>
+<th style="text-align: center;"><img src="images/circle-distance-right-triangle.svg" alt="Figure 13-1: Showing the distance between the center of two circles forms a right triange"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 11-1: Showing the distance between the center of two circles forms a right triange</strong></td>
+<td style="text-align: center;"><strong>Figure 13-1: Showing the distance between the center of two circles forms a right triange</strong></td>
 </tr>
 </tbody>
 </table>
-<p>In the Figure 11-1 above</p>
+<p>In the Figure 13-1 above</p>
 <ul>
 <li><span class="math">\(a\)</span> is the distance between the center of the two on the x-axis (horizontal).</li>
 <li><span class="math">\(b\)</span> is the distance between the center of the two circles on the y-axis (vertical).</li>
@@ -162,7 +162,7 @@
 <p><span class="math">\((radius_{circle1} + radius_{circle2})^2 &lt; c^2\)</span></p>
 <p>If it is less, then the circles are overlapping; otherwise, they are not.</p>
 <p>To calculate the squared distance between to points, MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.DistanceSquared</strong></a> method:</p>
-<pre><code class="lang-cs">Vector2 circle1Position = new Vector2(8, 10);
+<pre><code class="lang-csharp">Vector2 circle1Position = new Vector2(8, 10);
 Vector2 circle2Position = new Vector2(5, 6);
 
 float circle1Radius = 5;
@@ -195,12 +195,12 @@ if(radii &lt; distanceSquared)
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/aabb-vs-non-aabb.svg" alt="Figure 11-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe."></th>
+<th style="text-align: center;"><img src="images/aabb-vs-non-aabb.svg" alt="Figure 13-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe."></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 11-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes</strong></td>
+<td style="text-align: center;"><strong>Figure 13-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes</strong></td>
 </tr>
 </tbody>
 </table>
@@ -238,14 +238,14 @@ if(radii &lt; distanceSquared)
 </table>
 <p>To determine if two rectangles overlap using AABB collision detection, there are four conditions that need to be checked, and all four conditions must be true.  Given two rectangles <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, these conditions are:</p>
 <ol>
-<li><span class="math">\(A.Left\)</span> must be less than <span class="math">\(B.Right\)</span>.</li>
-<li><span class="math">\(A.Right\)</span> must be greater than <span class="math">\(B.Left\)</span>.</li>
-<li><span class="math">\(A.Top\)</span> must be less than <span class="math">\(B.Bottom\)</span>.</li>
-<li><span class="math">\(A.Bottom\)</span> must be greater than <span class="math">\(B.Top\)</span>.</li>
+<li><span class="math">\(A_{Left}\)</span> must be less than <span class="math">\(B_{Right}\)</span>.</li>
+<li><span class="math">\(A_{Right}\)</span> must be greater than <span class="math">\(B_{Left}\)</span>.</li>
+<li><span class="math">\(A_{Top}\)</span> must be less than <span class="math">\(B_{Bottom}\)</span>.</li>
+<li><span class="math">\(A_{Bottom}\)</span> must be greater than <span class="math">\(B_{Top}\)</span>.</li>
 </ol>
 <p>If even a single one of these conditions is false, then the rectangles are not overlapping and thus not colliding.</p>
 <p>MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)"><strong>Rectangle.Intersects</strong></a> method which will perform an AABB collision check for us:</p>
-<pre><code class="lang-cs">// Rectangle 1
+<pre><code class="lang-csharp">// Rectangle 1
 //                Top: 0
 //          ----------------
 //         |                |
@@ -278,12 +278,12 @@ bool isColliding = rect1.Intersects(rect2); // returns true
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/aabb-collision-example.svg" alt="Figure 11-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check"></th>
+<th style="text-align: center;"><img src="images/aabb-collision-example.svg" alt="Figure 13-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 11-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check</strong></td>
+<td style="text-align: center;"><strong>Figure 13-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check</strong></td>
 </tr>
 </tbody>
 </table>
@@ -327,7 +327,7 @@ bool isColliding = rect1.Intersects(rect2); // returns true
 <li>If it is not overlapping, set the position to the new calculated position.</li>
 </ul>
 <p>For example:</p>
-<pre><code class="lang-cs">// Store the current location
+<pre><code class="lang-csharp">// Store the current location
 Vector2 previousLocation = _spriteLocation;
 
 // Calculate a new location
@@ -366,7 +366,7 @@ _spriteLocation = newLocation;
 <li><a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a></li>
 </ul>
 <p>For example, if we wanted to perform a blocking collision response that ensure a sprite remained contained within the bounds of the game screen:</p>
-<pre><code class="lang-cs">// Store the current location
+<pre><code class="lang-csharp">// Store the current location
 Vector2 previousLocation = _spriteLocation;
 
 // Calculate a new location
@@ -412,7 +412,7 @@ _spriteLocation = newLocation;
 </ul>
 <p>Performing a trigger collision response is just simply checking if the game object is overlapping with the bounding area of the trigger zone, and if so trigger the event.</p>
 <p>For example:</p>
-<pre><code class="lang-cs">// Create a bounding box for the sprite object
+<pre><code class="lang-csharp">// Create a bounding box for the sprite object
 Rectangle spriteBounds = new Rectangle(
     (int)_spriteLocation.X,
     (int)_spriteLocation.Y,
@@ -426,8 +426,7 @@ if(_spriteBounds.Intersects(_triggerBounds))
     // Perform some event
     CollectItem();
 }
-</code></pre>
-<h4 id="bounce-collision-response">Bounce Collision Response</h4>
+</code></pre><h4 id="bounce-collision-response">Bounce Collision Response</h4>
 <p>For games that need objects to bonce off each other (like a the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Reflect</strong></a> method to handle this calculation for us. The method needs two pieces of information:</p>
 <ol>
 <li>The incoming vector (the direction something is moving).</li>
@@ -436,12 +435,12 @@ if(_spriteBounds.Intersects(_triggerBounds))
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/reflection-diagram.svg" alt="Figure 11-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface"></th>
+<th style="text-align: center;"><img src="images/reflection-diagram.svg" alt="Figure 13-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 11-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface</strong></td>
+<td style="text-align: center;"><strong>Figure 13-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface</strong></td>
 </tr>
 </tbody>
 </table>
@@ -451,7 +450,7 @@ if(_spriteBounds.Intersects(_triggerBounds))
 <p>Think of the normal vector like the line you'd draw perpendicular to a mirror's surface. The angle between your incoming path and this line will be the same as the angle between your reflection and this line.</p>
 </div>
 <p>For example, if we had a ball moving around the screen and wanted it to bounce off the edges of the screen:</p>
-<pre><code class="lang-cs">// Calculate the new position of the ball based on the velocity
+<pre><code class="lang-csharp">// Calculate the new position of the ball based on the velocity
 Vector2 newPosition = _ballPosition + _ballVelocity;
 
 // Get the bounds of the ball as a rectangle
@@ -471,7 +470,7 @@ Rectangle screenBounds = new Rectangle(
 );
 
 // Detect if the ball object is within the screen bounds
-if(!screenBounds.Contains(batBounds))
+if(!screenBounds.Contains(ballBounds))
 {
     // Ball would move outside the screen
     // First find the distance from the edge of the ball to each edge of the screen.
@@ -514,11 +513,11 @@ if(!screenBounds.Contains(batBounds))
     }
 
     // Reflect the velocity about the normal
-    _batVelocity = Vector2.Reflect(_ballVelocity, normal); 
+    _ballVelocity = Vector2.Reflect(_ballVelocity, normal); 
 }
 
 // Set the new position of the ball
-_ballPosition = newPosition;
+_ballVelocity = newPosition;
 </code></pre>
 <div class="TIP">
 <h5>Tip</h5>
@@ -534,15 +533,12 @@ _ballPosition = newPosition;
 <h2 id="the-circle-struct">The Circle Struct</h2>
 <p>For our game, we are going to implement circle based collision detection.   MonoGame does not have a <code>Circle</code> struct to represent a circle like it does with <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a>.  Before we can perform circle collision, we will need to create our own.</p>
 <p>In the <em>MonoGameLibrary</em> project, add a new file named <em>Circle.cs</em>.  Add the following code as the foundation of the <code>Circle</code> struct:</p>
-<pre><code class="lang-cs">using System;
+<pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary;
 
-public readonly struct Circle : IEquatable&lt;Circle&gt;
-{
-    
-}
+public readonly struct Circle : IEquatable&lt;Circle&gt; { }
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -552,10 +548,10 @@ public readonly struct Circle : IEquatable&lt;Circle&gt;
 <h3 id="circle-fields">Circle Fields</h3>
 <p>The <code>Circle</code> struct uses both private and public fields to store its state.</p>
 <p>First, add the following private static field that stores a reusable empty circle:</p>
-<pre><code class="lang-cs">private static readonly Circle s_empty = new Circle();
+<pre><code class="lang-csharp">private static readonly Circle s_empty = new Circle();
 </code></pre>
 <p>Next, add the following public fields that define the circle's position and size:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// The x-coordinate of the center of this circle.
 /// &lt;/summary&gt;
 public readonly int X;
@@ -578,13 +574,13 @@ public readonly int Radius;
 <h3 id="circle-properties">Circle Properties</h3>
 <p>The <code>Circle</code> struct provides properties to access its location, state, and its boundaries.</p>
 <p>Add the following property to get the location of the circle as a <a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a> value:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the location of the center of this circle.
 /// &lt;/summary&gt;
 public readonly Point Location =&gt; new Point(X, Y);
 </code></pre>
 <p>Add the following properties to track empty circles:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets a circle with X=0, Y=0, and Radius=0.
 /// &lt;/summary&gt;
 public static Circle Empty =&gt; s_empty;
@@ -599,7 +595,7 @@ public readonly bool IsEmpty =&gt; X == 0 &amp;&amp; Y == 0 &amp;&amp; Radius ==
 <p>The <code>Empty</code> property returns a reusable instance of an empty circle stored in the private static field <code>s_empty</code>. This is more efficient than creating new empty circles each time one is needed, as it reuses the same instance in memory.</p>
 </div>
 <p>Add the following properties for getting the circle's boundaries:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the y-coordinate of the highest point on this circle.
 /// &lt;/summary&gt;
 public readonly int Top =&gt; Y - Radius;
@@ -625,7 +621,7 @@ public readonly int Right =&gt; X + Radius;
 </div>
 <h3 id="circle-constructors">Circle Constructors</h3>
 <p>The <code>Circle</code> struct provides two ways to create a new circle:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new circle with the specified position and radius.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;x&quot;&gt;The x-coordinate of the center of the circle.&lt;/param&gt;
@@ -654,7 +650,7 @@ public Circle(Point location, int radius)
 <h3 id="circle-methods">Circle Methods</h3>
 <p>The <code>Circle</code> struct implements several methods to support equality comparison between circles. These methods allow us to check if two circles are identical (have the same center position and radius).</p>
 <p>First, add the following method that will check if two circles are overlapping with each other:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates whether the specified circle intersects with this circle.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;other&quot;&gt;The other circle to check.&lt;/param&gt;
@@ -667,7 +663,7 @@ public bool Intersects(Circle other)
 }
 </code></pre>
 <p>Next, add the following methods for comparing a circle with another object:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates whether this circle and the specified object are equal
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;obj&quot;&gt;The object to compare with this circle.&lt;/param&gt;
@@ -684,14 +680,14 @@ public readonly bool Equals(Circle other) =&gt; this.X == other.X &amp;&amp;
                                                 this.Radius == other.Radius;
 </code></pre>
 <p>Next, add the following override for <code>GetHashCode</code> to support using circles in hash-based collections:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns the hash code for this circle.
 /// &lt;/summary&gt;
 /// &lt;returns&gt;The hash code for this circle as a 32-bit signed integer.&lt;/returns&gt;
 public override readonly int GetHashCode() =&gt; HashCode.Combine(X, Y, Radius);
 </code></pre>
 <p>Finally, add the following  operator overloads to support using == and != with circles:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates if the circle on the left hand side of the equality operator is equal to the
 /// circle on the right hand side of the equality operator.
 /// &lt;/summary&gt;
@@ -712,194 +708,371 @@ public static bool operator !=(Circle lhs, Circle rhs) =&gt; !lhs.Equals(rhs);
 <div class="TIP">
 <h5>Tip</h5>
 <p>The operator overloads allow you to compare circles using familiar syntax:</p>
-<pre><code class="lang-cs">Circle circle1 = new Circle(0, 0, 5);
+<pre><code class="lang-csharp">Circle circle1 = new Circle(0, 0, 5);
 Circle circle2 = new Circle(0, 0, 5);
 bool areEqual = circle1 == circle2;    // Returns true
-</code></pre>
-</div>
+</code></pre></div>
 <p>Now that we have a struct to represent a circle and check for overlapping, let's update our game to implement collision detection and responses.</p>
 <h2 id="adding-collision-to-our-game">Adding Collision To Our Game</h2>
-<p>If you run the game right now and move the slime around, you'll notice that the slime can move outside the bounds of the screen.  Let's fix this problem first.  We'll check if the slime is contained within the bounds of of the screen, and if not, we'll perform a blocking collision response to prevent it from moving outside the screen.</p>
-<p>Open the <em>Game1.cs</em> file and perform the following:</p>
+<p>If you run the game right now and move the slime around, you'll notice a few issues that can be fixed by adding collision detection and response:</p>
 <ol>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, after performing the calls to handle the different input types, add the following to create a bounding rectangle for the screen:</p>
-<pre><code class="lang-cs">// Create a bounding rectangle for the screen
-Rectangle screenBounds = new Rectangle(
-    0,
-    0,
-    GraphicsDevice.PresentationParameters.BackBufferWidth,
-    GraphicsDevice.PresentationParameters.BackBufferHeight
-);
-</code></pre>
-</li>
-<li><p>After creating the bounding rectangle for the screen, add the following to create a bounding circle for the slime:</p>
-<pre><code class="lang-cs">// Creating a bounding circle for the slime
-Circle slimeBounds = new Circle(
-    (int)(_slimePosition.X + (_slime.Width * 0.5f)),
-    (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
-    (int)(_slime.Width * 0.5f)
-);
-</code></pre>
-</li>
-<li><p>Finally, after creating the bounding rectangle for the circle, add the following to perform a distance based collision check:</p>
-<pre><code class="lang-cs">// Use distance based checks to determine if the slime is within the
-// bounds of the game screen, and if it's outside that screen edge,
-// move it back inside.
-if(slimeBounds.Left &lt; screenBounds.Left)
-{
-    _slimePosition.X = screenBounds.Left;
-}
-else if(slimeBounds.Right &gt; screenBounds.Right)
-{
-    _slimePosition.X = screenBounds.Right - _slime.Width;
-}
-
-if(slimeBounds.Top &lt; screenBounds.Top)
-{
-    _slimePosition.Y = screenBounds.Top;
-}
-else if(slimeBounds.Bottom &gt; screenBounds.Bottom)
-{
-    _slimePosition.Y = screenBounds.Bottom - _slime.Height;
-}
-</code></pre>
-</li>
+<li>You can move the slime outside the bounds of the screen.</li>
+<li>Nothing occurs when the slime collides with the bat.</li>
+<li>The bat doesn't move, providing no challenge in the game.</li>
 </ol>
-<p>Running the game now, try moving the slime outside the edges of the game window.  You'll see that it's now being prevented from doing so:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/slime-contained-within-screen.webm"></video></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 11-5: Moving the slime around the screen, it is unable to go beyond the edges of the screen</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Next, let's modify the game so that the bat moves automatically and bounces off the edge of the screen.  Perform the following:</p>
+<p>Let's update our game to implement these changes using collision detection and response. Open <em>Game1.cs</em> and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="5,31-35,56-61,96-196,199-211,318">using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+
+namespace DungeonSlime;
+
+public class Game1 : Game
+{
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
+
+    // Defines the slime animated sprite.
+    private AnimatedSprite _slime;
+
+    // Defines the bat animated sprite.
+    private AnimatedSprite _bat;
+
+    // Tracks the position of the slime.
+    private Vector2 _slimePosition;
+
+    // Speed multiplier when moving.
+    private const float MOVEMENT_SPEED = 5.0f;
+
+    // Tracks the input manager
+    private InputManager _input;
+
+    // Tracks the position of the bat.
+    private Vector2 _batPosition;
+
+    // Tracks the velocity of the bat.
+    private Vector2 _batVelocity;
+
+    public Game1()
+    {
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = &quot;Content&quot;;
+        IsMouseVisible = true;
+
+        // Create the instance of the input manager.
+        _input = new InputManager(this);
+
+        // Add it to the game's component collection
+        Components.Add(_input);
+    }
+
+    protected override void Initialize()
+    {
+        // TODO: Add your initialization logic here
+
+        base.Initialize();
+
+        // Set the initial position of the bat to be 10px
+        // to the right of the slime.
+        _batPosition = new Vector2(_slime.Width + 10, 0);
+
+        // Assign the initial random velocity to the bat.
+        AssignRandomBatVelocity();
+    }
+
+    protected override void LoadContent()
+    {
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        // Create the texture atlas from the XML configuration file
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
+
+        // Create the slime animated sprite from the atlas.
+        _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+
+        // Create the bat animated sprite from the atlas.
+        _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        // base.Update first so that components are updated before we perform
+        // additional game logic
+        base.Update(gameTime);
+
+        // Update the slime animated sprite.
+        _slime.Update(gameTime);
+
+        // Update the bat animated sprite.
+        _bat.Update(gameTime);
+
+        // Check for keyboard input and handle it.
+        CheckKeyboardInput();
+
+        // Check for gamepad input and handle it.
+        CheckGamePadInput();
+
+        // Create a bounding rectangle for the screen
+        Rectangle screenBounds = new Rectangle(
+            0,
+            0,
+            GraphicsDevice.PresentationParameters.BackBufferWidth,
+            GraphicsDevice.PresentationParameters.BackBufferHeight
+        );
+
+        // Creating a bounding circle for the slime
+        Circle slimeBounds = new Circle(
+            (int)(_slimePosition.X + (_slime.Width * 0.5f)),
+            (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
+            (int)(_slime.Width * 0.5f)
+        );
+
+        // Use distance based checks to determine if the slime is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // move it back inside.
+        if (slimeBounds.Left &lt; screenBounds.Left)
+        {
+            _slimePosition.X = screenBounds.Left;
+        }
+        else if (slimeBounds.Right &gt; screenBounds.Right)
+        {
+            _slimePosition.X = screenBounds.Right - _slime.Width;
+        }
+
+        if (slimeBounds.Top &lt; screenBounds.Top)
+        {
+            _slimePosition.Y = screenBounds.Top;
+        }
+        else if (slimeBounds.Bottom &gt; screenBounds.Bottom)
+        {
+            _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+        }
+
+        // Calculate the new position of the bat based on the velocity
+        Vector2 newBatPosition = _batPosition + _batVelocity;
+
+        // Create a bounding circle for the bat
+        Circle batBounds = new Circle(
+            (int)(newBatPosition.X + (_bat.Width * 0.5f)),
+            (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
+            (int)(_bat.Width * 0.5f)
+        );
+
+        Vector2 normal = Vector2.Zero;
+
+        // Use distance based checks to determine if the bat is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // reflect it about the screen edge normal
+        if (batBounds.Left &lt; screenBounds.Left)
+        {
+            normal.X = Vector2.UnitX.X;
+            newBatPosition.X = screenBounds.Left;
+        }
+        else if (batBounds.Right &gt; screenBounds.Right)
+        {
+            normal.X = -Vector2.UnitX.X;
+            newBatPosition.X = screenBounds.Right - _bat.Width;
+        }
+
+        if (batBounds.Top &lt; screenBounds.Top)
+        {
+            normal.Y = Vector2.UnitY.Y;
+            newBatPosition.Y = screenBounds.Top;
+        }
+        else if (batBounds.Bottom &gt; screenBounds.Bottom)
+        {
+            normal.Y = -Vector2.UnitY.Y;
+            newBatPosition.Y = screenBounds.Bottom - _bat.Height;
+        }
+
+        // If the normal is anything but Vector2.Zero, this means the bat had
+        // moved outside the screen edge so we should reflect it about the
+        // normal.
+        if (normal != Vector2.Zero)
+        {
+            _batVelocity = Vector2.Reflect(_batVelocity, normal);
+        }
+
+        _batPosition = newBatPosition;
+
+        if (slimeBounds.Intersects(batBounds))
+        {
+            // Divide the width  and height of the screen into equal columns and
+            // rows based on the width and height of the bat.
+            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
+            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+
+            // Choose a random row and column based on the total number of each
+            int column = Random.Shared.Next(0, totalColumns);
+            int row = Random.Shared.Next(0, totalRows);
+
+            // Change the bat position by setting the x and y values equal to
+            // the column and row multiplied by the width and height.
+            _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
+
+            // Assign a new random velocity to the bat
+            AssignRandomBatVelocity();
+        }
+    }
+
+    private void AssignRandomBatVelocity()
+    {
+        // Generate a random angle
+        float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
+
+        // Convert angle to a direction vector
+        float x = (float)Math.Cos(angle);
+        float y = (float)Math.Sin(angle);
+        Vector2 direction = new Vector2(x, y);
+
+        // Multiply the direction vector by the movement speed
+        _batVelocity = direction * MOVEMENT_SPEED;
+    }
+
+    private void CheckKeyboardInput()
+    {
+        // Exit the game if the escape key is pressed.
+        if (_input.Keyboard.IsKeyDown(Keys.Escape))
+        {
+            Exit();
+        }
+
+        // If the space key is held down, the movement speed increases by 1.5
+        float speed = MOVEMENT_SPEED;
+        if (_input.Keyboard.IsKeyDown(Keys.Space))
+        {
+            speed *= 1.5f;
+        }
+
+        // If the W or Up keys are down, move the slime up on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.W) || _input.Keyboard.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= speed;
+        }
+
+        // if the S or Down keys are down, move the slime down on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.S) || _input.Keyboard.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += speed;
+        }
+
+        // If the A or Left keys are down, move the slime left on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.A) || _input.Keyboard.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= speed;
+        }
+
+        // If the D or Right keys are down, move the slime right on the screen.
+        if (_input.Keyboard.IsKeyDown(Keys.D) || _input.Keyboard.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += speed;
+        }
+    }
+
+    private void CheckGamePadInput()
+    {
+        // Get the info for player one's gamepad.
+        GamePadInfo gamePadOne = _input.GamePads[(int)PlayerIndex.One];
+
+        // If the A button is held down, the movement speed increases by 1.5
+        // and the gamepad vibrates as feedback to the player.
+        float speed = MOVEMENT_SPEED;
+        if (gamePadOne.IsButtonDown(Buttons.A))
+        {
+            speed *= 1.5f;
+            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
+        }
+        else
+        {
+            gamePadOne.StopVibration();
+        }
+
+        // Check thumbstick first since it has priority over which gamepad input
+        // is movement.  It has priority since the thumbstick values provide a
+        // more granular analog value that can be used for movement.
+        if (gamePadOne.LeftThumbStick != Vector2.Zero)
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * speed;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * speed;
+        }
+        else
+        {
+            // If DPadUp is down, move the slime up on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadUp))
+            {
+                _slimePosition.Y -= speed;
+            }
+
+            // If DPadDown is down, move the slime down on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadDown))
+            {
+                _slimePosition.Y += speed;
+            }
+
+            // If DPapLeft is down, move the slime left on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadLeft))
+            {
+                _slimePosition.X -= speed;
+            }
+
+            // If DPadRight is down, move the slime right on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadRight))
+            {
+                _slimePosition.X += speed;
+            }
+        }
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // Begin the sprite batch to prepare for rendering.
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+        // Draw the slime sprite.
+        _slime.Draw(_spriteBatch, _slimePosition);
+
+        // Draw the bat sprite.
+        _bat.Draw(_spriteBatch, _batPosition);
+
+        // Always end the sprite batch when finished.
+        _spriteBatch.End();
+
+        base.Draw(gameTime);
+    }
+}
+</code></pre>
+<p>The key changes made here are:</p>
 <ol>
-<li><p>We need to add a field to track the bat's velocity. Add the following field:</p>
-<pre><code class="lang-cs">private Vector2 _batVelocity;
-</code></pre>
-</li>
-<li><p>Add the following method that we can use to assign a random velocity to the bat:</p>
-<pre><code class="lang-cs">private void AssignRandomBatVelocity()
-{
-    // Generate a random angle
-    float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
-
-    // Convert angle to a direction vector
-    float x = (float)Math.Cos(angle);
-    float y = (float)Math.Sin(angle);
-    Vector2 direction = new Vector2(x, y);
-
-    // Multiply the direction vector by the movement speed
-    _batVelocity = direction * MOVEMENT_SPEED;
-}
-</code></pre>
-</li>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>, after setting the <code>_batPosition</code>, make a call to the <code>AssignRandomBatVelocity</code> method:</p>
-<pre><code class="lang-cs">AssignRandomBatVelocity();
-</code></pre>
-</li>
-<li><p>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, after the checks to keep the slime within bounds of the screen, add the following to calculate the new position of the bat adjusted by its velocity:</p>
-<pre><code class="lang-cs">// Calculate the new position of the bat based on the velocity
-Vector2 newBatPosition = _batPosition + _batVelocity;
-</code></pre>
-</li>
-<li><p>Next, create a bounding circle for the bat:</p>
-<pre><code class="lang-cs">// Create a bounding circle for the bat
-Circle batBounds = new Circle(
-    (int)(newBatPosition.X + (_bat.Width * 0.5f)),
-    (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
-    (int)(_bat.Width * 0.5f)
-);
-</code></pre>
-</li>
-<li><p>After that, use distance checks to determine if the bat is within the bounds of the screen, similar to what we did with the slime.  However, this time, we need to also calculate the normal vector for the screen edge that it went out of:</p>
-<pre><code class="lang-cs">Vector2 normal = Vector2.Zero;
-
-// Use distance based checks to determine if the bat is within the
-// bounds of the game screen, and if it's outside that screen edge,
-// reflect it about the screen edge normal
-if (batBounds.Left &lt; screenBounds.Left)
-{
-    normal.X = Vector2.UnitX.X;
-    newBatPosition.X = screenBounds.Left;
-}
-else if (batBounds.Right &gt; screenBounds.Right)
-{
-    normal.X = -Vector2.UnitX.X;
-    newBatPosition.X = screenBounds.Right - _bat.Width;
-}
-
-if (batBounds.Top &lt; screenBounds.Top)
-{
-    normal.Y = Vector2.UnitY.Y;
-    newBatPosition.Y = screenBounds.Top;
-}
-else if (batBounds.Bottom &gt; screenBounds.Bottom)
-{
-    normal.Y = -Vector2.UnitY.Y;
-    newBatPosition.Y = screenBounds.Bottom - _bat.Height;
-}
-</code></pre>
-<div class="TIP">
-<h5>Tip</h5>
-<p><a href="xref:Microsoft.Xna.Framework.Vector2.UnitX"><strong>Vector2.UnitX</strong></a> is <span class="math">\((1, 0)\)</span> and <a href="xref:Microsoft.Xna.Framework.Vector2.UnitY"><strong>Vector2.UnitY</strong></a> is <span class="math">\((0, 1)\)</span>.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle</p>
-</div>
-</li>
-<li><p>Next, determine if the velocity of the bat needs to be reflected based on the normal.  We initially set the normal equal to <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a>.  If the bat went out of bounds of the screen at any point, either the <code>X</code> or <code>Y</code> value of the normal will no longer <code>0.0f</code>, so we can use that to determine if we need to reflect:</p>
-<pre><code class="lang-cs">// If the normal is anything but Vector2.Zero, this means the bat had
-// moved outside the screen edge so we should reflect it about the
-// normal.
-if(normal != Vector2.Zero)
-{
-    _batVelocity = Vector2.Reflect(_batVelocity, normal);
-}
-</code></pre>
-</li>
-<li><p>Finally, add the following to update the position of the bat with the new position calculated:</p>
-<pre><code class="lang-cs">_batPosition = newBatPosition;
-</code></pre>
-</li>
+<li>The <code>using MonoGameLibrary</code> using directive was added so we can use the new <code>Circle</code> struct.</li>
+<li>The field <code>_batPosition</code> was added to track the position of the bat.</li>
+<li>The field <code>_batVelocity</code> was added to track the velocity of the bat.</li>
+<li>The <code>AssignRandomBatVelocity()</code> method was added which calculates a random x and y velocity for the bat to move at when called.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>, the initial position of the bat is set and <code>AssignRandomVelocity</code> is called to assign the initial velocity for the bat.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, collision detection and response logic was added to perform the following in order:
+<ol>
+<li>A <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a> bound is created to represent the bounds of the screen.</li>
+<li>A <code>Circle</code> bound is created to represent the bounds of the slime.</li>
+<li>Distance based checks are performed to ensure that the slime cannot move outside of the screen, the resolution of which is to perform a blocking response.</li>
+<li>A new position for the bat is calculated based on the current velocity of the bat.</li>
+<li>A <code>Circle</code> bound is created to represent the bounds of the bat.</li>
+<li>Distance based checks are performed to ensure the bat cannot move outside of the screen, the resolution of which is to perform a bounce response.</li>
+<li>A collision check is made to determine if the slime and bat are colliding (bat &quot;eating&quot; the slime).  If so, the bat is assigned a new random position within the screen and assigned a new random velocity.</li>
 </ol>
-<p>Running the game now, you'll see the bat moving automatically and bouncing off the screen edges.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/bat-bouncing-off-screen-edges.webm"></video></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 11-6: The bat is assigned a random velocity and moves automatically, bouncing off the edges of the screen if it collides with them</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Finally, let's add a trigger response when the slime &quot;eats&quot; the bat, causing the bat to respawn at a random location on the screen with a new random velocity.  In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> after we set the new position for the bat, add the following</p>
-<pre><code class="lang-cs">if (slimeBounds.Intersects(batBounds))
-{
-    // Divide the width  and height of the screen into equal columns and
-    // rows based on the width and height of the bat.
-    int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-    int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
-    // Choose a random row and column based on the total number of each
-    int column = Random.Shared.Next(0, totalColumns);
-    int row = Random.Shared.Next(0, totalRows);
-
-    // Change the bat position by setting the x and y values equal to
-    // the column and row multiplied by the width and height.
-    _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
-
-    // Assign a new random velocity to the bat
-    AssignRandomBatVelocity();
-}
-</code></pre>
-<p>Running the game now, if you move the slime to collide (&quot;eat&quot;) the bat, then the bat will respawn at a new location on the screen with a new velocity:</p>
+</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, the bat is now drawn using the <code>_batPosition</code> value.</li>
+</ol>
+<p>Running the game now</p>
+<ul>
+<li>The bat will start moving with a random velocity and bounce off the edges of the screen</li>
+<li>You can move the slime around, but cannot leave the bounds of the screen with the slime.</li>
+<li>If you move the slime to collide (&quot;eat&quot;) the bat, the bat will respawn at a new location with a new velocity.</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -908,7 +1081,7 @@ if(normal != Vector2.Zero)
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 11-7: When the slime collides (&quot;eats&quot;) the bat, the bat respawns in a new location on the screen with a random velocity assigned</strong></td>
+<td style="text-align: center;"><strong>Figure 13-7: When the slime collides (&quot;eats&quot;) the bat, the bat respawns in a new location on the screen with a random velocity assigned</strong></td>
 </tr>
 </tbody>
 </table>
@@ -953,68 +1126,44 @@ if(normal != Vector2.Zero)
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the difference between collision detection and collision response?</p>
-<details>
-<summary>Question 1 Answer</summary>
-<blockquote>
-<p>Collision detection is determining when two objects overlap or intersect, while collision response is what happens after a collision is detected (like blocking movement, triggering events, or bouncing objects off each other).</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>Collision detection is determining when two objects overlap or intersect, while collision response is what happens after a collision is detected (like blocking movement, triggering events, or bouncing objects off each other).</p>
+</div>
 </li>
 <li><p>When using Rectangle.Intersects for AABB collision, what four conditions must all be true for a collision to occur?</p>
-<details>
-<summary>Question 2 Answer</summary>
-<blockquote>
-<p>For two rectangles A and B to collide:</p>
+<div class="question-answer"><p>For two rectangles A and B to collide:</p>
 <ol>
 <li>A's left edge must be less than B's right edge</li>
 <li>A's right edge must be greater than B's left edge</li>
 <li>A's top edge must be less than B's bottom edge</li>
 <li>A's bottom edge must be greater than B's top edge</li>
 </ol>
-</blockquote>
-</details><br>
+</div>
 </li>
 <li><p>When implementing circle collision, why do we compare the distance between centers to the sum of the radii?</p>
-<details>
-<summary>Question 3 Answer</summary>
-<blockquote>
-<p>Two circles are colliding if the distance between their centers is less than the sum of their radii. If the distance is greater, they are separate. If the distance equals the sum of radii, they are just touching at one point.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>Two circles are colliding if the distance between their centers is less than the sum of their radii. If the distance is greater, they are separate. If the distance equals the sum of radii, they are just touching at one point.</p>
+</div>
 </li>
 <li><p>When implementing bounce collision response, what two pieces of information does <a href="xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Reflect</strong></a> need?</p>
-<details>
-<summary>Question 4 Answer</summary>
-<blockquote>
-<p><a href="xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Reflect</strong></a> needs:</p>
+<div class="question-answer"><p><a href="xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Reflect</strong></a> needs:</p>
 <ol>
 <li>The incoming vector (direction the object is moving)</li>
 <li>The normal vector (direction perpendicular to the surface being hit)</li>
 </ol>
-</blockquote>
-</details><br>
+</div>
 </li>
 <li><p>Why might you choose to use circle collision over rectangle collision for certain objects?</p>
-<details>
-<summary>Question 5 Answer</summary>
-<blockquote>
-<p>Circle collision might be chosen because:</p>
+<div class="question-answer"><p>Circle collision might be chosen because:</p>
 <ul>
 <li>It's more accurate for round objects</li>
 <li>It handles rotating objects better</li>
 <li>It's simpler for continuous collision detection</li>
 <li>It's natural for radius-based interactions</li>
 </ul>
-</blockquote>
-</details><br>
+</div>
 </li>
 <li><p>In the blocking collision response example, why do we store the previous position before handling input?</p>
-<details>
-<summary>Question 6 Answer</summary>
-<blockquote>
-<p>We store the previous position so that if a collision occurs after movement, we can reset the object back to its last valid position. This prevents objects from moving through each other by undoing any movement that would cause overlap.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>We store the previous position so that if a collision occurs after movement, we can reset the object back to its last valid position. This prevents objects from moving through each other by undoing any movement that would cause overlap.</p>
+</div>
 </li>
 </ol>
 
@@ -1041,5 +1190,6 @@ if(normal != Vector2.Zero)
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>

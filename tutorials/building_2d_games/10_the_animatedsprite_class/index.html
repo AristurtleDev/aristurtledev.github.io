@@ -124,16 +124,16 @@
 <h5>Note</h5>
 <p>The term &quot;frame&quot; in animation refers to a single image in an animation sequence. This is different from a game frame, which represents one complete render cycle of your game.</p>
 </div>
-<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 8-1 below shows three frames that make up a bat's wing-flapping animation:</p>
+<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 10-1 below shows three frames that make up a bat's wing-flapping animation:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/bat-animation-example.gif" alt="Figure 8-1: Animation example of a bat flapping its wings"></th>
+<th style="text-align: center;"><img src="images/bat-animation-example.gif" alt="Figure 10-1: Animation example of a bat flapping its wings"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 8-1: Animation example of a bat flapping its wings</strong></td>
+<td style="text-align: center;"><strong>Figure 10-1: Animation example of a bat flapping its wings</strong></td>
 </tr>
 </tbody>
 </table>
@@ -141,28 +141,30 @@
 <p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../09_the_sprite_class/index.html">Chapter 09</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
 <p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
-<pre><code class="lang-cs">using System;
-using System.Collections.Generic;
-
-namespace MonoGameLibrary.Graphics;
-
-public class Animation
-{
-
-}
-</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Animation.cs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">[!code-csharp<a href="./snippets/animation.cs#declaration"></a>]</td>
+</tr>
+</tbody>
+</table>
 <h3 id="animation-properties">Animation Properties</h3>
 <p>An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the <code>Animation</code> class:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// The texture regions that make up the frames of this animation.  The order of the regions within the collection
 /// are the order that the frames should be displayed in.
 /// &lt;/summary&gt;
-public List&lt;TextureRegion&gt; Frames {get; set;}
+public List&lt;TextureRegion&gt; Frames { get; set; }
 
 /// &lt;summary&gt;
 /// The amount of time to delay between each frame before moving to the next frame for this animation.
 /// &lt;/summary&gt;
-public TimeSpan Delay {get; set;}
+public TimeSpan Delay { get; set; }
 </code></pre>
 <p>The <code>Frames</code> property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they'll be displayed in the same sequence they're added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.</p>
 <p>The <code>Delay</code> property defines how long each frame should be displayed before moving to the next one. This timing control allows us to adjust the speed of our animations; a shorter delay creates faster animations, while a longer delay creates slower ones.</p>
@@ -172,7 +174,7 @@ public TimeSpan Delay {get; set;}
 </div>
 <h3 id="animation-constructors">Animation Constructors</h3>
 <p>The <code>Animation</code> class will provide two ways to create an animation.  Add the following constructors:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animation.
 /// &lt;/summary&gt;
 public Animation()
@@ -252,11 +254,11 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 <p>Now that we have a fully configured XML configuration for the atlas, we need to update the <code>TextureAtlas</code> class to manage animation data.  Open the <em>TextureAtlas.cs</em> file and make the following changes:</p>
 <ol>
 <li><p>Add storage for animations</p>
-<pre><code class="lang-cs">private Dictionary&lt;string, Animation&gt; _animations;
-</code></pre>
-</li>
+<pre><code class="lang-csharp">// Stores animations added to this atlas.
+private Dictionary&lt;string, Animation&gt; _animations;
+</code></pre></li>
 <li><p>Update the constructors so that the animations dictionary is initialized:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp" highlight-lines="7,18">/// &lt;summary&gt;
 /// Creates a new texture atlas.
 /// &lt;/summary&gt;
 public TextureAtlas()
@@ -275,10 +277,9 @@ public TextureAtlas(Texture2D texture)
     _regions = new Dictionary&lt;string, TextureRegion&gt;();
     _animations = new Dictionary&lt;string, Animation&gt;();
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p>Add methods to manage animations, similar to those that we use to manage regions:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Adds the given animation to this texture atlas with the specified name.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;animationName&quot;&gt;The name of the animation to add.&lt;/param&gt;
@@ -307,10 +308,9 @@ public bool RemoveAnimation(string animationName)
 {
     return _animations.Remove(animationName);
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p>Update the <code>FromFile</code> method to parse the new <code>&lt;Animation&gt;</code> animation definitions from the XML configuration file</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp" highlight-lines="55-95">/// &lt;summary&gt;
 /// Creates a new texture atlas based a texture atlas xml configuration file.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;content&quot;&gt;The content manager used to load the texture for the atlas.&lt;/param&gt;
@@ -379,9 +379,9 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
             // and generate a new Animation instance from it and add it to this atlas.
             var animationElements = root.Element(&quot;Animations&quot;).Elements(&quot;Animation&quot;);
 
-            if(animationElements != null)
+            if (animationElements != null)
             {
-                foreach(var animationElement in animationElements)
+                foreach (var animationElement in animationElements)
                 {
                     string name = animationElement.Attribute(&quot;name&quot;)?.Value;
                     float delayInMilliseconds = float.Parse(animationElement.Attribute(&quot;delay&quot;)?.Value ?? &quot;0&quot;);
@@ -391,9 +391,9 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 
                     var frameElements = animationElement.Elements(&quot;Frame&quot;);
 
-                    if(frameElements != null)
+                    if (frameElements != null)
                     {
-                        foreach(var frameElement in frameElements)
+                        foreach (var frameElement in frameElements)
                         {
                             string regionName = frameElement.Attribute(&quot;region&quot;).Value;
                             TextureRegion region = atlas.GetRegion(regionName);
@@ -410,8 +410,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
         }
     }
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ol>
 <p>The updated <code>FromFile</code> method now handles both region and animation definitions from the XML configuration. For animations, it:</p>
 <ul>
@@ -432,19 +431,15 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 </div>
 <p>The key to this design is the <code>Sprite.Region</code> property. Our <code>Sprite</code> class already knows how to render whatever region is currently set, so our <code>AnimatedSprite</code> class just needs to update this region property to the correct animation frame at the right time.</p>
 <p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
-<pre><code class="lang-cs">using System;
+<pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Graphics;
 
-public class AnimatedSprite : Sprite
-{
-
-}
-</code></pre>
-<h3 id="animatedsprite-members">AnimatedSprite Members</h3>
+public class AnimatedSprite : Sprite { }
+</code></pre><h3 id="animatedsprite-members">AnimatedSprite Members</h3>
 <p>An animated sprite needs to track both its current animation state and timing information. Let's add the following members to the <code>AnimatedSprite</code> class:</p>
-<pre><code class="lang-cs">private int _currentFrame;
+<pre><code class="lang-csharp">private int _currentFrame;
 private TimeSpan _elapsed;
 private Animation _animation;
 
@@ -474,7 +469,7 @@ public Animation Animation
 </div>
 <h3 id="animatedsprite-constructors">AnimatedSprite Constructors</h3>
 <p>The <code>AnimatedSprite</code> class will provide two ways to create an animated sprite.  Add the following constructors:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animated sprite.
 /// &lt;/summary&gt;
 public AnimatedSprite() { }
@@ -495,7 +490,7 @@ public AnimatedSprite(Animation animation)
 </div>
 <h3 id="animatedsprite-methods">AnimatedSprite Methods</h3>
 <p>The <code>AnimatedSprite</code> class needs a way to update its animation state over time. This is handled by a single <code>Update</code> method:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates this animated sprite.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game timing values provided by the framework.&lt;/param&gt;
@@ -542,7 +537,7 @@ public void Update(GameTime gameTime)
 <li>Create a new animated sprite with that animation.</li>
 </ol>
 <p>We can simplify this process by adding an animated spirte creation method to the <code>TextureAtlas</code> class. Open <em>TextureAtlas.cs</em> and add the following method:</p>
-<pre><code class="lang-cs">/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animated sprite using the animation from this texture atlas with the specified name.
 /// &lt;/summary&gt;
 /// &lt;param name=&quot;animationName&quot;&gt;The name of the animation to use.&lt;/param&gt;
@@ -552,22 +547,24 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
     Animation animation = GetAnimation(animationName);
     return new AnimatedSprite(animation);
 }
-</code></pre>
-<h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
+</code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
 <p>Let's adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="13-14,37-41,49-51">using System;
-using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="13-17,40-44,52-56">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Graphics;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    // Defines the slime animated sprite.
     private AnimatedSprite _slime;
+
+    // Defines the bat animated sprite.
     private AnimatedSprite _bat;
 
     public Game1()
@@ -591,11 +588,11 @@ public class Game1 : Game
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
 
-        // Create the slime animated sprite
+        // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
 
-        // Create the bat animated sprite
-        _bat =  atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        // Create the bat animated sprite from the atlas.
+        _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
     }
 
     protected override void Update(GameTime gameTime)
@@ -603,8 +600,10 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        //  Update the slime and bat animated sprites
+        // Update the slime animated sprite.
         _slime.Update(gameTime);
+
+        // Update the bat animated sprite.
         _bat.Update(gameTime);
 
         base.Update(gameTime);
@@ -614,14 +613,16 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
+        // Begin the sprite batch to prepare for rendering.
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the slime animated sprite
+        // Draw the slime sprite.
         _slime.Draw(_spriteBatch, Vector2.One);
 
-        // Draw the bat animated sprite 10px to the right of the slime.
+        // Draw the bat sprite 10px to the right of the slime.
         _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0));
 
+        // Always end the sprite batch when finished.
         _spriteBatch.End();
 
         base.Draw(gameTime);
@@ -642,12 +643,12 @@ public class Game1 : Game
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/slime-bat-animated.gif" alt="Figure 8-2: The slime and bat sprite animating"></th>
+<th style="text-align: center;"><img src="images/slime-bat-animated.gif" alt="Figure 10-2: The slime and bat sprite animating"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 8-2: The slime and bat sprite animating</strong></td>
+<td style="text-align: center;"><strong>Figure 10-2: The slime and bat sprite animating</strong></td>
 </tr>
 </tbody>
 </table>
@@ -664,36 +665,20 @@ public class Game1 : Game
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Why did we create a separate <code>Animation</code> class instead of putting animation properties directly in <code>AnimatedSprite</code>?</p>
-<details>
-<summary>Question 1 Answer</summary>
-<blockquote>
-<p>Separating animation data into its own class allows multiple <code>AnimatedSprite</code> instances to share the same animation definition. This is more efficient than each sprite having its own copy of the frame sequence and timing information.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>Separating animation data into its own class allows multiple <code>AnimatedSprite</code> instances to share the same animation definition. This is more efficient than each sprite having its own copy of the frame sequence and timing information.</p>
+</div>
 </li>
 <li><p>What is the benefit of using <code>TimeSpan</code> for animation delays instead of float values?</p>
-<details>
-<summary>Question 2 Answer</summary>
-<blockquote>
-<p><code>TimeSpan</code> provides precise timing control and makes it easier to synchronize animations with game time. It also makes the delay values more explicit (milliseconds vs arbitrary numbers) and helps prevent timing errors.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p><code>TimeSpan</code> provides precise timing control and makes it easier to synchronize animations with game time. It also makes the delay values more explicit (milliseconds vs arbitrary numbers) and helps prevent timing errors.</p>
+</div>
 </li>
 <li><p>Why does the <code>AnimatedSprite</code> class need an <code>Update</code> method while the base <code>Sprite</code> class doesn't?</p>
-<details>
-<summary>Question 3 Answer</summary>
-<blockquote>
-<p>The <code>AnimatedSprite</code> needs to track elapsed time and change frames based on the animation's timing. This requires updating its state over time, while a regular sprite's appearance remains static until explicitly changed.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>The <code>AnimatedSprite</code> needs to track elapsed time and change frames based on the animation's timing. This requires updating its state over time, while a regular sprite's appearance remains static until explicitly changed.</p>
+</div>
 </li>
 <li><p>In the <code>TextureAtlas</code> XML configuration, why might you want to reuse a frame in an animation sequence, like we did with the bat animation?</p>
-<details>
-<summary>Question 4 Answer</summary>
-<blockquote>
-<p>Reusing frames in an animation sequence can create smoother animations by providing transition states. In the bat animation, reusing the neutral position (bat-1) between wing movements creates a more natural flapping motion without requiring additional sprite frames.</p>
-</blockquote>
-</details><br>
+<div class="question-answer"><p>Reusing frames in an animation sequence can create smoother animations by providing transition states. In the bat animation, reusing the neutral position (bat-1) between wing movements creates a more natural flapping motion without requiring additional sprite frames.</p>
+</div>
 </li>
 </ol>
 
@@ -720,5 +705,6 @@ public class Game1 : Game
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
 </html>
