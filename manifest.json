@@ -1068,8 +1068,8 @@
     },
     {
       "log_codes": [
-        "codesnippet-not-found",
-        "UidNotFound"
+        "UidNotFound",
+        "codesnippet-not-found"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/index.md",
@@ -1774,14 +1774,27 @@
     },
     {
       "log_codes": [
-        "codesnippet-not-found",
-        "UidNotFound"
+        "UidNotFound",
+        "codesnippet-not-found"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.md",
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/15_service_container/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/15_service_container/index.html"
         }
       },
       "version": ""
@@ -1800,6 +1813,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "tutorials/building_2d_games/toc.yml",
       "output": {
