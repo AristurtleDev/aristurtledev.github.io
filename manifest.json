@@ -1068,8 +1068,8 @@
     },
     {
       "log_codes": [
-        "codesnippet-not-found",
-        "UidNotFound"
+        "UidNotFound",
+        "codesnippet-not-found"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/index.md",
@@ -1228,8 +1228,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/index.md",
@@ -1541,7 +1541,6 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -1774,8 +1773,8 @@
     },
     {
       "log_codes": [
-        "codesnippet-not-found",
-        "UidNotFound"
+        "UidNotFound",
+        "codesnippet-not-found"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.md",

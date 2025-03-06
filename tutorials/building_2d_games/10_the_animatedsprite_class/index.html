@@ -141,19 +141,13 @@
 <p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../09_the_sprite_class/index.html">Chapter 09</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
 <p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Animation.cs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">[!code-csharp<a href="./snippets/animation.cs#declaration"></a>]</td>
-</tr>
-</tbody>
-</table>
-<h3 id="animation-properties">Animation Properties</h3>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+
+namespace MonoGameLibrary.Graphics;
+
+public class Animation { }
+</code></pre><h3 id="animation-properties">Animation Properties</h3>
 <p>An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the <code>Animation</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// The texture regions that make up the frames of this animation.  The order of the regions within the collection
