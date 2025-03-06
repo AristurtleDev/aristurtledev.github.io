@@ -217,7 +217,7 @@ public interface IExampleService
 }
 
 // Create a concrete implementation of the interface.
-public class ExampleService : GameComponent : IExampleService
+public class ExampleService : GameComponent, IExampleService
 {
     // Implementation. ...
 }
@@ -305,8 +305,8 @@ if(exampleService != null)
     // Field to store the service reference in.
     private IExampleService _exampleService;
 
-    public ExampleComponent(Game game, IExampleService exampleService) 
-        : base(game) 
+    public ExampleComponent(Game game, IExampleService exampleService)
+        : base(game)
     {
         _exampleService = exampleService;
     }
@@ -394,26 +394,26 @@ namespace MonoGameLibrary.Audio
         /// Gets whether audio is currently muted.
         /// &lt;/summary&gt;
         bool IsMuted { get; }
-        
+
         /// &lt;summary&gt;
         /// Adds a sound effect to the audio manager.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The content asset name of the sound effect.&lt;/param&gt;
         void AddSoundEffect(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Adds a song to the audio manager.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The content asset name of the song.&lt;/param&gt;
         void AddSong(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Plays a sound effect.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the sound effect to play.&lt;/param&gt;
         /// &lt;returns&gt;The sound effect instance that's playing.&lt;/returns&gt;
         Microsoft.Xna.Framework.Audio.SoundEffectInstance PlaySoundEffect(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Plays a sound effect with custom parameters.
         /// &lt;/summary&gt;
@@ -424,45 +424,45 @@ namespace MonoGameLibrary.Audio
         /// &lt;param name=&quot;isLooped&quot;&gt;Whether the sound should loop.&lt;/param&gt;
         /// &lt;returns&gt;The sound effect instance that's playing.&lt;/returns&gt;
         Microsoft.Xna.Framework.Audio.SoundEffectInstance PlaySoundEffect(string assetName, float volume, float pitch, float pan, bool isLooped);
-        
+
         /// &lt;summary&gt;
         /// Plays a song.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the song to play.&lt;/param&gt;
         /// &lt;param name=&quot;isLooped&quot;&gt;Whether the song should loop.&lt;/param&gt;
         void PlaySong(string assetName, bool isLooped = true);
-        
+
         /// &lt;summary&gt;
         /// Pauses all currently playing audio.
         /// &lt;/summary&gt;
         void PauseAudio();
-        
+
         /// &lt;summary&gt;
         /// Resumes all paused audio.
         /// &lt;/summary&gt;
         void ResumeAudio();
-        
+
         /// &lt;summary&gt;
         /// Mutes all audio.
         /// &lt;/summary&gt;
         void MuteAudio();
-        
+
         /// &lt;summary&gt;
         /// Unmutes all audio, restoring previous volume levels.
         /// &lt;/summary&gt;
         void UnmuteAudio();
-        
+
         /// &lt;summary&gt;
         /// Toggles between muted and unmuted states.
         /// &lt;/summary&gt;
         void ToggleMute();
-        
+
         /// &lt;summary&gt;
         /// Increases the volume of all audio by the specified amount.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;amount&quot;&gt;The amount to increase (0.0f to 1.0f).&lt;/param&gt;
         void IncreaseVolume(float amount = 0.1f);
-        
+
         /// &lt;summary&gt;
         /// Decreases the volume of all audio by the specified amount.
         /// &lt;/summary&gt;
