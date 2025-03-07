@@ -1786,14 +1786,48 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/images/font_added.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/images/font_added.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound",
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/score.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/score.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/15_service_container/index.md",
+      "source_relative_path": "tutorials/building_2d_games/16_service_container/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/15_service_container/index.html"
+          "relative_path": "tutorials/building_2d_games/16_service_container/index.html"
         }
       },
       "version": ""

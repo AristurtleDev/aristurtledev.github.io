@@ -117,7 +117,7 @@
         </div>
 
         <article data-uid="">
-<h1 id="chapter-15-the-monogame-services-container">Chapter 15: The MonoGame Services Container</h1>
+<h1 id="chapter-16-the-monogame-services-container">Chapter 16: The MonoGame Services Container</h1>
 <p class="text-secondary">Learn how to use MonoGame's Service Container to create a modular game architecture, enabling components to easily find and communicate with each other.</p>
 <p>In <a href="../14_soundeffects_and_music/index.html">Chapter 14</a>, we added audio feedback to our game by implementing sound effects and background music. These audio features, along with our input handling from earlier chapters, are implemented as reusable game components.</p>
 <p>As our game grows more complex, we'll need to manage numerous systems and share resources across different parts of code.  Currently, we are storing direct references to our components, which creates tight coupling between our game and the specific implementations of these systems.  In the following chapters, we are going to start breaking the game up into different modules and will need to share resources between them.  To do this, a more flexible approach would be use to use MonoGame's built-in service system to make these components available throughout the game.</p>
@@ -305,8 +305,8 @@ if(exampleService != null)
     // Field to store the service reference in.
     private IExampleService _exampleService;
 
-    public ExampleComponent(Game game, IExampleService exampleService) 
-        : base(game) 
+    public ExampleComponent(Game game, IExampleService exampleService)
+        : base(game)
     {
         _exampleService = exampleService;
     }
@@ -394,26 +394,26 @@ namespace MonoGameLibrary.Audio
         /// Gets whether audio is currently muted.
         /// &lt;/summary&gt;
         bool IsMuted { get; }
-        
+
         /// &lt;summary&gt;
         /// Adds a sound effect to the audio manager.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The content asset name of the sound effect.&lt;/param&gt;
         void AddSoundEffect(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Adds a song to the audio manager.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The content asset name of the song.&lt;/param&gt;
         void AddSong(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Plays a sound effect.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the sound effect to play.&lt;/param&gt;
         /// &lt;returns&gt;The sound effect instance that's playing.&lt;/returns&gt;
         Microsoft.Xna.Framework.Audio.SoundEffectInstance PlaySoundEffect(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Plays a sound effect with custom parameters.
         /// &lt;/summary&gt;
@@ -424,44 +424,44 @@ namespace MonoGameLibrary.Audio
         /// &lt;param name=&quot;isLooped&quot;&gt;Whether the sound should loop.&lt;/param&gt;
         /// &lt;returns&gt;The sound effect instance that's playing.&lt;/returns&gt;
         Microsoft.Xna.Framework.Audio.SoundEffectInstance PlaySoundEffect(string assetName, float volume, float pitch, float pan, bool isLooped);
-        
+
         /// &lt;summary&gt;
         /// Plays a song.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;assetName&quot;&gt;The asset name of the song to play.&lt;/param&gt;
         void PlaySong(string assetName);
-        
+
         /// &lt;summary&gt;
         /// Pauses all currently playing audio.
         /// &lt;/summary&gt;
         void PauseAudio();
-        
+
         /// &lt;summary&gt;
         /// Resumes all paused audio.
         /// &lt;/summary&gt;
         void ResumeAudio();
-        
+
         /// &lt;summary&gt;
         /// Mutes all audio.
         /// &lt;/summary&gt;
         void MuteAudio();
-        
+
         /// &lt;summary&gt;
         /// Unmutes all audio, restoring previous volume levels.
         /// &lt;/summary&gt;
         void UnmuteAudio();
-        
+
         /// &lt;summary&gt;
         /// Toggles between muted and unmuted states.
         /// &lt;/summary&gt;
         void ToggleMute();
-        
+
         /// &lt;summary&gt;
         /// Increases the volume of all audio by the specified amount.
         /// &lt;/summary&gt;
         /// &lt;param name=&quot;amount&quot;&gt;The amount to increase (0.0f to 1.0f).&lt;/param&gt;
         void IncreaseVolume(float amount = 0.1f);
-        
+
         /// &lt;summary&gt;
         /// Decreases the volume of all audio by the specified amount.
         /// &lt;/summary&gt;
