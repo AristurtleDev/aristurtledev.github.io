@@ -119,14 +119,7 @@
         <article data-uid="">
 <h1 id="04-creating-a-class-library">04: Creating a Class Library</h1>
 <p class="text-secondary">Learn how to create and structure a reusable MonoGame class library to organize game components and share code between projects.</p>
-<p>One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this.  Instead of creating these modules directly in our game project, we can create a <em>class library</em> and add them to that.  Creating a class library offers several advantages, including:</p>
-<ol>
-<li><strong>Reusability</strong>: The classes can be easily reused in future game projects by simply adding a reference to the library.</li>
-<li><strong>Organization</strong>: Keeps game-specific code separate from reusable library code.</li>
-<li><strong>Maintainability</strong>: Changes to the library can benefit all games that use it.</li>
-<li><strong>Testing</strong>: The library code can be tested independently of any specific game.</li>
-</ol>
-<p>A class library is a project type that compiles into a <a href="https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries">Dynamic Link Library</a> (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the <em>MonoGame Game Library</em> project template that can be used to create a class library.</p>
+<p>One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we'll build a collection of game components you can take with you from project to project.</p>
 <p>In this chapter you will:</p>
 <ul>
 <li>Learn about class libraries and their benefits for game development.</li>
@@ -135,6 +128,46 @@
 <li>Structure your library for reusability.</li>
 <li>Set up the foundation for creating shared game components.</li>
 </ul>
+<h2 id="what-is-a-class-library">What Is a Class Library</h2>
+<p>Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you'll want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they're easy to find, use, and improve over time.</p>
+<p>The following diagrams show how this works:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/without-class-library.png" alt="Figure 4-1: Without using a class library, common modules are duplicated across projects"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-1: Without using a class library, common modules are duplicated across projects</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/with-class-library.png" alt="Figure 4-2: Using a class library, common modules are shared across projects"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 4-2: Using a class library, common modules are shared across projects</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>A class library is a project type that compiles into a <a href="https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries">Dynamic Link Library</a> (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.</p>
+</div>
+<h2 id="why-create-a-class-library">Why Create a Class Library?</h2>
+<p>Creating a class library offers several important advantages, especially as your games grow more complex:</p>
+<ol>
+<li><strong>Reusability</strong>: Instead of rewriting the same code for each new game project, you build it once in your library and reuse it everywhere. This is like creating a multi-tool that works across all your projects.</li>
+<li><strong>Organization</strong>: Your game code stays focused on the unique aspects of each game, while common functionality lives in the library. This keeps your project folder neat and makes code easier to find.</li>
+<li><strong>Maintainability</strong>: When you improve or fix a bug in your library code, all games using that library benefit automatically. This means fixing one bug once instead of in multiple places.</li>
+<li><strong>Testing</strong>: You can test your library code independently from any specific game. This helps ensure your core systems are solid before you build a game on top of them.</li>
+</ol>
+<p>As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we'll create in this library will handle common game tasks like input, audio, sprites, and animations.</p>
 <h2 id="adding-the-class-library">Adding the Class Library</h2>
 <p>MonoGame offers the <em>MonoGame Game Library</em> project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.</p>
 <p>To use the template to add the class library, perform the following:</p>
@@ -156,7 +189,7 @@
 <ol>
 <li>In the <em>Solution Explorer</em> panel, right-click the <em>DungeonSlime</em> solution.</li>
 <li>Chose <em>New Project</em> from the context menu.</li>
-<li>Enter &quot;Monogame Game Library&quot; and select it as the template to use.</li>
+<li>Enter &quot;MonoGame Game Library&quot; and select it as the template to use.</li>
 <li>Name the project &quot;MonoGameLibrary&quot;.</li>
 <li>When prompted for a location, use the default option, which will put the new project in a folder next to your game project.</li>
 <li>Select &quot;Create Project&quot;.</li>
@@ -247,103 +280,118 @@
 <p>If you would like more information on this, Simon Jackson has written the article <a href="https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html">Going cross-platform with MonoGame</a> which covers this in more detail.</p>
 </div>
 <h2 id="creating-our-first-library-module">Creating Our First Library Module</h2>
-<p>Let's validate our class library setup by creating a simple component that counts frames per second (FPS). This will demonstrate that we can successfully create classes in our library and use them in our game.</p>
-<p>Create a new file called <em>FramesPerSecondCounter.cs</em> in the root of the <em>MonoGameLibrary</em> project and add the following code:</p>
+<p>Let's create a class for our library called <code>Core</code>.  This class will extend the MonoGame <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.</p>
+<p>Create a new file called <em>Core.cs</em> in the <em>MonoGameLibrary</em> project and add the following code:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary;
 
-/// &lt;summary&gt;
-/// Tracks and calculates the number of frames rendered per second.
-/// &lt;/summary&gt;
-public class FramesPerSecondCounter
+public class Core : Game
 {
-    /// A static TimeSpan representing one second, used for FPS calculation intervals.
-    private static readonly TimeSpan s_oneSecond = TimeSpan.FromSeconds(1);
-
-    /// Tracks the number of frames rendered in the current second.
-    private int _frameCounter;
-
-    /// Tracks the elapsed time since the last FPS calculation.
-    private TimeSpan _elapsedTime;
+    internal static Core _instance;
 
     /// &lt;summary&gt;
-    /// Gets the current frames per second calculation.
+    /// Gets a reference to the Core instance.
     /// &lt;/summary&gt;
-    public float FramesPerSecond { get; private set; }
+    public static Core Instance =&gt; _instance;
 
     /// &lt;summary&gt;
-    /// Creates a new FramesPerSecondCounter.
+    /// Gets the graphics device manager to control the presentation of graphics.
     /// &lt;/summary&gt;
-    public FramesPerSecondCounter() { }
+    public static GraphicsDeviceManager Graphics { get; private set; }
 
     /// &lt;summary&gt;
-    /// Updates the FPS calculation based on elapsed game time.
+    /// Gets the sprite batch used for all 2D rendering.
     /// &lt;/summary&gt;
-    /// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the game's timing values.&lt;/param&gt;
-    public void Update(GameTime gameTime)
+    public static SpriteBatch SpriteBatch {get; private set;}
+
+    /// &lt;summary&gt;
+    /// Creates a new Core instance.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;title&quot;&gt;The title to display in the title bar of the game window.&lt;/param&gt;
+    /// &lt;param name=&quot;width&quot;&gt;The initial width, in pixels, of the game window.&lt;/param&gt;
+    /// &lt;param name=&quot;height&quot;&gt;The initial height, in pixels, of the game window.&lt;/param&gt;
+    /// &lt;param name=&quot;fullScreen&quot;&gt;Indicates if the game should start in fullscreen mode.&lt;/param&gt;
+    public Core(string title, int width, int height, bool fullScreen)
     {
-        _elapsedTime += gameTime.ElapsedGameTime;
-
-        if (_elapsedTime &gt; s_oneSecond)
+        // Ensure that multiple cores are not created.
+        if(_instance != null)
         {
-            FramesPerSecond = _frameCounter;
-            _frameCounter = 0;
-            _elapsedTime -= s_oneSecond;
+            throw new InvalidOperationException($&quot;Only a single Core instance can be created&quot;);
         }
+
+        // Store reference to engine for global member access.
+        _instance = this;
+
+        // Create a new graphics device manager.
+        Graphics = new GraphicsDeviceManager(this);
+
+        // Set the graphics defaults
+        Graphics.PreferredBackBufferWidth = width;
+        Graphics.PreferredBackBufferHeight = height;
+        Graphics.IsFullScreen = fullScreen;
+
+        // Apply the graphic presentation changes
+        Graphics.ApplyChanges();
+
+        // Set the window title
+        Window.Title = title;
+
+        // Set the root directory for content
+        Content.RootDirectory = &quot;Content&quot;;
+
+        // Mouse is visible by default
+        IsMouseVisible = true;
     }
 
-    /// &lt;summary&gt;
-    /// Increments the frame counter. Should be called once per frame during the game's Draw method.
-    /// &lt;/summary&gt;
-    public void UpdateCounter()
+    protected override void LoadContent()
     {
-        _frameCounter++;
+        // Create the sprite batch instance.
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 }
 </code></pre>
-<p>This class:</p>
-<ul>
-<li>Tracks how many frames are rendered each second.</li>
-<li>Updates the FPS calculation based on elapsed time.</li>
-<li>Provides the current FPS through a property.</li>
-</ul>
-<h2 id="adding-the-module-to-our-game">Adding the Module To Our Game</h2>
-<p>Now that we have the <code>FramesPerSecondCounter</code> class created, let's add it to our game.  Doing this will also help ensure that the project references were setup correctly.  Open the <em>Game1.cs</em> file and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="4,13-14,22-23,41-42,51-55">using Microsoft.Xna.Framework;
+<p>The <code>Core</code> class provides the following features</p>
+<ol>
+<li>It extends the MonoGame <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class, so it inherits all of the base functionality.</li>
+<li>It implements a singleton pattern through the <code>Instance</code> property, ensure only one core exists.</li>
+<li>It provides static access to the graphics device manager and the sprite batch.</li>
+<li>It simplifies the game window setup with a constructor that handles common initializations.</li>
+</ol>
+<p>This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>As this tutorial progress, we'll be coming back to this <code>Core</code> class to add more to it.</p>
+</div>
+<h2 id="updating-our-game-to-use-the-core-class">Updating Our Game to Use the Core Class</h2>
+<p>Now that we have our <code>Core</code> class, let's modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.</p>
+<p>Open the <em>Game1.cs</em> file and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="4,8,10,22-25">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 
 namespace DungeonSlime;
 
-public class Game1 : Game
+public class Game1 : Core
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-
-    // Tracks the FramesPerSecondCounter instance.
-    private FramesPerSecondCounter _fpsCounter;
-
-    public Game1()
+    public Game1() : base(&quot;Dungeon Slime&quot;, 1280, 720, false)
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = &quot;Content&quot;;
-        IsMouseVisible = true;
 
-        // Create a new FramesPerSecondCounter.
-        _fpsCounter = new FramesPerSecondCounter();
     }
 
     protected override void Initialize()
     {
+        // TODO: Add your initialization logic here
+
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
@@ -351,8 +399,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // Update the frames per second instance.
-        _fpsCounter.Update(gameTime);
+        // TODO: Add your update logic here
 
         base.Update(gameTime);
     }
@@ -361,11 +408,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // Update the frame counter.
-        _fpsCounter.UpdateCounter();
-
-        // Update the window title to show the frames per second.
-        Window.Title = $&quot; FPS: {_fpsCounter.FramesPerSecond}&quot;;
+        // TODO: Add your drawing code here
 
         base.Draw(gameTime);
     }
@@ -373,44 +416,29 @@ public class Game1 : Game
 </code></pre>
 <p>The key changes made here are:</p>
 <ol>
-<li>The <code>using MonoGameLibrary</code> using directive was added so we can use the new <code>FramesPerSecondCounter</code> class.</li>
-<li>The field <code>_fpsCounter</code> was added to track the <code>FramesPerSecondCounter</code> instance.</li>
-<li>In the constructor, a new instance of the <code>FramesPerSecondCounter</code> is created.</li>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the <code>Update</code> method for the frames per second counter is called.</li>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>
-<ol>
-<li>The <code>UpdateCOunter</code> method for the frames per second counter is called.</li>
-<li>The game window title is updated to display the frames per second value.</li>
+<li>Adding <code>using MonoGameLibrary;</code> directive to reference our library.</li>
+<li>Removed the <a href="xref:Microsoft.Xna.Framework.GraphicsDeviceManager"><strong>GraphicsDeviceManager</strong></a> and <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> fields, these are now supplied through the <code>Core</code> class.</li>
+<li>Changed <code>Game1</code> class to inherit from <code>Core</code> instead of <code>Game</code>.</li>
+<li>Updated the constructor to call the <code>Core</code> base constructor with our game configuration.</li>
 </ol>
-</li>
-</ol>
-<p>When you run the game now, you'll see the current FPS displayed in the window title bar. This confirms that:</p>
-<ul>
-<li>Our class library project is correctly set up.</li>
-<li>The game project can reference and use library classes.</li>
-<li>The basic structure for creating reusable components works.</li>
-</ul>
+<p>Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the <code>Core</code> class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/game_showing_fps.png" alt="Figure 4-1: The game window showing the frames per second in the title bar of the window"></th>
+<th style="text-align: center;"><img src="images/game-window.png" alt="Figure 4-3: The game window at 1280x720 with the title Dungeon Slime"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 4-1: The game window showing the frames per second in the title bar of the window</strong></td>
+<td style="text-align: center;"><strong>Figure 4-3: The game window at 1280x720 with the title Dungeon Slime</strong></td>
 </tr>
 </tbody>
 </table>
-<div class="TIP">
-<h5>Tip</h5>
-<p>While this FPS counter is a simple example, it demonstrates the pattern we'll use throughout the tutorial: create reusable components in the library project, then reference and use them in games. This same approach will work for more complex components like sprite management, input handling, and collision detection.</p>
-</div>
 <div class="IMPORTANT">
 <h5>Important</h5>
 <p>If you receive an error stating that the following:</p>
 <p><em>The type or namespace name 'FramesPerSecondCounter' could not be found (are you missing a using directive or an assembly reference?)</em></p>
-<p>This means either you forgot to add the <code>using MonoGameLibrary;</code> using directive to the top of the <em>Game1.cs</em> class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the <a href="#adding-a-reference-to-the-class-library">Add a Refernece to the Class Library</a> section above and that you added the using directive.</p>
+<p>This means either you forgot to add the <code>using MonoGameLibrary;</code> using directive to the top of the <em>Game1.cs</em> class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the <a href="#adding-a-reference-to-the-class-library">Add a Reference to the Class Library</a> section above and that you added the using directive.</p>
 </div>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
@@ -427,7 +455,7 @@ public class Game1 : Game
 <li>Added the library as a reference to your game project</li>
 <li>Created your first reusable component and referenced and used it in the game project.</li>
 </ul>
-<p>In the next chapter, we'll go over MonoGame's Game Component system and how we can use it with our class library.</p>
+<p>In the next chapter, we'll learn about the Content Pipeline and how to load game assets.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are the main benefits of using a class library for game development?</p>
@@ -441,7 +469,7 @@ public class Game1 : Game
 </div>
 </li>
 <li><p>Why should you use the MonoGame Game Library template instead of a standard class library template?</p>
-<div class="question-anser"><p>The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.</p>
+<div class="question-answer"><p>The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.</p>
 </div>
 </li>
 <li><p>What happens if you don't add a reference to your class library in your game project?</p>

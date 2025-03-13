@@ -1024,9 +1024,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/02_getting_started/index.md",
       "output": {
@@ -1068,8 +1065,7 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "codesnippet-not-found"
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/index.md",
@@ -1082,10 +1078,50 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/game_showing_fps.png",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/game-window.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/game_showing_fps.png"
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/game-window.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library-diagram.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library-diagram.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png"
         }
       },
       "version": ""
@@ -1105,10 +1141,274 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/05_game_components/images/game_showing_fps.png",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/add-file-popup.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/05_game_components/images/game_showing_fps.png"
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/add-file-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/logo-drawn.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/logo-drawn.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-editor-icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-editor-icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-logo-added.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/mgcb-logo-added.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/new-file-popup.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/new-file-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/new-folder-popup.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/new-folder-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink",
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/icon-on-top-of-wordmark.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/icon-on-top-of-wordmark.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/icon-wordmark-centered.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/icon-wordmark-centered.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-centered.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-centered.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-drawn.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-drawn.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-flipped-horizontally-and-vertically.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-flipped-horizontally-and-vertically.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-flipped-horizontally.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-flipped-horizontally.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-green-tint.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-green-tint.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-half-transparency.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-half-transparency.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-off-center.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-off-center.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-rotated-centered.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-rotated-centered.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-rotated-offcenter.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-rotated-offcenter.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x-0.5x.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x-0.5x.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x-zero-origin.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x-zero-origin.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-scaled-1.5x.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-texture-regions.drawio",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-texture-regions.drawio"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-texture-regions.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/images/logo-texture-regions.png"
         }
       },
       "version": ""
@@ -1118,294 +1418,70 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/05_game_components/index.md",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/05_game_components/index.html"
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/add-file-popup.png",
+      "source_relative_path": "tutorials/building_2d_games/06_working_with_textures/videos/top-left-origin-rotation-example.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/add-file-popup.png"
+          "relative_path": "tutorials/building_2d_games/06_working_with_textures/videos/top-left-origin-rotation-example.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/content-pipeline-workflow-full.png",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/atlas.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/content-pipeline-workflow-full.png"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/atlas.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/content-pipeline-workflow-full.svg",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/logo-texture-regions.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/content-pipeline-workflow-full.svg"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/logo-texture-regions.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/logo-drawn.png",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/mgcb-editor-copy.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/logo-drawn.png"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/mgcb-editor-copy.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/logo.png",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/pong-atlas.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/logo.png"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/pong-atlas.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-editor-icon.png",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/slime-and-bat-rendered.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-editor-icon.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-editor.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-editor.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-logo-added.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/mgcb-logo-added.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-file-popup.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-file-popup.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-folder-popup.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/images/new-folder-popup.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/06_content_pipeline/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/06_content_pipeline/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/icon-on-top-of-wordmark.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/icon-on-top-of-wordmark.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/icon-wordmark-centered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/icon-wordmark-centered.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-centered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-centered.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-drawn.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-drawn.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-flipped-horizontally-and-vertically.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-flipped-horizontally-and-vertically.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-flipped-horizontally.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-flipped-horizontally.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-green-tint.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-green-tint.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-half-transparency.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-half-transparency.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-off-center.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-off-center.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-rotated-centered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-rotated-centered.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-rotated-offcenter.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-rotated-offcenter.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x-0.5x.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x-0.5x.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x-zero-origin.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x-zero-origin.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-scaled-1.5x.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-texture-regions.drawio",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-texture-regions.drawio"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-texture-regions.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/logo-texture-regions.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/images/top-left-origin-rotation-example.gif",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/images/top-left-origin-rotation-example.gif"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/images/slime-and-bat-rendered.png"
         }
       },
       "version": ""
@@ -1415,70 +1491,20 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/07_working_with_textures/index.md",
+      "source_relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/07_working_with_textures/index.html"
+          "relative_path": "tutorials/building_2d_games/07_optimizing_texture_rendering/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/atlas.png",
+      "source_relative_path": "tutorials/building_2d_games/08_the_sprite_class/images/slime-and-bat-rendered.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/atlas.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/logo-texture-regions.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/logo-texture-regions.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/mgcb-editor-copy.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/mgcb-editor-copy.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/pong-atlas.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/pong-atlas.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/slime-and-bat-rendered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/slime-and-bat-rendered.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/slime-rendered.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/images/slime-rendered.png"
+          "relative_path": "tutorials/building_2d_games/08_the_sprite_class/images/slime-and-bat-rendered.png"
         }
       },
       "version": ""
@@ -1488,20 +1514,20 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/index.md",
+      "source_relative_path": "tutorials/building_2d_games/08_the_sprite_class/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/08_optimizing_texture_rendering/index.html"
+          "relative_path": "tutorials/building_2d_games/08_the_sprite_class/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/09_the_sprite_class/images/slime-and-bat-rendered.png",
+      "source_relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/images/bat-animation-example.gif",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/09_the_sprite_class/images/slime-and-bat-rendered.png"
+          "relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/images/bat-animation-example.gif"
         }
       },
       "version": ""
@@ -1511,30 +1537,60 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/09_the_sprite_class/index.md",
+      "source_relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/09_the_sprite_class/index.html"
+          "relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/images/bat-animation-example.gif",
+      "source_relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/videos/slime-bat-animated.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/images/bat-animation-example.gif"
+          "relative_path": "tutorials/building_2d_games/09_the_animatedsprite_class/videos/slime-bat-animated.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/images/slime-bat-animated.gif",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/images/ps-controller-back.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/images/slime-bat-animated.gif"
+          "relative_path": "tutorials/building_2d_games/10_handling_input/images/ps-controller-back.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/images/ps-controller-front.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/10_handling_input/images/ps-controller-front.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/images/xbox-controller-back.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/10_handling_input/images/xbox-controller-back.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/images/xbox-controller-front.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/10_handling_input/images/xbox-controller-front.svg"
         }
       },
       "version": ""
@@ -1544,50 +1600,10 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/index.md",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/10_the_animatedsprite_class/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_handling_input/images/ps-controller-back.svg",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/11_handling_input/images/ps-controller-back.svg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_handling_input/images/ps-controller-front.svg",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/11_handling_input/images/ps-controller-front.svg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_handling_input/images/xbox-controller-back.svg",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/11_handling_input/images/xbox-controller-back.svg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/11_handling_input/images/xbox-controller-front.svg",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/11_handling_input/images/xbox-controller-front.svg"
+          "relative_path": "tutorials/building_2d_games/10_handling_input/index.html"
         }
       },
       "version": ""
@@ -1597,10 +1613,60 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/11_handling_input/index.md",
+      "source_relative_path": "tutorials/building_2d_games/11_input_management/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/11_handling_input/index.html"
+          "relative_path": "tutorials/building_2d_games/11_input_management/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/images/aabb-collision-example.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/images/aabb-collision-example.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/images/aabb-vs-non-aabb.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/images/aabb-vs-non-aabb.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/images/circle-collision.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/images/circle-collision.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/images/circle-distance-right-triangle.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/images/circle-distance-right-triangle.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/images/reflection-diagram.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/images/reflection-diagram.svg"
         }
       },
       "version": ""
@@ -1610,60 +1676,80 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/12_input_management/index.md",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/12_input_management/index.html"
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/images/aabb-collision-example.svg",
+      "source_relative_path": "tutorials/building_2d_games/12_collision_detection/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/images/aabb-collision-example.svg"
+          "relative_path": "tutorials/building_2d_games/12_collision_detection/videos/gameplay.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/images/aabb-vs-non-aabb.svg",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/bounce.wav",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/images/aabb-vs-non-aabb.svg"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/bounce.wav"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/images/circle-collision.svg",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/collect.wav",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/images/circle-collision.svg"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/collect.wav"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/images/circle-distance-right-triangle.svg",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/theme.mp3",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/images/circle-distance-right-triangle.svg"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/theme.mp3"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/images/reflection-diagram.svg",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/song-properties.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/images/reflection-diagram.svg"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/song-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/sound-effect-properties.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/sound-effect-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/xact-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/xact-editor.png"
         }
       },
       "version": ""
@@ -1673,114 +1759,53 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/index.md",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/index.html"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/videos/bat-bouncing-off-screen-edges.webm",
+      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/videos/bat-bouncing-off-screen-edges.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/videos/bat-respawns-when-eaten.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/videos/bat-respawns-when-eaten.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_collision_detection/videos/slime-contained-within-screen.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/13_collision_detection/videos/slime-contained-within-screen.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/bounce.wav",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/bounce.wav"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/collect.wav",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/collect.wav"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/theme.mp3",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/theme.mp3"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/song-properties.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/song-properties.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/sound-effect-properties.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/sound-effect-properties.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/xact-editor.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/xact-editor.png"
+          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/videos/gameplay.webm"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "codesnippet-not-found"
+        "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.md",
+      "source_relative_path": "tutorials/building_2d_games/14_audio_controller/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.html"
+          "relative_path": "tutorials/building_2d_games/14_audio_controller/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_audio_controller/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_audio_controller/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/files/04B_11.TTF",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/files/04B_11.TTF"
         }
       },
       "version": ""
@@ -1797,8 +1822,7 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/index.md",
@@ -1811,23 +1835,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/score.webm",
+      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/score.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/16_service_container/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/16_service_container/index.html"
+          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/gameplay.webm"
         }
       },
       "version": ""
@@ -1846,9 +1857,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Toc",
       "source_relative_path": "tutorials/building_2d_games/toc.yml",
       "output": {
