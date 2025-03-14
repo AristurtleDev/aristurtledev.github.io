@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1839,6 +1839,16 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/16_scenes/files/04B_30.TTF",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/16_scenes/files/04B_30.TTF"
         }
       },
       "version": ""
