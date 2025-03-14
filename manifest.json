@@ -1848,6 +1848,29 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/16_scenes/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/16_scenes/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/16_scenes/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/16_scenes/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/index.md",
       "output": {
         ".html": {
