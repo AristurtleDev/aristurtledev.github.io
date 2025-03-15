@@ -437,8 +437,9 @@ protected void Dispose(bool disposing)
 </ol>
 <h3 id="updating-the-core-class">Updating the Core Class</h3>
 <p>The <code>Core</code> class serves as our the base game class, so we'll update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="5,39-42,88-89,100-106,113-114">using System;
+<pre><code class="lang-csharp" highlight-lines="6,50-53,112-113,116-122,129-130">using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Audio;
@@ -448,12 +449,12 @@ namespace MonoGameLibrary;
 
 public class Core : Game
 {
-    internal static Core _instance;
+    internal static Core s_instance;
 
     /// &lt;summary&gt;
     /// Gets a reference to the Core instance.
     /// &lt;/summary&gt;
-    public static Core Instance =&gt; _instance;
+    public static Core Instance =&gt; s_instance;
 
     /// &lt;summary&gt;
     /// Gets the graphics device manager to control the presentation of graphics.
@@ -461,9 +462,19 @@ public class Core : Game
     public static GraphicsDeviceManager Graphics { get; private set; }
 
     /// &lt;summary&gt;
+    /// Gets the graphics device used to create graphical resources and perform primitive rendering.
+    /// &lt;/summary&gt;
+    public static new GraphicsDevice GraphicsDevice { get; private set; }
+
+    /// &lt;summary&gt;
     /// Gets the sprite batch used for all 2D rendering.
     /// &lt;/summary&gt;
     public static SpriteBatch SpriteBatch { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Gets the content manager used to load global assets.
+    /// &lt;/summary&gt;
+    public static new ContentManager Content { get; private set; }
 
     /// &lt;summary&gt;
     /// Gets a reference to to the input management system.
@@ -490,13 +501,13 @@ public class Core : Game
     public Core(string title, int width, int height, bool fullScreen)
     {
         // Ensure that multiple cores are not created.
-        if (_instance != null)
+        if (s_instance != null)
         {
             throw new InvalidOperationException($&quot;Only a single Core instance can be created&quot;);
         }
 
         // Store reference to engine for global member access.
-        _instance = this;
+        s_instance = this;
 
         // Create a new graphics device manager.
         Graphics = new GraphicsDeviceManager(this);
@@ -512,6 +523,10 @@ public class Core : Game
         // Set the window title
         Window.Title = title;
 
+        // Set the core's content manager to a reference of hte base Game's
+        // content manager.
+        Content = base.Content;
+
         // Set the root directory for content
         Content.RootDirectory = &quot;Content&quot;;
 
@@ -521,19 +536,20 @@ public class Core : Game
 
     protected override void Initialize()
     {
+        base.Initialize();
+
+        // Set the core's graphics device to a reference of the base Game's
+        // graphics device.
+        GraphicsDevice = base.GraphicsDevice;
+
+        // Create the sprite batch instance.
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
+
         // Create a new input manager
         Input = new InputManager();
 
         // Create a new audio controller.
         Audio = new AudioController();
-
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        // Create the sprite batch instance.
-        SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 
     protected override void UnloadContent()
@@ -571,7 +587,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp">using System;
+<pre><code class="lang-csharp" highlight-lines="39-40,58-59,79-80,183,207,260-276">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -609,6 +625,9 @@ public class Game1 : Core
     // The sound effect to play when the slime eats a bat.
     private SoundEffect _collectSoundEffect;
 
+    // The background theme song
+    private Song _themeSong;
+
     public Game1() : base(&quot;Dungeon Slime&quot;, 1280, 720, false)
     {
 
@@ -624,6 +643,9 @@ public class Game1 : Core
 
         // Assign the initial random velocity to the bat.
         AssignRandomBatVelocity();
+
+        // Start playing the background music
+        Audio.PlaySong(_themeSong);
     }
 
     protected override void LoadContent()
@@ -644,10 +666,7 @@ public class Game1 : Core
         _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
 
         // Load the background theme music
-        Song theme = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
-
-        // Start playing the background music
-        Audio.PlaySong(theme);
+        _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
 
         base.LoadContent();
     }
@@ -922,7 +941,9 @@ public class Game1 : Core
 </code></pre>
 <p>The key changes made here are:</p>
 <ol>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the audio manager is used to play the background theme song.</li>
+<li>The <code>_themeSong</code> field is added to store a reference to the background song to play.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the background theme song is loaded using hte content manager.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>, the audio manager is used to play the background theme song.</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a> the audio manager is used to play the bounce and collect sound effects.</li>
 <li>In <code>CheckKeyboardInput</code> the following checks were added
 <ol>

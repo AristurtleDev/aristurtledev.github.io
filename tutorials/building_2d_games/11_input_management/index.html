@@ -876,8 +876,9 @@ public void Update(GameTime gameTime)
 </ol>
 <h3 id="updating-the-core-class">Updating the Core Class</h3>
 <p>The <code>Core</code> class serves as our base game class, so we will update it to add and expose the <code>InputManager</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="5,28-36,77-83,91-102">using System;
+<pre><code class="lang-csharp" highlight-lines="6,39-47,103-104,112-115">using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Input;
@@ -886,12 +887,12 @@ namespace MonoGameLibrary;
 
 public class Core : Game
 {
-    internal static Core _instance;
+    internal static Core s_instance;
 
     /// &lt;summary&gt;
     /// Gets a reference to the Core instance.
     /// &lt;/summary&gt;
-    public static Core Instance =&gt; _instance;
+    public static Core Instance =&gt; s_instance;
 
     /// &lt;summary&gt;
     /// Gets the graphics device manager to control the presentation of graphics.
@@ -899,9 +900,19 @@ public class Core : Game
     public static GraphicsDeviceManager Graphics { get; private set; }
 
     /// &lt;summary&gt;
+    /// Gets the graphics device used to create graphical resources and perform primitive rendering.
+    /// &lt;/summary&gt;
+    public static new GraphicsDevice GraphicsDevice { get; private set; }
+
+    /// &lt;summary&gt;
     /// Gets the sprite batch used for all 2D rendering.
     /// &lt;/summary&gt;
     public static SpriteBatch SpriteBatch { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Gets the content manager used to load global assets.
+    /// &lt;/summary&gt;
+    public static new ContentManager Content { get; private set; }
 
     /// &lt;summary&gt;
     /// Gets a reference to to the input management system.
@@ -923,13 +934,13 @@ public class Core : Game
     public Core(string title, int width, int height, bool fullScreen)
     {
         // Ensure that multiple cores are not created.
-        if (_instance != null)
+        if (s_instance != null)
         {
             throw new InvalidOperationException($&quot;Only a single Core instance can be created&quot;);
         }
 
         // Store reference to engine for global member access.
-        _instance = this;
+        s_instance = this;
 
         // Create a new graphics device manager.
         Graphics = new GraphicsDeviceManager(this);
@@ -945,6 +956,10 @@ public class Core : Game
         // Set the window title
         Window.Title = title;
 
+        // Set the core's content manager to a reference of hte base Game's
+        // content manager.
+        Content = base.Content;
+
         // Set the root directory for content
         Content.RootDirectory = &quot;Content&quot;;
 
@@ -954,16 +969,17 @@ public class Core : Game
 
     protected override void Initialize()
     {
-        // Create a new input manager
-        Input = new InputManager();
-
         base.Initialize();
-    }
 
-    protected override void LoadContent()
-    {
+        // Set the core's graphics device to a reference of the base Game's
+        // graphics device.
+        GraphicsDevice = base.GraphicsDevice;
+
         // Create the sprite batch instance.
         SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+        // Create a new input manager
+        Input = new InputManager();
     }
 
     protected override void Update(GameTime gameTime)
@@ -971,7 +987,7 @@ public class Core : Game
         // Update the input manager
         Input.Update(gameTime);
 
-        if(ExitOnEscape &amp;&amp; Input.Keyboard.IsKeyDown(Keys.Escape))
+        if (ExitOnEscape &amp;&amp; Input.Keyboard.IsKeyDown(Keys.Escape))
         {
             Exit();
         }
@@ -985,7 +1001,7 @@ public class Core : Game
 <li>Added the <code>using MonoGameLibrary.Input;</code> directive to access the <code>InputManager</code> class.</li>
 <li>Added a static <code>Input</code> property to provide global access to the input manager.</li>
 <li>Added a static <code>ExitOnEscape</code> property to set whether the game should exit when the Escape key on the keyboard is pressed.</li>
-<li>Added an override for the <code>Initialize</code> method where the input manager is created.</li>
+<li>In <code>Initialize</code> the input manager is created.</li>
 <li>Added an override for the <code>Update</code> method where:
 <ol>
 <li>The input manager is updated</li>

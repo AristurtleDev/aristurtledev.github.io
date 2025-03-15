@@ -409,11 +409,11 @@ _spriteBatch.DrawString(
 <p>The key changes here are:</p>
 <ol>
 <li>The <code>&lt;FontName&gt;</code> element was updated to <code>04B_11.ttf</code>, the exact filename with extension of the TTF font we just downloaded.</li>
-<li>The <code>&lt;Size&gt;</code> element was updated to be <code>16</code>.</li>
+<li>The <code>&lt;Size&gt;</code> element was updated to be <code>32</code>.</li>
 </ol>
 <h3 id="updating-the-game">Updating the Game</h3>
 <p>Finally, open the <em>Game1.cs</em> file and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="39-43,54-61,90-91,220-221,360-361">using System;
+<pre><code class="lang-csharp" highlight-lines="42-46,57-64,96-97,226-227,366-367">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -451,6 +451,9 @@ public class Game1 : Core
     // The sound effect to play when the slime eats a bat.
     private SoundEffect _collectSoundEffect;
 
+    // The background theme song
+    private Song _themeSong;
+
     // The SpriteFont Description used to draw text
     private SpriteFont _font;
 
@@ -477,6 +480,9 @@ public class Game1 : Core
 
         // Assign the initial random velocity to the bat.
         AssignRandomBatVelocity();
+
+        // Start playing the background music
+        Audio.PlaySong(_themeSong);
     }
 
     protected override void LoadContent()
@@ -499,8 +505,8 @@ public class Game1 : Core
         // Load the background theme music
         Song theme = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
 
-        // Start playing the background music
-        Audio.PlaySong(theme);
+        // Load the background theme music
+        _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
 
         // Load the font
         _font = Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);

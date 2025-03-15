@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",

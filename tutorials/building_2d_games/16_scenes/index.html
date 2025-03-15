@@ -203,11 +203,11 @@ public bool IsDisposed { get; private set; }
 public Scene()
 {
     // Create a content manager for the scene
-    Content = new ContentManager(Core.Instance.Services);
+    Content = new ContentManager(Core.Content.ServiceProvider);
 
     // Set the root directory for content to the same as the root directory
     // for the game's content.
-    Content.RootDirectory = Core.Instance.Content.RootDirectory;
+    Content.RootDirectory = Core.Content.RootDirectory;
 }
 
 // Finalizer, called when object is cleaned up by garbage collector.
@@ -297,8 +297,9 @@ protected virtual void Dispose(bool disposing)
 }
 </code></pre><h2 id="scene-management">Scene Management</h2>
 <p>Now that we have the base <code>Scene</code> class defined, let's update the <code>Core</code> class to handle management of the scenes including update, drawing, and changing scenes.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="7,20-24,128-139,144-153,155-163,165-189">using System;
+<pre><code class="lang-csharp" highlight-lines="8,21-25,144-155,160-169,171-179,181-205">using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Audio;
@@ -328,9 +329,19 @@ public class Core : Game
     public static GraphicsDeviceManager Graphics { get; private set; }
 
     /// &lt;summary&gt;
+    /// Gets the graphics device used to create graphical resources and perform primitive rendering.
+    /// &lt;/summary&gt;
+    public static new GraphicsDevice GraphicsDevice { get; private set; }
+
+    /// &lt;summary&gt;
     /// Gets the sprite batch used for all 2D rendering.
     /// &lt;/summary&gt;
     public static SpriteBatch SpriteBatch { get; private set; }
+
+    /// &lt;summary&gt;
+    /// Gets the content manager used to load global assets.
+    /// &lt;/summary&gt;
+    public static new ContentManager Content { get; private set; }
 
     /// &lt;summary&gt;
     /// Gets a reference to to the input management system.
@@ -379,6 +390,10 @@ public class Core : Game
         // Set the window title
         Window.Title = title;
 
+        // Set the core's content manager to a reference of hte base Game's
+        // content manager.
+        Content = base.Content;
+
         // Set the root directory for content
         Content.RootDirectory = &quot;Content&quot;;
 
@@ -388,19 +403,20 @@ public class Core : Game
 
     protected override void Initialize()
     {
+        base.Initialize();
+
+        // Set the core's graphics device to a reference of the base Game's
+        // graphics device.
+        GraphicsDevice = base.GraphicsDevice;
+
+        // Create the sprite batch instance.
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
+
         // Create a new input manager
         Input = new InputManager();
 
         // Create a new audio controller.
         Audio = new AudioController();
-
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        // Create the sprite batch instance.
-        SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 
     protected override void UnloadContent()
@@ -419,14 +435,14 @@ public class Core : Game
         // Update the audio controller.
         Audio.Update();
 
-        if (ExitOnEscape &amp;&amp; Input.Keyboard.IsKeyDown(Keys.Escape))
+        if (ExitOnEscape &amp;&amp; Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
             Exit();
         }
 
         // if there is a next scene waiting to be switch to, then transition
         // to that scene
-        if(s_nextScene != null)
+        if (s_nextScene != null)
         {
             TransitionScene();
         }
@@ -464,7 +480,7 @@ public class Core : Game
     private static void TransitionScene()
     {
         // If there is an active scene, dispose of it
-        if(s_activeScene != null)
+        if (s_activeScene != null)
         {
             s_activeScene.Dispose();
         }
@@ -481,7 +497,7 @@ public class Core : Game
         // If the active scene now is not null, initialize it.
         // Remember, just like with Game, the Initialize call also calls the
         // Scene.LoadContent
-        if(s_activeScene != null)
+        if (s_activeScene != null)
         {
             s_activeScene.Initialize();
         }
@@ -621,34 +637,30 @@ private Vector2 _slimePos;
     // can close the game by pressing the escape key.
     Core.ExitOnEscape = true;
 
-    // Get a reference to the graphics device
-    GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
     // Precalculate the positions and origins for texts and the slime sprite
     // so we're not calculating it every draw frame.
     _titlePos = new Vector2(
-        graphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
+        Core.GraphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
         100);
 
     Vector2 titleSize = _titleFont.MeasureString(TITLE);
     _titleOrigin = titleSize * 0.5f;
 
     _pressEnterPos = new Vector2(
-        graphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
-        graphicsDevice.PresentationParameters.BackBufferHeight - 100
+        Core.GraphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
+        Core.GraphicsDevice.PresentationParameters.BackBufferHeight - 100
     );
 
     Vector2 pressEnterSize = _standardFont.MeasureString(PRESS_ENTER);
     _pressEnterOrigin = pressEnterSize * 0.5f;
 
     _slimePos = new Vector2(
-        graphicsDevice.PresentationParameters.BackBufferWidth,
-        graphicsDevice.PresentationParameters.BackBufferHeight
+        Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
+        Core.GraphicsDevice.PresentationParameters.BackBufferHeight
     ) * 0.5f;
 
     _slime.CenterOrigin();
     _slime.Scale = new Vector2(5.0f, 5.0f);
-
 }
 </code></pre>
 <ul>
@@ -662,36 +674,23 @@ private Vector2 _slimePos;
 <p>Add the following override for the <code>LoadContent</code> method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">public override void LoadContent()
 {
-    // Get a reference to the global content manager.  For content that is
-    // used throughout the game in multiple scenes, we'll load with the
-    // global content manager.  For any content that is used on within this
-    // scene, we'll use the scene's specific content manager.
-    ContentManager globalContent = Core.Instance.Content;
-
     // Load the font for the title text
     _titleFont = Content.Load&lt;SpriteFont&gt;(&quot;fonts/titleFont&quot;);
 
     // Load the font for the standard txt.
-    _standardFont = globalContent.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
+    _standardFont = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
 
     // Create a texture atlas from the XML configuration file.
-    TextureAtlas atlas = TextureAtlas.FromFile(globalContent, &quot;images/atlas-definition.xml&quot;);
+    TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
 
     // Create the slime animated sprite from the atlas.
     _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
-
-    // Load the background theme music
-    Song theme = globalContent.Load&lt;Song&gt;(&quot;audio/theme&quot;);
-
-    // Start playing the background music
-    Core.Audio.PlaySong(theme);
 }
 </code></pre>
 <ul>
 <li>We capture a reference to the content manager from the <code>Core</code> class.  This content manager is used to load content that is used in multiple scenes, so it acts as a global content manager.</li>
 <li>The fonts are loaded. The title font is only used on the title screen, so it's loaded using the scene's content manager, while the standard font is loaded using the global content manager.</li>
 <li>The texture atlas is loaded and the slime animated sprite is created.</li>
-<li>The background theme song is loaded and played using the core audio system we created previously.</li>
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
@@ -724,10 +723,7 @@ private Vector2 _slimePos;
 <p>Add the following override for the <code>Draw</code> method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
 {
-    // Get a reference to the graphics device
-    GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
-    graphicsDevice.Clear(new Color(32, 40, 78, 255));
+    Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
 
     // Begin the sprite batch to prepare for rendering.
     Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -852,14 +848,8 @@ private int _score;
 <p>Add the following override for the <code>LoadContent</code> method to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">public override void LoadContent()
 {
-    // Get a reference to the global content manager.  For content that is
-    // used throughout the game in multiple scenes, we'll load with the
-    // global content manager.  For any content that is used on within this
-    // scene, we'll use the scene's specific content manager.
-    ContentManager globalContent = Core.Instance.Content;
-
     // Create the texture atlas from the XML configuration file
-    TextureAtlas atlas = TextureAtlas.FromFile(globalContent, &quot;images/atlas-definition.xml&quot;);
+    TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
 
     // Create the slime animated sprite from the atlas.
     _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
@@ -874,7 +864,7 @@ private int _score;
     _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
 
     // Load the font
-    _font = globalContent.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
+    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
 }
 </code></pre>
 <ul>
@@ -891,9 +881,6 @@ private int _score;
 <p>Add the following override for the <code>Update</code> method to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Update(GameTime gameTime)
 {
-    // Get a reference to the graphics device
-    GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
     // Update the slime animated sprite.
     _slime.Update(gameTime);
 
@@ -910,8 +897,8 @@ private int _score;
     Rectangle screenBounds = new Rectangle(
         0,
         0,
-        graphicsDevice.PresentationParameters.BackBufferWidth,
-        graphicsDevice.PresentationParameters.BackBufferHeight
+        Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
+        Core.GraphicsDevice.PresentationParameters.BackBufferHeight
     );
 
     // Creating a bounding circle for the slime
@@ -996,8 +983,8 @@ private int _score;
     {
         // Divide the width  and height of the screen into equal columns and
         // rows based on the width and height of the bat.
-        int totalColumns = graphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-        int totalRows = graphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+        int totalColumns = Core.GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
+        int totalRows = Core.GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
 
         // Choose a random row and column based on the total number of each
         int column = Random.Shared.Next(0, totalColumns);
@@ -1166,11 +1153,8 @@ private void CheckGamePadInput()
 <p>Add the following override for the <code>Draw</code> method to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
 {
-    // Get a reference to the graphics device
-    GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
     // Clear the back buffer.
-    graphicsDevice.Clear(Color.CornflowerBlue);
+    Core.GraphicsDevice.Clear(Color.CornflowerBlue);
 
     // Begin the sprite batch to prepare for rendering.
     Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -1197,12 +1181,16 @@ private void CheckGamePadInput()
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>With our scene system and scene classes in place, we can now simplify our main <code>Game1</code> class to just initialize the game and start with the title scene. Open the <em>Game1.cs</em> file and update it to the following:</p>
 <pre><code class="lang-csharp">using DungeonSlime.Scenes;
+using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
 
 namespace DungeonSlime;
 
 public class Game1 : Core
 {
+    // The background theme song
+    private Song _themeSong;
+
     public Game1() : base(&quot;Dungeon Slime&quot;, 1280, 720, false)
     {
 
@@ -1212,8 +1200,19 @@ public class Game1 : Core
     {
         base.Initialize();
 
+        // Start playing the background music
+        Audio.PlaySong(_themeSong);
+
         // Start the game with the title scene.
         ChangeScene(new TitleScene());
+    }
+
+    protected override void LoadContent()
+    {
+        base.LoadContent();
+
+        // Load the background theme music
+        _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
     }
 }
 </code></pre>
@@ -1222,6 +1221,7 @@ public class Game1 : Core
 <li>Inherits from our <code>Core</code> class instead of the MonoGame Game class.</li>
 <li>Sets up the game window with the constructor parameters.</li>
 <li>Overrides the <code>Initialize</code> method to set the title scene as the starting scene.</li>
+<li>Overrides the <code>LoadContent</code> method to load the background theme song and start playing it.</li>
 </ol>
 <p>Running the game now, we can see that once the game screen comes up, the title scene is displayed with the animated slime and the press enter prompt.  The background music starts playing on this scene as well.  Pressing enter from here will switch to the game scene where the game starts and we can play the game implemented thus far.</p>
 <table>
