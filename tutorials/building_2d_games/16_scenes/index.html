@@ -134,7 +134,7 @@
 <li>Create a title scene and gameplay scene for our game</li>
 <li>Refactor our existing game to use the scene system</li>
 </ul>
-<p>Let's start by first defining the lifecycle of a scene that will be followed.</p>
+<p>We will being by first defining the lifecycle of a scene that will be followed.</p>
 <h2 id="scene-lifecycle">Scene Lifecycle</h2>
 <p>In Chapter 03, you learned the basic <a href="../03_the_game1_file/index.html#exploring-the-game1-class">lifecycle of the <code>Game</code> class</a>.  To be consistent, we can borrow from this lifecycle and adapt it for our scenes. The order of operations for this lifecycle will be:</p>
 <ol>
@@ -149,7 +149,6 @@
 </ol>
 </li>
 </ol>
-<p>With this in mind, let's start by  creating the base <code>Scene</code> class.</p>
 <h2 id="the-scene-base-class">The Scene Base Class</h2>
 <p>The base <code>Scene</code> class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we'll create concrete implementations of this, like a title scene.</p>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
@@ -172,7 +171,7 @@ public abstract class Scene : IDisposable
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Each <code>Scene</code> implements the <code>IDisposable</code> interface.</p>
+<p>Just like with the <code>AudioController</code> in <a href="../14_audio_controller/index.html#audiocontroller-idisposable-implementation">Chapter 14</a>, each <code>Scene</code> implements the <code>IDisposable</code> interface.  This provides a standardized in method to release the resources held by a scene when it is no longer needed.</p>
 </div>
 </li>
 </ol>
@@ -193,7 +192,7 @@ public bool IsDisposed { get; private set; }
 </code></pre>
 <ul>
 <li>The <code>Content</code> property is the scene's personal <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> that can be used to load scene specific content that will be unloaded when the scene ends.  This helps manage memory usage by only loading what is needed for a specific scene.</li>
-<li>The <code>IsDisposable</code> property is used to track if the scene has been disposed of since it implements the <code>IDisposable</code> interface.</li>
+<li>The <code>IsDisposed</code> property is used to track if the scene has been disposed of since it implements the <code>IDisposable</code> interface.</li>
 </ul>
 <h3 id="scene-constructor">Scene Constructor</h3>
 <p>Add the following constructor and finalizer to the <code>Scene</code> class:</p>
@@ -296,7 +295,7 @@ protected virtual void Dispose(bool disposing)
     }
 }
 </code></pre><h2 id="scene-management">Scene Management</h2>
-<p>Now that we have the base <code>Scene</code> class defined, let's update the <code>Core</code> class to handle management of the scenes including update, drawing, and changing scenes.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and make the following changes:</p>
+<p>With the base <code>Scene</code> class defined, the <code>Core</code> class needs to be updated to handle management of the scenes, including update, drawing, and changing scenes.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and make the following changes:</p>
 <pre><code class="lang-csharp" highlight-lines="8,21-25,144-155,160-169,171-179,181-205">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -530,7 +529,7 @@ public class Core : Game
 <p>Notice that we use a two-step process for scene transitions with separate <code>_activeScene</code> and <code>_nextScene</code> fields. This design allows the current scene to complete its update/draw cycle before the transition occurs, preventing potential issues that could arise from changing scenes in the middle of processing. The actual transition happens at a controlled point in the game loop, ensuring clean disposal of the old scene before initializing the new one.</p>
 </div>
 <h2 id="adding-scenes-to-our-game">Adding Scenes To Our Game</h2>
-<p>Now that we have the scene architecture setup, let's break our current game into actual scenes.  We'll create two scenes; a title scene and a gameplay scene.</p>
+<p>With the scene architecture in place, the game can be broken down into scenes.  We will create two scenes; a title scene and a gameplay scene.</p>
 <h3 id="the-title-scene">The Title Scene</h3>
 <p>The title scene that will serve as our game's main menu. This scene will display the game title, a prompt to start the game, and an animated slime to give the scene some life.</p>
 <p>Before we implement the Title Scene, we need to create a font for the title text. Open the <em>Content.mgcb</em> content project in the MGCB Editor and:</p>
@@ -564,7 +563,7 @@ public class Core : Game
 <ul>
 <li><a href="files/04B_30.TTF">04B_30.ttf</a></li>
 </ul>
-<p>Now let's implement the Title Scene.  In the main game project:</p>
+<p>Next, create the <code>TitleScene</code> class file. In the main game project:</p>
 <ol>
 <li><p>Create a new directory named <em>Scenes</em>.  We'll put all of our game specific scenes here.</p>
 </li>
@@ -637,26 +636,29 @@ private Vector2 _slimePos;
     // can close the game by pressing the escape key.
     Core.ExitOnEscape = true;
 
+    // Get the bounds of the screen for position calculations
+    Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+
     // Precalculate the positions and origins for texts and the slime sprite
     // so we're not calculating it every draw frame.
     _titlePos = new Vector2(
-        Core.GraphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
+        screenBounds.Width * 0.5f,
         100);
 
     Vector2 titleSize = _titleFont.MeasureString(TITLE);
     _titleOrigin = titleSize * 0.5f;
 
     _pressEnterPos = new Vector2(
-        Core.GraphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
-        Core.GraphicsDevice.PresentationParameters.BackBufferHeight - 100
+        screenBounds.Width * 0.5f,
+        screenBounds.Height - 100
     );
 
     Vector2 pressEnterSize = _standardFont.MeasureString(PRESS_ENTER);
     _pressEnterOrigin = pressEnterSize * 0.5f;
 
     _slimePos = new Vector2(
-        Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
-        Core.GraphicsDevice.PresentationParameters.BackBufferHeight
+        screenBounds.Width,
+        screenBounds.Height
     ) * 0.5f;
 
     _slime.CenterOrigin();
@@ -689,7 +691,7 @@ private Vector2 _slimePos;
 </code></pre>
 <ul>
 <li>We capture a reference to the content manager from the <code>Core</code> class.  This content manager is used to load content that is used in multiple scenes, so it acts as a global content manager.</li>
-<li>The fonts are loaded. The title font is only used on the title screen, so it's loaded using the scene's content manager, while the standard font is loaded using the global content manager.</li>
+<li>The fonts are loaded. The title font is only used on the title screen, so it is loaded using the scene's content manager, while the standard font is loaded using the global content manager.</li>
 <li>The texture atlas is loaded and the slime animated sprite is created.</li>
 </ul>
 <div class="TIP">
@@ -871,7 +873,7 @@ private int _score;
 <li>Similar to the title scene, we capture a reference to the global content manager from the <code>Core</code> class.</li>
 <li>The texture atlas is loaded using the global content manager, and the slime and bat animated sprites are created from it.</li>
 <li>The sound effects are loaded using the scene's content manager since they're specific to the gameplay scene.</li>
-<li>The font is loaded using the global content manager since it's used in multiple scenes.</li>
+<li>The font is loaded using the global content manager since it is used in multiple scenes.</li>
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
@@ -894,12 +896,7 @@ private int _score;
     CheckGamePadInput();
 
     // Create a bounding rectangle for the screen
-    Rectangle screenBounds = new Rectangle(
-        0,
-        0,
-        Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
-        Core.GraphicsDevice.PresentationParameters.BackBufferHeight
-    );
+    Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
 
     // Creating a bounding circle for the slime
     Circle slimeBounds = new Circle(
@@ -983,8 +980,8 @@ private int _score;
     {
         // Divide the width  and height of the screen into equal columns and
         // rows based on the width and height of the bat.
-        int totalColumns = Core.GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-        int totalRows = Core.GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+        int totalColumns = screenBounds.Width / (int)_bat.Width;
+        int totalRows = screenBounds.Height / (int)_bat.Height;
 
         // Choose a random row and column based on the total number of each
         int column = Random.Shared.Next(0, totalColumns);
@@ -1237,9 +1234,9 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
-<li>Learned about scene management and why it's important for organizing game code.</li>
+<li>Learned about scene management and why it is important for organizing game code.</li>
 <li>Created an abstract <code>Scene</code> base class that provides a consistent lifecycle similar to the MonoGame <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class.</li>
 <li>Implemented the <code>IDisposable</code> interface to properly handle resource cleanup.</li>
 <li>Extended the <code>Core</code> class to handle scene transitions and management.</li>
@@ -1272,7 +1269,7 @@ public class Game1 : Core
 </ul>
 </div>
 </li>
-<li><p>What's the purpose of having a separate <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> for each scene?</p>
+<li><p>What is the purpose of having a separate <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> for each scene?</p>
 <div class="question-answer"><p>Having a separate <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> for each scene:</p>
 <ul>
 <li>Allows scene-specific content to be automatically unloaded when the scene is disposed.</li>
