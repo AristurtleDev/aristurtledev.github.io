@@ -1191,9 +1191,21 @@ public class Game1 : Core
 <p>The key changes to the <code>Game1</code> class are:</p>
 <ol>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the <code>ExitOnEscape</code> property and the <code>Update</code> method of the <code>Core</code> class.</li>
-<li>In <code>CheckKeyboardInput</code> and <code>CheckGamepadInput</code>, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input</li>
+<li>In <code>CheckKeyboardInput</code> and <code>CheckGamepadInput</code>, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input.</li>
 </ol>
 <p>Running the game now, you will be able to control it the same as before, only now we're using our new <code>InputManager</code> class instead.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/input-moving-slime.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 11-1: The slime moving around based on device input</strong></td>
+</tr>
+</tbody>
+</table>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you learned how to:</p>
 <ul>

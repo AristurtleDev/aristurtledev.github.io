@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1609,6 +1609,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/10_handling_input/videos/input-moving-slime.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/10_handling_input/videos/input-moving-slime.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
@@ -1617,6 +1627,16 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/11_input_management/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/11_input_management/videos/input-moving-slime.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/11_input_management/videos/input-moving-slime.webm"
         }
       },
       "version": ""
@@ -1696,60 +1716,124 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/bounce.wav",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/atlas.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/bounce.wav"
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/atlas.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/collect.wav",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/mgcb-editor.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/collect.wav"
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/mgcb-editor.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/theme.mp3",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/tileset-grid-comparison.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/files/theme.mp3"
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/tileset-grid-comparison.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/song-properties.png",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/tileset-to-tilemap-example.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/song-properties.png"
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/images/tileset-to-tilemap-example.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound",
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/sound-effect-properties.png",
+      "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/sound-effect-properties.png"
+          "relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/videos/gameplay.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/xact-editor.png",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/bounce.wav",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/images/xact-editor.png"
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/bounce.wav"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/collect.wav",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/collect.wav"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/theme.ogg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/files/theme.ogg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/song-properties.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/song-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/sound-effect-properties.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/sound-effect-properties.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/xact-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/images/xact-editor.png"
         }
       },
       "version": ""
@@ -1759,20 +1843,20 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/index.md",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/index.html"
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/13_soundeffects_and_music/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/14_soundeffects_and_music/videos/gameplay.webm"
         }
       },
       "version": ""
@@ -1782,40 +1866,40 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/14_audio_controller/index.md",
+      "source_relative_path": "tutorials/building_2d_games/15_audio_controller/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/14_audio_controller/index.html"
+          "relative_path": "tutorials/building_2d_games/15_audio_controller/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/14_audio_controller/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/15_audio_controller/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/14_audio_controller/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/15_audio_controller/videos/gameplay.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/files/04B_11.TTF",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/files/04B_11.TTF"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/images/font_added.png",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/images/font_added.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/images/font_added.png"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/images/font_added.png"
         }
       },
       "version": ""
@@ -1825,53 +1909,54 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/index.md",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/index.html"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/15_working_with_spritefonts/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/videos/gameplay.webm"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/16_scenes/files/04B_30.TTF",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/16_scenes/files/04B_30.TTF"
+          "relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/16_scenes/index.md",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/16_scenes/index.html"
+          "relative_path": "tutorials/building_2d_games/17_scenes/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/16_scenes/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/16_scenes/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/17_scenes/videos/gameplay.webm"
         }
       },
       "version": ""
@@ -1890,6 +1975,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "tutorials/building_2d_games/toc.yml",
       "output": {

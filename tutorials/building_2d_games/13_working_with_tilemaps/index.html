@@ -1,0 +1,1014 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-13-working-with-tilemaps">Chapter 13: Working with Tilemaps</h1>
+<p class="text-secondary">Learn how to implement tile-based game environments using tilemaps and tilesets, including creating reusable classes for managing tiles and loading level designs from XML configuration files.</p>
+<p>In the previous chapters, you've learned how to draw individual sprites and animated sprites from a texture atlas and handle collision detection.  However, the game so far is lacking an actual world or environment to exist in; it's just sprites on a cornflower blue background.  Most 2D games feature game worlds built from many tiles arranged in a grid-like patten.  These <em>tilemaps</em> allow you to efficiently create large game environments without managing thousands of individual sprites.</p>
+<p>In this chapter you will:</p>
+<ul>
+<li>Learn what tilemaps are and how they're used in game development.</li>
+<li>Create a <code>Tileset</code> class to manage collections of related tiles.</li>
+<li>Build a <code>Tilemap</code> class to render tile-based game worlds.</li>
+<li>Implement an XML-based tilemap loading system.</li>
+<li>Update our game to use tilemaps for the game environment.</li>
+</ul>
+<h2 id="understanding-tilemaps">Understanding Tilemaps</h2>
+<p>Tilemaps are a common technique used in 2D game development to create game worlds. Instead of positioning individual sprites for each element in the game world, a tilemap divides the world into a grid and places tiles from a <em>tileset</em> at each grid position.</p>
+<h3 id="what-is-a-tileset">What is a Tileset?</h3>
+<p>A tileset is a collection of small images (tiles) that can be combined and arranged to create game environments.  Typically these are stored in a single texture atlas, similar to how we've been handing sprites and animations.  Common examples of tiles might include:</p>
+<ul>
+<li>Floor and ground tiles.</li>
+<li>Walls and obstacle tiles.</li>
+<li>Decorative elements like plants and furniture.</li>
+<li>Special tiles like doors, ladders, or water.</li>
+</ul>
+<p>Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we'll add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/tileset-grid-comparison.png" alt="Figure 13-1: Left: Original dungeon tileset. Right: The same tileset with an overlay showing how each tile is assigned a numeric ID"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-1: Left: Original dungeon tileset.  Right: The same tileset with an overlay showing how each tile is assigned a numeric ID</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-is-a-tilemap">What is a Tilemap?</h3>
+<p>A tilemap is a grid-based data structure that defines while tiles from a tileset appear at each position in the game world. The tilemap stores an ID for each cell in the grid, where the ID corresponds to a specific tile in the tileset.</p>
+<p>For example, a simple tilemap may look like this conceptually:</p>
+<pre><code class="lang-text">00 01 02 01 03
+04 05 06 05 07
+08 09 10 09 11
+04 09 09 09 07
+12 13 14 13 15
+</code></pre>
+<p>If we took the above tilemap data and mapped each cell to the tile in the related tileset, it would look something similar to Figure 13-2 below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/tileset-to-tilemap-example.png" alt="Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This approach offers several advantage:</p>
+<ol>
+<li><strong>Memory efficiency</strong>: Instead of storing complete information about each tile's appearance, you only need to store a reference ID.</li>
+<li><strong>Performance</strong>: Drawing a tilemap can be optimized to reduce texture swapping compared to rendering many individual sprites.</li>
+<li><strong>Design flexibility</strong>: Tilemaps make it easy to create, modify, and load level designs from external files.</li>
+</ol>
+<p>Let's implement this concept in our game by creating a <code>Tileset</code> class and a <code>Tilemap</code> class.</p>
+<h2 id="the-tileset-class">The Tileset Class</h2>
+<p>The <code>Tileset</code> class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a <code>TextureRegion</code>, building on the tools in the library we created earlier.</p>
+<p>In the <em>Graphics</em> directory of the <em>MonoGameLibrary</em> project, create a new file named <em>Tileset.cs</em> with the following code as the initial structure:</p>
+<pre><code class="lang-csharp">namespace MonoGameLibrary.Graphics;
+
+public class Tileset
+{
+
+}
+</code></pre><h3 id="tileset-properties-and-fields">Tileset Properties and Fields</h3>
+<p>The <code>Tileset</code> class needs to store a <code>TextureRegion</code> for each of the individual tiles in the tile set and provide the dimensions (with and height) of the tiles.  It should also offers additional properties that provide the total number of rows and columns in the tileset and the total number of tiles.  Add the following fields and properties:</p>
+<pre><code class="lang-csharp">private readonly TextureRegion[] _tiles;
+
+/// &lt;summary&gt;
+/// Gets the width, in pixels, of each tile in this tileset.
+/// &lt;/summary&gt;
+public int TileWidth { get; }
+
+/// &lt;summary&gt;
+/// Gets the height, in pixels, of each tile in this tileset.
+/// &lt;/summary&gt;
+public int TileHeight { get; }
+
+/// &lt;summary&gt;
+/// Gets the total number of columns in this tileset.
+/// &lt;/summary&gt;
+public int Columns { get; }
+
+/// &lt;summary&gt;
+/// Gets the total number of rows in this tileset.
+/// &lt;/summary&gt;
+public int Rows { get; }
+
+/// &lt;summary&gt;
+/// Gets the total number of tiles in this tileset.
+/// &lt;/summary&gt;
+public int Count { get; }
+</code></pre><h3 id="tileset-constructor">Tileset Constructor</h3>
+<p>The <code>Tileset</code> class constructor should require a source <code>TextureRegion</code> that represents the tileset and the width and height of the tiles.  Based on these parameters provided, it can automatically divide the source <code>TextureRegion</code> into a grid of smaller texture regions and calculate the total number of rows, columns, and tiles. Add the following constructor:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Creates a new tileset based on the given texture region with the specified
+/// tile width and height.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;textureRegion&quot;&gt;The texture region that contains the tiles for the tileset.&lt;/param&gt;
+/// &lt;param name=&quot;tileWidth&quot;&gt;The width of each tile in the tileset.&lt;/param&gt;
+/// &lt;param name=&quot;tileHeight&quot;&gt;The height of each tile in the tileset.&lt;/param&gt;
+public Tileset(TextureRegion textureRegion, int tileWidth, int tileHeight)
+{
+    TileWidth = tileWidth;
+    TileHeight = tileHeight;
+    Columns = textureRegion.Width / tileWidth;
+    Rows = textureRegion.Height / tileHeight;
+    Count = Columns * Rows;
+
+    // Create the texture regions that make up each individual tile
+    _tiles = new TextureRegion[Count];
+
+    for (int i = 0; i &lt; Count; i++)
+    {
+        int x = i % Columns * tileWidth;
+        int y = i / Columns * tileHeight;
+        _tiles[i] = new TextureRegion(textureRegion.Texture, x, y, tileWidth, tileHeight);
+    }
+}
+</code></pre><h3 id="tileset-methods">Tileset Methods</h3>
+<p>The <code>Tileset</code> class needs to provide methods to retrieve the <code>TextureRegion</code> of a tile based on the index (tile ID) or by the location (row and column) of the tile in the tileset.  Add the following methods:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Gets the texture region for the tile from this tileset at the given index.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;index&quot;&gt;The index of the texture region in this tile set.&lt;/param&gt;
+/// &lt;returns&gt;The texture region for the tile form this tileset at the given index.&lt;/returns&gt;
+public TextureRegion GetTile(int index) =&gt; _tiles[index];
+
+/// &lt;summary&gt;
+/// Gets the texture region for the tile from this tileset at the given location.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;column&quot;&gt;The column in this tileset of the texture region.&lt;/param&gt;
+/// &lt;param name=&quot;row&quot;&gt;The row in this tileset of the texture region.&lt;/param&gt;
+/// &lt;returns&gt;The texture region for the tile from this tileset at given location.&lt;/returns&gt;
+public TextureRegion GetTile(int column, int row)
+{
+    int index = row * Columns + column;
+    return GetTile(index);
+}
+</code></pre><h2 id="the-tilemap-class">The Tilemap Class</h2>
+<p>Now that we have a <code>Tileset</code> class to define our tile collection, we need a <code>Tilemap</code> class to arrange these tiles into a game level.  The <code>Tilemap</code> class will store which tile goes where in our game world and provide methods to draw the entire map.</p>
+<p>In the <em>Graphics</em> directory of the <em>MonoGameLibrary</em> project, create a new file named <em>Tilemap.cs</em> with the following code as the initial structure:</p>
+<pre><code class="lang-csharp">using System;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MonoGameLibrary.Graphics;
+
+public class Tilemap
+{
+
+}
+</code></pre><h3 id="tilemap-properties-and-fields">Tilemap Properties and Fields</h3>
+<p>The <code>Tilemap</code> class needs to store a reference to the tileset being used, along with an array of the tile IDs representing each tile in the map.  It should also offer additional properties that provide the total number of rows and columns are in the tilemap and the total number of tiles.  Add the following fields and properties:</p>
+<pre><code class="lang-csharp">private readonly Tileset _tileset;
+private readonly int[] _tiles;
+
+/// &lt;summary&gt;
+/// Gets the total number of rows in this tilemap.
+/// &lt;/summary&gt;
+public int Rows { get; }
+
+/// &lt;summary&gt;
+/// Gets the total number of columns in this tilemap.
+/// &lt;/summary&gt;
+public int Columns { get; }
+
+/// &lt;summary&gt;
+/// Gets the total number of tiles in this tilemap.
+/// &lt;/summary&gt;
+public int Count { get; }
+
+/// &lt;summary&gt;
+/// Gets the size of each tile in this tilemap.
+/// &lt;/summary&gt;
+public int TileSize { get; }
+</code></pre><h3 id="tilemap-constructor">Tilemap Constructor</h3>
+<p>The <code>Tilemap</code> constructor should require the <code>Tilemap</code> to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.  Add the following constructor:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Creates a new tilemap.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;tileset&quot;&gt;The tileset used by this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;columns&quot;&gt;The total number of columns in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;rows&quot;&gt;The total number of rows in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;tileSize&quot;&gt;The size of each tile in this tilemap.&lt;/param&gt;
+public Tilemap(Tileset tileset, int columns, int rows, int tileSize)
+{
+    _tileset = tileset;
+    Rows = rows;
+    Columns = columns;
+    Count = Columns * Rows;
+    TileSize = tileSize;
+    _tiles = new int[Count];
+}
+</code></pre><h3 id="tilemap-tile-management-methods">Tilemap Tile Management Methods</h3>
+<p>The <code>Tilemap</code> class should provide methods to set and retrieve tiles, either by index or location (rows and column).  Add the following methods:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Sets the tile at the given index in this tilemap to use the tile from
+/// the tileset at the specified tileset id.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;index&quot;&gt;The index of the tile in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;tilesetID&quot;&gt;The tileset id of the tile from the tileset to use.&lt;/param&gt;
+public void SetTile(int index, int tilesetID)
+{
+    _tiles[index] = tilesetID;
+}
+
+/// &lt;summary&gt;
+/// Sets the tile at the given column and row in this tilemap to use the tile
+/// from the tileset at the specified tileset id.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;column&quot;&gt;The column of the tile in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;row&quot;&gt;The row of the tile in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;tilesetID&quot;&gt;The tileset id of the tile from the tileset to use.&lt;/param&gt;
+public void SetTile(int column, int row, int tilesetID)
+{
+    int index = row * Columns + column;
+    SetTile(index, tilesetID);
+}
+
+/// &lt;summary&gt;
+/// Gets the texture region of the tile from this tilemap at the specified index.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;index&quot;&gt;The index of the tile in this tilemap.&lt;/param&gt;
+/// &lt;returns&gt;The texture region of the tile from this tilemap at the specified index.&lt;/returns&gt;
+public TextureRegion GetTile(int index)
+{
+    return _tileset.GetTile(_tiles[index]);
+}
+
+/// &lt;summary&gt;
+/// Gets the texture region of the tile frm this tilemap at the specified
+/// column and row.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;column&quot;&gt;The column of the tile in this tilemap.&lt;/param&gt;
+/// &lt;param name=&quot;row&quot;&gt;The row of hte tile in this tilemap.&lt;/param&gt;
+/// &lt;returns&gt;The texture region of the tile from this tilemap at the specified column and row.&lt;/returns&gt;
+public TextureRegion GetTile(int column, int row)
+{
+    int index = row * Columns + column;
+    return GetTile(index);
+}
+</code></pre><h3 id="tilemap-draw-method">Tilemap Draw Method</h3>
+<p>The <code>Tilemap</code> class should provide a method to draw the tilemap by iterating through each of the tiles and drawing the <code>TextureRegion</code> for that tile at its correct position.  Add the following method:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Draws this tilemap using the given sprite batch.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;spriteBatch&quot;&gt;The sprite batch used to draw this tilemap.&lt;/param&gt;
+public void Draw(SpriteBatch spriteBatch)
+{
+    for (int i = 0; i &lt; Count; i++)
+    {
+        int tileSetIndex = _tiles[i];
+        TextureRegion tile = _tileset.GetTile(tileSetIndex);
+
+        int x = i % Columns;
+        int y = i / Columns;
+
+        Vector2 position = new Vector2(x * TileSize, y * TileSize);
+        tile.Draw(spriteBatch, position, Color.White);
+    }
+}
+</code></pre><h3 id="tilemap-fromfile-method">Tilemap FromFile Method</h3>
+<p>The <code>Tilemap</code> class should also provide a method to load and create an instance of the tilemap from an external configuration file.  This allows us to separate level design from code. Add the following method:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Creates a new tilemap based on a tilemap xml configuration file.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;content&quot;&gt;The content manager used to load the texture for the tileset.&lt;/param&gt;
+/// &lt;param name=&quot;filename&quot;&gt;The path to the xml file, relative to the content root directory.&lt;/param&gt;
+/// &lt;returns&gt;The tilemap created by this method.&lt;/returns&gt;
+public static Tilemap FromFile(ContentManager content, string filename)
+{
+    string filePath = Path.Combine(content.RootDirectory, filename);
+
+    using (Stream stream = TitleContainer.OpenStream(filePath))
+    {
+        using (XmlReader reader = XmlReader.Create(stream))
+        {
+            XDocument doc = XDocument.Load(reader);
+            XElement root = doc.Root;
+
+            // The &lt;Tilemap&gt; element contains an attribute that specifies the
+            // size of each tile in the tilemap
+            int tileSize = int.Parse(root.Attribute(&quot;tileSize&quot;)?.Value ?? &quot;0&quot;);
+
+            // The &lt;Tileset&gt; element contains the information about the tileset
+            // used by the tilemap.
+            //
+            // Example
+            // &lt;Tileset region=&quot;0 0 100 100&quot; tileWidth=&quot;10&quot; tileHeight=&quot;10&quot;&gt;contentPath&lt;/Tileset&gt;
+            //
+            // The region attribute represents the x, y, width, and height
+            // components of the boundary for the texture region within the
+            // texture at the contentPath specified.
+            //
+            // the tileWidth and tileHeight attributes specify the width and
+            // height of each tile in the tileset.
+            //
+            // the contentPath value is the contentPath to the texture to
+            // load that contains the tileset
+            XElement tilesetElement = root.Element(&quot;Tileset&quot;);
+
+            string regionAttribute = tilesetElement.Attribute(&quot;region&quot;).Value;
+            string[] split = regionAttribute.Split(&quot; &quot;, StringSplitOptions.RemoveEmptyEntries);
+            int x = int.Parse(split[0]);
+            int y = int.Parse(split[1]);
+            int width = int.Parse(split[2]);
+            int height = int.Parse(split[3]);
+
+            int tileWidth = int.Parse(tilesetElement.Attribute(&quot;tileWidth&quot;).Value);
+            int tileHeight = int.Parse(tilesetElement.Attribute(&quot;tileHeight&quot;).Value);
+            string contentPath = tilesetElement.Value;
+
+            // Load the texture 2d at the content path
+            Texture2D texture = content.Load&lt;Texture2D&gt;(contentPath);
+
+            // Create the texture region from the texture
+            TextureRegion textureRegion = new TextureRegion(texture, x, y, width, height);
+
+            // Create the tileset using the texture region
+            Tileset tileset = new Tileset(textureRegion, tileWidth, tileHeight);
+
+            // The &lt;Tiles&gt; element contains lines of strings where each line
+            // represents a row in the tilemap.  Each line is a space
+            // separated string where each element represents a column in that
+            // row.  The value of the column is the id of the tile in the
+            // tileset to draw for that location.
+            //
+            // Example:
+            // &lt;Tiles&gt;
+            //      00 01 01 02
+            //      03 04 04 05
+            //      03 04 04 05
+            //      06 07 07 08
+            // &lt;/Tiles&gt;
+            XElement tilesElement = root.Element(&quot;Tiles&quot;);
+
+            // Split the value of the tiles data into rows by splitting on
+            // the new line character
+            string[] rows = tilesElement.Value.Trim().Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+            // Split the value of the first row to determine the total number of columns
+            int columnCount = rows[0].Split(&quot; &quot;, StringSplitOptions.RemoveEmptyEntries).Length;
+
+            // Create the tilemap
+            Tilemap tilemap = new Tilemap(tileset, columnCount, rows.Length, tileSize);
+
+            // Process each row
+            for (int row = 0; row &lt; rows.Length; row++)
+            {
+                // Split the row into individual columns
+                string[] columns = rows[row].Trim().Split(&quot; &quot;, StringSplitOptions.RemoveEmptyEntries);
+
+                // Process each column of the current row
+                for (int column = 0; column &lt; columnCount; column++)
+                {
+                    // Get the tileset index for this location
+                    int tilesetIndex = int.Parse(columns[column]);
+
+                    // Get the texture region of that tile from the tileset
+                    TextureRegion region = tileset.GetTile(tilesetIndex);
+
+                    // Add that region to the tilemap at the row and column location
+                    tilemap.SetTile(column, row, tilesetIndex);
+                }
+            }
+
+            return tilemap;
+        }
+    }
+}
+</code></pre><h2 id="updating-the-game">Updating the Game</h2>
+<p>Now that we have the <code>Tilemap</code> and <code>Tileset</code> classes defined, let's update our game to use them. We'll need to</p>
+<ol>
+<li>Update the texture atlas to include the tileset.</li>
+<li>Create a tilemap xml configuration file.</li>
+<li>Update the game to load the tilemap from the configuration file and draw it.</li>
+</ol>
+<h3 id="update-the-texture-atlas">Update the Texture Atlas</h3>
+<p>Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as <em>atlas.png</em> in the <em>Content/images</em> directory of the game project, overwriting the existing one.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/atlas.png" alt="Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Since the texture atlas image was updated and the location of the slime and bat sprites were repositioned, we need to update the atlas configuration file as well.  Open the <em>atlas-definition.xml</em> configuration file and update it to the following:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;TextureAtlas&gt;
+    &lt;Texture&gt;images/atlas&lt;/Texture&gt;
+    &lt;Regions&gt;
+        &lt;Region name=&quot;slime-1&quot; x=&quot;320&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+        &lt;Region name=&quot;slime-2&quot; x=&quot;320&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+        &lt;Region name=&quot;bat-1&quot; x=&quot;320&quot; y=&quot;160&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+        &lt;Region name=&quot;bat-2&quot; x=&quot;320&quot; y=&quot;240&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+        &lt;Region name=&quot;bat-3&quot; x=&quot;400&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+    &lt;/Regions&gt;
+    &lt;Animations&gt;
+        &lt;Animation name=&quot;slime-animation&quot; delay=&quot;200&quot;&gt;
+            &lt;Frame region=&quot;slime-1&quot; /&gt;
+            &lt;Frame region=&quot;slime-2&quot; /&gt;
+        &lt;/Animation&gt;
+        &lt;Animation name=&quot;bat-animation&quot; delay=&quot;200&quot;&gt;
+            &lt;Frame region=&quot;bat-1&quot; /&gt;
+            &lt;Frame region=&quot;bat-2&quot; /&gt;
+            &lt;Frame region=&quot;bat-1&quot; /&gt;
+            &lt;Frame region=&quot;bat-3&quot; /&gt;
+        &lt;/Animation&gt;
+    &lt;/Animations&gt;
+&lt;/TextureAtlas&gt;
+</code></pre>
+<p>This change just adjusts the x and y coordinate positions to match the new locations of the slime and bat sprites in the atlas.</p>
+<h2 id="creating-a-tilemap-xml-configuration">Creating a Tilemap XML Configuration</h2>
+<p>Now that we have the texture atlas updated to include the tileset, let's create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.</p>
+<p>Create a new file named <em>tilemap-definition.xml</em> in the <em>Content/images</em> directory of the game project and add the following:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Tilemap tileSize=&quot;80&quot;&gt;
+    &lt;Tileset region=&quot;0 0 320 320&quot; tileWidth=&quot;80&quot; tileHeight=&quot;80&quot;&gt;images/atlas&lt;/Tileset&gt;
+    &lt;Tiles&gt;
+        00 01 02 01 02 01 02 01 02 01 02 01 02 01 02 03
+        04 05 05 06 05 05 06 05 05 06 05 05 06 05 05 07
+        08 09 09 09 09 09 09 09 09 09 09 09 09 09 09 11
+        04 09 09 09 09 09 09 09 10 09 09 09 09 10 09 07
+        08 09 10 09 09 09 09 09 09 09 09 09 09 09 09 11
+        04 09 09 09 09 09 09 09 09 09 09 09 09 09 09 07
+        08 10 09 09 09 09 09 09 09 09 10 09 09 09 09 11
+        04 09 09 09 09 09 10 09 09 09 09 09 09 09 09 07
+        12 13 14 13 14 13 14 13 14 13 14 13 14 13 14 15
+    &lt;/Tiles&gt;
+&lt;/Tilemap&gt;
+</code></pre>
+<p>This tilemap configuration creates a simple dungeon layout with walls around the perimeter and an open floor in the middle. The tile IDs correspond to specific tiles in the tileset:</p>
+<ul>
+<li><code>00</code>, <code>03</code>, <code>12</code>, <code>15</code>: Corner wall tiles (top-left, top-right, bottom-left, bottom-right).</li>
+<li><code>01</code>, <code>02</code>, <code>13</code>, <code>14</code>: Horizontal wall tiles (top and bottom walls).</li>
+<li><code>04</code>, <code>07</code>, <code>08</code>, <code>11</code>: Vertical wall tiles (left and right walls).</li>
+<li><code>05</code> and <code>06</code>: Top floor edge tiles.</li>
+<li><code>09</code>: Standard floor tile.</li>
+<li><code>10</code>: Decorated floor tile with a crack in it.</li>
+</ul>
+<p>Next, we need to add this configuration file to our content project with the MGCB Editor:</p>
+<ol>
+<li>Open the <em>Content.mgcb</em> content project file in the MGCB Editor.</li>
+<li>Right-click the <em>images</em> folder and choose <em>Add &gt; Existing Item...</em>.</li>
+<li>Select the <em>tilemap-definition.xml</em> file you just created.</li>
+<li>In the Properties panel, change the <em>Build Action</em> property from <em>Build</em> to <em>Copy</em>.</li>
+<li>Save the changes in the MGCB Editor.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-editor.png" alt="Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="update-the-game1-class">Update the Game1 Class</h3>
+<p>With all of the assets now in place and configured, let's update the <code>Game1</code> class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
+<pre><code class="lang-csharp" highlight-lines="31-35,46-61,78-79,111,113,115,117,120,122,124,126,144,147,149,152,155,158,160,163,183-186,308-309">using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+
+namespace DungeonSlime;
+
+public class Game1 : Core
+{
+    // Defines the slime animated sprite.
+    private AnimatedSprite _slime;
+
+    // Defines the bat animated sprite.
+    private AnimatedSprite _bat;
+
+    // Tracks the position of the slime.
+    private Vector2 _slimePosition;
+
+    // Speed multiplier when moving.
+    private const float MOVEMENT_SPEED = 5.0f;
+
+    // Tracks the position of the bat.
+    private Vector2 _batPosition;
+
+    // Tracks the velocity of the bat.
+    private Vector2 _batVelocity;
+
+    // Defines the tilemap to draw.
+    private Tilemap _tilemap;
+
+    // Defines the bounds of the room that the slime and bat are contained within.
+    private Rectangle _roomBounds;
+
+    public Game1() : base(&quot;Dungeon Slime&quot;, 1280, 720, false)
+    {
+
+    }
+
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
+
+        _roomBounds = new Rectangle(
+            _tilemap.TileSize,
+            _tilemap.TileSize,
+            screenBounds.Width - _tilemap.TileSize * 2,
+            screenBounds.Height - _tilemap.TileSize * 2
+        );
+
+        // Initial slime position will be the center tile of the tile map.
+        int centerRow = _tilemap.Rows / 2;
+        int centerColumn = _tilemap.Columns / 2;
+        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+
+        // Initial bat position will the in the top left corner of the room
+        _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
+
+        // Assign the initial random velocity to the bat.
+        AssignRandomBatVelocity();
+    }
+
+    protected override void LoadContent()
+    {
+        // Create the texture atlas from the XML configuration file
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
+
+        // Create the slime animated sprite from the atlas.
+        _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+
+        // Create the bat animated sprite from the atlas.
+        _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+
+        // Create the tilemap from the XML configuration file.
+        _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+
+        base.LoadContent();
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // Update the slime animated sprite.
+        _slime.Update(gameTime);
+
+        // Update the bat animated sprite.
+        _bat.Update(gameTime);
+
+        // Check for keyboard input and handle it.
+        CheckKeyboardInput();
+
+        // Check for gamepad input and handle it.
+        CheckGamePadInput();
+
+        // Creating a bounding circle for the slime
+        Circle slimeBounds = new Circle(
+            (int)(_slimePosition.X + (_slime.Width * 0.5f)),
+            (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
+            (int)(_slime.Width * 0.5f)
+        );
+
+        // Use distance based checks to determine if the slime is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // move it back inside.
+        if (slimeBounds.Left &lt; _roomBounds.Left)
+        {
+            _slimePosition.X = _roomBounds.Left;
+        }
+        else if (slimeBounds.Right &gt; _roomBounds.Right)
+        {
+            _slimePosition.X = _roomBounds.Right - _slime.Width;
+        }
+
+        if (slimeBounds.Top &lt; _roomBounds.Top)
+        {
+            _slimePosition.Y = _roomBounds.Top;
+        }
+        else if (slimeBounds.Bottom &gt; _roomBounds.Bottom)
+        {
+            _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
+        }
+
+        // Calculate the new position of the bat based on the velocity
+        Vector2 newBatPosition = _batPosition + _batVelocity;
+
+        // Create a bounding circle for the bat
+        Circle batBounds = new Circle(
+            (int)(newBatPosition.X + (_bat.Width * 0.5f)),
+            (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
+            (int)(_bat.Width * 0.5f)
+        );
+
+        Vector2 normal = Vector2.Zero;
+
+        // Use distance based checks to determine if the bat is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // reflect it about the screen edge normal
+        if (batBounds.Left &lt; _roomBounds.Left)
+        {
+            normal.X = Vector2.UnitX.X;
+            newBatPosition.X = _roomBounds.Left;
+        }
+        else if (batBounds.Right &gt; _roomBounds.Right)
+        {
+            normal.X = -Vector2.UnitX.X;
+            newBatPosition.X = _roomBounds.Right - _bat.Width;
+        }
+
+        if (batBounds.Top &lt; _roomBounds.Top)
+        {
+            normal.Y = Vector2.UnitY.Y;
+            newBatPosition.Y = _roomBounds.Top;
+        }
+        else if (batBounds.Bottom &gt; _roomBounds.Bottom)
+        {
+            normal.Y = -Vector2.UnitY.Y;
+            newBatPosition.Y = _roomBounds.Bottom - _bat.Height;
+        }
+
+        // If the normal is anything but Vector2.Zero, this means the bat had
+        // moved outside the screen edge so we should reflect it about the
+        // normal.
+        if (normal != Vector2.Zero)
+        {
+            _batVelocity = Vector2.Reflect(_batVelocity, normal);
+        }
+
+        _batPosition = newBatPosition;
+
+        if (slimeBounds.Intersects(batBounds))
+        {
+            // Divide the width  and height of the screen into equal columns and
+            // rows based on the width and height of the bat.
+            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
+            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+
+            // Choose a random row and column based on the total number of each
+            // available within the bounds of the tilemap walls.
+            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+            int row = Random.Shared.Next(1, _tilemap.Rows - 1);
+
+            // Change the bat position by setting the x and y values equal to
+            // the column and row multiplied by the width and height.
+            _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
+
+            // Assign a new random velocity to the bat
+            AssignRandomBatVelocity();
+        }
+
+        base.Update(gameTime);
+    }
+
+    private void AssignRandomBatVelocity()
+    {
+        // Generate a random angle
+        float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
+
+        // Convert angle to a direction vector
+        float x = (float)Math.Cos(angle);
+        float y = (float)Math.Sin(angle);
+        Vector2 direction = new Vector2(x, y);
+
+        // Multiply the direction vector by the movement speed
+        _batVelocity = direction * MOVEMENT_SPEED;
+    }
+
+    private void CheckKeyboardInput()
+    {
+        // If the space key is held down, the movement speed increases by 1.5
+        float speed = MOVEMENT_SPEED;
+        if (Input.Keyboard.IsKeyDown(Keys.Space))
+        {
+            speed *= 1.5f;
+        }
+
+        // If the W or Up keys are down, move the slime up on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.W) || Input.Keyboard.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= speed;
+        }
+
+        // if the S or Down keys are down, move the slime down on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.S) || Input.Keyboard.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += speed;
+        }
+
+        // If the A or Left keys are down, move the slime left on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.A) || Input.Keyboard.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= speed;
+        }
+
+        // If the D or Right keys are down, move the slime right on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.D) || Input.Keyboard.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += speed;
+        }
+    }
+
+    private void CheckGamePadInput()
+    {
+        GamePadInfo gamePadOne = Input.GamePads[(int)PlayerIndex.One];
+
+        // If the A button is held down, the movement speed increases by 1.5
+        // and the gamepad vibrates as feedback to the player.
+        float speed = MOVEMENT_SPEED;
+        if (gamePadOne.IsButtonDown(Buttons.A))
+        {
+            speed *= 1.5f;
+            GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+        }
+        else
+        {
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+        }
+
+        // Check thumbstick first since it has priority over which gamepad input
+        // is movement.  It has priority since the thumbstick values provide a
+        // more granular analog value that can be used for movement.
+        if (gamePadOne.LeftThumbStick != Vector2.Zero)
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * speed;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * speed;
+        }
+        else
+        {
+            // If DPadUp is down, move the slime up on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadUp))
+            {
+                _slimePosition.Y -= speed;
+            }
+
+            // If DPadDown is down, move the slime down on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadDown))
+            {
+                _slimePosition.Y += speed;
+            }
+
+            // If DPapLeft is down, move the slime left on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadLeft))
+            {
+                _slimePosition.X -= speed;
+            }
+
+            // If DPadRight is down, move the slime right on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadRight))
+            {
+                _slimePosition.X += speed;
+            }
+        }
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        // Clear the back buffer.
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // Begin the sprite batch to prepare for rendering.
+        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+        // Draw the tilemap.
+        _tilemap.Draw(SpriteBatch);
+
+        // Draw the slime sprite.
+        _slime.Draw(SpriteBatch, _slimePosition);
+
+        // Draw the bat sprite.
+        _bat.Draw(SpriteBatch, _batPosition);
+
+        // Always end the sprite batch when finished.
+        SpriteBatch.End();
+
+        base.Draw(gameTime);
+    }
+}
+</code></pre>
+<p>The key changes to the <code>Game1</code> class include:</p>
+<ol>
+<li>The <code>_tilemap</code> field was added to hold the loaded tilemap.</li>
+<li>The <code>_roombounds</code> <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a> was added to define the playable area within the tilemap to keep the slime and bat inside the walls.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>:
+<ol>
+<li>The <code>_roomBounds</code> is set based on the tilemap's tile size.</li>
+<li>The starting position of the slime is now set to be in the center of the room.</li>
+</ol>
+</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the tilemap is loaded from the XML configuration file.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the <code>screenBounds</code> variable was removed and the collision logic has been updated to instead use the <code>_roomBounds</code> instead.</li>
+<li>In <a href="Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> the tilemap is drawn.</li>
+</ol>
+<p>Running the game now with these changes, our game now visually transforms from a simple screen with sprites to a proper game environment with walls and floors. The slime and bat are now confined within the walls of the dungeon defined by our tilemap.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/gameplay.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-5: Gameplay with the tilemap rendered and the bat and slime contained within the dungeon walls</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>While the method provided in this chapter offers a straightforward approach to loading tilemaps from external configuration files, several dedicated tools exist specifically for creating tilemaps for games. Popular options include <a href="https://www.mapeditor.org/">Tiled</a>, <a href="https://ldtk.io/">LDtk</a>, and <a href="https://ogmo-editor-3.github.io/">Ogmo</a>. These specialized tools export map configurations in various formats such as XML (similar to what we implemented) or JSON, and often include additional features like multiple layers, object placement, and custom properties for tiles.</p>
+<p>Although these tools are more robust than our implementation, the underlying concept remains the same: a tilemap is fundamentally a grid layout where each cell references a tile ID from a tileset. The principles you've learned in this chapter form the foundation for working with any tilemap system, regardless of which tool you might use.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Let's review what you accomplished in this chapter:</p>
+<ul>
+<li>Learned about tilemaps and how they're used in 2D game development.</li>
+<li>Created a <code>Tileset</code> class to manage collections of tiles from a texture atlas.</li>
+<li>Implemented a <code>Tilemap</code> class to render grid-based game environments.</li>
+<li>Created an XML-based tilemap definition system for storing level layouts.</li>
+<li>Updated our game to use tilemaps for the game environment.</li>
+</ul>
+<p>In the next chapter, we'll start exploring audio to add sound effects when a collision occurs and background music to our game.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What is the main advantage of using tilemaps for game environments rather than individual sprites?</p>
+<div class="question-answer"><p>Tilemaps offer several advantages: memory efficiency (reusing tiles instead of storing complete environments), performance optimization (batched rendering), and design flexibility (easier to create and modify levels). They allow creating large game worlds by reusing a small set of tiles in different arrangements.</p>
+</div>
+</li>
+<li><p>What is the relationship between a tileset and a tilemap?</p>
+<div class="question-answer"><p>A tileset is a collection of individual tiles stored in a texture atlas, where each tile has a unique ID. A tilemap is a grid-based structure that references tiles from the tileset by their IDs to create a complete game environment. The tileset provides the visual elements, while the tilemap defines their arrangement.</p>
+</div>
+</li>
+<li><p>Why might you use an XML definition for a tilemap instead of hardcoding the tile layout?</p>
+<div class="question-answer"><p>Using XML definitions for tilemaps separates level design from game code, offering several benefits: easier level editing (without changing code), support for multiple levels, ability to create external level editors, and better organization of game content. It also allows non-programmers like game designers to create and modify levels.</p>
+</div>
+</li>
+<li><p>In our implementation, how does the Tilemap's Draw method work?</p>
+<div class="question-answer"><p>The Tilemap's Draw method iterates through each position in the grid. For each position, it:</p>
+<ol>
+<li>Retrieves the tile ID stored at that position.</li>
+<li>Gets the corresponding texture region from the tileset.</li>
+<li>Calculates the screen position based on the grid coordinates and tile size.</li>
+<li>Draws the texture region at that position using the sprite batch.</li>
+</ol>
+</div>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>

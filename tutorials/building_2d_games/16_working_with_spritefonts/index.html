@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-16-working-with-spritefonts">Chapter 16: Working with SpriteFonts</h1>
+<p class="text-secondary">Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.</p>
+<p>In <a href="../06_working_with_textures/index.html">Chapter 06</a>, you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class to handle text rendering, which works together with the familiar <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> we've already been using for drawing textures.</p>
+<p>In this chapter, you will:</p>
+<ul>
+<li>Learn how MonoGame handles text rendering with SpriteFonts.</li>
+<li>Create <code>SpriteFont</code> description using the MGCB Editor.</li>
+<li>Load custom fonts for use in your game.</li>
+<li>Render text using various parameters to control appearance.</li>
+<li>Implement text rendering in our game.</li>
+</ul>
+<p>Let's start by understanding how text rendering works in MonoGame.</p>
+<h2 id="understanding-spritefonts">Understanding SpriteFonts</h2>
+<p>MonoGame processes fonts through the content pipeline to create a texture atlas of font characters.  MonoGame uses the texture atlas approach rather than directly using system fonts for several important reasons:</p>
+<ul>
+<li><strong>Cross-platform Compatibility</strong>: System fonts cannot be guaranteed to exist on all platforms.</li>
+<li><strong>Consistency</strong>: Ensures that the text appears the same across all platforms.</li>
+<li><strong>GPU Rendering</strong>: Graphics cards do not understand font formats directly; they can only render textures.</li>
+<li><strong>Performance</strong>: Pre-rendering the glyphs to a texture atlas allow for faster rendering at runtime with no texture swapping.</li>
+</ul>
+<p>A <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> in MonoGame consists of:</p>
+<ol>
+<li>A texture atlas containing pre-rendered glyphs (characters).</li>
+<li>Data that tracks the position, size, and spacing of each character.</li>
+<li>Kerning information for adjusting spacing between specific character pairs.</li>
+</ol>
+<p>The texture atlas approach means fonts are rendered as sprites, using the same <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> system you learned about for drawing textures.  When you draw text, MonoGame is actually drawing small portions of the texture atlas for each character assembled together to form complete words and sentences.</p>
+<h2 id="creating-a-spritefont-description">Creating a SpriteFont Description</h2>
+<p>To use text in your game, you first need to create a SpriteFont Description file and process it through the Content Pipeline. The MGCB Editor makes this process straightforward.  In the MGCB Editor</p>
+<ol>
+<li>Right-click the content project node where the SpriteFont Description will be created and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
+<li>Select <em>SpriteFont Description (.spritefont)</em> from the options.</li>
+<li>Specify a name for the SpriteFont Description file and click <em>Create</em>.</li>
+</ol>
+<p>This will create a default SpriteFont Description file that look something like this:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!--
+This file contains an xml description of a font, and will be read by the XNA
+Framework Content Pipeline. Follow the comments to customize the appearance
+of the font in your game, and to change the characters which are available to draw
+with.
+--&gt;
+&lt;XnaContent xmlns:Graphics=&quot;Microsoft.Xna.Framework.Content.Pipeline.Graphics&quot;&gt;
+  &lt;Asset Type=&quot;Graphics:FontDescription&quot;&gt;
+
+    &lt;!--
+    Modify this string to change the font that will be imported.
+    --&gt;
+    &lt;FontName&gt;Arial&lt;/FontName&gt;
+
+    &lt;!--
+    Size is a float value, measured in points. Modify this value to change
+    the size of the font.
+    --&gt;
+    &lt;Size&gt;12&lt;/Size&gt;
+
+    &lt;!--
+    Spacing is a float value, measured in pixels. Modify this value to change
+    the amount of spacing in between characters.
+    --&gt;
+    &lt;Spacing&gt;0&lt;/Spacing&gt;
+
+    &lt;!--
+    UseKerning controls the layout of the font. If this value is true, kerning information
+    will be used when placing characters.
+    --&gt;
+    &lt;UseKerning&gt;true&lt;/UseKerning&gt;
+
+    &lt;!--
+    Style controls the style of the font. Valid entries are &quot;Regular&quot;, &quot;Bold&quot;, &quot;Italic&quot;,
+    and &quot;Bold, Italic&quot;, and are case sensitive.
+    --&gt;
+    &lt;Style&gt;Regular&lt;/Style&gt;
+
+    &lt;!--
+    If you uncomment this line, the default character will be substituted if you draw
+    or measure text that contains characters which were not included in the font.
+    --&gt;
+    &lt;!-- &lt;DefaultCharacter&gt;*&lt;/DefaultCharacter&gt; --&gt;
+
+    &lt;!--
+    CharacterRegions control what letters are available in the font. Every
+    character from Start to End will be built and made available for drawing. The
+    default range is from 32, (ASCII space), to 126, ('~'), covering the basic Latin
+    character set. The characters are ordered according to the Unicode standard.
+    See the documentation for more information.
+    --&gt;
+    &lt;CharacterRegions&gt;
+      &lt;CharacterRegion&gt;
+        &lt;Start&gt;&amp;#32;&lt;/Start&gt;
+        &lt;End&gt;&amp;#126;&lt;/End&gt;
+      &lt;/CharacterRegion&gt;
+    &lt;/CharacterRegions&gt;
+  &lt;/Asset&gt;
+&lt;/XnaContent&gt;
+</code></pre>
+<p>When creating a SpriteFont Description for your game, you'll need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.</p>
+<h3 id="customizing-the-spritefont">Customizing the SpriteFont</h3>
+<p>The SpriteFont Description file allows you to customize various aspects of how the font will be processed and appear in your game. Here are the key elements you can modify:</p>
+<h4 id="fontname">FontName</h4>
+<p>The <code>&lt;FontName&gt;</code> element specifies which font to use. By default, it references &quot;Arial&quot;.  When a font name is specified just by name like this, it is required that the font be installed on the system where the content is built.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame recommends using <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>.</p>
+</div>
+<p>Alternatively, for better portability across development environments, it's recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this</p>
+<ol>
+<li><p>Download or locate a TTF or OTF font file.</p>
+</li>
+<li><p>Place it in the same directory as the <em>.spritefont</em> file.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>You place the font file in the same directory as the <em>.spritefont</em> file directly, not through the MGCB Editor.</p>
+</div>
+</li>
+<li><p>Update the <code>&lt;FontName&gt;</code> element to include the exact filename with extension.</p>
+</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Use fonts with permissive licenses (like <a href="https://openfontlicense.org/">SIL Open Font License</a>) to ensure you can legally use them in your game.  Always check the license of any font you use!</p>
+</div>
+<h4 id="size">Size</h4>
+<p>The <code>&lt;Size&gt;</code> element controls the font size in points. While it might seem straightforward, font sizing requires consideration and can be dependent on several factors.  When choosing a font size, consider:</p>
+<ul>
+<li><strong>Resolution impact</strong>: Fonts that look good at 1080p may appear too small at 4K or too large at 720p.</li>
+<li><strong>Font style</strong>: Pixel fonts look best with small sizes to preserve crispness.</li>
+<li><strong>Use case</strong>: Different UI elements may require different sizes for proper hierarchy.</li>
+</ul>
+<p>You may want to create multiple SpriteFont Description files for different use cases in your game such as:</p>
+<ul>
+<li>A larger font for headings and titles.</li>
+<li>A medium-sized font for standard UI elements.</li>
+<li>A smaller font for detailed information.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.</p>
+<p>An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.</p>
+<p>There are tradeoffs to each approach and you should choose the one that works best for your game.</p>
+</div>
+<h4 id="spacing">Spacing</h4>
+<p>The <code>&lt;Spacing&gt;</code> element adjusts the space between characters. The default value of 0 uses the font's built-in spacing. Positive values increase spacing, while negative values (though rarely used) can decrease it.</p>
+<h4 id="usekerning">UseKerning</h4>
+<p>The <code>&lt;UseKerning&gt;</code> element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you'll want to leave this as <code>true</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>While kerning typically improves text appearance, some fonts (including Arial) may not respond optimally to kerning adjustments. If you notice unusual character spacing with a particular font, try setting this value to <code>false</code>.</p>
+</div>
+<h4 id="style">Style</h4>
+<p>The <code>&lt;Style&gt;</code> element sets the font style. Valid options are &quot;Regular&quot;, &quot;Bold&quot;, &quot;Italic&quot;, or &quot;Bold, Italic&quot;. Note that not all fonts have all styles available, and using a style that doesn't exist will fall back to Regular.</p>
+<h4 id="defaultcharacter">DefaultCharacter</h4>
+<p>The <code>&lt;DefaultCharacter&gt;</code> element (commented out by default) specifies what character to use as a fallback when trying to render a character that isn't included in the font. This is useful for handling special characters or international text.</p>
+<h4 id="characterregions">CharacterRegions</h4>
+<p>The <code>&lt;CharacterRegions&gt;</code> element defines which Unicode character ranges to include in the font. The default range (32-126) covers basic Latin characters, which is sufficient for English text. Including more characters increases the font texture size but allows support for more languages or special symbols.</p>
+<p>For most games, the default range is sufficient.</p>
+<h2 id="loading-a-spritefont-description">Loading a SpriteFont Description</h2>
+<p>To load  a SpritFont Description, we use the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load</strong></a> method with the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> type:</p>
+<pre><code class="lang-cs">// Loading a SpriteFont Description using the content pipeline
+SpriteFont font = Content.Load&lt;SpriteFont&gt;(&quot;font&quot;);
+</code></pre>
+<h2 id="drawing-text-with-spritebatch">Drawing Text with SpriteBatch</h2>
+<p>MonoGame's <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> class provides several overloads of the <strong>DrawString</strong> method to render text. The basic approach is similar to drawing textures, with a few unique parameters specific to text rendering.</p>
+<p>The most basic DrawString overload looks like this:</p>
+<pre><code class="lang-csharp">_spriteBatch.DrawString(
+    font,                   // font
+    &quot;Hello, MonoGame!&quot;,     // text
+    Vector2.Zero,           // position
+    Color.White             // color
+);
+</code></pre>
+<p>Let's look at the parameters:</p>
+<ol>
+<li><strong>font</strong>: The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to use for rendering.</li>
+<li><strong>text</strong>: The text to display (as a string or <code>StringBuilder</code>).</li>
+<li><strong>position</strong>: A <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> defining where to draw the text.</li>
+<li><strong>color</strong>: The <a href="xref:Microsoft.Xna.Framework.Color"><strong>Color</strong></a> to tint the text.</li>
+</ol>
+<p>Just like with texture rendering, there are more advanced overloads that give you additional control:</p>
+<pre><code class="lang-csharp">_spriteBatch.DrawString(
+    font,                   // font
+    &quot;Hello, MonoGame!&quot;,     // text
+    Vector2.Zero,           // position
+    Color.White,            // color
+    0.0f,                   // rotation
+    Vector2.Zero,           // origin
+    Vector2.One,            // scale
+    SpriteEffects.None,     // effects
+    0.0f                    // layerDepth
+);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Many of these parameters (<code>rotation</code>, <code>origin</code>, <code>scale</code>, <code>effects</code>, and <code>layerDepth</code>) work exactly the same way as they do for texture rendering, as explained in <a href="../06_working_with_textures/index.html">Chapter 06</a>. If you need a refresher on how these parameters affect rendering, refer back to that chapter.</p>
+</div>
+<h2 id="calculating-text-dimensions">Calculating Text Dimensions</h2>
+<p>One common task when working with text is determining how much space it will occupy on screen. This is important for:</p>
+<ul>
+<li>Centering text</li>
+<li>Creating UI layouts</li>
+<li>Checking if text fits within a designated area</li>
+<li>Implementing text wrapping</li>
+</ul>
+<p>MonoGame's <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)"><strong>MeasureString</strong></a> method that returns the dimensions of rendered text:</p>
+<pre><code class="lang-csharp">// The text to measure
+string message = &quot;Hello, MonoGame!&quot;;
+
+// Measure the size of the message to get the text dimensions.
+Vector2 textSize = font.MeasureString(message);
+</code></pre>
+<p>The returned <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> contains:</p>
+<ul>
+<li><code>X</code>: The width of the text in pixels</li>
+<li><code>Y</code>: The height of the text in pixels</li>
+</ul>
+<p>Below is an example of centering text on the screen by drawing the text at the center of the screen and using <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)"><strong>MeasureString</strong></a> to calculate the center origin or the text</p>
+<pre><code class="lang-csharp">// The text to draw.
+string message = &quot;Hello, MonoGame!&quot;;
+
+// Measure the size of the message to get the text dimensions.
+Vector2 textSize = font.MeasureString(message);
+
+// Set the origin to the center of the text dimensions
+Vector2 origin = textSize * 0.5f;
+
+// Position will be the center of the screen
+Vector2 position = new Vector2(
+    GraphicsDevice.PresentationParameters.BackBufferWidth,
+    GraphicsDevice.PresentationParameters.BackBufferHeight
+) * 0.5f;
+
+// Draw centered text
+_spriteBatch.DrawString(
+    font,                   // font
+    message,                // text
+    position,               // position
+    Color.White,            // color
+    0.0f,                   // rotation
+    origin,                 // origin
+    1.0f,                   // scale
+    SpriteEffects.None,     // effects
+    0.0f                    // layerDepth
+);
+</code></pre><h2 id="implementing-text-in-our-game">Implementing Text in Our Game</h2>
+<p>Let's add some text to our game to display information to the player.  We'll add a score counter that increases when the slime eats the bat.</p>
+<h3 id="adding-the-spritefont-description">Adding the SpriteFont Description</h3>
+<p>First, we'll need to create a SpriteFont Definition.  Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
+<ol>
+<li>Create a new directory called <em>fonts</em> (right-click <em>Content</em> &gt; <em>Add</em> &gt; <em>New Folder</em>).</li>
+<li>Right-click the new <em>fonts</em> directory and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
+<li>Select <em>SpriteFont Description (.spritefont)</em> from the options.</li>
+<li>Name the file <em>gameFont.spritefont</em> and click <em>Create</em>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/font_added.png" alt="Figure 16-1: The gameFont.spritefont file created in the MGCB Editor"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 16-1: The gameFont.spritefont file created in the MGCB Editor</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="download-the-font-file">Download the Font File</h3>
+<p>Next, right-click the following TTF font and choose &quot;Save Link as...&quot; and save it in the same directory as the <em>gameFont.spriteFont</em> file we just created.</p>
+<ul>
+<li><a href="files/04B_11.TTF">04B_11.ttf</a></li>
+</ul>
+<h3 id="update-the-spritefont-description">Update the SpriteFont Description</h3>
+<p>Next, open the <em>gameFont.spritefont</em> file and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="4,5">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;XnaContent xmlns:Graphics=&quot;Microsoft.Xna.Framework.Content.Pipeline.Graphics&quot;&gt;
+  &lt;Asset Type=&quot;Graphics:FontDescription&quot;&gt;
+    &lt;FontName&gt;04B_11.ttf&lt;/FontName&gt;
+    &lt;Size&gt;32&lt;/Size&gt;
+    &lt;Spacing&gt;0&lt;/Spacing&gt;
+    &lt;UseKerning&gt;true&lt;/UseKerning&gt;
+    &lt;Style&gt;Regular&lt;/Style&gt;
+    &lt;CharacterRegions&gt;
+      &lt;CharacterRegion&gt;
+        &lt;Start&gt;&amp;#32;&lt;/Start&gt;
+        &lt;End&gt;&amp;#126;&lt;/End&gt;
+      &lt;/CharacterRegion&gt;
+    &lt;/CharacterRegions&gt;
+  &lt;/Asset&gt;
+&lt;/XnaContent&gt;
+</code></pre>
+<p>The key changes here are:</p>
+<ol>
+<li>The <code>&lt;FontName&gt;</code> element was updated to <code>04B_11.ttf</code>, the exact filename with extension of the TTF font we just downloaded.</li>
+<li>The <code>&lt;Size&gt;</code> element was updated to be <code>32</code>.</li>
+</ol>
+<h3 id="updating-the-game">Updating the Game</h3>
+<p>Finally, open the <em>Game1.cs</em> file and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="48-58,93-99,126-127,248-249,391-402">using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+
+namespace DungeonSlime;
+
+public class Game1 : Core
+{
+    // Defines the slime animated sprite.
+    private AnimatedSprite _slime;
+
+    // Defines the bat animated sprite.
+    private AnimatedSprite _bat;
+
+    // Tracks the position of the slime.
+    private Vector2 _slimePosition;
+
+    // Speed multiplier when moving.
+    private const float MOVEMENT_SPEED = 5.0f;
+
+    // Tracks the position of the bat.
+    private Vector2 _batPosition;
+
+    // Tracks the velocity of the bat.
+    private Vector2 _batVelocity;
+
+    // Defines the tilemap to draw.
+    private Tilemap _tilemap;
+
+    // Defines the bounds of the room that the slime and bat are contained within.
+    private Rectangle _roomBounds;
+
+    // The sound effect to play when the bat bounces off the edge of the screen.
+    private SoundEffect _bounceSoundEffect;
+
+    // The sound effect to play when the slime eats a bat.
+    private SoundEffect _collectSoundEffect;
+
+    // The background theme song
+    private Song _themeSong;
+
+    // The SpriteFont Description used to draw text
+    private SpriteFont _font;
+
+    // Tracks the players score.
+    private int _score;
+
+    // Defines the position to draw the score text at.
+    private Vector2 _scoreTextPosition;
+
+    // Defines the origin used when drawing the score text.
+    private Vector2 _scoreTextOrigin;
+
+
+    public Game1() : base(&quot;Dungeon Slime&quot;, 1280, 720, false)
+    {
+
+    }
+
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
+
+        _roomBounds = new Rectangle(
+            _tilemap.TileSize,
+            _tilemap.TileSize,
+            screenBounds.Width - _tilemap.TileSize * 2,
+            screenBounds.Height - _tilemap.TileSize * 2
+        );
+
+        // Initial slime position will be the center tile of the tile map.
+        int centerRow = _tilemap.Rows / 2;
+        int centerColumn = _tilemap.Columns / 2;
+        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+
+        // Initial bat position will the in the top left corner of the room
+        _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
+
+        // Assign the initial random velocity to the bat.
+        AssignRandomBatVelocity();
+
+        // Start playing the background music
+        Audio.PlaySong(_themeSong);
+
+        // Set the position of the score text to align to the left edge of the
+        // room bounds, and to vertically be at the center of the first tile.
+        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileSize * 0.5f);
+
+        // Set the origin of the text so it's left-centered.
+        float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
+        _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
+
+    }
+
+    protected override void LoadContent()
+    {
+        // Create the texture atlas from the XML configuration file
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, &quot;images/atlas-definition.xml&quot;);
+
+        // Create the slime animated sprite from the atlas.
+        _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+
+        // Create the bat animated sprite from the atlas.
+        _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+
+        // Load the tilemap from the XML configuration file.
+        _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+
+        // Load the bounce sound effect
+        _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
+
+        // Load the collect sound effect
+        _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
+
+        // Load the background theme music
+        _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
+
+        // Load the font
+        _font = Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
+
+        base.LoadContent();
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // Update the slime animated sprite.
+        _slime.Update(gameTime);
+
+        // Update the bat animated sprite.
+        _bat.Update(gameTime);
+
+        // Check for keyboard input and handle it.
+        CheckKeyboardInput();
+
+        // Check for gamepad input and handle it.
+        CheckGamePadInput();
+
+        // Creating a bounding circle for the slime
+        Circle slimeBounds = new Circle(
+            (int)(_slimePosition.X + (_slime.Width * 0.5f)),
+            (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
+            (int)(_slime.Width * 0.5f)
+        );
+
+        // Use distance based checks to determine if the slime is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // move it back inside.
+        if (slimeBounds.Left &lt; _roomBounds.Left)
+        {
+            _slimePosition.X = _roomBounds.Left;
+        }
+        else if (slimeBounds.Right &gt; _roomBounds.Right)
+        {
+            _slimePosition.X = _roomBounds.Right - _slime.Width;
+        }
+
+        if (slimeBounds.Top &lt; _roomBounds.Top)
+        {
+            _slimePosition.Y = _roomBounds.Top;
+        }
+        else if (slimeBounds.Bottom &gt; _roomBounds.Bottom)
+        {
+            _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
+        }
+
+        // Calculate the new position of the bat based on the velocity
+        Vector2 newBatPosition = _batPosition + _batVelocity;
+
+        // Create a bounding circle for the bat
+        Circle batBounds = new Circle(
+            (int)(newBatPosition.X + (_bat.Width * 0.5f)),
+            (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
+            (int)(_bat.Width * 0.5f)
+        );
+
+        Vector2 normal = Vector2.Zero;
+
+        // Use distance based checks to determine if the bat is within the
+        // bounds of the game screen, and if it's outside that screen edge,
+        // reflect it about the screen edge normal
+        if (batBounds.Left &lt; _roomBounds.Left)
+        {
+            normal.X = Vector2.UnitX.X;
+            newBatPosition.X = _roomBounds.Left;
+        }
+        else if (batBounds.Right &gt; _roomBounds.Right)
+        {
+            normal.X = -Vector2.UnitX.X;
+            newBatPosition.X = _roomBounds.Right - _bat.Width;
+        }
+
+        if (batBounds.Top &lt; _roomBounds.Top)
+        {
+            normal.Y = Vector2.UnitY.Y;
+            newBatPosition.Y = _roomBounds.Top;
+        }
+        else if (batBounds.Bottom &gt; _roomBounds.Bottom)
+        {
+            normal.Y = -Vector2.UnitY.Y;
+            newBatPosition.Y = _roomBounds.Bottom - _bat.Height;
+        }
+
+        // If the normal is anything but Vector2.Zero, this means the bat had
+        // moved outside the screen edge so we should reflect it about the
+        // normal.
+        if (normal != Vector2.Zero)
+        {
+            _batVelocity = Vector2.Reflect(_batVelocity, normal);
+
+            // Play the bounce sound effect
+            Audio.PlaySoundEffect(_bounceSoundEffect);
+        }
+
+        _batPosition = newBatPosition;
+
+        if (slimeBounds.Intersects(batBounds))
+        {
+            // Divide the width  and height of the screen into equal columns and
+            // rows based on the width and height of the bat.
+            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
+            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+
+            // Choose a random row and column based on the total number of each
+            int column = Random.Shared.Next(0, totalColumns);
+            int row = Random.Shared.Next(0, totalRows);
+
+            // Change the bat position by setting the x and y values equal to
+            // the column and row multiplied by the width and height.
+            _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
+
+            // Assign a new random velocity to the bat
+            AssignRandomBatVelocity();
+
+            // Play the collect sound effect
+            Audio.PlaySoundEffect(_collectSoundEffect);
+
+            // Increase the player's score.
+            _score += 100;
+        }
+
+        base.Update(gameTime);
+    }
+
+    private void AssignRandomBatVelocity()
+    {
+        // Generate a random angle
+        float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
+
+        // Convert angle to a direction vector
+        float x = (float)Math.Cos(angle);
+        float y = (float)Math.Sin(angle);
+        Vector2 direction = new Vector2(x, y);
+
+        // Multiply the direction vector by the movement speed
+        _batVelocity = direction * MOVEMENT_SPEED;
+    }
+
+    private void CheckKeyboardInput()
+    {
+        // If the space key is held down, the movement speed increases by 1.5
+        float speed = MOVEMENT_SPEED;
+        if (Input.Keyboard.IsKeyDown(Keys.Space))
+        {
+            speed *= 1.5f;
+        }
+
+        // If the W or Up keys are down, move the slime up on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.W) || Input.Keyboard.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= speed;
+        }
+
+        // if the S or Down keys are down, move the slime down on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.S) || Input.Keyboard.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += speed;
+        }
+
+        // If the A or Left keys are down, move the slime left on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.A) || Input.Keyboard.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= speed;
+        }
+
+        // If the D or Right keys are down, move the slime right on the screen.
+        if (Input.Keyboard.IsKeyDown(Keys.D) || Input.Keyboard.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += speed;
+        }
+
+        // If the M key is pressed, toggle mute state for audio.
+        if (Input.Keyboard.WasKeyJustPressed(Keys.M))
+        {
+            Audio.ToggleMute();
+        }
+
+        // If the + button is pressed, increase the volume.
+        if (Input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+        {
+            Audio.IncreaseVolume(0.1f);
+        }
+
+        // If the - button was pressed, decrease the volume.
+        if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+        {
+            Audio.DecreaseVolume(0.1f);
+        }
+    }
+
+    private void CheckGamePadInput()
+    {
+        GamePadInfo gamePadOne = Input.GamePads[(int)PlayerIndex.One];
+
+        // If the A button is held down, the movement speed increases by 1.5
+        // and the gamepad vibrates as feedback to the player.
+        float speed = MOVEMENT_SPEED;
+        if (gamePadOne.IsButtonDown(Buttons.A))
+        {
+            speed *= 1.5f;
+            GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+        }
+        else
+        {
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+        }
+
+        // Check thumbstick first since it has priority over which gamepad input
+        // is movement.  It has priority since the thumbstick values provide a
+        // more granular analog value that can be used for movement.
+        if (gamePadOne.LeftThumbStick != Vector2.Zero)
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * speed;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * speed;
+        }
+        else
+        {
+            // If DPadUp is down, move the slime up on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadUp))
+            {
+                _slimePosition.Y -= speed;
+            }
+
+            // If DPadDown is down, move the slime down on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadDown))
+            {
+                _slimePosition.Y += speed;
+            }
+
+            // If DPapLeft is down, move the slime left on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadLeft))
+            {
+                _slimePosition.X -= speed;
+            }
+
+            // If DPadRight is down, move the slime right on the screen.
+            if (gamePadOne.IsButtonDown(Buttons.DPadRight))
+            {
+                _slimePosition.X += speed;
+            }
+        }
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        // Clear the back buffer.
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // Begin the sprite batch to prepare for rendering.
+        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+        // Draw the tilemap
+        _tilemap.Draw(SpriteBatch);
+
+        // Draw the slime sprite.
+        _slime.Draw(SpriteBatch, _slimePosition);
+
+        // Draw the bat sprite.
+        _bat.Draw(SpriteBatch, _batPosition);
+
+        // Draw the score
+        SpriteBatch.DrawString(
+            _font,              // spriteFont
+            $&quot;Score: {_score}&quot;, // text
+            _scoreTextPosition, // position
+            Color.White,        // color
+            0.0f,               // rotation
+            _scoreTextOrigin,   // origin
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layerDepth
+        );
+
+        // Always end the sprite batch when finished.
+        SpriteBatch.End();
+
+        base.Draw(gameTime);
+    }
+}
+</code></pre>
+<p>The key changes made are:</p>
+<ol>
+<li>The <code>_font</code> field was added to store the SpriteFont Description when loaded.</li>
+<li>The <code>_score</code> field was added to track the player's score.</li>
+<li>The <code>_scoreTextPosition</code> field was added to store the precalculated position to draw the score text at.</li>
+<li>The <code>_scoreTextOrigin</code> field was added to store the origin to use when drawing the score text.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Initialize"><strong>Initialize</strong></a>
+<ol>
+<li>The position to draw the score text is precalculated to align with the left side of the room bounds horizontally and to vertically be at the center of the first tile at the top.</li>
+<li>The origin for the score text is precalculated by measuring the string <code>&quot;Score&quot;</code> and multiplying the <code>Y</code> component to get the vertical center of the tet, then the origin is set so that it is at the left-center.</li>
+</ol>
+</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the font is loaded using the content manager.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the player's score is increased by <code>100</code> each time the slime eats the bat.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, the score text is drawn at the precalculated position using the precalculated origin so that it aligns in the center of the tile on the blue strip using the sprite batch.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/gameplay.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 16-2: The game with score displayed in the top-left corner</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<p>Let's review what you accomplished in this chapter:</p>
+<ul>
+<li>Learned how to create SpriteFont definitions with the MGCB Editor.</li>
+<li>Learned how to reference font files for better cross-platform compatibility.</li>
+<li>Learned how to load SpriteFonts through the content pipeline.</li>
+<li>Learned how to draw text with various parameters to control appearance.</li>
+<li>Learned how to measure text dimensions.</li>
+<li>Implementing a score display and boost indicator in our game.</li>
+</ul>
+<p>In the next chapter we'll discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What are the key components of a SpriteFont in MonoGame?</p>
+<div class="question-answer"><p>A SpriteFont in MonoGame consists of:</p>
+<ol>
+<li>A texture atlas containing pre-rendered glyphs (characters)</li>
+<li>Data that tracks the position, size, and spacing of each character</li>
+<li>Kerning information for adjusting spacing between specific character pairs</li>
+</ol>
+</div>
+</li>
+<li><p>Why is it recommended to include the font file in your content project rather than referencing system fonts?</p>
+<div class="question-answer"><p>Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach doesn't depend on fonts being installed on the system where the content is built.</p>
+</div>
+</li>
+<li><p>What method would you use to determine how much space a text string will occupy when rendered, and what does it return?</p>
+<div class="question-answer"><p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)"><strong>SpriteFont.MeasureString</strong></a> method is used to determine text dimensions. It returns a <a href="xref:Microsoft.Xna.Framework.Vector2"><strong>Vector2</strong></a> where the X component represents the width and the Y component represents the height of the rendered text in pixels.</p>
+</div>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>
