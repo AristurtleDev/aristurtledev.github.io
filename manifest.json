@@ -1962,6 +1962,129 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-border.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-border.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-clamped.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-clamped.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-mirror.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-mirror.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-wrap.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/address-mode-wrap.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/background-pattern.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/background-pattern.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-anisotropic-comparison.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-anisotropic-comparison.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-anisotropic-linear-comparison.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-anisotropic-linear-comparison.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-linear.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-linear.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-point.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/filter-mode-point.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/images/mgcb-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/images/mgcb-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/18_texture_sampling/videos/titlescreen.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/18_texture_sampling/videos/titlescreen.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
