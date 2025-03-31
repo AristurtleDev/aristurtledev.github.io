@@ -118,15 +118,15 @@
 
         <article data-uid="">
 <h1 id="chapter-01-what-is-monogame">Chapter 01: What is MonoGame</h1>
-<p class="text-secondary">Learn about the history of MonoGame and explore the features it provides developers when creating games.</p>
+<p class="text-secondary">Learn about the history of MonoGame and explore the features it provides to developers when creating games.</p>
 <p>In 2006, Microsoft released a game development framework named <em>XNA Game Studio</em> to facilitate game development for Windows PC and the Xbox 360 console. It revolutionized game development for indie creators by bringing a simplified approach to building games and offering a set of tools that lowered the entry barrier for aspiring game developers. Out of XNA Game Studio came critically acclaimed titles such as <a href="https://www.supergiantgames.com/games/bastion/">Bastion</a> and <a href="https://terraria.org/">Terraria</a>. In 2008, XNA was expanded to support development for both the Zune and Windows Phone.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>Fun fact, provided by community member stromkos, The release of XNA 3.0 in 2008, which added the support for Windows Phone, is also the release that specified the default window resolution of 800x480 for new projects as this was the preferred resolution on Windows Phone. <a href="https://github.com/MonoGame/MonoGame/blob/8b35cf50783777507cd6b21828ed0109b3b07b50/MonoGame.Framework/GraphicsDeviceManager.cs#L44">It is still the default resolution used in MonoGame projects today</a>.</p>
 </div>
-<p>As XNA become more popular, the need for cross-platform development started to grow. In 2009, <a href="https://github.com/jalf">José Antonio Leal de Farias</a> introduced <em>XNA Touch</em>, an open-source project that aimed to make games with XNA playable on iOS devices. This marked the beginning of what would later become MonoGame. <a href="https://github.com/CartBlanche">Dominique Louis</a> came on board in 2009 and soon took over as full-time project lead, driving its initial development and expansion. The project attracted other developers such as <a href="https://github.com/tomspilman">Tom Spilman</a>, who were interested in expanding the scope of the project, as well as its reach.</p>
-<p>The official first release of MonoGame occurred in 2011, as an open source version of XNA. While it still had the same familiar API as XNA, the cross-platform support was expanded to include Windows, macOS, Linux, iOS, Android, Xbox, and PlayStation. Despite Microsoft discontinuing XNA in 2013, MonoGame continued to grow and develop. Maintenance of the project was given to <a href="https://github.com/KonajuGames">Steve Williams</a> and <a href="https://github.com/tomspilman">Tom Spilman</a> in 2014. In order to direct its future development and undertaking, the <a href="https://monogame.net/about/">MonoGame Foundation</a> was formed on September 29th, 2023.</p>
-<p>Today, it is a mature, cross-platform framework, that is built with the spirit of preserving XNA but adopting modern game development practices. Some popular titles created using MonoGame include <a href="https://store.steampowered.com/app/504230/Celeste/">Celeste</a>, <a href="https://store.steampowered.com/app/413150/Stardew_Valley/">Stardew Valley</a>, and <a href="https://store.steampowered.com/app/985890/Streets_of_Rage_4/">Streets of Rage 4</a>.</p>
+<p>As XNA became more popular, the need for cross-platform development started to grow. In 2009, <a href="https://github.com/jalf">José Antonio Leal de Farias</a> introduced <em>XNA Touch</em>, an open-source project that aimed to make games with XNA playable on iOS devices. This marked the beginning of what would later become MonoGame. <a href="https://github.com/CartBlanche">Dominique Louis</a> came on board in 2009 and soon took over as full-time project lead, driving its initial development and expansion. The project attracted other developers, such as <a href="https://github.com/tomspilman">Tom Spilman</a>, who were interested in expanding the scope of the project as well as its reach.</p>
+<p>The official first release of MonoGame occurred in 2011, as an open-source version of XNA. While it still had the same familiar API as XNA, the cross-platform support was expanded to include Windows, macOS, Linux, iOS, Android, Xbox, and PlayStation. Despite Microsoft discontinuing XNA in 2013, MonoGame continued to grow and develop. Maintenance of the project was given to <a href="https://github.com/KonajuGames">Steve Williams</a> and <a href="https://github.com/tomspilman">Tom Spilman</a> in 2014. In order to direct its future development and undertaking, the <a href="https://monogame.net/about/">MonoGame Foundation</a> was formed on September 29th, 2023.</p>
+<p>Today, MonoGame is a mature cross-platform framework, that is built with the spirit of preserving XNA while adopting modern game development practices. Some popular titles created using MonoGame includes <a href="https://store.steampowered.com/app/504230/Celeste/">Celeste</a>, <a href="https://store.steampowered.com/app/413150/Stardew_Valley/">Stardew Valley</a>, and <a href="https://store.steampowered.com/app/985890/Streets_of_Rage_4/">Streets of Rage 4</a>.</p>
 <table>
 <thead>
 <tr>
@@ -156,8 +156,8 @@
 <ol>
 <li><strong>Graphics Rendering</strong>: 2D and 3D rendering are supported through the graphics API offered by MonoGame. This API provides sprite batching for 2D graphics, a flexible 3D pipeline, and shaders for custom visuals and effects.</li>
 <li><strong>Input Handling</strong>: Input from keyboard, mouse, gamepads, and touchscreens are supported, allowing for development of games for any platform and different styles of play.</li>
-<li><strong>Audio</strong>: A comprehensive audio system that can be used to create sound effects as well as play, music with included support for many audio formats.</li>
-<li><strong>Content Pipeline</strong>: An out-of-the-box workflow for importing and processing game assets such as textures, models, and audio, compiling them to a format that is optimal for the game's target platform.</li>
+<li><strong>Audio</strong>: A comprehensive audio system that can be used to create sound effects as well as play music with included support for many audio formats.</li>
+<li><strong>Content Pipeline</strong>: An out-of-the-box workflow for importing and processing game assets such as textures, models, and audio, and compiling them to a format that is optimal for the game's target platform.</li>
 <li><strong>Math Library</strong>: A math library specifically optimized for game development, providing essential mathematical functions and operations.</li>
 </ol>
 <h3 id="cross-platform">Cross Platform</h3>
@@ -165,16 +165,16 @@
 <ul>
 <li><strong>Desktop</strong>: Windows, macOS, and Linux.</li>
 <li><strong>Mobile</strong>: iOS and Android.</li>
-<li><strong>Consoles</strong>: Xbox, PlayStation, and Nintendo Switch <a href="https://docs.monogame.net/articles/console_access.html">(with appropriate license)</a>.</li>
+<li><strong>Consoles</strong> <a href="https://docs.monogame.net/articles/console_access.html">(with appropriate license)</a>: Xbox, PlayStation, and Nintendo Switch.</li>
 </ul>
 <p>By providing cross-platform support, developers can target multiple platforms from a single code base, significantly reducing development time and resources needed for porting.</p>
 <h3 id="programming-language-support">Programming Language Support</h3>
-<p>MonoGame is designed and built in C#. It is the official programming language supported in documentation, samples, and community discussion. However, MonoGame is not exclusively tied to C#. As a .NET library, MonoGame can be used with any .NET-compatible language including Visual Basic and F#.</p>
+<p>MonoGame is designed and built in C#. It is the official programming language supported in documentation, samples, and community discussion. However, MonoGame is not exclusively tied to C#. As a .NET library, MonoGame can be used with any .NET-compatible language, including Visual Basic and F#.</p>
 <div class="CAUTION">
 <h5>Caution</h5>
 <p>While the alternative .NET languages can be used, community support may be limited outside the scope of C#.</p>
 </div>
-<p>Regardless of which .NET language used, developers should have a foundational understanding of the language and programming concepts such as:</p>
+<p>Regardless of which .NET language is used, developers should have a foundational understanding of the language and programming concepts such as:</p>
 <ul>
 <li>Object-oriented programming.</li>
 <li>Data types and structures.</li>
@@ -188,10 +188,10 @@
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Name one of the advantages of using the MonoGame framework to develop games.</p>
-<div class="question-answer"><p>Any of the following are advantages of using the MonoGame</p>
+<div class="question-answer"><p>Any of the following are advantages of using the MonoGame framework.</p>
 <ol>
 <li>It provides cross-platform support, allowing developers to target multiple platforms from a single code base.</li>
-<li>It offers a set of libraries and APIs common for game development tasks, such as graphics rendering, input handling, audio, and content management</li>
+<li>It offers a set of libraries and APIs common for game development tasks, such as graphics rendering, input handling, audio, and content management.</li>
 <li>It is a &quot;bring your own tools&quot; framework, giving developers flexibility in their working environment.</li>
 </ol>
 </div>

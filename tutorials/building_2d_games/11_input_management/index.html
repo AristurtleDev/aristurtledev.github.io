@@ -201,16 +201,6 @@ public KeyboardState PreviousState { get; private set; }
 /// Gets the state of keyboard input during the current input cycle.
 /// &lt;/summary&gt;
 public KeyboardState CurrentState { get; private set; }
-
-/// &lt;summary&gt;
-/// Gets the state of keyboard input during the previous update cycle.
-/// &lt;/summary&gt;
-public KeyboardState PreviousState { get; private set; }
-
-/// &lt;summary&gt;
-/// Gets the state of keyboard input during the current input cycle.
-/// &lt;/summary&gt;
-public KeyboardState CurrentState { get; private set; }
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -291,13 +281,13 @@ public bool WasKeyJustReleased(Keys key)
 </code></pre>
 <p>These methods serve two distinct purposes.  For checking continuous states:</p>
 <ul>
-<li><code>IsKeyDown</code>: Returns true as long as a key is being held down.</li>
-<li><code>IsKeyUp</code>: Returns true as long as a key is not being pressed.</li>
+<li><code>IsKeyDown</code>: Returns true as long as the specified key is being held down.</li>
+<li><code>IsKeyUp</code>: Returns true as long as the specified key is not being pressed.</li>
 </ul>
 <p>And for detecting state changes:</p>
 <ul>
-<li><code>WasKeyJustPressed</code>: Returns true only on the frame when a key changes from up-to-down.</li>
-<li><code>WasKeyJustReleased</code>: Returns true only on the frame when a key changes from down-to-up.</li>
+<li><code>WasKeyJustPressed</code>: Returns true only on the frame when the specified key changes from up-to-down.</li>
+<li><code>WasKeyJustReleased</code>: Returns true only on the frame when the specified key changes from down-to-up.</li>
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
@@ -572,13 +562,13 @@ public bool WasButtonJustReleased(MouseButton button)
 </code></pre>
 <p>These methods serve two distinct purposes. For checking continuous states:</p>
 <ul>
-<li><code>IsKeyDown</code>: Returns true as long as a key is being held down.</li>
-<li><code>IsKeyUp</code>: Returns true as long as a key is not being pressed.</li>
+<li><code>IsButtonDown</code>: Returns true as long as the specified button is being held down.</li>
+<li><code>IsButtonUp</code>: Returns true as long as the specified button is not being pressed.</li>
 </ul>
 <p>And for detecting state changes:</p>
 <ul>
-<li><code>WasKeyJustPressed</code>: Returns true only on the frame when a key changes from up-to-down.</li>
-<li><code>WasKeyJustReleased</code>: Returns true only on the frame when a key changes from down-to-up.</li>
+<li><code>WasButtonJustPressed</code>: Returns true only on the frame when the specified button changes from up-to-down.</li>
+<li><code>WasButtonJustReleased</code>: Returns true only on the frame when the specified button changes from down-to-up.</li>
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
@@ -1011,7 +1001,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Now let's update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <em>Game1.cs</em> in the game project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="71,77,83,89,95,103,108,111,115,121,123-124,129,135,141,147">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -1062,9 +1052,6 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
