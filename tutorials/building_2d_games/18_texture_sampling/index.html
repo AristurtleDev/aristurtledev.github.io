@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-18-texture-sampling-and-tiling-backgrounds">Chapter 18: Texture Sampling and Tiling Backgrounds</h1>
 <p class="text-secondary">Learn how to use texture sampling states and add a scrolling background effect to the game.</p>
-<p>In previous chapters, we've drawn individual sprites and textures with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the tilemap system that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.</p>
+<p>In previous chapters, we've <a href="../08_the_sprite_class/index.html#using-the-sprite-class">drawn individual sprites and textures</a> with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the <a href="../13_working_with_tilemaps/index.html#the-tilemap-class">tilemap system</a> that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn about texture sampling and sampler states in MonoGame.</li>
@@ -127,7 +127,8 @@
 <li>Implement a scrolling tiled background for the title screen.</li>
 </ul>
 <h2 id="understanding-texture-sampling">Understanding Texture Sampling</h2>
-<p>When a texture is drawn to the screen, MonoGame uses a process called &quot;sampling&quot; to determine which pixels from the texture should be displayed, especially when the texture is scaled, rotated, or only partially visible. The rules governing this process are defined by sampler states.</p>
+<p>When a texture is drawn to the screen, MonoGame uses a process called &quot;sampling&quot; to determine which pixels from the texture should be displayed.  Sampling is the process by which a graphics pipeline determines what color value to use from a texture when mapping it onto a surface.  Think of it like placing a grid over an image and selecting which pixels to use when that image needs to be transformed in some way.  When textures are drawn at their exact pixel size and position, with no rotation, sampling is straightforward, a direct 1:1 mapping for each pixel.  However, when a texture is scaled, rotated, or only partially visible, the graphics hardware needs to decide how to interpret the texture data.</p>
+<p>For example, if you draw a texture twice its size, there aren't enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.</p>
 <h3 id="texture-coordinates">Texture Coordinates</h3>
 <p>In graphics programming, textures are addressed using a normalized coordinate system ranging from 0.0 to 1.0, regardless of the texture's actual pixel dimensions:</p>
 <ul>
@@ -136,7 +137,7 @@
 <li>The center is (0.5, 0.5)</li>
 </ul>
 <p>This normalized system means that regardless of whether your texture is 32×32 pixels or 2048×2048 pixels, the coordinates to access the entire texture always range from 0.0 to 1.0. The graphics hardware automatically converts these normalized coordinates to the actual pixel locations within the texture.</p>
-<p>When you use SpriteBatch to draw a texture with a source rectangle specified in pixels, MonoGame internally converts those pixel coordinates to normalized texture coordinates before sending them to the GPU. Similarly, when you specify a destination rectangle, MonoGame determines how the normalized texture coordinates should map to screen coordinates.</p>
+<p>When you use <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> to draw a texture with a source rectangle specified in pixels, MonoGame internally converts those pixel coordinates to normalized texture coordinates before sending them to the GPU. Similarly, when you specify a destination rectangle, MonoGame determines how the normalized texture coordinates should map to screen coordinates.</p>
 <h3 id="what-is-a-samplestate">What is a SampleState</h3>
 <p>A SamplerState controls how textures are sampled during rendering. It determines several aspects of texture rendering:</p>
 <ul>
@@ -146,9 +147,11 @@
 </ul>
 <p>In MonoGame, these sampler states are represented by the <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState"><strong>SamplerState</strong></a> class, which provides several predefined states for common scenarios.</p>
 <h3 id="filtering-modes">Filtering Modes</h3>
-<p>One aspect of sampler states if the filtering mode.  The filter mode used determines how pixels are interpolated when a texture is scaled.  There are three filtering modes available; Point, Linear, and Anisotropic.</p>
+<p>One aspect of sampler states if the filtering mode.  Filtering in computer graphics refers to how the graphics hardware decides to blend or select pixels when a texture is displayed at a different size than its original dimensions.  The filter mode determines how pixels are interpolated (calculated and combined) when a texture is scaled up or down.</p>
+<p>Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that didn't exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.</p>
+<p>There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.</p>
 <h4 id="point-filtering-mode">Point Filtering Mode</h4>
-<p>Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.</p>
+<p>Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.  Point filtering is the least computationally expensive filtering mode of the three since it only samples a single pixel without any blending calculations. This makes it the fastest option, especially on lower-end hardware or when rendering many textures simultaneously.</p>
 <table>
 <thead>
 <tr>
@@ -162,7 +165,7 @@
 </tbody>
 </table>
 <h4 id="linear-filtering-mode">Linear Filtering Mode</h4>
-<p>Linear filtering mode blends neighboring pixels when the texture is scaled.  This creates a smoother, but potentially blurrier appearance.  This is better for realistic or high-resolution textures.</p>
+<p>Linear filtering mode blends neighboring pixels when the texture is scaled.  This creates a smoother, but potentially blurrier appearance.  This is better for realistic or high-resolution textures.  Linear filtering requires more processing power than point filtering since it needs to sample multiple pixels and calculated weighted averages between them.  However, on modern hardware, this performance difference is usually negligible for 2D games, making it a good balance between quality and performance for most non-pixel art games or assets.</p>
 <table>
 <thead>
 <tr>
@@ -176,7 +179,7 @@
 </tbody>
 </table>
 <h4 id="anisotropic-filtering-mode">Anisotropic Filtering Mode</h4>
-<p>Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer.</p>
+<p>Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer.  Anisotropic filtering is the most computationally intensive option, as it samples many more pixels and performs complex calculations to determine the appropriate blending.  The performance cost increases with the anisotropic level (typically 2x, 4x, 8x, or 16x), which determines how many samples are taken.  This can significantly impact frame rates in complex 3D scenes, especially on mobile or lower-end devices, so it should be used selectively where visual quality at angles is most important.</p>
 <table>
 <thead>
 <tr>
@@ -192,7 +195,7 @@
 </tbody>
 </table>
 <h3 id="addressing-modes">Addressing Modes</h3>
-<p>The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:</p>
+<p>The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture doesn't naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:</p>
 <h4 id="wrap-mode">Wrap Mode</h4>
 <p>When using Wrap mode, at every whole integer of the texture coordinates (0.0 and 1.0), the texture coordinate is wrapped to stay within the 0.0 to 1.0 range (i.e. if the texture coordinate is 1.2, then that wraps to become 0.2). This creates a tiled pattern.</p>
 <p>For example, if we were to take the MonoGame logo at 128x128 pixels and draw it to a destination rectangle that was three times the size at 384x384 pixels, then the texture coordinates of the destination rectangle become (0.0, 0.0) (top-left), (3.0, 0.0) (top-right), (0.0) (bottom-left), and (3.0, 3.0) bottom-right.  The MonoGame logo texture would repeat three times horizontally and vertically within the destination.</p>
@@ -483,7 +486,7 @@ public class TitleScene : Scene
 <li>The <code>_backgroundPattern</code> field was added to store a reference to the texture of the background pattern once its loaded.</li>
 <li>The <code>_backgroundDestination</code> field was added to define the destination rectangle to draw the background pattern to.</li>
 <li>The <code>_backgroundOffset</code> field was added to apply an offset to the source rectangle when rendering the background pattern to give it the appearance that it is scrolling.</li>
-<li>The <code>_scrollSpeed</code> field was dded to set the speed at which the background pattern scrolls.</li>
+<li>The <code>_scrollSpeed</code> field was added to set the speed at which the background pattern scrolls.</li>
 <li>In <code>Initialize</code>, the initial offset of the background is set to <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a> and the background destination rectangle is set to the bounds of the screen.</li>
 <li>In <code>LoadContent</code>, the <em>background-pattern</em> texture is loaded and stored in <code>_backgroundPattern</code>.</li>
 <li>In <code>Update</code>, the X and Y offset for the background source rectangle is calculated by adjusting the based on the scroll speed multiplied by the delta time.  Modulo division is then used to ensure that the new offset calculations remain within the width and height bounds of the background texture so that the wrap is seamless.</li>
