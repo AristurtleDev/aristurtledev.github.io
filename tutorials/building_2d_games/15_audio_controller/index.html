@@ -164,24 +164,82 @@ public class AudioController : IDisposable
 </ol>
 <h3 id="audiocontroller-properties-and-fields">AudioController Properties and Fields</h3>
 <p>The <code>AudioController</code> will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.  Add the following fields and properties:</p>
-<pre><code class="lang-csharp">// Tracks sound effect instances created so they can be paused, unpaused, and/or disposed.
-private readonly List&lt;SoundEffectInstance&gt; _activeSoundEffectInstances;
+<pre><code class="lang-csharp">    // Tracks sound effect instances created so they can be paused, unpaused, and/or disposed.
+    private readonly List&lt;SoundEffectInstance&gt; _activeSoundEffectInstances;
 
-// Tracks the volume for song playback when muting and unmuting.
-private float _previousSongVolume;
+    // Tracks the volume for song playback when muting and unmuting.
+    private float _previousSongVolume;
 
-// Tracks the volume for sound effect playback when muting and unmuting.
-private float _previousSoundEffectVolume;
+    // Tracks the volume for sound effect playback when muting and unmuting.
+    private float _previousSoundEffectVolume;
+    
+    /// &lt;summary&gt;
+    /// Gets a value that indicates if audio is muted.
+    /// &lt;/summary&gt;
+    public bool IsMuted { get; private set; }
 
 /// &lt;summary&gt;
-/// Gets a value that indicates if audio is muted.
-/// &lt;/summary&gt;
-public bool IsMuted { get; private set; }
+    /// Gets or Sets the global volume of songs.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    /// If IsMuted is true, the getter will always return back 0.0f and the
+    /// setter will ignore setting the volume.
+    /// &lt;/remarks&gt;
+    public float SongVolume
+    {
+        get
+        {
+            if(IsMuted)
+            {
+                return 0.0f;
+            }
 
-/// &lt;summary&gt;
-/// Gets a value that indicates if this audio controller has been disposed.
-/// &lt;/summary&gt;
-public bool IsDisposed {get; private set; }
+            return MediaPlayer.Volume;
+        }
+        set
+        {
+            if(IsMuted)
+            {
+                return;
+            }
+
+            MediaPlayer.Volume = Math.Clamp(value, 0.0f, 1.0f);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Gets or Sets the global volume of sound effects.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    /// If IsMuted is true, the getter will always return back 0.0f and the
+    /// setter will ignore setting the volume.
+    /// &lt;/remarks&gt;
+    public float SoundEffectVolume
+    {
+        get
+        {
+            if(IsMuted)
+            {
+                return 0.0f;
+            }
+
+            return SoundEffect.MasterVolume;
+        }
+        set
+        {
+            if(IsMuted)
+            {
+                return;
+            }
+
+            SoundEffect.MasterVolume = Math.Clamp(value, 0.0f, 1.0f);
+        }
+    }    
+
+    /// &lt;summary&gt;
+    /// Gets a value that indicates if this audio controller has been disposed.
+    /// &lt;/summary&gt;
+    public bool IsDisposed {get; private set; }
 </code></pre><h3 id="audiocontroller-constructor">AudioController Constructor</h3>
 <p>The constructor just initializes the collection used to track the sound effect instances.  Add the following constructor and finalizer:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -360,33 +418,6 @@ public void ToggleMute()
     else
     {
         MuteAudio();
-    }
-}
-</code></pre><h4 id="audiocontroller-volume-control">AudioController Volume Control</h4>
-<p>The <code>AudioController</code> also provides methods to increase and decrease the global volume of songs and sound effects.  Add the following methods:</p>
-<pre><code class="lang-csharp">/// &lt;summary&gt;
-/// Increases volume of all audio by the specified amount.
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;amount&quot;&gt;The amount to increase the audio by.&lt;/param&gt;
-public void IncreaseVolume(float amount)
-{
-    if (!IsMuted)
-    {
-        MediaPlayer.Volume = Math.Min(MediaPlayer.Volume + amount, 1.0f);
-        SoundEffect.MasterVolume = Math.Min(SoundEffect.MasterVolume + amount, 1.0f);
-    }
-}
-
-/// &lt;summary&gt;
-/// Decreases the volume of all audio by the specified amount.
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;amount&quot;&gt;The amount to decrease the audio by.&lt;/param&gt;
-public void DecreaseVolume(float amount)
-{
-    if (!IsMuted)
-    {
-        MediaPlayer.Volume = Math.Max(MediaPlayer.Volume - amount, 0.0f);
-        SoundEffect.MasterVolume = Math.Max(SoundEffect.MasterVolume - amount, 0.0f);
     }
 }
 </code></pre><h4 id="audiocontroller-idisposable-implementation">AudioController IDisposable Implementation</h4>
@@ -593,7 +624,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="45-46,77-78,101-102,196-197,220-221,274-290">using System;
+<pre><code class="lang-csharp" highlight-lines="45-46,77-78,101-102,196-197,215-216,269-287">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -796,14 +827,9 @@ public class Game1 : Core
 
         if (slimeBounds.Intersects(batBounds))
         {
-            // Divide the width  and height of the screen into equal columns and
-            // rows based on the width and height of the bat.
-            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
             // Choose a random row and column based on the total number of each
-            int column = Random.Shared.Next(0, totalColumns);
-            int row = Random.Shared.Next(0, totalRows);
+            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+            int row = Random.Shared.Next(1, _tilemap.Rows - 1);
 
             // Change the bat position by setting the x and y values equal to
             // the column and row multiplied by the width and height.
@@ -875,13 +901,15 @@ public class Game1 : Core
         // If the + button is pressed, increase the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
         {
-            Audio.IncreaseVolume(0.1f);
+            Audio.SongVolume += 0.1f;
+            Audio.SoundEffectVolume += 0.1f;
         }
 
         // If the - button was pressed, decrease the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
         {
-            Audio.DecreaseVolume(0.1f);
+            Audio.SongVolume += 0.1f;
+            Audio.SoundEffectVolume += 0.1f;
         }
     }
 
@@ -971,8 +999,8 @@ public class Game1 : Core
 <li>In <code>CheckKeyboardInput</code> the following checks were added
 <ol>
 <li>If the M key on the keyboard is pressed, it will toggle mute for all audio.</li>
-<li>If the + key is pressed, the global volume is increased by <code>0.1f</code>.</li>
-<li>If the - key is pressed, the global volume is decreased by <code>0.1f</code>.</li>
+<li>If the + key is pressed, the song and sound effect volumes are increased by <code>0.1f</code>.</li>
+<li>If the - key is pressed, the song and sound effect volumes are decreased by <code>0.1f</code>.</li>
 </ol>
 </li>
 </ol>
