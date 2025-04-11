@@ -2085,6 +2085,49 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface/images/atlas.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface/images/atlas.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface/videos/gamescene.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface/videos/gamescene.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface/videos/titlescene.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface/videos/titlescene.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
