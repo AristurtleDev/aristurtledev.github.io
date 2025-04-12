@@ -282,7 +282,7 @@ public Sprite CreateSprite(string regionName)
 }
 </code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
 <p>Let's adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-38,61-65">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,63-67">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -317,9 +317,11 @@ public class Game1 : Core
 
         // Create the slime sprite from the atlas.
         _slime = atlas.CreateSprite(&quot;slime&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat sprite from the atlas.
         _bat = atlas.CreateSprite(&quot;bat&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
@@ -358,7 +360,12 @@ public class Game1 : Core
 <p>The key changes in this implementation are:</p>
 <ul>
 <li>The <code>_slime</code> and <code>_bat</code> members were changed from <code>TextureRegion</code>  to <code>Sprite</code>.</li>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> the <code>_slime</code> and <code>_bat</code> sprites are now created using the new <code>TextureAtlas.CreateSprite</code> method.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>
+<ul>
+<li>The <code>_slime</code> and <code>_bat</code> sprites are now created using the new <code>TextureAtlas.CreateSprite</code> method.</li>
+<li>Both the <code>_slime</code> and <code>_bat</code> sprites are given a scale of 4.0f.</li>
+</ul>
+</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a>, the draw calls were updated to use the <code>Sprite.Draw</code> method.</li>
 </ul>
 <p>Running the game now will produce the same result as in the previous chapter.</p>
@@ -374,6 +381,10 @@ public class Game1 : Core
 </tr>
 </tbody>
 </table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Notice how even though we increased the scale of both sprites, the bat sprite is still only 10px to the right of the bat.  This is because the <code>Width</code> property we created for the <code>Sprite</code> class takes into account the scale factor of the sprite as well.</p>
+</div>
 <p>Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, we created a reusable <code>Sprite</code> class that encapsulates the properties for each sprite that we would render.  The <code>TextureAtlas</code> class was updated to simplify sprite creation based on the <code>Sprite</code> class we created.</p>

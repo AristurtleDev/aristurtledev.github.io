@@ -1886,10 +1886,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf"
         }
       },
       "version": ""
@@ -1929,10 +1929,20 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png"
+          "relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png"
         }
       },
       "version": ""
@@ -2080,49 +2090,6 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/18_texture_sampling/videos/titlescreen.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface/images/atlas.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface/images/atlas.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface/videos/gamescene.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface/videos/gamescene.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface/videos/titlescene.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface/videos/titlescene.webm"
         }
       },
       "version": ""

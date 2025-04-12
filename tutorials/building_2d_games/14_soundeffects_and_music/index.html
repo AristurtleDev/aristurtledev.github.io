@@ -350,7 +350,7 @@ MediaPlayer.Play(song);
 </li>
 </ol>
 <p>Next, open the <em>Game1.cs</em> file and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="3,6,39-43,89-108,203,222">using System;
+<pre><code class="lang-csharp" highlight-lines="3,6,39-43,92-111,205-206,224-225">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -406,16 +406,16 @@ public class Game1 : Core
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
         _roomBounds = new Rectangle(
-            _tilemap.TileSize,
-            _tilemap.TileSize,
-            screenBounds.Width - _tilemap.TileSize * 2,
-            screenBounds.Height - _tilemap.TileSize * 2
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)_tilemap.TileWidth * 2,
+            screenBounds.Height - (int)_tilemap.TileHeight * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -431,12 +431,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
-        // Load the tilemap from the XML configuration file.
+        // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         // Load the bounce sound effect
         _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
