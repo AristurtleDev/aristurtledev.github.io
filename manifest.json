@@ -2133,6 +2133,29 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/21_input_buffering/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/21_input_buffering/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/21_input_buffering/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/21_input_buffering/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/index.md",
       "output": {
         ".html": {
