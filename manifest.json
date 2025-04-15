@@ -2095,6 +2095,30 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink",
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/20_the_game/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/20_the_game/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],

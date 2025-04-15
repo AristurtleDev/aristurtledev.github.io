@@ -1,0 +1,884 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-20-completing-the-game">Chapter 20: Completing the Game</h1>
+<p class="text-secondary">Finalize game mechanics by updating our current demo into a snake-like inspired game.</p>
+<p>In the previous chapters, we've built all the fundamental systems needed for our game: <a href="../07_optimizing_texture_rendering/index.html">graphics</a>, <a href="../11_input_management/index.html">input</a>, <a href="../12_collision_detection/index.html">collision detection</a>, <a href="../15_audio_controller/index.html">audio</a>, <a href="../17_scenes/index.html">scene management</a>, and a <a href="../19_user_interface/index.html">user interface</a>.   Now it's time to transform our game into a complete experience by implementing classic snake game mechanics; where the slime grows longer as it consumes bats, creating a challenging and engaging gameplay loop.</p>
+<p>In this chapter you will:</p>
+<ul>
+<li>Implement a slime segment system to create a growing snake-like chain</li>
+<li>Create a movement system that updates on timed intervals</li>
+<li>Implement proper collision detection between the slime's head, body, and walls</li>
+<li>Add game over conditions when the slime collides with walls or itself</li>
+<li>Create a game controller for simplified input management</li>
+<li>Update the visual representation to smoothly interpolate between positions</li>
+<li>Implement retry functionality to restart the game after losing</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This chapter will not focus much on MonoGame itself, but rather our implementation of the mechanics for the snake game.</p>
+</div>
+<p>Let's start by understanding the core mechanics of a snake-style game and how we will implement them in our Dungeon Slime project.</p>
+<h2 id="understanding-snake-game-mechanics">Understanding Snake Game Mechanics</h2>
+<p>The classic snake game follows a simple but engaging set of rules:</p>
+<ol>
+<li>The players controls a snake that moves in four cardinal directions (up, down, left, right).</li>
+<li>The snake moves at regular intervals, creating a grid-based movement pattern.</li>
+<li>When the snake eats food, it grows longer by adding a new segment to its tail.</li>
+<li>If the snake collides with a wall or its own body, the game ends.</li>
+</ol>
+<p>These mechanics create an increasingly challenging experience as the snake grows longer, requiring planning and reflexes to avoid collisions.</p>
+<p>For our Dungeon Slime game, we will adapt these mechanics to fit our existing game structure:</p>
+<ul>
+<li>The slime will be a chain of connected segments.</li>
+<li>The player will control the direction of the head segment.</li>
+<li>The bat will serve as &quot;food&quot; that the slime consumes to grow.</li>
+<li>Collisions with walls or the slime's own body will trigger a game over state.</li>
+</ul>
+<h2 id="the-slimesegment-struct">The SlimeSegment Struct</h2>
+<p>To implement snake-like behavior, we first need a way to represent each segment of the slime chain.  We will create a dedicated struct to store the position and movement data for each segment.</p>
+<p>Create a new file named <em>SlimeSegment.cs</em> in the root of the game project and add the following code:</p>
+<pre><code class="lang-csharp">using Microsoft.Xna.Framework;
+
+namespace DungeonSlime;
+
+public struct SlimeSegment
+{
+    /// &lt;summary&gt;
+    /// The position this slime segment is at before the next tick occurs.
+    /// &lt;/summary&gt;
+    public Vector2 At;
+
+    /// &lt;summary&gt;
+    /// The position this slime segment is visually moving toward.
+    /// &lt;/summary&gt;
+    public Vector2 To;
+
+    /// &lt;summary&gt;
+    /// The direction this slime segment is moving.
+    /// &lt;/summary&gt;
+    public Vector2 Direction;
+
+    /// &lt;summary&gt;
+    /// The opposite direction this slime segment is moving.
+    /// &lt;/summary&gt;
+    public Vector2 ReverseDirection =&gt; new Vector2(-Direction.X, -Direction.Y);
+}
+</code></pre>
+<p>This struct contains the fields to track:</p>
+<ul>
+<li><code>At</code>: The current position of the segment.</li>
+<li><code>To</code>: The target position the segment is moving toward.</li>
+<li><code>Direction</code>: The normalized vector representing the direction the segment is moving in.</li>
+<li><code>ReverseDirection</code>: A computed property that returns the opposite of the segment's direction.</li>
+</ul>
+<p>By tracking both the current and target positions, we can implement smooth visual movement between grid positions, creating more fluid animations than the traditional stutter movement seen in classic snake games.  We will explore how we do this later in this chapter.</p>
+<h2 id="the-gamecontroller-class">The GameController Class</h2>
+<p>Currently, we have two methods dedicated to handling input for our snake mechanics (<code>CheckKeyboardInput</code> and <code>CheckGamePadInput</code>).  Both of these methods essentially perform the same logic across different input devices.  This presents an opportunity to improve our code.</p>
+<p>To simplify input handling for our snake mechanics, we will create a dedicated class that consolidates these input methods, providing a unified input profile for our game.  This pattern is widely used in game development to separate the &quot;what&quot; (game actions) from the &quot;how&quot; (specific input devices and buttons).</p>
+<p>Create a new file named <em>GameController.cs</em> in the root of the game project and add the following code:</p>
+<pre><code class="lang-csharp">using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
+using MonoGameLibrary.Input;
+
+namespace DungeonSlime;
+
+/// &lt;summary&gt;
+/// Provides a game-specific input abstraction that maps physical inputs
+/// to game actions, bridging our input system with game-specific functionality.
+/// &lt;/summary&gt;
+public class GameController
+{
+    private KeyboardInfo _keyboard;
+    private GamePadInfo _gamePad;
+
+    /// &lt;summary&gt;
+    /// Creates a new GameController that handles input for the game.
+    /// &lt;/summary&gt;
+    public GameController()
+    {
+        _keyboard = Core.Input.Keyboard;
+        _gamePad = Core.Input.GamePads[0];
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;move up&quot; action.
+    /// &lt;/summary&gt;
+    public bool MoveUp()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Up) ||
+               _keyboard.WasKeyJustPressed(Keys.W) ||
+               _gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
+               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;move down&quot; action.
+    /// &lt;/summary&gt;
+    public bool MoveDown()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Down) ||
+               _keyboard.WasKeyJustPressed(Keys.S) ||
+               _gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
+               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;move left&quot; action.
+    /// &lt;/summary&gt;
+    public bool MoveLeft()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Left) ||
+               _keyboard.WasKeyJustPressed(Keys.A) ||
+               _gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
+               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;move right&quot; action.
+    /// &lt;/summary&gt;
+    public bool MoveRight()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Right) ||
+               _keyboard.WasKeyJustPressed(Keys.D) ||
+               _gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
+               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;pause&quot; action.
+    /// &lt;/summary&gt;
+    public bool Pause()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Escape) ||
+               _gamePad.WasButtonJustPressed(Buttons.Start);
+    }
+
+    /// &lt;summary&gt;
+    /// Returns true if the player has triggered the &quot;action&quot; button,
+    /// typically used for menu confirmation.
+    /// &lt;/summary&gt;
+    public bool Action()
+    {
+        return _keyboard.WasKeyJustPressed(Keys.Enter) ||
+               _gamePad.WasButtonJustPressed(Buttons.A);
+    }
+}
+</code></pre>
+<p>This controller provides methods for each game action (moving in four directions, pausing, and confirming actions), translating inputs from both the keyboard and game pad to create a consistent control scheme.</p>
+<p>By implementing an abstraction layer such as this class, it offers benefits such as:</p>
+<ol>
+<li><strong>Abstraction</strong>: It seperates game actions from physical inputs, making code more readable and maintainable.</li>
+<li><strong>Consolidation</strong>: All input handling is unified in one place, rather than spread across multiple methods.</li>
+<li><strong>Extensibility</strong>: Adding a new input device or changing key bindings only requires changes in one place.</li>
+<li><strong>Clarity</strong>: game code expresses intent clearly with methods like <code>MoveUp</code> instead of device specific checks like <code>keyboard.WasKeyJustPressed(Keys.Up)</code>.</li>
+</ol>
+<h2 id="implementing-snake-mechanics-in-the-game-scene">Implementing Snake Mechanics in the Game Scene</h2>
+<p>Now we will update our <code>GameScene</code> class to implement the snake-like behavior for our slime.  First, open the <em>GameScene.cs</em> file and add the following fields:</p>
+<pre><code class="lang-csharp">// Tracks the segments of the slime chain.
+private List&lt;SlimeSegment&gt; _slimes;
+
+// The next direction to apply to the head of the slime chain
+// during the next movement update.
+private Vector2 _nextDirection;
+
+// The amount of time that has elapsed since the last movement update.
+private TimeSpan _tickTimer;
+
+// A constant value that provides the amount of time to wait between
+// movement updates.
+private readonly static TimeSpan s_tickTime = TimeSpan.FromMilliseconds(500);
+
+// The control input profile for the game.
+private GameController _controller;
+</code></pre>
+<p>These fields will:</p>
+<ul>
+<li>Track the list of segments that make up our slime chain.</li>
+<li>Store the next direction to apply to the head segment.</li>
+<li>Handle timing for the grid-based movement updates.</li>
+<li>Reference our game controller for input handling.</li>
+</ul>
+<h3 id="updating-the-initialize-method">Updating the Initialize Method</h3>
+<p>Next, we need to update the <code>Initialize</code> method.  Since the game will feature a &quot;Retry&quot; button on the game over menu, we need to separate the initialization concerns between initializing the state of the scene and initializing a new game.  First, update the <code>Initialize</code> method to the following:</p>
+<pre><code class="lang-csharp">public override void Initialize()
+{
+    // LoadContent is called during base.Initialize().
+    base.Initialize();
+
+    // During the game scene, we want to disable exit on escape. Instead,
+    // the escape key will be used to return back to the title screen
+    Core.ExitOnEscape = false;
+
+    Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+
+    _roomBounds = new Rectangle(
+        (int)_tilemap.TileWidth,
+        (int)_tilemap.TileHeight,
+        screenBounds.Width - (int)_tilemap.TileWidth * 2,
+        screenBounds.Height - (int)_tilemap.TileHeight * 2
+    );
+
+    // Set the position of the score text to align to the left edge of the
+    // room bounds.
+    _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
+
+    // Set the origin of the text so it is centered horizontally
+    float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
+    _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
+
+    // Initialize the game controller
+    _controller = new GameController();
+
+    InitializeNewGame();
+}
+</code></pre>
+<p>The key changes here are that the controller is now initialized in this method, and we have removed all new game initialization logic, which we will add next in the new <code>InitializeNewGame</code> method.</p>
+<h3 id="adding-the-initializenewgamemethod">Adding the InitializeNewGameMethod</h3>
+<p>The <code>InitializeNewGame</code> method will provide the functionality of setting the initial state of a new game to be played.  Add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void InitializeNewGame()
+{
+    // Create the list of slime segments
+    _slimes = new List&lt;SlimeSegment&gt;();
+
+    // Initial slime position will be the center tile of the tile map.
+    int centerRow = _tilemap.Rows / 2;
+    int centerColumn = _tilemap.Columns / 2;
+
+    // Create the initial head segment.
+    SlimeSegment segment = new SlimeSegment();
+    segment.At = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
+    segment.To = segment.At + new Vector2(_tilemap.TileWidth, 0);
+    segment.Direction = Vector2.UnitX;
+    _slimes.Add(segment);
+
+    // Set the initial direction to match the head
+    _nextDirection = segment.Direction;
+
+    // Initialize the bat position to a random position
+    AssignRandomBatPosition();
+
+    // Assign the initial random position and velocity to the bat
+    AssignRandomBatVelocity();
+
+    // Reset the timer and score
+    _tickTimer = s_tickTime;
+    _score = 0;
+}
+</code></pre>
+<p>This method:</p>
+<ul>
+<li>Creates a new list to store the slime segments.</li>
+<li>Places the initial head segment at the center of the tile map.</li>
+<li>Sets the direction for the head and stores it as the next direction.</li>
+<li>Sets up the bat's position and velocity.</li>
+<li>Resets the timer and score.</li>
+</ul>
+<h3 id="implementing-the-assignrandombatposition-method">Implementing the AssignRandomBatPosition Method</h3>
+<p>Previously, when we needed to set the position of the bat when it re-spawns, we simply chose  a random tile within the tile map to move it too.  By choosing a completely random location, it could spawn very close to the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which adds no challenge for the player.</p>
+<p>To ensure the bat appears in a strategic location away from the head segment of the slime, we will create a method that positions the bat on the opposite side of the room.</p>
+<p>Add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void AssignRandomBatPosition()
+{
+    // Get a reference to the snake's head
+    SlimeSegment head = _slimes[0];
+
+    // Calculate the center of the room
+    Vector2 roomCenter = new Vector2(
+        _roomBounds.X + _roomBounds.Width * 0.5f,
+        _roomBounds.Y + _roomBounds.Height * 0.5f
+    );
+
+    // Calculate the vector from the room center to the head
+    Vector2 centerToHead = head.At - roomCenter;
+
+    // Determine the furthest wall by finding which component (x or y) is
+    // larger and in which direction
+    if (Math.Abs(centerToHead.X) &gt; Math.Abs(centerToHead.Y))
+    {
+        // Head is closer to either the left or right wall
+        if (centerToHead.X &gt; 0)
+        {
+            // Head is on the right side, place bat on the left wall
+            _batPosition = new Vector2(
+                _roomBounds.Left + _bat.Width,
+                roomCenter.Y
+            );
+        }
+        else
+        {
+            // Head is on left side, place bat on the right wall
+            _batPosition = new Vector2(
+                _roomBounds.Right - _bat.Width * 2,
+                roomCenter.Y
+            );
+        }
+    }
+    else
+    {
+        // Head is closer to top or bottom wall
+        if (centerToHead.Y &gt; 0)
+        {
+            // Head is closer to bottom, place bat on top wall
+            _batPosition = new Vector2(
+                roomCenter.X,
+                _roomBounds.Top + _bat.Height
+            );
+        }
+        else
+        {
+            // Head is closer to top, place bat on bottom wall.
+            _batPosition = new Vector2(
+                roomCenter.X,
+                _roomBounds.Bottom - _bat.Height * 2
+            );
+        }
+    }
+}
+</code></pre>
+<p>This method:</p>
+<ol>
+<li>Calculates the center of the room.</li>
+<li>Determines which direction the slime's head segment is relative to the room center.</li>
+<li>Places the bat on the opposite side of the room.</li>
+<li>Ensures the bat is properly positioned within the room bounds.</li>
+</ol>
+<h3 id="implementing-the-checkinput-method">Implementing the CheckInput Method</h3>
+<p>We will replace our existing input handling methods with a new <code>CheckInput</code> method that uses the game controller.</p>
+<p>First remove both the <code>CheckKeyboardInput</code> method and the <code>CheckGamePadInput</code> method.  Next, add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void CheckInput()
+{
+    // Check for pause action
+    if (_controller.Pause())
+    {
+        _pauseMenu.IsEnabled = _pauseMenu.IsVisible = _pauseMenu.IsSelected = true;
+        return;
+    }
+
+    // Store the potential direction change
+    Vector2 potentialNextDirection = _nextDirection;
+
+    // Check movement actions
+    if (_controller.MoveUp())
+    {
+        potentialNextDirection = -Vector2.UnitY;
+    }
+    else if (_controller.MoveDown())
+    {
+        potentialNextDirection = Vector2.UnitY;
+    }
+    else if (_controller.MoveLeft())
+    {
+        potentialNextDirection = -Vector2.UnitX;
+    }
+    else if (_controller.MoveRight())
+    {
+        potentialNextDirection = Vector2.UnitX;
+    }
+
+    // Only allow direction change if it is not reversing the current direction.
+    // This prevents the &quot;snake&quot; from backing into itself
+    if (Vector2.Dot(potentialNextDirection, _slimes[0].Direction) &gt;= 0)
+    {
+        _nextDirection = potentialNextDirection;
+    }
+}
+</code></pre>
+<p>This method:</p>
+<ol>
+<li>Checks if the player has triggered the pause action, and if so pauses the game.</li>
+<li>Determines if the player is attempting to change directions instead of directly moving the slime.  This direction change will be applied during the movement update.</li>
+<li>Uses <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> to prevent the slime from reversing into itself causing an immediate collision and game over state.</li>
+<li>Updates the next direction if the requested direction is valid.</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The dot product measure how much two vectors point in the same direction.  It is:</p>
+<ul>
+<li>Positive if they are pointing in the same direction.</li>
+<li>Negative if they are pointing in opposite directions.</li>
+<li>Zero when they are perpendicular.</li>
+</ul>
+<p>By using dot product here, this effectively implements the classic snake game rule that you can't turn 180° and crash into yourself.</p>
+</div>
+<h3 id="implementing-slime-movement">Implementing Slime Movement</h3>
+<p>To handle the timed, grid-based movement of our slime chain, we will add an <code>UpdateSlimeMovement</code> method.  Add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void UpdateSlimeMovement()
+{
+    // Get the head of the chain
+    SlimeSegment previousHead = _slimes[0];
+
+    // Calculate the new head position
+    SlimeSegment newHead = new SlimeSegment();
+    newHead.Direction = _nextDirection;
+    newHead.At = previousHead.To;
+    newHead.To = newHead.At + newHead.Direction * _tilemap.TileWidth;
+
+    // Add the new head and remove the last segment.
+    // This effectively move the entire chain forward
+    _slimes.Insert(0, newHead);
+    _slimes.RemoveAt(_slimes.Count - 1);
+
+    // Now that the slime has moved, ensure it is within the room bounds
+    if (!_roomBounds.Contains(newHead.To))
+    {
+        // It has moved outside the room bounds (collided with a wall) so
+        // it is game over
+        _gameOverMenu.IsEnabled = _gameOverMenu.IsVisible = _gameOverMenu.IsSelected = true;
+    }
+
+    // Next check if the slime is colliding with its own body.
+    Circle headBounds = new Circle(
+        (int)(newHead.At.X + _slime.Width * 0.5f),
+        (int)(newHead.At.Y + _slime.Height * 0.5f),
+        (int)(_slime.Width * 0.5f)
+    );
+
+    foreach (SlimeSegment child in _slimes[1..])
+    {
+        Circle childBounds = new Circle(
+            (int)(child.At.X + _slime.Width * 0.5f),
+            (int)(child.At.Y + _slime.Height * 0.5f),
+            (int)(_slime.Width * 0.5f)
+        );
+
+        if (headBounds.Intersects(childBounds))
+        {
+            // The head is colliding with a body segment, so it is game over.
+            _gameOverMenu.IsEnabled = _gameOverMenu.IsVisible = _gameOverMenu.IsSelected = true;
+        }
+    }
+}
+</code></pre>
+<p>This method:</p>
+<ol>
+<li>Creates a new head segment in the current direction.</li>
+<li>Inserts the new head segment at the front of the chain and removes the last segment.</li>
+<li>Checks for collisions with walls or the slime's own body.</li>
+<li>Triggers a game over state if a collision is detected.</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>By inserting a new head segment at the front of the chain and removing the last segment this creates the illusion of the entire chain moving forward as one unit, even though we're only actually moving the head forward and removing the tail.</p>
+</div>
+<h3 id="updating-bat-collision-and-growth">Updating Bat Collision and Growth</h3>
+<p>To handle collision detection between the head segment of the slime and the bat and the growth response, we will add a new method called <code>CheckSlimeAndBatCollisions</code>.  Add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void CheckSlimeAndBatCollision()
+{
+    // Get a reference to the head of the slime
+    SlimeSegment head = _slimes[0];
+
+    // Create the bounds for the head of the slime
+    Circle slimeBounds = new Circle(
+        (int)(head.At.X + _slime.Width * 0.5f),
+        (int)(head.At.Y + _slime.Height * 0.5f),
+        (int)(_slime.Width * 0.5f)
+    );
+
+    // Create the bounds for the bat
+    Circle batBounds = new Circle(
+        (int)(_batPosition.X + _bat.Width * 0.5f),
+        (int)(_batPosition.Y + _bat.Height * 0.5f),
+        (int)(_bat.Width * 0.25f)
+    );
+
+    // If the slime and bat are intersecting, then eat the bat and create
+    // a new slime segment
+    if (slimeBounds.Intersects(batBounds))
+    {
+        // Get the tail segment
+        SlimeSegment tail = _slimes[_slimes.Count - 1];
+
+        // Create a new tail segment behind the current tail
+        SlimeSegment newTail = new SlimeSegment();
+        newTail.At = tail.To + tail.ReverseDirection * _tilemap.TileWidth;
+        newTail.To = tail.At;
+        newTail.Direction = Vector2.Normalize(tail.At - newTail.At);
+
+        // Add the new segment to the end of the chain
+        _slimes.Add(newTail);
+
+        // Assign the bat position to a random position
+        AssignRandomBatPosition();
+
+        // Assign a new random velocity to the bat.
+        AssignRandomBatVelocity();
+
+        // Play the collect sound effect
+        Core.Audio.PlaySoundEffect(_collectSoundEffect);
+
+        // Increase the player's score
+        _score += 100;
+    }
+}
+</code></pre>
+<p>This method:</p>
+<ol>
+<li>Checks for a collision between the slime's head and the bat.</li>
+<li>When a collision occurs it:
+<ol>
+<li>Adds a new segment to the end of the slime chain.</li>
+<li>Repositions the bat to a new random location and assigns it a new random velocity.</li>
+<li>Updates the player's score and plays the sound effect for auditory feedback.</li>
+</ol>
+</li>
+</ol>
+<h3 id="implementing-the-movebat-method">Implementing the MoveBat Method</h3>
+<p>Another key component is the autonomous movement of the bat. Unlike the slime, which moves based on player input in a grid-like pattern, the bat moves continuously around the screen, bouncing off walls when it reaches them.  Add the following method to the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void MoveBat()
+{
+    // Calculate a new position for the bat
+    Vector2 newPosition = _batPosition + _batVelocity;
+
+    // Create the bounds for the bat
+    Circle batBounds = new Circle(
+        (int)(newPosition.X + _bat.Width * 0.5f),
+        (int)(newPosition.Y + _bat.Height * 0.5f),
+        (int)(_bat.Width * 0.25f)
+    );
+
+    // Use distance based checks to determine of the bat is within the
+    // bounds of the game screen, and if it is outside that screen edge,
+    // reflect it about the screen edge normal.
+    Vector2 normal = Vector2.Zero;
+
+    if (batBounds.Left &lt; _roomBounds.Left)
+    {
+        normal.X = Vector2.UnitX.X;
+        newPosition.X = _roomBounds.Left;
+    }
+    else if (batBounds.Right &gt; _roomBounds.Right)
+    {
+        normal.X = -Vector2.UnitX.X;
+        newPosition.X = _roomBounds.Right - _bat.Width;
+    }
+
+    if (batBounds.Top &lt; _roomBounds.Top)
+    {
+        normal.Y = Vector2.UnitY.Y;
+        newPosition.Y = _roomBounds.Top;
+    }
+    else if (batBounds.Bottom &gt; _roomBounds.Bottom)
+    {
+        normal.Y = -Vector2.UnitY.Y;
+        newPosition.Y = _roomBounds.Bottom - _bat.Height;
+    }
+
+    // If the normal is anything but Vector2.Zero, this means the bat had
+    // moved outside the screen edge so we should reflect it about the
+    // normal.
+    if (normal != Vector2.Zero)
+    {
+        _batVelocity = Vector2.Reflect(_batVelocity, normal);
+
+        // Play the bounce sound effect
+        Core.Audio.PlaySoundEffect(_bounceSoundEffect);
+    }
+
+    _batPosition = newPosition;
+}
+</code></pre>
+<p>This method:</p>
+<ol>
+<li>Calculates the potential new position for the bat based on its current velocity.</li>
+<li>Creates a circular boundary for collision detection.</li>
+<li>Checks if the bat would move outside the room bounds in either direction (wall collision).</li>
+<li>If a collision is detected, calculates the normal vector of the collided wall.</li>
+<li>Uses <a href="xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Reflect</strong></a> to bounce the bat's velocity off the wall naturally.</li>
+<li>Plays a sound effect to provide audio feedback for the bounce.</li>
+<li>Updates the bat's position.</li>
+</ol>
+<p>The continuous movement of the bat contrasts with the grid-based movement of the slime, creating different gameplay dynamics for the player to consider.  This makes catching the bat challenging without requiring any complex behaviors.</p>
+<h3 id="updating-the-game-loop">Updating the Game Loop</h3>
+<p>Now that we've separated the logic that occurs during the main game loop, we need to update the main game loop to incorporate these new mechanics.  Update the <code>UpdateGame</code> method in the <code>GameScene</code> class to the following:</p>
+<pre><code class="lang-csharp">private void UpdateGame(GameTime gameTime)
+{
+    // Update the slime animated sprite.
+    _slime.Update(gameTime);
+
+    // Update the bat animated sprite.
+    _bat.Update(gameTime);
+
+    CheckInput();
+
+    // Check if there is a collision between the slime and bat
+    CheckSlimeAndBatCollision();
+
+    // Increment the tick timer
+    _tickTimer += gameTime.ElapsedGameTime * 2.5f;
+
+    // If the tick timer has exceeded the time to tick, move the slime chain
+    if (_tickTimer &gt;= s_tickTime)
+    {
+        _tickTimer -= s_tickTime;
+        UpdateSlimeMovement();
+    }
+
+    // Move the bat
+    MoveBat();
+}
+</code></pre>
+<p>This updated method:</p>
+<ol>
+<li>Updates the sprite animations for the slime and the bat.</li>
+<li>Processes the player input.</li>
+<li>Handles collision detection and response between the head segment of the slime and the bat.</li>
+<li>Manages the timed movement update for the slime chain.</li>
+<li>Updates the bat's position.</li>
+</ol>
+<h3 id="updating-the-draw-method">Updating the Draw Method</h3>
+<p>Finally, we need to update the draw method to draw the slime chain with smooth interpolation between positions.  Update the <code>Draw</code> method in the <code>GameScene</code> class to the following:</p>
+<pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
+{
+    // Prior existing code for this method...
+
+    // Draw the tilemap
+    _tilemap.Draw(Core.SpriteBatch);
+
+    // Draw each slime
+    float lerpAmount = (float)(_tickTimer.TotalSeconds / s_tickTime.TotalSeconds);
+    foreach (SlimeSegment segment in _slimes)
+    {
+        Vector2 pos = Vector2.Lerp(segment.At, segment.To, lerpAmount);
+        _slime.Draw(Core.SpriteBatch, pos);
+    }
+
+    // Draw the bat sprite.
+    _bat.Draw(Core.SpriteBatch, _batPosition);
+
+    // Rest of existing code for this method...
+}
+</code></pre>
+<p>This updated method:</p>
+<ol>
+<li>Calculates an interpolation factor based on the current tick timer.</li>
+<li>Renders each segment of the slime chain at a position smoothly interpolated between its source and target positions.  This creates fluid visual movement instead of the traditional stutter movement seen in classic snake games.</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p><a href="xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"><strong>Vector2.Lerp</strong></a> performs a linear interpolation between two Vector2 points, creating a smooth transition from start to end based on an amount parameter.  The formula is:</p>
+<p><span class="math">\(\text{result} = \text{start} + (\text{end} - \text{start}) \cdot \text{amount}\)</span></p>
+<p>Where the amount parameter ranges from <span class="math">\(0.0\)</span> (returns the start position) to <span class="math">\(1.0\)</span> (returns the end position).  Values between <span class="math">\(0.0\)</span> and <span class="math">\(1.0\)</span> give positions along the straight line between start and end.</p>
+<p>In our game, this is used to create a visual fluid movement illusion by interpolating between a segment's current position (<code>At</code>) and its target position (<code>To</code>) based on the elapsed time, rather than having the segments abruptly jump from one grid position to the next after each movement update.</p>
+</div>
+<h2 id="implementing-game-over-retry-functionality">Implementing Game Over Retry Functionality</h2>
+<p>To allow players to restart after a game over, we need to update the game over menu's confirm action.  In the <code>CreateGameOverMenu</code> method for the <code>GameScene</code> class, make the following updates:</p>
+<pre><code class="lang-csharp">private void CreateGameOverMenu(TextureAtlas atlas, SoundEffect soundEffect, UIElementController controller)
+{
+    // Prior existing code for this method...
+
+    // Wire up the actions to perform when the Confirm action is triggered
+    // for the menu.
+    _gameOverMenu.ConfirmAction = () =&gt;
+    {
+        // Play the sound effect
+        Core.Audio.PlaySoundEffect(soundEffect);
+
+        if (retryButton.IsSelected)
+        {
+            // The retry button is selected and the confirm action was
+            // performed, so initialize a new game and hide the game over menu.
+            InitializeNewGame();
+            _gameOverMenu.IsEnabled = _gameOverMenu.IsVisible = _gameOverMenu.IsSelected = false;
+        }
+        else if (quitButton.IsSelected)
+        {
+            // The quite button is selected and the confirm action was
+            // performed, so change the scene back to the title scene.
+            Core.ChangeScene(new TitleScene());
+        }
+    };
+}
+</code></pre>
+<p>This update now handles the confirm action for the game over menu's &quot;Retry&quot; button.  When chosen, it reinitializes the game so the player can try again.</p>
+<h2 id="putting-it-all-together">Putting It All Together</h2>
+<p>With all of these components in place, our Dungeon Slime game is now a complete snake-style game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.</p>
+<p>Let's see how it all looks and plays:</p>
+<ol>
+<li>The game starts with a single slime segment in the center of the screen.</li>
+<li>The player controls the direction of the slime by using keyboard arrow or WASD keys, or by using a game pad DPad or left thumbstick.</li>
+<li>The slime moves at regular intervals, creating a grid-based movement pattern.</li>
+<li>When the slime eats a bat, it grows longer by adding a new segment to its tail.</li>
+<li>The bat re-spawns at a strategic location after being eaten.</li>
+<li>The player's score increases with each bat consumed.</li>
+<li>If the slime collides with a wall or its own body; the game over menu appears.</li>
+<li>On the game over menu, the player can choose to retry or return to the title scene.</li>
+</ol>
+<p>With these mechanics in implemented, Dungeon Slime is now a complete game with clear objectives, escalating difficulty, and a game feedback loop.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this chapter, we've transformed our game from a simple collision demo into a complete snake-style game experience.  We've implemented a slime chain with multiple segments, timed movement updates, strategic bat positioning, collision detection and response, and smooth visual interpolation between positions.</p>
+<p>The key techniques we've learned include:</p>
+<ul>
+<li>Creating a hierarchal data structure for the slime chain.</li>
+<li>Implementing grid-based movement with timed updates.</li>
+<li>Using interpolation for smooth visual movement.</li>
+<li>Creating strategic spawn logic for game objects.</li>
+<li>Implementing game over conditions with retry functionality.</li>
+</ul>
+<p>These mechanics create a challenging and engaging game loop that offers increasing difficulty as the player progresses.  The slime chain grows longer with each bat consumed, making navigation more difficult and creating a natural difficulty curve.  Players can enjoy the classic snake gameplay with modern visual touches, all built on the MonoGame framework we've been developing throughout this tutorial series.</p>
+<p>However the learning doesn't stop here.  In the next chapter, we will look at polishing up the game by implementing an input buffer and adding shader effects.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li>How does the slime chain grow when the slime eats a bat?</li>
+</ol>
+<div class="question-answer"><p>When the slime eats a bat, a new segment is added at the end of the chain.  This is done by getting the current tail segment, creating a new segment positioned behind it (using the <code>ReverseDirection</code> value), and adding it to the slime segments list.  This creates the growing snake effect where the chain gets longer with each bat consumed.</p>
+</div>
+<ol start="2">
+<li>How does <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> work and how is it used to validate the direction changes.</li>
+</ol>
+<div class="question-answer"><p><a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> calculates the dot product of two given vectors which results in a value that defines how much to vectors point in the same direction:</p>
+<ul>
+<li>A positive value indicates they are pointing in the same direction.</li>
+<li>A negative value indicates they are pointing in opposite directions</li>
+<li>A zero value indicates they are perpendicular</li>
+</ul>
+<p>By calculating the dot product between the potential new direction and the current direction, we can determine if the player is trying to move in a direction that would cause the slime to collide with the neck segment.</p>
+</div>
+<ol start="3">
+<li>How is a visual smooth movement achieved when drawing even though the movement of the slime chain happens at timed intervals?</li>
+</ol>
+<div class="question-answer"><p>The smooth movement is achieved through linear interpolation with the <a href="xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"><strong>Vector2.Lerp</strong></a> method.  An interpolation factor is calculated based on the current tick timer divided by the total tick time.  Then each slime segment is drawn at a position that is interpolated between where it is at and where it is moving to based on the calculated interpolation factor.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>

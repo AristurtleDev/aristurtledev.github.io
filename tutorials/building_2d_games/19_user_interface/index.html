@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-19-user-interface">Chapter 19: User Interface</h1>
+<p class="text-secondary">Learn how to implement a user interface in MonoGame using Gum and building interactive game menus.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>This chapter is currently undergoing a rewrite with Vic (<a href="https://github.com/vchelaru">Vchelaru</a>) co-authoring this chapter.  For now, this chapter is considered incomplete and should be skipped.</p>
+</div>
+<p>A critical component of any game is the user interface (UI) that allows players to interact with the game beyond just controlling the the character.  UI elements include menus, buttons, panels, labels, and various other interactive components that provide information and control options to the player.</p>
+<p>In this chapter you will</p>
+<ul>
+<li>Learn the basics of user interface design in games.</li>
+<li>Understand the parent-child relationship for UI elements.</li>
+<li>TODO: Add more after Vic finishes coauthoring.</li>
+</ul>
+<p>Let's start by understanding what a user interface is and how it functions in game development.</p>
+<h2 id="understanding-game-user-interfaces">Understanding Game User Interfaces</h2>
+<p>A user interface in games serves as the bridge between the player and the game's systems.  Well designed UIs help players navigate the games's mechanics, understand their current status, and make informed decisions. For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can't effectively interact with it.</p>
+<p>Game UIs consist of various visual elements that serve different purposes:</p>
+<ol>
+<li><strong>Information Display</strong>: Elements like health bars, score counters, or minimap displays provide players with game state information.  These elements help players understand their progress, resources, and current status without interrupting gameplay.</li>
+<li><strong>Interactive Controls</strong>: Buttons, sliders, checkboxes, and other interactive elements allow players to make choices, adjust settings, or navigate through different sections of the game.  These elements should provide clear visual feedback when interacted with to confirm the player's actions.</li>
+<li><strong>Feedback Mechanisms</strong>: Visual effects like highlighting, color changes, or animations that respond to player actions help confirm that input was received.  This feedback loop creates an intuitive and responsive feel for the UI in your game.</li>
+</ol>
+<p>User interfaces for games can be categorized into two main types, each with its own design considerations</p>
+<ul>
+<li><strong>Diegetic UI</strong>: These elements exist within the game world itself and are often part of the narrative.  Examples include a health meter integrated into a character's suit, ammunition displayed on a weapon's holographic sight, or the dashboard instruments in the cockpit of a racing game.  A Diegetic UI can enhance immersion by making interface elements feel like natural parts of the game world.</li>
+<li><strong>Non-diegetic UI</strong>: These elements exist outside the game world, overlaid on top of the gameplay.  Traditional menus, health bars in the corner of the screen, and score displays are common examples.  While less immersive than a diegetic UI, non-diegetic elements are often clearer and easier to read.</li>
+</ul>
+<p>For our game project, we'll focus on creating non-diegetic UI elements, specifically menu screens that allow players to navigate between different parts of the game and adjust settings.  This approach provides a solid foundation for understanding UI concepts that you can later expand upon in more complex games.</p>
+<h3 id="ui-layout-systems">UI Layout Systems</h3>
+<p>When designing and implementing game UI systems, developers must decide how UI elements will be positioned on the screen. Two primary approaches exist, each with distinct advantages and trade-offs;</p>
+<ol>
+<li><p><strong>Absolute Positioning</strong>:  In this approach, each UI element is placed at specific coordinates on the screen.  Elements are positioned using exact locations, which gives precise control over the layout.  This approach is straightforward to implement and works well for static layouts where elements don't need to adjust based on screen size or content changes.  The main disadvantage of absolute positioning is its lack of flexibility.  If the screen resolution changes or if an element's size changes, manual adjustments to positions are often necessary to maintain the desired layout.</p>
+</li>
+<li><p><strong>Layout engines</strong>: These system position UI elements relative to one another using rules and constraints.  Elements might be positioned using concepts like &quot;center&quot;, &quot;align to parent&quot;, or &quot;flow horizontally with spacing&quot;.  Layout engines add complexity but provide flexibility.  The advantage of layout engines is adaptability to different screen sizes and content changes.  However, they require more initial setup and can be more complex to implement from scratch.</p>
+</li>
+</ol>
+<p>For our implementation we'll take a middle ground approach.  We'll primarily use absolute positioning for simplicity but will build a parent-child relationship system that provides some of the flexibility found in layout engines.  This hybrid approach gives us reasonable control without adding a lot of complexity.</p>
+<p>Child elements will be positioned relative to their parent's position, forming a hierarchial structure.  When a parent element moves, all its children move with it, maintaining their relative positions.  This approach simplifies the management of grouped elements without requiring a full layout engine.</p>
+<h3 id="parent-child-relationships">Parent-Child Relationships</h3>
+<p>Parent-child relationships are part of many UI system, including the one we'll build in this chapter.  In this model, UI elements can contain other UI elements, creating a tree-like structure. This hierarchial approach mirrors how interface elements naturally group together in designs.</p>
+<p>For example, a settings panel might contain multiple buttons, labels, and sliders.  By making these elements children of the panel, they can be managed as a cohesive unit.  This organizational structure provides several significant advantages:</p>
+<ul>
+<li><strong>Inheritance of Properties</strong>: Child elements can automatically inherit certain properties from their parents.  For instance, if a parent element is hidden or disabled, all its children can be hidden or disabled as well. This cascading behavior simplifies state management across complex interfaces.</li>
+<li><strong>Relative Positioning</strong>: Child elements can be positioned relative to their parents rather than relative to the screen.  This means you can place elements within a contain and then move the entire container as a unit without having to update ach child's position individually.</li>
+<li><strong>Simplified State Management</strong>:  Actions on parent elements can automatically propagate to their children.  For example, disabling a menu panel can automatically disable all buttons within it, preventing interaction with elements that should be active.</li>
+<li><strong>Batch Operations</strong>: Operations like drawing and updating can be performed on a parent element and automatically cascade to all children, reducing the need for repetitive code.</li>
+<li><strong>Logical Grouping</strong>: The hierarchy naturally models the conceptual grouping of UI elements, making the code structure more intuitive and easier to maintain.</li>
+</ul>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>This section is currently be reworked a coauthored by Vic (<a href="https://github.com/vchelaru">Vchelaru</a>).  For now it is considered incomplete.</p>
+</div>
+<h2 id="accessibility-in-game-ui">Accessibility in Game UI</h2>
+<p>Creating accessible user interfaces is an essential aspect of inclusive game design.  Accessibility ensures that your game can be played by a broader audience, including players with visual acuity or other specific needs.  When designing your UI system, consider some of these key accessibility principles:</p>
+<h3 id="visual-accessibility">Visual Accessibility</h3>
+<ul>
+<li><strong>Color contrast</strong>: Ensure sufficient contrast between text and backgrounds</li>
+<li><strong>Use shapes</strong>: Don't rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.</li>
+<li><strong>Text size and scaling</strong>: Allow players to adjust text size or implement a UI scaling option.  In MonoGame, this can be achieved by applying scaling factors to your UI elements or by having multiple font sizes available.</li>
+<li><strong>Internationalization (i18n)</strong>: Consider how your UI might be interpreted across different cultures and regions. Number formatting can vary significantly - some regions use periods for thousands separators (1.000.000) while others use commas (1,000,000). Control symbolism also differs culturally; for example, on console controllers, the Cross button typically means &quot;Select&quot; in Western regions but &quot;Cancel&quot; in Japan, with Circle having the opposite meaning.</li>
+</ul>
+<h3 id="input-accessibility">Input Accessibility</h3>
+<ul>
+<li><strong>Input redundancy</strong>: Support multiple input methods for the same action. Our <code>IUIElementController</code> interface already provides a foundation for this by abstracting input detection.</li>
+<li><strong>Reduce input precision requirements</strong>: While our UI system does not use mouse input, when creating oen that does, implement generous hitboxes for clickable UI elements to help players with motor control difficulties.</li>
+</ul>
+<h3 id="testing-for-accessibility">Testing for Accessibility</h3>
+<p>The most effect way to ensure accessibility is through testing under different circumstances and with diverse users:</p>
+<ul>
+<li>Test your Ui using only keyboard navigation.</li>
+<li>Try playing without sound.</li>
+<li>Check your UI with a color blindness simulator.</li>
+<li>Adjust the display scale to simulate low vision.</li>
+<li>Get feedback from player with different abilities.</li>
+</ul>
+<p>By considering accessibility early in development rather than as an afterthought, you create games that can be enjoyed by more players while also often improving the experience for everyone.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this chapter, you accomplished the following:</p>
+<ul>
+<li>TODO: Write once vic finishes coauthoring</li>
+</ul>
+<p>In the next chapter, we'll complete our game by finalizing the game mechanics to update our current demo into a snake-like inspired game.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What are the some advantages of using a parent-child relationship in UI systems?</p>
+<div class="question-answer">
+<ul>
+<li>Inheritance of properties: visual states cascade parent to children.</li>
+<li>Relative positioning: Child elements are positioned relative to their parents.</li>
+<li>Simplified state management: Parent states affect children automatically.</li>
+<li>Batch operations: Update and draw calls propagate through the hierarchy.</li>
+<li>Logical grouping: Mirrors the conceptual organization of UI elements.</li>
+</ul>
+</div>
+</li>
+<li><p>What are some accessibility considerations that should be implemented in game UI systems?</p>
+<div class="question-answer">
+<ul>
+<li>Visual accessibility: High contrast colors, not relying solely on color for information, adjustable text size and UI scaling, and internationalization support.</li>
+<li>Input accessibility: Support for multiple input methods and reduced precision requirements.</li>
+<li>Testing practices: Ensure the UI works with keyboard only navigation, without sound, and with simulated visual impairments.</li>
+</ul>
+<p>Implementing these considerations makes games playable by a wider audience and often improves the experience for all players.</p>
+</div>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>
