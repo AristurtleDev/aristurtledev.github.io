@@ -2119,6 +2119,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/20_the_game/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/20_the_game/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],

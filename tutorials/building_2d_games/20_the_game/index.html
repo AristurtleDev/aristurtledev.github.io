@@ -284,7 +284,7 @@ public class GameController
 <p>This controller provides methods for each game action (moving in four directions, pausing, and confirming actions), translating inputs from both the keyboard and game pad to create a consistent control scheme.</p>
 <p>By implementing an abstraction layer such as this class, it offers benefits such as:</p>
 <ol>
-<li><strong>Abstraction</strong>: It seperates game actions from physical inputs, making code more readable and maintainable.</li>
+<li><strong>Abstraction</strong>: It separates game actions from physical inputs, making code more readable and maintainable.</li>
 <li><strong>Consolidation</strong>: All input handling is unified in one place, rather than spread across multiple methods.</li>
 <li><strong>Extensibility</strong>: Adding a new input device or changing key bindings only requires changes in one place.</li>
 <li><strong>Clarity</strong>: game code expresses intent clearly with methods like <code>MoveUp</code> instead of device specific checks like <code>keyboard.WasKeyJustPressed(Keys.Up)</code>.</li>
@@ -810,6 +810,18 @@ private GameController _controller;
 <h2 id="putting-it-all-together">Putting It All Together</h2>
 <p>With all of these components in place, our Dungeon Slime game is now a complete snake-style game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.</p>
 <p>Let's see how it all looks and plays:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/gameplay.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 20-1: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall</strong></td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li>The game starts with a single slime segment in the center of the screen.</li>
 <li>The player controls the direction of the slime by using keyboard arrow or WASD keys, or by using a game pad DPad or left thumbstick.</li>
@@ -835,23 +847,22 @@ private GameController _controller;
 <p>However the learning doesn't stop here.  In the next chapter, we will look at polishing up the game by implementing an input buffer and adding shader effects.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
-<li>How does the slime chain grow when the slime eats a bat?</li>
-</ol>
+<li><p>How does the slime chain grow when the slime eats a bat?</p>
 <div class="question-answer"><p>When the slime eats a bat, a new segment is added at the end of the chain.  This is done by getting the current tail segment, creating a new segment positioned behind it (using the <code>ReverseDirection</code> value), and adding it to the slime segments list.  This creates the growing snake effect where the chain gets longer with each bat consumed.</p>
 </div>
-<ol start="2">
-<li>How does <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> work and how is it used to validate the direction changes.</li>
-</ol>
+</li>
+<li><p>How does <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> work and how is it used to validate the direction changes.</p>
 <div class="question-answer"><p><a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> calculates the dot product of two given vectors which results in a value that defines how much to vectors point in the same direction:</p>
 <ul>
 <li>A positive value indicates they are pointing in the same direction.</li>
-<li>A negative value indicates they are pointing in opposite directions</li>
-<li>A zero value indicates they are perpendicular</li>
+<li>A negative value indicates they are pointing in opposite directions.</li>
+<li>A zero value indicates they are perpendicular.</li>
 </ul>
 <p>By calculating the dot product between the potential new direction and the current direction, we can determine if the player is trying to move in a direction that would cause the slime to collide with the neck segment.</p>
 </div>
-<ol start="3">
-<li>How is a visual smooth movement achieved when drawing even though the movement of the slime chain happens at timed intervals?</li>
+</li>
+<li><p>How is a visual smooth movement achieved when drawing even though the movement of the slime chain happens at timed intervals?</p>
+</li>
 </ol>
 <div class="question-answer"><p>The smooth movement is achieved through linear interpolation with the <a href="xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"><strong>Vector2.Lerp</strong></a> method.  An interpolation factor is calculated based on the current tick timer divided by the total tick time.  Then each slime segment is drawn at a position that is interpolated between where it is at and where it is moving to based on the calculated interpolation factor.</p>
 </div>
