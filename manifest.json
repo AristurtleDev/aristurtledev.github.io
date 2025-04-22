@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1949,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2178,9 +2178,62 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/files/04b_30.fnt",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/files/04b_30.fnt"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/images/atlas.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/images/atlas.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/images/mgcb-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/images/mgcb-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/21_customizing_gum_ui/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_the_game/index.md",
@@ -2203,8 +2256,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/23_input_buffering/index.md",

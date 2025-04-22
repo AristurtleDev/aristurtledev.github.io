@@ -1,0 +1,1333 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.json">
+      <meta name="docfx:tocrel" content="../toc.json">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-21-customizing-gum-ui">Chapter 21: Customizing Gum UI</h1>
+<p class="text-secondary">Learn how to create custom UI components with animations and visual styling in Gum.</p>
+<p>In the <a href="../20_implementing_ui_with_gum/index.html">previous chapter</a>, we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it doesn't match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.</p>
+<p>In this chapter you will:</p>
+<ul>
+<li>Learn about Gum's visual customization system and component hierarchy.</li>
+<li>Understand how animation chains and visual states work in Gum.</li>
+<li>Create custom styled button and slider components.</li>
+<li>Update the game's texture atlas to include UI graphics.</li>
+<li>Implement responsive visual feedback for player interactions.</li>
+<li>Apply your custom components to the game's UI screens.</li>
+</ul>
+<h2 id="understanding-gums-customization-system">Understanding Gum's Customization System</h2>
+<p>Gum provides a powerful customization system that separates a UI element's functionality from its appearance.  This allows you to maintain the built-in behavior of standard controls while completely changing their visual representation.</p>
+<h3 id="container-hierarchy">Container Hierarchy</h3>
+<p>Every customized UI component in Gum starts with a top-level container that holds all other visual elements. This container is typically of type <code>ContainerRuntime</code>, which is similar to the <code>Panel</code> type we used earlier, but specifically designed for building custom visuals.</p>
+<p>The container hierarchy follows a parent-child relationship:</p>
+<ul>
+<li>The top-level container manages the overall size and positioning of the component</li>
+<li>Visual elements like backgrounds, text, and icons are added as children</li>
+<li>Child elements can be positioned relative to their parent container</li>
+<li>Child elements can also be nested within other children, creating deeper hierarchies</li>
+</ul>
+<p>This hierarchical structure allows you to build complex UI components from simpler parts, with each part playing a specific role in the overall design.</p>
+<h3 id="size-relationships-with-width-and-widthunits">Size Relationships with Width and WidthUnits</h3>
+<p>One powerful feature of Gum is how it handles size relationships between parent and child elements. By using different <code>WidthUnits</code> values, you can create dependencies that flow in different directions:</p>
+<ul>
+<li><strong>RelativeToChildren</strong>: A parent container can size itself based on its children</li>
+<li><strong>PercentageOfParent</strong>: A child element can size itself as a percentage of its parent</li>
+<li><strong>Absolute</strong>: An element can have a fixed pixel size</li>
+<li><strong>RelativeToContainer</strong>: An element can size itself relative to a specific container</li>
+</ul>
+<p>For example, a button might use a text element with <code>WidthUnits</code> set to <code>RelativeToChildren</code>, which means the text will be exactly the size needed to display its content. The button's container might use <code>RelativeToChildren</code> with some additional padding, allowing the button to automatically resize based on its text content.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>These size relationships can create circular dependencies when a child depends on its parent and the parent depends on the child. In such cases, Gum resolves the conflict by making the child depend on the parent, and the parent ignores that particular child when calculating its size.</p>
+</div>
+<h3 id="visual-elements">Visual Elements</h3>
+<p>Gum provides several visual element types that we can use to build our custom components:</p>
+<ul>
+<li><strong>ContainerRuntime</strong>: An invisible container for organizing other elements.</li>
+<li><strong>NineSliceRuntime</strong>: A special graphic that can stretch while preserving its corners and edges.</li>
+<li><strong>TextRuntime</strong>: An element for displaying text with custom fonts.</li>
+<li><strong>ColoredRectangleRuntime</strong>: A simple colored rectangle for backgrounds or fills.</li>
+</ul>
+<p>The <code>NineSliceRuntime</code> is particularly useful for UI elements that need to resize dynamically. It divides a graphic into nine sections (four corners, four edges, and a center), allowing the element to stretch without distorting its borders.</p>
+<h4 id="animation-chains">Animation Chains</h4>
+<p>An <code>AnimationChain</code> is a sequence of animation frames that play in order, typically looping after the last frame. Each frame in the chain defines:</p>
+<ul>
+<li>Which part of a texture to display (using texture coordinates).</li>
+<li>How long to display that frame (using a frame length value).</li>
+<li>Which texture to use for the frame.</li>
+</ul>
+<p>Texture coordinates in Gum use normalized values (0.0 to 1.0) rather than pixel coordinates, where:</p>
+<ul>
+<li>0.0 represents the left or top edge of the texture.</li>
+<li>1.0 represents the right or bottom edge of the texture.</li>
+</ul>
+<p>To convert from pixel coordinates to normalized values, you divide the pixel position by the texture's width or height.</p>
+<h4 id="visual-states">Visual States</h4>
+<p>Rather than directly modifying properties when UI elements change state (like when a button is focused), Gum uses a state-based system. Each control type has a specific category name that identifies its collection of states:</p>
+<ul>
+<li>Buttons use <code>Button.ButtonCategoryName</code></li>
+<li>Sliders use <code>Slider.SliderCategoryName</code></li>
+<li>Other control types have their own category names</li>
+</ul>
+<p>Within each category, you define named states that correspond to the control's possible conditions:</p>
+<ul>
+<li>&quot;Enabled&quot; (the normal, unfocused state).</li>
+<li>&quot;Focused&quot; (when the control has focus).</li>
+<li>&quot;Highlighted&quot; (when the mouse hovers over the control).</li>
+<li>&quot;Disabled&quot; (when the control cannot be interacted with).</li>
+</ul>
+<p>Each state contains an <code>Apply</code> action that defines what visual changes occur when that state becomes active. For example, when a button becomes focused, its state might change the background color or switch to an animated version.</p>
+<h3 id="input-and-focus-handling">Input and Focus Handling</h3>
+<p>Custom UI components can enhance their interactivity by handling specific input events:</p>
+<ul>
+<li>The <code>KeyDown</code> event can be used to add custom keyboard navigation.</li>
+<li>The <code>RollOn</code> event can detect when the mouse moves over the component.</li>
+<li>The <code>Click</code> event can respond to mouse clicks or gamepad button presses.</li>
+</ul>
+<p>Gum distinguishes between highlighting (visual response to mouse hover) and focus (ability to receive keyboard/gamepad input). For a seamless experience across input devices, a common pattern is to automatically focus elements when the mouse hovers over them, ensuring that visual highlighting and input focus remain synchronized.</p>
+<p>Now that we understand the key concepts behind Gum's customization system, let's apply them to create custom UI components for our game.</p>
+<h2 id="updating-the-game-resources">Updating the Game Resources</h2>
+<p>Before we create our custom components, we need to update the game's resources to include UI graphics and fonts.</p>
+<h3 id="update-the-texture-atlas">Update the Texture Atlas</h3>
+<p>Before we can start, we first need to update the texture atlas for the game. This new texture atlas includes:</p>
+<ul>
+<li>The characters for the font, generated using Bitmap Font Generator (BMFont)</li>
+<li>The sprites for the UI components we will create</li>
+</ul>
+<p>Download the new texture atlas below by right-clicking the following image and saving it as <em>atlas.png</em> in the <em>Content/images</em> directory of the game project, overwriting the existing one.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/atlas.png" alt="Figure 21-1: The texture atlas for the game updated to include the UI sprites"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 21-1: The texture atlas for the game updated to include the UI sprites</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The slime and bat sprites are no longer in the same position, and we have some new regions to define for our UI sprites. This means we need to update the texture atlas XML configuration file as well. Open the <em>atlas-definition.xml</em> configuration file and update it to the following:</p>
+<pre><code class="lang-csharp" highlight-lines="5-16,29-32">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;TextureAtlas&gt;
+    &lt;Texture&gt;images/atlas&lt;/Texture&gt;
+    &lt;Regions&gt;
+        &lt;Region name=&quot;slime-1&quot; x=&quot;340&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;slime-2&quot; x=&quot;340&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-1&quot; x=&quot;340&quot; y=&quot;40&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-2&quot; x=&quot;340&quot; y=&quot;60&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-3&quot; x=&quot;360&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;unfocused-button&quot; x=&quot;259&quot; y=&quot;80&quot; width=&quot;65&quot; height=&quot;14&quot; /&gt;
+        &lt;Region name=&quot;focused-button-1&quot; x=&quot;259&quot; y=&quot;94&quot; width=&quot;65&quot; height=&quot;14&quot; /&gt;
+        &lt;Region name=&quot;focused-button-2&quot; x=&quot;259&quot; y=&quot;109&quot; width=&quot;65&quot; height=&quot;14&quot; /&gt;
+        &lt;Region name=&quot;panel-background&quot; x=&quot;324&quot; y=&quot;97&quot; width=&quot;15&quot; height=&quot;15&quot; /&gt;
+        &lt;Region name=&quot;slider-off-background&quot; x=&quot;341&quot; y=&quot;96&quot; width=&quot;11&quot; height=&quot;10&quot; /&gt;
+        &lt;Region name=&quot;slider-middle-background&quot; x=&quot;345&quot; y=&quot;81&quot; width=&quot;3&quot; height=&quot;3&quot; /&gt;
+        &lt;Region name=&quot;slider-max-background&quot; x=&quot;354&quot; y=&quot;96&quot; width=&quot;11&quot; height=&quot;10&quot; /&gt;
+    &lt;/Regions&gt;
+    &lt;Animations&gt;
+        &lt;Animation name=&quot;slime-animation&quot; delay=&quot;200&quot;&gt;
+            &lt;Frame region=&quot;slime-1&quot; /&gt;
+            &lt;Frame region=&quot;slime-2&quot; /&gt;
+        &lt;/Animation&gt;
+        &lt;Animation name=&quot;bat-animation&quot; delay=&quot;200&quot;&gt;
+            &lt;Frame region=&quot;bat-1&quot; /&gt;
+            &lt;Frame region=&quot;bat-2&quot; /&gt;
+            &lt;Frame region=&quot;bat-1&quot; /&gt;
+            &lt;Frame region=&quot;bat-3&quot; /&gt;
+        &lt;/Animation&gt;
+        &lt;Animation name=&quot;focused-button-animation&quot; delay=&quot;300&quot;&gt;
+            &lt;Frame region=&quot;focused-button-1&quot; /&gt;
+            &lt;Frame region=&quot;focused-button-2&quot; /&gt;
+        &lt;/Animation&gt;
+    &lt;/Animations&gt;
+&lt;/TextureAtlas&gt;
+</code></pre><h3 id="adding-bitmap-fonts">Adding Bitmap Fonts</h3>
+<p>While MonoGame natively uses <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to draw text, Gum uses the <a href="https://www.angelcode.com/products/bmfont/">AngelCode Bitmap Font (.fnt)</a> font file format. This means we'll need to supply Gum with the <em>.fnt</em> file that defines our font.</p>
+<p>First, download the <em>.fnt</em> file by right-clicking the following link and saving it as <em>04b_30.fnt</em> in the game project's <em>Content/fonts</em> directory:</p>
+<ul>
+<li><img src="files/04b_30.fnt" alt="04b_30.fnt"></li>
+</ul>
+<p>Next, add this font file to your content project using the MGCB Editor:</p>
+<ol>
+<li>Open the <em>Content.mgcb</em> content project file in the MGCB Editor.</li>
+<li>Right-click the <em>fonts</em> folder and choose <em>Add</em> &gt; <em>Existing Item...</em>.</li>
+<li>Navigate to and select the <em>04b_30.fnt</em> file you just downloaded.</li>
+<li>In the Properties panel, change the <em>Build Action</em> to <em>Copy</em>. The MonoGame Content Pipeline cannot process <em>.fnt</em> files; we just need it to copy it so we can give it to Gum.</li>
+<li>Save the changes and close the MGCB Editor.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-editor.png" alt="Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When the <em>.fnt</em> font file was generated using the <a href="https://www.angelcode.com/products/bmfont/">AngelCode Bitmap Font Generator</a>, the graphics from the <em>.png</em> file that it produces was copied over into our existing texture atlas. By doing this, it allows Gum to render the visuals for elements and the text from the same atlas, reducing texture swapping.</p>
+<p>The font file references our existing texture atlas using a relative path that points to the atlas image.</p>
+<p>The best practice when using this method is to ensure that when you copy the graphics from the generated <em>.png</em> file to your texture atlas, you place the generated character glyph graphics in the top-left of your texture atlas. This means all of the coordinates in the <em>.fnt</em> file will correctly reference the character glyphs without additional manual changes.</p>
+</div>
+<h2 id="updating-the-textureregion-class">Updating the TextureRegion Class</h2>
+<p>In <a href="../18_texture_sampling/index.html#texture-coordinates">Chapter 18</a> we discussed texture coordinates and that graphic devices use a normalized coordinate system between 0.0 and 1.0.</p>
+<p>Sine <a href="#animation-chains">Gum also uses this coordinate system</a>, let's update the <code>TextureRegion</code> class to easily provide these values for any given region.</p>
+<p>Open the <em>TextureRegion.cs</em> file in the <em>MonoGameLibrary</em> project and add the following properties to the <code>TextureRegion</code> class:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Gets the top normalized texture coordinate of this region.
+/// &lt;/summary&gt;
+public float TopTextureCoordinate =&gt; SourceRectangle.Top / (float)Texture.Height;
+
+/// &lt;summary&gt;
+/// Gets the bottom normalized texture coordinate of this region.
+/// &lt;/summary&gt;
+public float BottomTextureCoordinate =&gt; SourceRectangle.Bottom / (float)Texture.Height;
+
+/// &lt;summary&gt;
+///  Gets the left normalized texture coordinate of this region.
+/// &lt;/summary&gt;
+public float LeftTextureCoordinate =&gt; SourceRectangle.Left / (float)Texture.Width;
+
+/// &lt;summary&gt;
+/// Gets the right normalized texture coordinate of this region.
+/// &lt;/summary&gt;
+public float RightTextureCoordinate =&gt; SourceRectangle.Right / (float)Texture.Width;
+</code></pre><h2 id="creating-custom-ui-components">Creating Custom UI Components</h2>
+<p>Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We'll start with an animated button that uses our game's visual style, then move on to creating a custom slider.</p>
+<h3 id="the-animatedbutton-class">The AnimatedButton Class</h3>
+<p>Our first custom component will be an <code>AnimatedButton</code> that inherits from Gum's base <code>Button</code> class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.</p>
+<p>First, create a new folder in the game project called <em>UI</em> to store our custom UI components. Then, add a new file called <em>AnimatedButton.cs</em> with the following code:</p>
+<pre><code class="lang-csharp">using System;
+using Gum.DataTypes;
+using Gum.DataTypes.Variables;
+using Gum.Graphics.Animation;
+using Gum.Managers;
+using Gum.Wireframe;
+using Microsoft.Xna.Framework.Input;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary.Graphics;
+
+namespace DungeonSlime.UI;
+
+/// &lt;summary&gt;
+/// A custom button implementation that inherits from Gum's Button class to provide
+/// animated visual feedback when focused.
+/// &lt;/summary&gt;
+internal class AnimatedButton : Button
+{
+    /// &lt;summary&gt;
+    /// Creates a new AnimatedButton instance using graphics from the specified texture atlas.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;atlas&quot;&gt;The texture atlas containing button graphics and animations&lt;/param&gt;
+    public AnimatedButton(TextureAtlas atlas)
+    {
+        // Create the top-level container that will hold all visual elements
+        // Width is relative to children with extra padding, height is fixed
+        ContainerRuntime topLevelContainer = new ContainerRuntime();
+        topLevelContainer.Height = 14f;
+        topLevelContainer.HeightUnits = DimensionUnitType.Absolute;
+        topLevelContainer.Width = 21f;
+        topLevelContainer.WidthUnits = DimensionUnitType.RelativeToChildren;
+
+        // Create the nine-slice background that will display the button graphics
+        // A nine-slice allows the button to stretch while preserving corner appearance
+        NineSliceRuntime nineSliceInstance = new NineSliceRuntime();
+        nineSliceInstance.Height = 0f;
+        nineSliceInstance.Texture = atlas.Texture;
+        nineSliceInstance.TextureAddress = TextureAddress.Custom;
+        nineSliceInstance.Dock(Dock.Fill);
+        topLevelContainer.Children.Add(nineSliceInstance);
+
+        // Create the text element that will display the button's label
+        TextRuntime textInstance = new TextRuntime();
+        // Name is required so it hooks in to the base Button.Text property
+        textInstance.Name = nameof(textInstance);
+        textInstance.Text = &quot;START&quot;;
+        textInstance.Blue = 130;
+        textInstance.Green = 86;
+        textInstance.Red = 70;
+        textInstance.UseCustomFont = true;
+        textInstance.CustomFontFile = &quot;fonts/04b_30.fnt&quot;;
+        textInstance.FontScale = 0.25f;
+        textInstance.Anchor(Anchor.Center);
+        textInstance.Width = 0;
+        textInstance.WidthUnits = DimensionUnitType.RelativeToChildren;
+        topLevelContainer.Children.Add(textInstance);
+
+        // Get the texture region for the unfocused button state from the atlas
+        TextureRegion unfocusedTextureRegion = atlas.GetRegion(&quot;unfocused-button&quot;);
+
+        // Create an animation chain for the unfocused state with a single frame
+        AnimationChain unfocusedAnimation = new AnimationChain();
+        unfocusedAnimation.Name = nameof(unfocusedAnimation);
+        AnimationFrame unfocusedFrame = new AnimationFrame
+        {
+            TopCoordinate = unfocusedTextureRegion.TopTextureCoordinate,
+            BottomCoordinate = unfocusedTextureRegion.BottomTextureCoordinate,
+            LeftCoordinate = unfocusedTextureRegion.LeftTextureCoordinate,
+            RightCoordinate = unfocusedTextureRegion.RightTextureCoordinate,
+            FrameLength = 0.3f,
+            Texture = unfocusedTextureRegion.Texture
+        };
+        unfocusedAnimation.Add(unfocusedFrame);
+
+        // Get the multi-frame animation for the focused button state from the atlas
+        Animation focusedAtlasAnimation = atlas.GetAnimation(&quot;focused-button-animation&quot;);
+
+        // Create an animation chain for the focused state using all frames from the atlas animation
+        AnimationChain focusedAnimation = new AnimationChain();
+        focusedAnimation.Name = nameof(focusedAnimation);
+        foreach (TextureRegion region in focusedAtlasAnimation.Frames)
+        {
+            AnimationFrame frame = new AnimationFrame
+            {
+                TopCoordinate = region.TopTextureCoordinate,
+                BottomCoordinate = region.BottomTextureCoordinate,
+                LeftCoordinate = region.LeftTextureCoordinate,
+                RightCoordinate = region.RightTextureCoordinate,
+                FrameLength = (float)focusedAtlasAnimation.Delay.TotalSeconds,
+                Texture = region.Texture
+            };
+
+            focusedAnimation.Add(frame);
+        }
+
+        // Assign both animation chains to the nine-slice background
+        nineSliceInstance.AnimationChains = new AnimationChainList
+        {
+            unfocusedAnimation,
+            focusedAnimation
+        };
+
+        // Create a state category for button states
+        StateSaveCategory category = new StateSaveCategory();
+        category.Name = Button.ButtonCategoryName;
+        topLevelContainer.AddCategory(category);
+
+        // Create the enabled (default/unfocused) state
+        StateSave enabledState = new StateSave();
+        enabledState.Name = FrameworkElement.EnabledStateName;
+        enabledState.Apply = () =&gt;
+        {
+            // When enabled but not focused, use the unfocused animation
+            nineSliceInstance.CurrentChainName = unfocusedAnimation.Name;
+        };
+        category.States.Add(enabledState);
+
+        // Create the focused state
+        StateSave focusedState = new StateSave();
+        focusedState.Name = FrameworkElement.FocusedStateName;
+        focusedState.Apply = () =&gt;
+        {
+            // When focused, use the focused animation and enable animation playback
+            nineSliceInstance.CurrentChainName = focusedAnimation.Name;
+            nineSliceInstance.Animate = true;
+        };
+        category.States.Add(focusedState);
+
+        // Create the highlighted+focused state (for mouse hover while focused)
+        // by cloning the focused state since they appear the same
+        StateSave highlightedFocused = focusedState.Clone();
+        highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
+        category.States.Add(highlightedFocused);
+
+        // Create the highlighted state (for mouse hover)
+        // by cloning the enabled state since they appear the same
+        StateSave highlighted = enabledState.Clone();
+        highlighted.Name = FrameworkElement.HighlightedStateName;
+        category.States.Add(highlighted);
+
+        // Add event handlers for keyboard input.
+        KeyDown += HandleKeyDown;
+
+        // Add event handler for mouse hover focus.
+        topLevelContainer.RollOn += HandleRollOn;
+
+        // Assign the configured container as this button's visual
+        Visual = topLevelContainer;
+    }
+
+    /// &lt;summary&gt;
+    /// Handles keyboard input for navigation between buttons using left/right keys.
+    /// &lt;/summary&gt;
+    private void HandleKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Keys.Left)
+        {
+            // Left arrow navigates to previous control
+            HandleTab(TabDirection.Up, loop: true);
+        }
+        if (e.Key == Keys.Right)
+        {
+            // Right arrow navigates to next control
+            HandleTab(TabDirection.Down, loop: true);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Automatically focuses the button when the mouse hovers over it.
+    /// &lt;/summary&gt;
+    private void HandleRollOn(object sender, EventArgs e)
+    {
+        IsFocused = true;
+    }
+}
+</code></pre>
+<p>Let's examine the key aspects of this implementation:</p>
+<h4 id="top-level-container">Top-level Container</h4>
+<p>Every customized control needs a top-level container to hold all visual elements. For our button, we create a <code>ContainerRuntime</code> that manages the button's size and contains all other visual elements:</p>
+<pre><code class="lang-csharp">// Create the top-level container that will hold all visual elements
+// Width is relative to children with extra padding, height is fixed
+ContainerRuntime topLevelContainer = new ContainerRuntime();
+topLevelContainer.Height = 14f;
+topLevelContainer.HeightUnits = DimensionUnitType.Absolute;
+topLevelContainer.Width = 21f;
+topLevelContainer.WidthUnits = DimensionUnitType.RelativeToChildren;
+</code></pre>
+<p>The <code>WidthUnits</code> property set to <code>RelativeToChildren</code> means the container will automatically size itself based on its child elements, with 21 pixels of additional space.  This allows the button to adapt its size depending on the text content.</p>
+<h4 id="nine-slice-background">Nine-slice Background</h4>
+<p>We use a <code>NineSliceRuntime</code> for the button's background.  A nine-slice is a special graphic that can be stretch while preserving its corners and edges:</p>
+<pre><code class="lang-csharp">// Create the nine-slice background that will display the button graphics
+// A nine-slice allows the button to stretch while preserving corner appearance
+NineSliceRuntime nineSliceInstance = new NineSliceRuntime();
+nineSliceInstance.Height = 0f;
+nineSliceInstance.Texture = atlas.Texture;
+nineSliceInstance.TextureAddress = TextureAddress.Custom;
+nineSliceInstance.Dock(Dock.Fill);
+topLevelContainer.Children.Add(nineSliceInstance);
+</code></pre>
+<p>The <code>TextureAddress</code> property is set to <code>Custom</code> so we can specify exactly which portion of the atlas texture to use, while <code>Dock(Dock.Fill)</code> ensure the background fills the entire button area.</p>
+<h4 id="animated-chains">Animated Chains</h4>
+<p>The most distinctive feature of our animated button is its ability to change appearance when focused.  We achieve this by creating two animation chains:</p>
+<ol>
+<li>An &quot;unfocused&quot; animation with a single static frame.</li>
+<li>A &quot;focused&quot; animation with two alternating frames that create a visual effect.</li>
+</ol>
+<p>Each animation frame specifies the coordinates within our texture atlas to display:</p>
+<pre><code class="lang-csharp">// Create an animation chain for the unfocused state with a single frame
+AnimationChain unfocusedAnimation = new AnimationChain();
+unfocusedAnimation.Name = nameof(unfocusedAnimation);
+AnimationFrame unfocusedFrame = new AnimationFrame
+{
+    TopCoordinate = unfocusedTextureRegion.TopTextureCoordinate,
+    BottomCoordinate = unfocusedTextureRegion.BottomTextureCoordinate,
+    LeftCoordinate = unfocusedTextureRegion.LeftTextureCoordinate,
+    RightCoordinate = unfocusedTextureRegion.RightTextureCoordinate,
+    FrameLength = 0.3f,
+    Texture = unfocusedTextureRegion.Texture
+};
+unfocusedAnimation.Add(unfocusedFrame);
+</code></pre><pre><code class="lang-csharp">// Get the multi-frame animation for the focused button state from the atlas
+Animation focusedAtlasAnimation = atlas.GetAnimation(&quot;focused-button-animation&quot;);
+
+// Create an animation chain for the focused state using all frames from the atlas animation
+AnimationChain focusedAnimation = new AnimationChain();
+focusedAnimation.Name = nameof(focusedAnimation);
+foreach (TextureRegion region in focusedAtlasAnimation.Frames)
+{
+    AnimationFrame frame = new AnimationFrame
+    {
+        TopCoordinate = region.TopTextureCoordinate,
+        BottomCoordinate = region.BottomTextureCoordinate,
+        LeftCoordinate = region.LeftTextureCoordinate,
+        RightCoordinate = region.RightTextureCoordinate,
+        FrameLength = (float)focusedAtlasAnimation.Delay.TotalSeconds,
+        Texture = region.Texture
+    };
+
+    focusedAnimation.Add(frame);
+}
+</code></pre><pre><code class="lang-csharp">// Assign both animation chains to the nine-slice background
+nineSliceInstance.AnimationChains = new AnimationChainList
+{
+    unfocusedAnimation,
+    focusedAnimation
+};
+</code></pre><h4 id="states-and-categories">States and Categories</h4>
+<p>In Gum, each control type has a specific category name that identifies its state collection. For buttons we use <code>Button.ButtonCategoryName</code>:</p>
+<pre><code class="lang-csharp">// Create a state category for button states
+StateSaveCategory category = new StateSaveCategory();
+category.Name = Button.ButtonCategoryName;
+topLevelContainer.AddCategory(category);
+</code></pre>
+<p>Within this category,w e define how the button appears in different states by creating <code>StateSave</code> objects with specific state names:</p>
+<pre><code class="lang-csharp">// Create the enabled (default/unfocused) state
+StateSave enabledState = new StateSave();
+enabledState.Name = FrameworkElement.EnabledStateName;
+enabledState.Apply = () =&gt;
+{
+    // When enabled but not focused, use the unfocused animation
+    nineSliceInstance.CurrentChainName = unfocusedAnimation.Name;
+};
+category.States.Add(enabledState);
+</code></pre><pre><code class="lang-csharp">// Create the focused state
+StateSave focusedState = new StateSave();
+focusedState.Name = FrameworkElement.FocusedStateName;
+focusedState.Apply = () =&gt;
+{
+    // When focused, use the focused animation and enable animation playback
+    nineSliceInstance.CurrentChainName = focusedAnimation.Name;
+    nineSliceInstance.Animate = true;
+};
+category.States.Add(focusedState);
+</code></pre><pre><code class="lang-csharp">// Create the highlighted+focused state (for mouse hover while focused)
+// by cloning the focused state since they appear the same
+StateSave highlightedFocused = focusedState.Clone();
+highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
+category.States.Add(highlightedFocused);
+</code></pre><pre><code class="lang-csharp">// Create the highlighted state (for mouse hover)
+// by cloning the enabled state since they appear the same
+StateSave highlighted = enabledState.Clone();
+highlighted.Name = FrameworkElement.HighlightedStateName;
+category.States.Add(highlighted);
+</code></pre>
+<p>Each state's <code>Apply</code> action defines what visual changes occur when the state becomes active.  In our case, we switch between animation chains to create the desired visual effect.</p>
+<h4 id="custom-input-handling">Custom Input Handling</h4>
+<p>We add custom keyboard navigation to our button by handling the <code>KeyDown</code> event:</p>
+<pre><code class="lang-csharp">// Add event handlers for keyboard input.
+KeyDown += HandleKeyDown;
+</code></pre><pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Handles keyboard input for navigation between buttons using left/right keys.
+/// &lt;/summary&gt;
+private void HandleKeyDown(object sender, KeyEventArgs e)
+{
+    if (e.Key == Keys.Left)
+    {
+        // Left arrow navigates to previous control
+        HandleTab(TabDirection.Up, loop: true);
+    }
+    if (e.Key == Keys.Right)
+    {
+        // Right arrow navigates to next control
+        HandleTab(TabDirection.Down, loop: true);
+    }
+}
+</code></pre>
+<p>This allows players to navigate between buttons using the left and right arrow keys, providing additional control options beyond the default tab navigation.</p>
+<h4 id="focus-management">Focus Management</h4>
+<p>We also add a <code>RollOn</code> event handler to ensure the button gets focus when the mouse hovers over it:</p>
+<pre><code class="lang-csharp">// Add event handler for mouse hover focus.
+topLevelContainer.RollOn += HandleRollOn;
+</code></pre><pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Automatically focuses the button when the mouse hovers over it.
+/// &lt;/summary&gt;
+private void HandleRollOn(object sender, EventArgs e)
+{
+    IsFocused = true;
+}
+</code></pre>
+<p>This creates a more responsive interface by immediately focusing elements that the player interacts with using the mouse.</p>
+<h3 id="the-optionsslider-class">The OptionsSlider Class</h3>
+<p>Now let's create a custom <code>OptionsSlider</code> class to style the volume sliders.  This class will inherit from Gum's base <code>Slider</code> class and provide a styled appearance consistent with the game's visual theme.</p>
+<p>Create a new file named <em>OptionsSlider.cs</em> in the <em>UI</em> folder with the following code:</p>
+<pre><code class="lang-csharp">using System;
+using Gum.DataTypes;
+using Gum.DataTypes.Variables;
+using Gum.Managers;
+using Gum.Wireframe;
+using Microsoft.Xna.Framework;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary.Graphics;
+
+namespace DungeonSlime.Components;
+
+/// &lt;summary&gt;
+/// A custom slider control that inherits from Gum's Slider class.
+/// &lt;/summary&gt;
+public class OptionsSlider : Slider
+{
+    // Reference to the text label that displays the slider's title
+    private TextRuntime _textInstance;
+
+    // Reference to the rectangle that visually represents the current value
+    private ColoredRectangleRuntime _fillRectangle;
+
+    /// &lt;summary&gt;
+    /// Gets or sets the text label for this slider.
+    /// &lt;/summary&gt;
+    public string Text
+    {
+        get =&gt; _textInstance.Text;
+        set =&gt; _textInstance.Text = value;
+    }
+
+    /// &lt;summary&gt;
+    /// Creates a new OptionsSlider instance using graphics from the specified texture atlas.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;atlas&quot;&gt;The texture atlas containing slider graphics.&lt;/param&gt;
+    public OptionsSlider(TextureAtlas atlas)
+    {
+        // Create the top-level container for all visual elements
+        ContainerRuntime topLevelContainer = new ContainerRuntime();
+        topLevelContainer.Height = 55f;
+        topLevelContainer.Width = 264f;
+
+        TextureRegion backgroundRegion = atlas.GetRegion(&quot;slider-background&quot;);
+
+        // Create the background panel that contains everything
+        NineSliceRuntime background = new NineSliceRuntime();
+        background.Texture = atlas.Texture;
+        background.TextureAddress = TextureAddress.Custom;
+        background.TextureHeight = backgroundRegion.Height;
+        background.TextureLeft = backgroundRegion.SourceRectangle.Left;
+        background.TextureTop = backgroundRegion.SourceRectangle.Top;
+        background.TextureWidth = backgroundRegion.Width;
+        background.Dock(Dock.Fill);
+        topLevelContainer.AddChild(background);
+
+        // Create the title text element
+        _textInstance = new TextRuntime();
+        _textInstance.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+        _textInstance.UseCustomFont = true;
+        _textInstance.FontScale = 0.5f;
+        _textInstance.Text = &quot;Replace Me&quot;;
+        _textInstance.X = 10f;
+        _textInstance.Y = 10f;
+        _textInstance.WidthUnits = DimensionUnitType.RelativeToChildren;
+        topLevelContainer.AddChild(_textInstance);
+
+        // Create the container for the slider track and decorative elements
+        ContainerRuntime innerContainer = new ContainerRuntime();
+        innerContainer.Height = 13f;
+        innerContainer.Width = 241f;
+        innerContainer.X = 10f;
+        innerContainer.Y = 33f;
+        topLevelContainer.AddChild(innerContainer);
+
+        TextureRegion offBackgroundRegion = atlas.GetRegion(&quot;slider-off-background&quot;);
+
+        // Create the &quot;OFF&quot; side of the slider (left end)
+        NineSliceRuntime offBackground = new NineSliceRuntime();
+        offBackground.Dock(Dock.Left);
+        offBackground.Texture = atlas.Texture;
+        offBackground.TextureAddress = TextureAddress.Custom;
+        offBackground.TextureHeight = offBackgroundRegion.Height;
+        offBackground.TextureLeft = offBackgroundRegion.SourceRectangle.Left;
+        offBackground.TextureTop = offBackgroundRegion.SourceRectangle.Top;
+        offBackground.TextureWidth = offBackgroundRegion.Width;
+        offBackground.Width = 28f;
+        offBackground.WidthUnits = DimensionUnitType.Absolute;
+        offBackground.Dock(Dock.Left);
+        innerContainer.AddChild(offBackground);
+
+        TextureRegion middleBackgroundRegion = atlas.GetRegion(&quot;slider-middle-background&quot;);
+
+        // Create the middle track portion of the slider
+        NineSliceRuntime middleBackground = new NineSliceRuntime();
+        middleBackground.Dock(Dock.FillVertically);
+        middleBackground.Texture = middleBackgroundRegion.Texture;
+        middleBackground.TextureAddress = TextureAddress.Custom;
+        middleBackground.TextureHeight = middleBackgroundRegion.Height;
+        middleBackground.TextureLeft = middleBackgroundRegion.SourceRectangle.Left;
+        middleBackground.TextureTop = middleBackgroundRegion.SourceRectangle.Top;
+        middleBackground.TextureWidth = middleBackgroundRegion.Width;
+        middleBackground.Width = 179f;
+        middleBackground.WidthUnits = DimensionUnitType.Absolute;
+        middleBackground.Dock(Dock.Left);
+        middleBackground.X = 27f;
+        innerContainer.AddChild(middleBackground);
+
+        TextureRegion maxBackgroundRegion = atlas.GetRegion(&quot;slider-max-background&quot;);
+
+        // Create the &quot;MAX&quot; side of the slider (right end)
+        NineSliceRuntime maxBackground = new NineSliceRuntime();
+        maxBackground.Texture = maxBackgroundRegion.Texture;
+        maxBackground.TextureAddress = TextureAddress.Custom;
+        maxBackground.TextureHeight = maxBackgroundRegion.Height;
+        maxBackground.TextureLeft = maxBackgroundRegion.SourceRectangle.Left;
+        maxBackground.TextureTop = maxBackgroundRegion.SourceRectangle.Top;
+        maxBackground.TextureWidth = maxBackgroundRegion.Width;
+        maxBackground.Width = 36f;
+        maxBackground.WidthUnits = DimensionUnitType.Absolute;
+        maxBackground.Dock(Dock.Right);
+        innerContainer.AddChild(maxBackground);
+
+        // Create the interactive track that responds to clicks
+        // The special name &quot;TrackInstance&quot; is required for Slider functionality
+        ContainerRuntime trackInstance = new ContainerRuntime();
+        trackInstance.Name = &quot;TrackInstance&quot;;
+        trackInstance.Dock(Dock.Fill);
+        trackInstance.Height = -2f;
+        trackInstance.Width = -2f;
+        middleBackground.AddChild(trackInstance);
+
+        // Create the fill rectangle that visually displays the current value
+        _fillRectangle = new ColoredRectangleRuntime();
+        _fillRectangle.Dock(Dock.Left);
+        _fillRectangle.Width = 90f; // Default to 90% - will be updated by value changes
+        _fillRectangle.WidthUnits = DimensionUnitType.PercentageOfParent;
+        trackInstance.AddChild(_fillRectangle);
+
+        // Add &quot;OFF&quot; text to the left end
+        TextRuntime offText = new TextRuntime();
+        offText.Red = 70;
+        offText.Green = 86;
+        offText.Blue = 130;
+        offText.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+        offText.FontScale = 0.25f;
+        offText.UseCustomFont = true;
+        offText.Text = &quot;OFF&quot;;
+        offText.Anchor(Anchor.Center);
+        offBackground.AddChild(offText);
+
+        // Add &quot;MAX&quot; text to the right end
+        TextRuntime maxText = new TextRuntime();
+        maxText.Red = 70;
+        maxText.Green = 86;
+        maxText.Blue = 130;
+        maxText.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+        maxText.FontScale = 0.25f;
+        maxText.UseCustomFont = true;
+        maxText.Text = &quot;MAX&quot;;
+        maxText.Anchor(Anchor.Center);
+        maxBackground.AddChild(maxText);
+
+        // Define colors for focused and unfocused states
+        Color focusedColor = Color.White;
+        Color unfocusedColor = Color.Gray;
+
+        // Create slider state category - Slider.SliderCategoryName is the required name
+        StateSaveCategory sliderCategory = new StateSaveCategory();
+        sliderCategory.Name = Slider.SliderCategoryName;
+        topLevelContainer.AddCategory(sliderCategory);
+
+        // Create the enabled (default/unfocused) state
+        StateSave enabled = new StateSave();
+        enabled.Name = FrameworkElement.EnabledStateName;
+        enabled.Apply = () =&gt;
+        {
+            // When enabled but not focused, use gray coloring for all elements
+            background.Color = unfocusedColor;
+            _textInstance.Color = unfocusedColor;
+            offBackground.Color = unfocusedColor;
+            middleBackground.Color = unfocusedColor;
+            maxBackground.Color = unfocusedColor;
+            _fillRectangle.Color = unfocusedColor;
+        };
+        sliderCategory.States.Add(enabled);
+
+        // Create the focused state
+        StateSave focused = new StateSave();
+        focused.Name = FrameworkElement.FocusedStateName;
+        focused.Apply = () =&gt;
+        {
+            // When focused, use white coloring for all elements
+            background.Color = focusedColor;
+            _textInstance.Color = focusedColor;
+            offBackground.Color = focusedColor;
+            middleBackground.Color = focusedColor;
+            maxBackground.Color = focusedColor;
+            _fillRectangle.Color = focusedColor;
+        };
+        sliderCategory.States.Add(focused);
+
+        // Create the highlighted+focused state by cloning the focused state
+        StateSave highlightedFocused = focused.Clone();
+        highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
+        sliderCategory.States.Add(highlightedFocused);
+
+        // Create the highlighted state by cloning the enabled state
+        StateSave highlighted = enabled.Clone();
+        highlighted.Name = FrameworkElement.HighlightedStateName;
+        sliderCategory.States.Add(highlighted);
+
+        // Assign the configured container as this slider's visual
+        Visual = topLevelContainer;
+
+        // Enable click-to-point functionality for the slider
+        // This allows users to click anywhere on the track to jump to that value
+        IsMoveToPointEnabled = true;
+
+        // Add event handlers
+        Visual.RollOn += HandleRollOn;
+        ValueChanged += HandleValueChanged;
+        ValueChangedByUi += HandleValueChangedByUi;
+    }
+
+    /// &lt;summary&gt;
+    /// Automatically focuses the slider when the user interacts with it
+    /// &lt;/summary&gt;
+    private void HandleValueChangedByUi(object sender, EventArgs e)
+    {
+        IsFocused = true;
+    }
+
+    /// &lt;summary&gt;
+    /// Automatically focuses the slider when the mouse hovers over it
+    /// &lt;/summary&gt;
+    private void HandleRollOn(object sender, EventArgs e)
+    {
+        IsFocused = true;
+    }
+
+    /// &lt;summary&gt;
+    /// Updates the fill rectangle width to visually represent the current value
+    /// &lt;/summary&gt;
+    private void HandleValueChanged(object sender, EventArgs e)
+    {
+        // Calculate the ratio of the current value within its range
+        double ratio = (Value - Minimum) / (Maximum - Minimum);
+
+        // Update the fill rectangle width as a percentage
+        // _fillRectangle uses percentage width units, so we multiply by 100
+        _fillRectangle.Width = 100 * (float)ratio;
+    }
+}
+</code></pre>
+<p>The <code>OptionsSlider</code> is more complex than then <code>AnimatedButton</code> because it contains more visual elements.  Let's examine the key aspects of this implementation:</p>
+<h4 id="slider-components">Slider Components</h4>
+<p>Our custom slider consists of several components</p>
+<ol>
+<li>A background container with a label for the slider.</li>
+<li>An inner container that holds the slider track.</li>
+<li>&quot;OFF&quot; and &quot;MAX&quot; section at each end of the slider.</li>
+<li>A track where the thumb moves.</li>
+<li>A fill rectangle that shows the current value visually.</li>
+</ol>
+<p>Each of these elements is styled to match the game's visual theme using sprites from our atlas.</p>
+<h4 id="custom-text-property">Custom Text Property</h4>
+<p>We add a custom <code>Text</code> property to set the slider's label:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Gets or sets the text label for this slider.
+/// &lt;/summary&gt;
+public string Text
+{
+    get =&gt; _textInstance.Text;
+    set =&gt; _textInstance.Text = value;
+}
+</code></pre>
+<p>This allows us to easily customize the label for each slider instance we create.</p>
+<h4 id="visual-feedback">Visual Feedback</h4>
+<p>The slider uses color changes to provide visual feedback:</p>
+<pre><code class="lang-csharp">// Create the enabled (default/unfocused) state
+StateSave enabled = new StateSave();
+enabled.Name = FrameworkElement.EnabledStateName;
+enabled.Apply = () =&gt;
+{
+    // When enabled but not focused, use gray coloring for all elements
+    background.Color = unfocusedColor;
+    _textInstance.Color = unfocusedColor;
+    offBackground.Color = unfocusedColor;
+    middleBackground.Color = unfocusedColor;
+    maxBackground.Color = unfocusedColor;
+    _fillRectangle.Color = unfocusedColor;
+};
+sliderCategory.States.Add(enabled);
+</code></pre><pre><code class="lang-csharp">// Create the focused state
+StateSave focused = new StateSave();
+focused.Name = FrameworkElement.FocusedStateName;
+focused.Apply = () =&gt;
+{
+    // When focused, use white coloring for all elements
+    background.Color = focusedColor;
+    _textInstance.Color = focusedColor;
+    offBackground.Color = focusedColor;
+    middleBackground.Color = focusedColor;
+    maxBackground.Color = focusedColor;
+    _fillRectangle.Color = focusedColor;
+};
+sliderCategory.States.Add(focused);
+</code></pre>
+<p>When the slider is focused, all its elements change from gray to white, making it clear to the player which UI element currently has focus.</p>
+<h4 id="fill-visualization">Fill Visualization</h4>
+<p>One of the most important aspects of a slider is the visual representation of its value.  We achieve this by updating the width of the <code>_fillRectangle</code> element:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Updates the fill rectangle width to visually represent the current value
+/// &lt;/summary&gt;
+private void HandleValueChanged(object sender, EventArgs e)
+{
+    // Calculate the ratio of the current value within its range
+    double ratio = (Value - Minimum) / (Maximum - Minimum);
+
+    // Update the fill rectangle width as a percentage
+    // _fillRectangle uses percentage width units, so we multiply by 100
+    _fillRectangle.Width = 100 * (float)ratio;
+}
+</code></pre>
+<p>This method converts the slider's current value to a percentage and applies it to the fill rectangle's width, creating a visual indicator of the current setting.</p>
+<h2 id="updating-the-scenes-to-use-custom-controls">Updating the Scenes to Use Custom Controls</h2>
+<p>Now that we have created our custom controls, we need to update our game scenes to use them instead of the default Gum controls.</p>
+<h3 id="updating-the-titlescene">Updating the TitleScene</h3>
+<p>First, open the <em>TitleScene.cs</em> file in the game project and add the following using declaration to the top of the <code>TitleScene</code> class:</p>
+<pre><code class="lang-csharp" highlight-lines="2">using System;
+using DungeonSlime.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameGum;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary;
+using MonoGameLibrary.Scenes;
+</code></pre>
+<p>Next, update both the <code>_optionsButton</code> and the <code>_optionsBackButton</code> fields to be of our new <code>AnimatedButton</code> type, and add a new field to store a reference to the texture atlas in.</p>
+<pre><code class="lang-csharp" highlight-lines="3-11">// Existing fields...
+
+// The options button used to open the options menu.
+private AnimatedButton _optionsButton;
+
+// The back button used to exit the options menu back to the title menu.
+private AnimatedButton _optionsBackButton;
+
+// Reference to the texture atlas that we can pass to UI elements when they
+// are created.
+private TextureAtlas _atlas;
+</code></pre>
+<p>Next, in the <code>LoadContent</code> method, we need to update it so that it loads the texture atlas from the XML configuration file and stores it in the new <code>_atlas</code> field:</p>
+<pre><code class="lang-csharp" highlight-lines="15-16">public override void LoadContent()
+{
+    // Load the font for the standard text.
+    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
+
+    // Load the font for the title text
+    _font5x = Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30_5x&quot;);
+
+    // Load the background pattern texture.
+    _backgroundPattern = Content.Load&lt;Texture2D&gt;(&quot;images/background-pattern&quot;);
+
+    // Load the sound effect to play when ui actions occur.
+    _uiSoundEffect = Core.Content.Load&lt;SoundEffect&gt;(&quot;audio/ui&quot;);
+
+    // Load the texture atlas from the xml configuration file.
+    _atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
+}
+</code></pre>
+<p>Next, update the <code>CreateTitlePanel</code> method so that instead of using the default Gum <code>Button</code> Forms controls it now uses our custom <code>AnimatedButton</code> control and remove the explicit setting of the <code>Visual.Width</code> property since this is managed by the <code>AnimatedButton</code> now:</p>
+<pre><code class="lang-csharp" highlight-lines="8,16">private void CreateTitlePanel()
+{
+    // Create a container to hold all of our buttons
+    _titleScreenButtonsPanel = new Panel();
+    _titleScreenButtonsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _titleScreenButtonsPanel.AddToRoot();
+
+    AnimatedButton startButton = new AnimatedButton(_atlas);
+    startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+    startButton.Visual.X = 50;
+    startButton.Visual.Y = -12;
+    startButton.Text = &quot;Start&quot;;
+    startButton.Click += HandleStartClicked;
+    _titleScreenButtonsPanel.AddChild(startButton);
+
+    _optionsButton = new AnimatedButton(_atlas);
+    _optionsButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsButton.Visual.X = -50;
+    _optionsButton.Visual.Y = -12;
+    _optionsButton.Text = &quot;Options&quot;;
+    _optionsButton.Click += HandleOptionsClicked;
+    _titleScreenButtonsPanel.AddChild(_optionsButton);
+
+    startButton.IsFocused = true;
+}
+</code></pre>
+<p>Finally, update the <code>CreateOptionsPanel</code> method so that:</p>
+<ul>
+<li>It uses a <code>TextRuntime</code> to display the text &quot;OPTIONS&quot; using the bitmap font</li>
+<li>Instead of using the default Gum <code>Button</code> and <code>Slider</code> Forms controls, it now uses our custom <code>AnimatedButton</code> and <code>OptionsSlider</code> controls.</li>
+<li>Both the <code>musicSlider</code> and <code>sfxSlider</code> have been given <code>Name</code> and <code>Text</code> properties.</li>
+</ul>
+<pre><code class="lang-csharp" highlight-lines="8-15,17-19,31-33,45">private void CreateOptionsPanel()
+{
+    _optionsPanel = new Panel();
+    _optionsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _optionsPanel.IsVisible = false;
+    _optionsPanel.AddToRoot();
+
+    TextRuntime optionsText = new TextRuntime();
+    optionsText.X = 10;
+    optionsText.Y = 10;
+    optionsText.Text = &quot;OPTIONS&quot;;
+    optionsText.UseCustomFont = true;
+    optionsText.FontScale = 0.5f;
+    optionsText.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+    _optionsPanel.AddChild(optionsText);
+
+    OptionsSlider musicSlider = new OptionsSlider(_atlas);
+    musicSlider.Name = &quot;MusicSlider&quot;;
+    musicSlider.Text = &quot;MUSIC&quot;;
+    musicSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    musicSlider.Visual.Y = 30f;
+    musicSlider.Minimum = 0;
+    musicSlider.Maximum = 1;
+    musicSlider.Value = Core.Audio.SongVolume;
+    musicSlider.SmallChange = .1;
+    musicSlider.LargeChange = .2;
+    musicSlider.ValueChanged += HandleMusicSliderValueChanged;
+    musicSlider.ValueChangeCompleted += HandleMusicSliderValueChangeCompleted;
+    _optionsPanel.AddChild(musicSlider);
+
+    OptionsSlider sfxSlider = new OptionsSlider(_atlas);
+    sfxSlider.Name = &quot;SfxSlider&quot;;
+    sfxSlider.Text = &quot;SFX&quot;;
+    sfxSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    sfxSlider.Visual.Y = 93;
+    sfxSlider.Minimum = 0;
+    sfxSlider.Maximum = 1;
+    sfxSlider.Value = Core.Audio.SoundEffectVolume;
+    sfxSlider.SmallChange = .1;
+    sfxSlider.LargeChange = .2;
+    sfxSlider.ValueChanged += HandleSfxSliderChanged;
+    sfxSlider.ValueChangeCompleted += HandleSfxSliderChangeCompleted;
+    _optionsPanel.AddChild(sfxSlider);
+
+    _optionsBackButton = new AnimatedButton(_atlas);
+    _optionsBackButton.Text = &quot;BACK&quot;;
+    _optionsBackButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsBackButton.X = -28f;
+    _optionsBackButton.Y = -10f;
+    _optionsBackButton.Click += HandleOptionsButtonBack;
+    _optionsPanel.AddChild(_optionsBackButton);
+}
+</code></pre><h3 id="updating-the-gamescene">Updating the GameScene</h3>
+<p>Next, open the <em>GameScene.cs</em> file in the game project and add the following using declaration to the top of the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp" highlight-lines="2,4">using System;
+using DungeonSlime.UI;
+using Gum.DataTypes;
+using Gum.Managers;
+using Gum.Wireframe;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameGum;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+using MonoGameLibrary.Scenes;
+</code></pre>
+<p>Next, update the <code>_resumeButton</code> field to be of our new <code>AnimatedButton</code> type and add a field to store a reference to the texture atlas in.</p>
+<pre><code class="lang-csharp" highlight-lines="5,10-12">// Existing fields...
+
+// A reference to the resume button UI element so we can focus it
+// when the game is paused.
+private AnimatedButton _resumeButton;
+
+// The UI sound effect to play when a UI event is triggered.
+private SoundEffect _uiSoundEffect;
+
+// Reference to the texture atlas that we can pass to UI elements when they
+// are created.
+private TextureAtlas _atlas;
+</code></pre>
+<p>Next, in the <code>LoadContent</code> method, we need to update it so that it stores the texture atlas once loaded in the new <code>_atlas</code> field.</p>
+<pre><code class="lang-csharp" highlight-lines="4,7,11">public override void LoadContent()
+{
+    // Create the texture atlas from the XML configuration file
+    _atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
+
+    // Create the slime animated sprite from the atlas.
+    _slime = _atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+    _slime.Scale = new Vector2(4.0f, 4.0f);
+
+    // Create the bat animated sprite from the atlas.
+    _bat = _atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+    _bat.Scale = new Vector2(4.0f, 4.0f);
+
+    // Create the tilemap from the XML configuration file.
+    _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+    _tilemap.Scale = new Vector2(4.0f, 4.0f);
+
+    // Load the bounce sound effect
+    _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
+
+    // Load the collect sound effect
+    _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
+
+    // Load the font
+    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
+
+    // Load the sound effect to play when ui actions occur.
+    _uiSoundEffect = Core.Content.Load&lt;SoundEffect&gt;(&quot;audio/ui&quot;);
+}
+</code></pre>
+<p>Finally, update the <code>CreatePausePanel</code> method so that</p>
+<ol>
+<li>Instead of using a <code>ColoredRectangleRuntime</code> for the background of the pause panel, it now uses a <code>NineSliceRuntime</code> that uses the sprite from the texture atlas.</li>
+<li>The <code>textInstance</code> is updated so that it uses the custom bitmap font file.</li>
+<li>The <code>_resumeButton</code> and <code>quiteButton</code> are updated to use our custom <code>AnimatedButton</code> control instead of the default Gum <code>Button</code> Forms control.</li>
+</ol>
+<pre><code class="lang-csharp" highlight-lines="12-22,26-28,33,41">private void CreatePausePanel()
+{
+    _pausePanel = new Panel();
+    _pausePanel.Visual.Anchor(Anchor.Center);
+    _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    _pausePanel.Visual.Height = 70;
+    _pausePanel.Visual.Width = 264;
+    _pausePanel.IsVisible = false;
+    _pausePanel.AddToRoot();
+
+    TextureRegion backgroundRegion = _atlas.GetRegion(&quot;panel-background&quot;);
+
+    NineSliceRuntime background = new NineSliceRuntime();
+    background.Dock(Dock.Fill);
+    background.Texture = backgroundRegion.Texture;
+    background.TextureAddress = TextureAddress.Custom;
+    background.TextureHeight = backgroundRegion.Height;
+    background.TextureLeft = backgroundRegion.SourceRectangle.Left;
+    background.TextureTop = backgroundRegion.SourceRectangle.Top;
+    background.TextureWidth = backgroundRegion.Width;
+    _pausePanel.AddChild(background);
+
+    TextRuntime textInstance = new TextRuntime();
+    textInstance.Text = &quot;PAUSED&quot;;
+    textInstance.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+    textInstance.UseCustomFont = true;
+    textInstance.FontScale = 0.5f;
+    textInstance.X = 10f;
+    textInstance.Y = 10f;
+    _pausePanel.AddChild(textInstance);
+
+    _resumeButton = new AnimatedButton(_atlas);
+    _resumeButton.Text = &quot;RESUME&quot;;
+    _resumeButton.Visual.Anchor(Anchor.BottomLeft);
+    _resumeButton.Visual.X = 9f;
+    _resumeButton.Visual.Y = -9f;
+    _resumeButton.Click += HandleResumeButtonClicked;
+    _pausePanel.AddChild(_resumeButton);
+
+    AnimatedButton quitButton = new AnimatedButton(_atlas);
+    quitButton.Text = &quot;QUIT&quot;;
+    quitButton.Visual.Anchor(Anchor.BottomRight);
+    quitButton.Visual.X = -9f;
+    quitButton.Visual.Y = -9f;
+    quitButton.Click += HandleQuitButtonClicked;
+
+    _pausePanel.AddChild(quitButton);
+}
+</code></pre><h2 id="testing-the-styled-ui">Testing the Styled UI</h2>
+<p>When you run the game now, you'll see a dramatic improvement in the visual appearance of the UI:</p>
+<ol>
+<li>The buttons now use our custom animated background that pulses when focused.</li>
+<li>The sliders have a cleaner, mores stylized appearance with teh OFF and MAX labels.</li>
+<li>All text uses our custom bitmap font.</li>
+<li>Visual feedback clearly indicates which element has focus.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/gameplay.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 12-3: The game using Gum now with custom styled UI components</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The entire UI now has a cohesive stylet hat complements the visuals of the game.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this chapter, you learned how to transform basic UI components into custom, styled elements that match the game's visual theme. You explored several key aspects of UI customization:</p>
+<ul>
+<li>How container hierarchies and size relationships work in Gum.</li>
+<li>Creating animation chains for visual feedback.</li>
+<li>Using the state system to respond to user interactions.</li>
+<li>Building complex custom controls by extending base classes.</li>
+<li>Integrating custom fonts and graphics from a texture atlas.</li>
+</ul>
+<p>By creating reusable custom controls, you've not only improved the look of your game, but you've also developed components that can be used in future projects. This approach of separating functionality from appearance allows you to maintain consistent behavior while completely changing the visual style to match different games.</p>
+<p>The principles you've learned in this chapter extend beyond the specific components we created. You can apply the same techniques to create other custom UI elements like checkboxes, radio buttons, scroll panels, and more. By understanding how to build on Gum's foundation, you have the tools to create any UI component your game might need.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>What are the two main approaches to customizing visuals in Gum, and when would you use each one?</p>
+<div class="question-answer"><p>The two main approaches are:</p>
+<ul>
+<li><strong>Direct property assignment</strong>: Setting properties directly in code (like <code>button.Visual.Width = 100</code>). This approach is best for initial setup of UI elements and static properties that don't change during gameplay.</li>
+<li><strong>States (StateSave objects)</strong>: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it's focused or changing colors when a slider is adjusted.</li>
+</ul>
+</div>
+</li>
+<li><p>What is the purpose of using a top-level container in a custom Gum control?</p>
+<div class="question-answer"><p>A top-level container in a custom Gum control serves several purposes:</p>
+<ul>
+<li>It provides a single parent element that holds all visual components of the control.</li>
+<li>It establishes the coordinate system for positioning child elements.</li>
+<li>It can manage the overall size of the control (often using <code>RelativeToChildren</code> sizing).</li>
+<li>It serves as the attachment point for states and categories.</li>
+<li>It creates a clear separation between the control's visuals and its functionality.</li>
+</ul>
+</div>
+</li>
+<li><p>How do animation chains work in Gum, and what are the key components needed to create one?</p>
+<div class="question-answer"><p>Animation chains in Gum work by displaying a sequence of frames in order, typically looping after the last frame. The key components needed to create an animation chain are:</p>
+<ol>
+<li>An <code>AnimationChain</code> object to hold the sequence of frames</li>
+<li>Multiple <code>AnimationFrame</code> objects, each with:
+<ul>
+<li>Texture coordinates (left, right, top, bottom) defining which part of the texture to display</li>
+<li>A frame length value determining how long to display the frame</li>
+<li>A reference to the texture where the frame appears</li>
+</ul>
+</li>
+<li>A method to add the animation to a visual element (like assigning to a NineSliceRuntime's CurrentChainName)</li>
+</ol>
+<p>The animation system uses normalized texture coordinates (0.0 to 1.0) rather than pixel coordinates.</p>
+</div>
+</li>
+<li><p>What is the relationship between Gum's state system and Forms controls, and why is it important?</p>
+<div class="question-answer"><p>Gum's state system links with Forms controls through specifically named categories and states:</p>
+<ul>
+<li>Each Forms control type has a reserved category name (e.g., Button.ButtonCategoryName)</li>
+<li>Within that category, the control looks for states with specific names (Enabled, Focused, Highlighted, etc.)</li>
+<li>When the control's state changes (like gaining focus), it automatically applies the corresponding visual state</li>
+</ul>
+<p>This relationship is important because it:</p>
+<ul>
+<li>Separates the control's functionality from its appearance</li>
+<li>Enables consistent behavior while allowing complete visual customization</li>
+<li>Provides automatic visual feedback in response to user interactions without requiring manual state management</li>
+<li>Makes it easier to create controls that work with mouse, keyboard, and gamepad input.</li>
+</ul>
+</div>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>
