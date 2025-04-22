@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1949,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2095,35 +2095,71 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface/index.md",
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/anchor.png",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/20_the_game/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/20_the_game/index.html"
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/anchor.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/20_the_game/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/dock.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/20_the_game/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/dock.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/files/ui.wav",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/files/ui.wav"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/mgcb-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/mgcb-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/pause-unstyled.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/pause-unstyled.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/title-unstyled.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/images/title-unstyled.png"
         }
       },
       "version": ""
@@ -2133,20 +2169,58 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/21_input_buffering/index.md",
+      "source_relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/21_input_buffering/index.html"
+          "relative_path": "tutorials/building_2d_games/20_implementing_ui_with_gum/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound",
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/22_the_game/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/22_the_game/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/21_input_buffering/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/22_the_game/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/21_input_buffering/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/22_the_game/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound",
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/23_input_buffering/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/23_input_buffering/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/23_input_buffering/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/23_input_buffering/videos/gameplay.webm"
         }
       },
       "version": ""
