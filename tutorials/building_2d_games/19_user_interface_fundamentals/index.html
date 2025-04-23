@@ -130,7 +130,7 @@
 </ul>
 <p>Let's start by understanding what a user interface is and how it functions in game development.</p>
 <h2 id="understanding-game-user-interfaces">Understanding Game User Interfaces</h2>
-<p>A user interface in games serves a sa bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can' effectively interact with it.</p>
+<p>A user interface in games serves as a bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can't effectively interact with it.</p>
 <p>Game UIs consist of various visual elements that serve different purposes:</p>
 <ol>
 <li><strong>Information Display</strong>: Elements like health bars, score counters, or minimap displays provide players with game state information.  These elements help players understand their progress, resources, and current status without interrupting gameplay.</li>
@@ -151,11 +151,11 @@
 </li>
 </ol>
 <h2 id="parent-child-relationships">Parent-Child Relationships</h2>
-<p>Parent-child relationships are part of many UI system. This relationship is implemented with UI elements containing other UI elements, creating a tree-like structure. This hierarchial approach mirrors how interface elements naturally group together in designs.</p>
+<p>Parent-child relationships are a part of many UI system. This relationship is implemented with UI elements containing other UI elements, creating a tree-like structure. This hierarchial approach mirrors how interface elements naturally group together in designs.</p>
 <p>For example, a settings panel might contain multiple buttons, labels, and sliders.  By making these elements children of the panel, they can be managed as a cohesive unit.  This organizational structure provides several significant advantages:</p>
 <ul>
 <li><strong>Inheritance of Properties</strong>: Child elements can automatically inherit certain properties from their parents.  For instance, if a parent element is hidden or disabled, all its children can be hidden or disabled as well. This cascading behavior simplifies state management across complex interfaces.</li>
-<li><strong>Relative Positioning</strong>: Child elements can be positioned relative to their parents rather than relative to the screen.  This means you can place elements within a contain and then move the entire container as a unit without having to update ach child's position individually.</li>
+<li><strong>Relative Positioning</strong>: Child elements can be positioned relative to their parents rather than relative to the screen.  This means you can place elements within a container and then move the entire container as a unit without having to update each child's position individually.</li>
 <li><strong>Simplified State Management</strong>:  Actions on parent elements can automatically propagate to their children.  For example, disabling a menu panel can automatically disable all buttons within it, preventing interaction with elements that should be active.</li>
 <li><strong>Batch Operations</strong>: Operations like drawing and updating can be performed on a parent element and automatically cascade to all children, reducing the need for repetitive code.</li>
 <li><strong>Logical Grouping</strong>: The hierarchy naturally models the conceptual grouping of UI elements, making the code structure more intuitive and easier to maintain.</li>
@@ -218,7 +218,7 @@
 <ul>
 <li><strong>Color contrast</strong>: Ensure sufficient contrast between text and backgrounds</li>
 <li><strong>Use shapes</strong>: Don't rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.</li>
-<li><strong>Text size and scaling</strong>: Allow players to adjust text size or implement a UI scaling option.  In Gum, this can be achieved by applying scaling factors to your UI elements or by having multiple font sizes available. Also, Gum provides font scaling support, although we do not cover this topic here.</li>
+<li><strong>Text size and scaling</strong>: Allow players to adjust text size or implement a UI scaling option.</li>
 <li><strong>Internationalization (i18n)</strong>: Consider how your UI might be interpreted across different cultures and regions. Number formatting can vary significantly - some regions use periods for thousands separators (1.000.000) while others use commas (1,000,000). Control symbolism also differs culturally; for example, on console controllers, the Cross button typically means &quot;Select&quot; in Western regions but &quot;Cancel&quot; in Japan, with Circle having the opposite meaning.</li>
 </ul>
 <h3 id="input-accessibility">Input Accessibility</h3>

@@ -203,7 +203,7 @@
 <h2 id="updating-the-game-resources">Updating the Game Resources</h2>
 <p>Before we create our custom components, we need to update the game's resources to include UI graphics and fonts.</p>
 <h3 id="update-the-texture-atlas">Update the Texture Atlas</h3>
-<p>Before we can start, we first need to update the texture atlas for the game. This new texture atlas includes:</p>
+<p>Before we can start, we first need to update the <em>atlas.png</em> texture atlas file for the game. This new version of the texture atlas includes:</p>
 <ul>
 <li>The characters for the font, generated using Bitmap Font Generator (BMFont)</li>
 <li>The sprites for the UI components we will create</li>
@@ -260,7 +260,7 @@
 <p>While MonoGame natively uses <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to draw text, Gum uses the <a href="https://www.angelcode.com/products/bmfont/">AngelCode Bitmap Font (.fnt)</a> font file format. This means we'll need to supply Gum with the <em>.fnt</em> file that defines our font.</p>
 <p>First, download the <em>.fnt</em> file by right-clicking the following link and saving it as <em>04b_30.fnt</em> in the game project's <em>Content/fonts</em> directory:</p>
 <ul>
-<li><img src="files/04b_30.fnt" alt="04b_30.fnt"></li>
+<li><a href="files/04b_30.fnt">04b_30.fnt</a></li>
 </ul>
 <p>Next, add this font file to your content project using the MGCB Editor:</p>
 <ol>
@@ -537,7 +537,8 @@ AnimationFrame unfocusedFrame = new AnimationFrame
     Texture = unfocusedTextureRegion.Texture
 };
 unfocusedAnimation.Add(unfocusedFrame);
-</code></pre><pre><code class="lang-csharp">// Get the multi-frame animation for the focused button state from the atlas
+
+// Get the multi-frame animation for the focused button state from the atlas
 Animation focusedAtlasAnimation = atlas.GetAnimation(&quot;focused-button-animation&quot;);
 
 // Create an animation chain for the focused state using all frames from the atlas animation
@@ -557,7 +558,8 @@ foreach (TextureRegion region in focusedAtlasAnimation.Frames)
 
     focusedAnimation.Add(frame);
 }
-</code></pre><pre><code class="lang-csharp">// Assign both animation chains to the nine-slice background
+
+// Assign both animation chains to the nine-slice background
 nineSliceInstance.AnimationChains = new AnimationChainList
 {
     unfocusedAnimation,
@@ -570,7 +572,7 @@ StateSaveCategory category = new StateSaveCategory();
 category.Name = Button.ButtonCategoryName;
 topLevelContainer.AddCategory(category);
 </code></pre>
-<p>Within this category,w e define how the button appears in different states by creating <code>StateSave</code> objects with specific state names:</p>
+<p>Within this category, we define how the button appears in different states by creating <code>StateSave</code> objects with specific state names:</p>
 <pre><code class="lang-csharp">// Create the enabled (default/unfocused) state
 StateSave enabledState = new StateSave();
 enabledState.Name = FrameworkElement.EnabledStateName;
@@ -580,7 +582,8 @@ enabledState.Apply = () =&gt;
     nineSliceInstance.CurrentChainName = unfocusedAnimation.Name;
 };
 category.States.Add(enabledState);
-</code></pre><pre><code class="lang-csharp">// Create the focused state
+
+// Create the focused state
 StateSave focusedState = new StateSave();
 focusedState.Name = FrameworkElement.FocusedStateName;
 focusedState.Apply = () =&gt;
@@ -590,12 +593,14 @@ focusedState.Apply = () =&gt;
     nineSliceInstance.Animate = true;
 };
 category.States.Add(focusedState);
-</code></pre><pre><code class="lang-csharp">// Create the highlighted+focused state (for mouse hover while focused)
+
+// Create the highlighted+focused state (for mouse hover while focused)
 // by cloning the focused state since they appear the same
 StateSave highlightedFocused = focusedState.Clone();
 highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
 category.States.Add(highlightedFocused);
-</code></pre><pre><code class="lang-csharp">// Create the highlighted state (for mouse hover)
+
+// Create the highlighted state (for mouse hover)
 // by cloning the enabled state since they appear the same
 StateSave highlighted = enabledState.Clone();
 highlighted.Name = FrameworkElement.HighlightedStateName;
@@ -895,7 +900,7 @@ public class OptionsSlider : Slider
     }
 }
 </code></pre>
-<p>The <code>OptionsSlider</code> is more complex than then <code>AnimatedButton</code> because it contains more visual elements.  Let's examine the key aspects of this implementation:</p>
+<p>The <code>OptionsSlider</code> is more complex than then <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> because it contains more visual elements.  Let's examine the key aspects of this implementation:</p>
 <h4 id="slider-components">Slider Components</h4>
 <p>Our custom slider consists of several components</p>
 <ol>
@@ -982,7 +987,7 @@ using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Scenes;
 </code></pre>
-<p>Next, update both the <code>_optionsButton</code> and the <code>_optionsBackButton</code> fields to be of our new <code>AnimatedButton</code> type, and add a new field to store a reference to the texture atlas in.</p>
+<p>Next, update both the <code>_optionsButton</code> and the <code>_optionsBackButton</code> fields to be of our new <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> type, and add a new field to store a reference to the texture atlas in.</p>
 <pre><code class="lang-csharp" highlight-lines="3-11">// Existing fields...
 
 // The options button used to open the options menu.
@@ -1014,7 +1019,7 @@ private TextureAtlas _atlas;
     _atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
 }
 </code></pre>
-<p>Next, update the <code>CreateTitlePanel</code> method so that instead of using the default Gum <code>Button</code> Forms controls it now uses our custom <code>AnimatedButton</code> control and remove the explicit setting of the <code>Visual.Width</code> property since this is managed by the <code>AnimatedButton</code> now:</p>
+<p>Next, update the <code>CreateTitlePanel</code> method so that instead of using the default Gum <code>Button</code> Forms controls it now uses our custom <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> control and remove the explicit setting of the <code>Visual.Width</code> property since this is managed by the <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> now:</p>
 <pre><code class="lang-csharp" highlight-lines="8,16">private void CreateTitlePanel()
 {
     // Create a container to hold all of our buttons
@@ -1044,7 +1049,7 @@ private TextureAtlas _atlas;
 <p>Finally, update the <code>CreateOptionsPanel</code> method so that:</p>
 <ul>
 <li>It uses a <code>TextRuntime</code> to display the text &quot;OPTIONS&quot; using the bitmap font</li>
-<li>Instead of using the default Gum <code>Button</code> and <code>Slider</code> Forms controls, it now uses our custom <code>AnimatedButton</code> and <code>OptionsSlider</code> controls.</li>
+<li>Instead of using the default Gum <code>Button</code> and <code>Slider</code> Forms controls, it now uses our custom <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> and <a href="#the-optionsslider-class"><code>OptionsSlider</code></a> controls.</li>
 <li>Both the <code>musicSlider</code> and <code>sfxSlider</code> have been given <code>Name</code> and <code>Text</code> properties.</li>
 </ul>
 <pre><code class="lang-csharp" highlight-lines="8-15,17-19,31-33,45">private void CreateOptionsPanel()
@@ -1118,7 +1123,7 @@ using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
 using MonoGameLibrary.Scenes;
 </code></pre>
-<p>Next, update the <code>_resumeButton</code> field to be of our new <code>AnimatedButton</code> type and add a field to store a reference to the texture atlas in.</p>
+<p>Next, update the <code>_resumeButton</code> field to be of our new <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> type and add a field to store a reference to the texture atlas in.</p>
 <pre><code class="lang-csharp" highlight-lines="5,10-12">// Existing fields...
 
 // A reference to the resume button UI element so we can focus it
@@ -1165,9 +1170,9 @@ private TextureAtlas _atlas;
 </code></pre>
 <p>Finally, update the <code>CreatePausePanel</code> method so that</p>
 <ol>
-<li>Instead of using a <code>ColoredRectangleRuntime</code> for the background of the pause panel, it now uses a <code>NineSliceRuntime</code> that uses the sprite from the texture atlas.</li>
+<li>Instead of using a <a href="#visual-elements"><code>ColoredRectangleRuntime</code></a> for the background of the pause panel, it now uses a <a href="#visual-elements"><code>NineSliceRuntime</code></a> that uses the sprite from the texture atlas.</li>
 <li>The <code>textInstance</code> is updated so that it uses the custom bitmap font file.</li>
-<li>The <code>_resumeButton</code> and <code>quiteButton</code> are updated to use our custom <code>AnimatedButton</code> control instead of the default Gum <code>Button</code> Forms control.</li>
+<li>The <code>_resumeButton</code> and <code>quiteButton</code> are updated to use our custom <a href="#the-animatedbutton-class"><code>AnimatedButton</code></a> control instead of the default Gum <code>Button</code> Forms control.</li>
 </ol>
 <pre><code class="lang-csharp" highlight-lines="12-22,26-28,33,41">private void CreatePausePanel()
 {
@@ -1222,7 +1227,7 @@ private TextureAtlas _atlas;
 <p>When you run the game now, you'll see a dramatic improvement in the visual appearance of the UI:</p>
 <ol>
 <li>The buttons now use our custom animated background that pulses when focused.</li>
-<li>The sliders have a cleaner, mores stylized appearance with teh OFF and MAX labels.</li>
+<li>The sliders have a cleaner, mores stylized appearance with the OFF and MAX labels.</li>
 <li>All text uses our custom bitmap font.</li>
 <li>Visual feedback clearly indicates which element has focus.</li>
 </ol>

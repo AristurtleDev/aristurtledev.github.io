@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-20-implementing-ui-with-gum">Chapter 20: Implementing UI with Gum</h1>
 
-<p>In the <a href="../19_user_interface_fundamentals/index.html">previous chapter</a> we explored the fundamental concepts of user interface design.  Now we're ready to put these principles into practice by implementing a UI system for our game.  While it's possible to build a UI system from scratch, we'll take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.</p>
+<p>In the <a href="../19_user_interface_fundamentals/index.html">previous chapter</a> we explored the fundamental concepts of user interface design. Now we're ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we'll take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.</p>
 <p>In this chapter you will:</p>
 <ul>
 <li>Install and configure the Gum NuGet package.</li>
@@ -129,14 +129,34 @@
 <li>Handle input from keyboard, mouse, and gamepads</li>
 <li>Integrate the UI system with our existing game architecture.</li>
 </ul>
+<h2 id="what-is-gum">What is Gum?</h2>
+<p>Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we're using in this tutorial.</p>
+<h3 id="why-use-gum">Why Use Gum?</h3>
+<p>Creating a UI system from scratch requires solving many complex problems:</p>
+<ol>
+<li><strong>Layout Management</strong>: Calculating positions for elements that need to adapt to different screen sizes or content changes.</li>
+<li><strong>Input Handling</strong>: Detecting and responding to mouse, keyboard, and gamepad inputs across multiple UI elements.</li>
+<li><strong>Visual State Management</strong>: Changing appearances based on user interactions (hovering, focusing, clicking).</li>
+<li><strong>Component Hierarchy</strong>: Managing parent-child relationships between elements.</li>
+</ol>
+<p>Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it doesn't include high-level UI abstractions; this is where tools like Gum fill the gap.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>This tutorial uses the Gum NuGet package to help with layout and responding to user interactions.  This tutorial does not require the use of the Gum tool - we will be doing everything in code.</p>
-<p>Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. INstead, we will be taking advantage of the Gum NuGet package.</p>
-<p>Gum is a powerful system enabling the creation of virtually any game UI.  We will be covering some of the basics in this tutorial.  The full Gum documentation can be found here: <a href="https://docs.flatredball.com/gum/code/monogame">https://docs.flatredball.com/gum/code/monogame</a></p>
+<p>This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum tool - we will be doing everything in code.</p>
+<p>Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.</p>
+<p>Gum is a powerful system enabling the creation of virtually any game UI. We will be covering some of the basics in this tutorial. The full Gum documentation can be found here: <a href="https://docs.flatredball.com/gum/code/monogame">https://docs.flatredball.com/gum/code/monogame</a></p>
 </div>
 <h2 id="gum-concepts">Gum Concepts</h2>
 <p>Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing read-made controls and layout systems that would otherwise require significant effort to build from scratch.</p>
+<h3 id="understanding-gums-structure">Understanding Gum's Structure</h3>
+<p>Gum organizes UI elements in a hierarchical tree structure, similar to how HTML organizes web elements or how GUI frameworks like WPF or JavaFX structure their interfaces. This hierarchy consists of:</p>
+<ol>
+<li><strong>The Root Element</strong>: The topmost container in the hierarchy that serves as the entry point for all UI elements.</li>
+<li><strong>Containers</strong>: Elements that can hold other elements (like panels or screens).</li>
+<li><strong>Controls</strong>: Interactive elements that respond to user input (like buttons or sliders).</li>
+<li><strong>Visuals</strong>: The actual graphical representations of UI elements (like text, images, or shapes).</li>
+</ol>
+<p>When a game using Gum runs, this hierarchy is maintained in memory, with each element knowing its parent and children. The framework automatically handles the flow of events through this hierarchy and manages the drawing of elements according to their positions in the tree.</p>
 <h3 id="gum-root-element">Gum Root Element</h3>
 <p>All Gum elements must be directly or indirectly added to Gum's root container. This can be done directly wth the <code>AddToRoot()</code> method:</p>
 <pre><code class="lang-cs">// Creating a panel and adding it to the root
@@ -453,9 +473,9 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 </div>
 <h3 id="adding-ui-sound-effect">Adding UI Sound Effect</h3>
 <p>To make our UI more responsive and engaging, we'll add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.</p>
-<p>First, download the UI sound effect by right-clicking the following link and saving it as <em>ui.wav</em> in the game project's <em>Content/audio</em> director:</p>
+<p>First, download the UI sound effect by right-clicking the following link and saving it as <em>ui.wav</em> in the game project's <em>Content/audio</em> directory:</p>
 <ul>
-<li><audio width="500" controls=""><source type="audio/x-wav" src="files/ui.wav"></audio></li>
+<li><a href="files/ui.wav">ui.wav</a></li>
 </ul>
 <p>Next, add this sound effect to your content project using the MGCB Editor:</p>
 <ol>
@@ -547,7 +567,11 @@ using MonoGameGum.Forms.Controls;
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
-<p>If you want to remove the default Tab and Shift+Tab key combinations, you can clear both of these properties by calling <code>FrameworkElement.TabKeyCombos.Clear()</code> and <code>FrameworkElement.TabReverseKeyCombos.Clear()</code> before adding additional key combinations.</p>
+<p>If you prefer different navigation keys, you can remove the built-in Tab/Shift+Tab navigation.</p>
+<p>Simply call these methods before adding your custom combinations:</p>
+<pre><code class="lang-cs">FrameworkElement.TabKeyCombos.Clear();
+FrameworkElement.TabReverseKeyCombos.Clear();
+</code></pre>
 </div>
 </li>
 <li><p><strong>UI Scaling</strong>:  Gum allows us to independently scale the UI regardless of the resolution of the game.  Our game is set to a resolution of 1280x720, however as we'll see during the styling section later, the UI assets created were done at one-fourth the size to reduce the size of the texture atlas.  Here, we use the <code>GumService.Default.CanvasWidth</code> and <code>GumService.Default.CanvasHeight</code>  properties to set the canvas size to one-fourth that of our game's resolution. Then using by setting the <code>GumService.Default.Renderer.Camera.Zoom</code> property to four, we effectively make it render the UI at full resolution.</p>
