@@ -71,11 +71,11 @@
       "type": "Toc",
       "source_relative_path": "games/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "games/toc.json"
-        },
         ".html": {
           "relative_path": "games/toc.html"
+        },
+        ".json": {
+          "relative_path": "games/toc.json"
         }
       },
       "version": ""
@@ -954,11 +954,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
@@ -1886,10 +1886,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF"
         }
       },
       "version": ""
@@ -1929,20 +1929,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png"
+          "relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png"
         }
       },
       "version": ""
@@ -2298,11 +2288,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/building_2d_games/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "tutorials/building_2d_games/toc.json"
-        },
         ".html": {
           "relative_path": "tutorials/building_2d_games/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/building_2d_games/toc.json"
         }
       },
       "version": ""
@@ -2351,11 +2341,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/collision-detection/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "tutorials/collision-detection/toc.json"
-        },
         ".html": {
           "relative_path": "tutorials/collision-detection/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/collision-detection/toc.json"
         }
       },
       "version": ""
@@ -2504,11 +2494,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/content-pipeline-extension/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "tutorials/content-pipeline-extension/toc.json"
-        },
         ".html": {
           "relative_path": "tutorials/content-pipeline-extension/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/content-pipeline-extension/toc.json"
         }
       },
       "version": ""
@@ -2577,11 +2567,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/scenes/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "tutorials/scenes/toc.json"
-        },
         ".html": {
           "relative_path": "tutorials/scenes/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/scenes/toc.json"
         }
       },
       "version": ""
@@ -2590,11 +2580,11 @@
       "type": "Toc",
       "source_relative_path": "tutorials/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "tutorials/toc.json"
-        },
         ".html": {
           "relative_path": "tutorials/toc.html"
+        },
+        ".json": {
+          "relative_path": "tutorials/toc.json"
         }
       },
       "version": ""

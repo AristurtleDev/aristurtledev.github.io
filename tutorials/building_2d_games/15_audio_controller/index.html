@@ -29,8 +29,8 @@
       <link rel="icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../public/docfx.min.css">
       <link rel="stylesheet" href="../../../public/main.css">
-      <meta name="docfx:navrel" content="../../../toc.json">
-      <meta name="docfx:tocrel" content="../toc.json">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
       
       
@@ -624,7 +624,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,199-200,218-219,272-290">using System;
+<pre><code class="lang-csharp" highlight-lines="45-46,77-78,101-102,196-197,215-216,269-287">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -683,16 +683,16 @@ public class Game1 : Core
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
         _roomBounds = new Rectangle(
-            (int)_tilemap.TileWidth,
-            (int)_tilemap.TileHeight,
-            screenBounds.Width - (int)_tilemap.TileWidth * 2,
-            screenBounds.Height - (int)_tilemap.TileHeight * 2
+            _tilemap.TileSize,
+            _tilemap.TileSize,
+            screenBounds.Width - _tilemap.TileSize * 2,
+            screenBounds.Height - _tilemap.TileSize * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
+        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -711,15 +711,12 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
-        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
-        _bat.Scale = new Vector2(4.0f, 4.0f);
 
-        // Create the tilemap from the XML configuration file.
+        // Load the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
-        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         // Load the bounce sound effect
         _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
@@ -911,8 +908,8 @@ public class Game1 : Core
         // If the - button was pressed, decrease the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
         {
-            Audio.SongVolume -= 0.1f;
-            Audio.SoundEffectVolume -= 0.1f;
+            Audio.SongVolume += 0.1f;
+            Audio.SoundEffectVolume += 0.1f;
         }
     }
 

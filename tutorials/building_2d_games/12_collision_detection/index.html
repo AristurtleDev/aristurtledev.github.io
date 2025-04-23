@@ -29,8 +29,8 @@
       <link rel="icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../public/docfx.min.css">
       <link rel="stylesheet" href="../../../public/main.css">
-      <meta name="docfx:navrel" content="../../../toc.json">
-      <meta name="docfx:tocrel" content="../toc.json">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
       
       
@@ -721,7 +721,7 @@ bool areEqual = circle1 == circle2;    // Returns true
 <li>The bat doesn't move, providing no challenge in the game.</li>
 </ol>
 <p>Let's update our game to implement these changes using collision detection and response. Open <em>Game1.cs</em> and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="1,5,25-29,40-45,81-181,186-198,298-299">using System;
+<pre><code class="lang-csharp" highlight-lines="1,5,25-29,40-45,79-179,184-196,296-297">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -775,11 +775,9 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
-        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
-        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }

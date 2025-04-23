@@ -29,8 +29,8 @@
       <link rel="icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../public/docfx.min.css">
       <link rel="stylesheet" href="../../../public/main.css">
-      <meta name="docfx:navrel" content="../../../toc.json">
-      <meta name="docfx:tocrel" content="../toc.json">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
       
       
@@ -849,7 +849,7 @@ foreach(TouchLocation touchLocation in touchCollection)
 </tbody>
 </table>
 <p>Open <em>Game1.cs</em> and update it with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="17-21,62-66,71-159,170">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="17-21,60-64,69-157,168">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -890,11 +890,9 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
-        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
-        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }

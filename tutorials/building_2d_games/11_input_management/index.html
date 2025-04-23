@@ -29,8 +29,8 @@
       <link rel="icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../public/docfx.min.css">
       <link rel="stylesheet" href="../../../public/main.css">
-      <meta name="docfx:navrel" content="../../../toc.json">
-      <meta name="docfx:tocrel" content="../toc.json">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
       
       
@@ -1001,7 +1001,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Now let's update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <em>Game1.cs</em> in the game project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="71,77,83,89,95,103,108,111,115,121,123-124,129,135,141,147">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -1043,20 +1043,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
-        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
-        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -1116,11 +1111,11 @@ public class Game1 : Core
         if (gamePadOne.IsButtonDown(Buttons.A))
         {
             speed *= 1.5f;
-            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(1));
+            GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
         }
         else
         {
-            gamePadOne.StopVibration();
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
         }
 
         // Check thumbstick first since it has priority over which gamepad input
