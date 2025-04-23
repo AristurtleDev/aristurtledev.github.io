@@ -128,7 +128,16 @@
 </ul>
 <p>While the environment setup process is similar to the standard setup process for C# development, there are some MonoGame specific steps. These can vary slightly depending on your operating system and the <em>Integrated Development Environment</em> (IDE).</p>
 <h2 id="installing-the-net-sdk">Installing the .NET SDK</h2>
-<p>The first thing we need to do is install the .NET <em>Software Development Kit</em> (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK. To install it, follow the instructions based on your operating system below</p>
+<p>The first thing we need to do is install the .NET <em>Software Development Kit</em> (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>At the time of writing this tutorial, .NET 9.0 is released, however this tutorial still recommends installing .NET 8.0 for two reasons</p>
+<ol>
+<li>.NET 8.0 is the current Long-Term Support (LTS) release of .NET. This means it receives security updates and bug fixes for 3 years, while Standard-Term Support (STS) releases like .NET 9.0 provide a shorter support window, typically around 18 months.  For more information see the <a href="https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#cadence">.NET and .NET Core official support policy</a> page.</li>
+<li>MonoGame targets the LTS version of .NET, meaning it targets .NET 8.0, so we are using the same version for consistency.</li>
+</ol>
+</div>
+<p>To install it, follow the instructions based on your operating system below</p>
 <div class="tabGroup" id="tabgroup_1">
 <ul role="tablist">
 <li role="presentation">
@@ -291,7 +300,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 
 <p>Open a new <em>Terminal</em> window and execute the following commands:</p>
 <pre><code class="lang-sh">sudo apt-get update &amp;&amp; sudo apt-get install -y curl p7zip-full wine64
-wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash  
+wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
