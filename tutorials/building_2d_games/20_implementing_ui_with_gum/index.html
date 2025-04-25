@@ -147,7 +147,7 @@
 <p>Gum is a powerful system enabling the creation of virtually any game UI. We will be covering some of the basics in this tutorial. The full Gum documentation can be found here: <a href="https://docs.flatredball.com/gum/code/monogame">https://docs.flatredball.com/gum/code/monogame</a></p>
 </div>
 <h2 id="gum-concepts">Gum Concepts</h2>
-<p>Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing read-made controls and layout systems that would otherwise require significant effort to build from scratch.</p>
+<p>Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch.</p>
 <h3 id="understanding-gums-structure">Understanding Gum's Structure</h3>
 <p>Gum organizes UI elements in a hierarchical tree structure, similar to how HTML organizes web elements or how GUI frameworks like WPF or JavaFX structure their interfaces. This hierarchy consists of:</p>
 <ol>
@@ -192,7 +192,7 @@ GumService.Default.Root.Children.Clear();
 }
 </code></pre>
 <h3 id="anchoring">Anchoring</h3>
-<p>In the previous chapter we discussed <a href="../19_user_interface_fundamentals/index.html#anchoring">anchoring</a>, a fundamental UI concept that allows you to position elements relative to specific reference points of their parents.  Gum supports anchoring of elements through the <code>Anchor()</code> method of their <code>Visual</code> property:</p>
+<p>In the previous chapter we discussed <a href="../19_user_interface_fundamentals/index.html#anchoring">anchoring</a>, a fundamental UI concept that allows you to position elements relative to specific reference points of their parents.  Gum supports anchoring of Forms controls through their <code>Anchor()</code> method.</p>
 <pre><code class="lang-cs">// Creating a panel and adding it to the root
 Panel mainMenuPanel = new Panel();
 mainMenuPanel.AddToRoot();
@@ -200,7 +200,7 @@ mainMenuPanel.AddToRoot();
 // Creating a button and adding it as a child of the panel
 // anchored ot the bottom-left of the panel
 Button startButton = new Button();
-startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
 mainMenuPanel.AddChild(startButton);
 </code></pre>
 <p>Gum supports the following anchors:</p>
@@ -251,13 +251,13 @@ mainMenuPanel.AddChild(startButton);
 </tbody>
 </table>
 <h3 id="docking">Docking</h3>
-<p>In the previous chapter, we also discussed <a href="../19_user_interface_fundamentals/index.html#docking">docking</a>, a fundamental UI concept that adjusts an element's size to fill the available space.  Gum supports docking of elements through the <code>Dock()</code> method of their <code>Visual</code> property:</p>
+<p>In the previous chapter, we also discussed <a href="../19_user_interface_fundamentals/index.html#docking">docking</a>, a fundamental UI concept that adjusts an element's size to fill the available space.  Gum supports docking of Forms controls through their <code>Dock()</code> method.</p>
 <pre><code class="lang-cs">// Creating a panel and adding it to the root
 Panel mainMenuPanel = new Panel();
 mainMenuPanel.AddToRoot();
 
 // Docking the panel to fill the entire root space
-mainMenuPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+mainMenuPanel.Dock(Gum.Wireframe.Dock.Fill);
 </code></pre>
 <p>Gum supports the following docs:</p>
 <table>
@@ -330,7 +330,7 @@ optionsPanel.IsVisible = true;
 </code></pre>
 <p>A common pattern is to set a panel's docking to <code>Fill</code>, which makes it span the entire available area:</p>
 <pre><code class="lang-cs">// Make the panel fill the entire screen
-mainMenuPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+mainMenuPanel.Dock(Gum.Wireframe.Dock.Fill);
 </code></pre>
 <p>This creates a consistent coordinate space for all child elements, allowing them to be positioned relative to the screen.</p>
 <h4 id="button">Button</h4>
@@ -343,7 +343,7 @@ mainMenuPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
 <p>Buttons can be positioned using anchoring to create layouts that adapt to different screen sizes:</p>
 <pre><code class="lang-cs">// Creating a button that is anchored to the bottom left.
 Button startButton = new Button;
-startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
 
 // Set the X and Y position so it is 20px from the left edge
 // and 20px from the bottom edge.
@@ -404,7 +404,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <p>Gum allows you to customize visuals in two ways: through direct property assignment and through states.  For simple property changes, you can directly assign values in code.  For example, the following code example changes the width of a button</p>
 <pre><code class="lang-cs">startButton.Visual.Width = 100;
 </code></pre>
-<p>Direct property assignment works well for initial setup, such as positioning element sor setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.</p>
+<p>Direct property assignment works well for initial setup, such as positioning elements or setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.</p>
 <p>For these dynamic changes, Gum uses a system of <strong>states</strong> (implemented as <code>StateSave</code> objects).  Each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for an applies a  state named &quot;Focused&quot; to alter its appearance.</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -413,7 +413,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <h2 id="updating-our-game-to-use-gum">Updating Our Game To Use Gum</h2>
 <p>Now that we understand the UI concepts and how Gum will help implement them, let's integrate Gum into our game project.  We'll add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.</p>
 <h3 id="adding-the-gum-nuget-package">Adding the Gum NuGet Package</h3>
-<p>Before we can use Gum in our project, we first need to add it using NuGet.  NuGet is a package manager for .NEt projects that allows you to add third-party libraries into your project, similar to how we <a href="../04_creating_a_class_library/index.html">created and added our own class library</a>.</p>
+<p>Before we can use Gum in our project, we first need to add it using NuGet.  NuGet is a package manager for .NET projects that allows you to add third-party libraries into your project, similar to how we <a href="../04_creating_a_class_library/index.html">created and added our own class library</a>.</p>
 <p>To add the Gum NuGet package to our game project, follow the instructions below based on your development environment:</p>
 <div class="tabGroup" id="tabgroup_1">
 <ul role="tablist">
@@ -435,7 +435,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <li>Choose <em>Add NuGet Package</em> from the context menu.</li>
 <li>Enter &quot;Gum.MonoGame&quot; in the <em>Add NuGet Package</em> search prompt and press Enter.</li>
 <li>When the search finishes, select the <em>Gum.MonoGame</em> package in the results</li>
-<li>When prompted for a version, choose the latest version (&quot;2025.4.20.2&quot; as of this writing&quot;).</li>
+<li>When prompted for a version, choose the latest version (&quot;2025.4.23.1&quot; as of this writing&quot;).</li>
 </ol>
 </section>
 <section id="tabpanel_1_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
@@ -447,7 +447,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <li>In the NuGet Package Manager window, select the <em>Browse</em> tab if it is not already selected.</li>
 <li>In the search box, enter &quot;Gum.MonoGame&quot;.</li>
 <li>Select the &quot;Gum.MonoGame&quot; package from the search results.</li>
-<li>Ensure the latest version is selected in the dropdown menu (&quot;2025.4.20.2&quot; as of this writing&quot;) and click the <em>Install</em> button.</li>
+<li>Ensure the latest version is selected in the dropdown menu (&quot;2025.4.23.1&quot; as of this writing&quot;) and click the <em>Install</em> button.</li>
 </ol>
 </section>
 <section id="tabpanel_1_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
@@ -461,14 +461,14 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 </code></pre>
 </li>
 </ol>
-<p>This will install the latest version of the package, which is &quot;2025.4.20.2&quot; as of this writing.</p>
+<p>This will install the latest version of the package, which is &quot;2025.4.23.1&quot; as of this writing.</p>
 </section>
 </div>
 
 <div class="TIP">
 <h5>Tip</h5>
 <p>You can verify the package was successfully added by examining your <em>DungeonSlime.csproj</em> file, which should now contain a reference like:</p>
-<pre><code class="lang-xml">&lt;PackageReference Include=&quot;Gum.MonoGame&quot; Version=&quot;2025.4.20.2&quot; /&gt;
+<pre><code class="lang-xml">&lt;PackageReference Include=&quot;Gum.MonoGame&quot; Version=&quot;2025.4.23.1&quot; /&gt;
 </code></pre>
 </div>
 <h3 id="adding-ui-sound-effect">Adding UI Sound Effect</h3>
@@ -610,11 +610,11 @@ private Button _optionsBackButton;
 {
     // Create a container to hold all of our buttons
     _titleScreenButtonsPanel = new Panel();
-    _titleScreenButtonsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _titleScreenButtonsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _titleScreenButtonsPanel.AddToRoot();
 
     var startButton = new Button();
-    startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+    startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
     startButton.Visual.X = 50;
     startButton.Visual.Y = -12;
     startButton.Visual.Width = 70;
@@ -623,7 +623,7 @@ private Button _optionsBackButton;
     _titleScreenButtonsPanel.AddChild(startButton);
 
     _optionsButton = new Button();
-    _optionsButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
     _optionsButton.Visual.X = -50;
     _optionsButton.Visual.Y = -12;
     _optionsButton.Visual.Width = 70;
@@ -639,7 +639,7 @@ private Button _optionsBackButton;
 <h5>Note</h5>
 <p>Notice how we use <code>Anchor</code> to position the buttons relative to the panel's edges, with the &quot;Start&quot; button anchored at the bottom left and the &quot;Options&quot; button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.</p>
 </div>
-<p>Each button registers a <code>Click</code> event handler to respond when the players selects it. Let's implement the vent handler method for these buttons next.  Add the following methods to the <code>TitleScene</code> class:</p>
+<p>Each button registers a <code>Click</code> event handler to respond when the players selects it. Let's implement the event handler method for these buttons next.  Add the following methods to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">private void HandleStartClicked(object sender, EventArgs e)
 {
     // A UI interaction occurred, play the sound effect
@@ -663,13 +663,13 @@ private Button _optionsBackButton;
     _optionsBackButton.IsFocused = true;
 }
 </code></pre>
-<p>These handlers are called when the <code>Click</code> event is triggered for each button.  The handler for the &quot;Start&quot; button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.</p>
+<p>These handlers are called when the <code>Click</code> event is raised for each button.  The handler for the &quot;Start&quot; button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.</p>
 <h4 id="creating-the-options-panel">Creating the Options Panel</h4>
 <p>Next, we'll create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">private void CreateOptionsPanel()
 {
     _optionsPanel = new Panel();
-    _optionsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _optionsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _optionsPanel.IsVisible = false;
     _optionsPanel.AddToRoot();
 
@@ -680,7 +680,7 @@ private Button _optionsBackButton;
     _optionsPanel.AddChild(optionsText);
 
     var musicSlider = new Slider();
-    musicSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
     musicSlider.Visual.Y = 30f;
     musicSlider.Minimum = 0;
     musicSlider.Maximum = 1;
@@ -692,7 +692,7 @@ private Button _optionsBackButton;
     _optionsPanel.AddChild(musicSlider);
 
     var sfxSlider = new Slider();
-    sfxSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
     sfxSlider.Visual.Y = 93;
     sfxSlider.Minimum = 0;
     sfxSlider.Maximum = 1;
@@ -705,7 +705,7 @@ private Button _optionsBackButton;
 
     _optionsBackButton = new Button();
     _optionsBackButton.Text = &quot;BACK&quot;;
-    _optionsBackButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsBackButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
     _optionsBackButton.X = -28f;
     _optionsBackButton.Y = -10f;
     _optionsBackButton.Click += HandleOptionsButtonBack;
@@ -767,7 +767,7 @@ private Button _optionsBackButton;
 <p>These handlers update our audio settings in real-time as the player adjusts the sliders.</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Notice that for both sliders, we registered a method for the <code>ValueChangeCompleted</code> event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the <code>ValueChanged</code> event, then the UI sound effect would trigger constantly while the slider is being adjusted if they are using a mouse to drag it.</p>
+<p>Notice that for both sliders, we registered a method for the <code>ValueChangeCompleted</code> event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the <code>ValueChanged</code> event, then the UI sound effect would trigger constantly while the slider is being adjusted if using a mouse to drag it.</p>
 </div>
 <h4 id="initializing-the-ui">Initializing the UI</h4>
 <p>Now that we've implemented the methods that will create both the main menu panel and the options menu panel, let's implement the main UI initializations method that will call them.  Add the following method to the <code>TitleScene</code> class:</p>
@@ -885,7 +885,7 @@ private Button _optionsBackButton;
     GumService.Default.Draw();
 }
 </code></pre>
-<p>With these changes, our UI system is now fully integrated into the scene's game loop.  Gum will update its controls during the <code>Update</code> method and draw them during the <code>Draw</code> method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.</p>
+<p>With these changes, our UI system is now fully integrated into the scene's game loop.  Gum updates its controls in the <code>Update</code> method and draws them in the <code>Draw</code> method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.</p>
 <table>
 <thead>
 <tr>
@@ -903,7 +903,7 @@ private Button _optionsBackButton;
 <p>You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We'll explore customizing these controls to match our game's visual style in the next chapter.</p>
 </div>
 <h3 id="adding-gamescene-ui">Adding GameScene UI</h3>
-<p>Now that we've setup the UI for the title scene, elt's add a pause menu to our game scene.  This UI wills tart invisible but will be shown when the player presses the escape key.  For consistency, we'll implement the UI for the game scene in the same order that we implemented the UI for the title scene.</p>
+<p>Now that we've setup the UI for the title scene, let's add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we'll implement the UI for the game scene in the same order that we implemented the UI for the title scene.</p>
 <p>First, open the <em>GameScene.cs</em> file in the game project and add the following using declarations to the top of the <code>GameScene</code> class.</p>
 <pre><code class="lang-csharp" highlight-lines="2,7-9">using System;
 using Gum.Wireframe;
@@ -941,7 +941,7 @@ private SoundEffect _uiSoundEffect;
     _resumeButton.IsFocused = true;
 }
 </code></pre>
-<p>Next, update the <code>CheckKeyboardInput</code> method so that when the escape key is pressed, instead of returning to the title scene, we now pause the game:</p>
+<p>Next, update the <code>CheckKeyboardInput</code> method so that when the escape key is pressed, we pause the game instead of returning to the title scene:</p>
 <pre><code class="lang-csharp" highlight-lines="6-10">private void CheckKeyboardInput()
 {
     // Get a reference to the keyboard info
@@ -956,7 +956,7 @@ private SoundEffect _uiSoundEffect;
     // Existing keyboard input code
     // ...
 </code></pre>
-<p>Finally, update the <code>CheckGamePadInput</code> method so that when the start button is pressed, it pauses the game:</p>
+<p>Finally, update the <code>CheckGamePadInput</code> method so the game is paused when the start button is pressed:</p>
 <pre><code class="lang-csharp" highlight-lines="6-10">private void CheckGamePadInput()
 {
     // Get the gamepad info for gamepad one.
@@ -975,7 +975,7 @@ private SoundEffect _uiSoundEffect;
 <pre><code class="lang-csharp">private void CreatePausePanel()
 {
     _pausePanel = new Panel();
-    _pausePanel.Visual.Anchor(Anchor.Center);
+    _pausePanel.Anchor(Anchor.Center);
     _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.Height = 70;
@@ -996,7 +996,7 @@ private SoundEffect _uiSoundEffect;
 
     _resumeButton = new Button();
     _resumeButton.Text = &quot;RESUME&quot;;
-    _resumeButton.Visual.Anchor(Anchor.BottomLeft);
+    _resumeButton.Anchor(Anchor.BottomLeft);
     _resumeButton.Visual.X = 9f;
     _resumeButton.Visual.Y = -9f;
     _resumeButton.Visual.Width = 80;
@@ -1005,7 +1005,7 @@ private SoundEffect _uiSoundEffect;
 
     var quitButton = new Button();
     quitButton.Text = &quot;QUIT&quot;;
-    quitButton.Visual.Anchor(Anchor.BottomRight);
+    quitButton.Anchor(Anchor.BottomRight);
     quitButton.Visual.X = -9f;
     quitButton.Visual.Y = -9f;
     quitButton.Width = 80;
@@ -1124,7 +1124,7 @@ private SoundEffect _uiSoundEffect;
     GumService.Default.Draw();
 }
 </code></pre>
-<p>WIth these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum will update its controls during the <code>Update</code> method and draw them during the <code>Draw</code> method.  If the game is paused, as determined by the <code>IsVisible</code> property of the pause menu, then updating the actual game logic is skipped.</p>
+<p>WIth these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the <code>Update</code> method and draws them during the <code>Draw</code> method.  If the game is paused, as determined by the <code>IsVisible</code> property of the pause menu, then updating the actual game logic is skipped.</p>
 <table>
 <thead>
 <tr>
@@ -1148,7 +1148,7 @@ private SoundEffect _uiSoundEffect;
 <li>Create transitions between different UI screens.</li>
 <li>Integrate the UI system with the game's scene architecture.</li>
 </ul>
-<p>With this UI is now functional, you may have noticed that it uses Gum's default styling, which doesn't match our game's visual theme.  In the next chapter, we'll learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.</p>
+<p>While this UI is now functional, you may have noticed that it uses Gum's default styling which doesn't match our game's visual theme.  In the next chapter, we'll learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are the two main types of objects in Gum, and how do they differ?</p>

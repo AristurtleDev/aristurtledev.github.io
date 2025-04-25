@@ -1024,11 +1024,11 @@ private TextureAtlas _atlas;
 {
     // Create a container to hold all of our buttons
     _titleScreenButtonsPanel = new Panel();
-    _titleScreenButtonsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _titleScreenButtonsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _titleScreenButtonsPanel.AddToRoot();
 
     AnimatedButton startButton = new AnimatedButton(_atlas);
-    startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+    startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
     startButton.Visual.X = 50;
     startButton.Visual.Y = -12;
     startButton.Text = &quot;Start&quot;;
@@ -1036,7 +1036,7 @@ private TextureAtlas _atlas;
     _titleScreenButtonsPanel.AddChild(startButton);
 
     _optionsButton = new AnimatedButton(_atlas);
-    _optionsButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
     _optionsButton.Visual.X = -50;
     _optionsButton.Visual.Y = -12;
     _optionsButton.Text = &quot;Options&quot;;
@@ -1055,7 +1055,7 @@ private TextureAtlas _atlas;
 <pre><code class="lang-csharp" highlight-lines="8-15,17-19,31-33,45">private void CreateOptionsPanel()
 {
     _optionsPanel = new Panel();
-    _optionsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _optionsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _optionsPanel.IsVisible = false;
     _optionsPanel.AddToRoot();
 
@@ -1071,7 +1071,7 @@ private TextureAtlas _atlas;
     OptionsSlider musicSlider = new OptionsSlider(_atlas);
     musicSlider.Name = &quot;MusicSlider&quot;;
     musicSlider.Text = &quot;MUSIC&quot;;
-    musicSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
     musicSlider.Visual.Y = 30f;
     musicSlider.Minimum = 0;
     musicSlider.Maximum = 1;
@@ -1085,7 +1085,7 @@ private TextureAtlas _atlas;
     OptionsSlider sfxSlider = new OptionsSlider(_atlas);
     sfxSlider.Name = &quot;SfxSlider&quot;;
     sfxSlider.Text = &quot;SFX&quot;;
-    sfxSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
     sfxSlider.Visual.Y = 93;
     sfxSlider.Minimum = 0;
     sfxSlider.Maximum = 1;
@@ -1098,7 +1098,7 @@ private TextureAtlas _atlas;
 
     _optionsBackButton = new AnimatedButton(_atlas);
     _optionsBackButton.Text = &quot;BACK&quot;;
-    _optionsBackButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsBackButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
     _optionsBackButton.X = -28f;
     _optionsBackButton.Y = -10f;
     _optionsBackButton.Click += HandleOptionsButtonBack;
@@ -1177,7 +1177,7 @@ private TextureAtlas _atlas;
 <pre><code class="lang-csharp" highlight-lines="12-22,26-28,33,41">private void CreatePausePanel()
 {
     _pausePanel = new Panel();
-    _pausePanel.Visual.Anchor(Anchor.Center);
+    _pausePanel.Anchor(Anchor.Center);
     _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.Height = 70;
@@ -1208,7 +1208,7 @@ private TextureAtlas _atlas;
 
     _resumeButton = new AnimatedButton(_atlas);
     _resumeButton.Text = &quot;RESUME&quot;;
-    _resumeButton.Visual.Anchor(Anchor.BottomLeft);
+    _resumeButton.Anchor(Anchor.BottomLeft);
     _resumeButton.Visual.X = 9f;
     _resumeButton.Visual.Y = -9f;
     _resumeButton.Click += HandleResumeButtonClicked;
@@ -1216,7 +1216,7 @@ private TextureAtlas _atlas;
 
     AnimatedButton quitButton = new AnimatedButton(_atlas);
     quitButton.Text = &quot;QUIT&quot;;
-    quitButton.Visual.Anchor(Anchor.BottomRight);
+    quitButton.Anchor(Anchor.BottomRight);
     quitButton.Visual.X = -9f;
     quitButton.Visual.Y = -9f;
     quitButton.Click += HandleQuitButtonClicked;
