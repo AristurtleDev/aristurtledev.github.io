@@ -147,9 +147,10 @@
 <li><strong>RelativeToChildren</strong>: A parent container can size itself based on its children</li>
 <li><strong>PercentageOfParent</strong>: A child element can size itself as a percentage of its parent</li>
 <li><strong>Absolute</strong>: An element can have a fixed pixel size</li>
-<li><strong>RelativeToContainer</strong>: An element can size itself relative to a specific container</li>
+<li><strong>RelativeToParent</strong>: An element can size itself relative to a specific container</li>
 </ul>
 <p>For example, a button might use a text element with <code>WidthUnits</code> set to <code>RelativeToChildren</code>, which means the text will be exactly the size needed to display its content. The button's container might use <code>RelativeToChildren</code> with some additional padding, allowing the button to automatically resize based on its text content.</p>
+<p>Although we haven't explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's <code>Dock</code> method. Specifically, by passing <code>Dock.Fill</code> as the parameter, <code>WidthUnits</code> and <code>HeightUnits</code> are both set to <code>RelativeToParent</code>.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>These size relationships can create circular dependencies when a child depends on its parent and the parent depends on the child. In such cases, Gum resolves the conflict by making the child depend on the parent, and the parent ignores that particular child when calculating its size.</p>
@@ -163,6 +164,13 @@
 <li><strong>ColoredRectangleRuntime</strong>: A simple colored rectangle for backgrounds or fills.</li>
 </ul>
 <p>The <code>NineSliceRuntime</code> is particularly useful for UI elements that need to resize dynamically. It divides a graphic into nine sections (four corners, four edges, and a center), allowing the element to stretch without distorting its borders.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>A MonoGame and Gum community member Kaltinril also has a video series discussing Gum.  With permission, the following video segment is included to demonstrate the advantages of using a <em>Nineslice</em> when creating UI elements.</p>
+<div class="embeddedvideo">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pI8yxdaGSVU?si=1wKj6EPkryepxVmg&amp;start=1114&amp;end=1209" title="Nineslice Overview" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
 <h4 id="animation-chains">Animation Chains</h4>
 <p>An <code>AnimationChain</code> is a sequence of animation frames that play in order, typically looping after the last frame. Each frame in the chain defines:</p>
 <ul>
@@ -643,7 +651,7 @@ private void HandleRollOn(object sender, EventArgs e)
 </code></pre>
 <p>This creates a more responsive interface by immediately focusing elements that the player interacts with using the mouse.</p>
 <h3 id="the-optionsslider-class">The OptionsSlider Class</h3>
-<p>Now let's create a custom <code>OptionsSlider</code> class to style the volume sliders.  This class will inherit from Gum's base <code>Slider</code> class and provide a styled appearance consistent with the game's visual theme.</p>
+<p>Now let's create a custom <code>OptionsSlider</code> class to style the volume sliders.  This class inherits from Gum's base <code>Slider</code> class and provides a styled appearance consistent with the game's visual theme.</p>
 <p>Create a new file named <em>OptionsSlider.cs</em> in the <em>UI</em> folder with the following code:</p>
 <pre><code class="lang-csharp">using System;
 using Gum.DataTypes;
@@ -1243,7 +1251,7 @@ private TextureAtlas _atlas;
 </tr>
 </tbody>
 </table>
-<p>The entire UI now has a cohesive stylet hat complements the visuals of the game.</p>
+<p>The entire UI now has a cohesive style that matches the rest of the game.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you learned how to transform basic UI components into custom, styled elements that match the game's visual theme. You explored several key aspects of UI customization:</p>
 <ul>
