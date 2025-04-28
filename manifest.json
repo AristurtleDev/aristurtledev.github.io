@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1939,8 +1939,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2221,33 +2221,53 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/22_the_game/index.md",
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_directions.svg",
       "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/22_the_game/index.html"
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_directions.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_the_game/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_movement.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_the_game/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_movement.svg"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/videos/gameplay.webm",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/videos/gameplay.webm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/23_input_buffering/index.md",
