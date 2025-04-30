@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1939,8 +1939,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2222,6 +2222,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_copy_head.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_copy_head.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_directions.svg",
       "output": {
         "resource": {
@@ -2232,18 +2242,28 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_movement.svg",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_insert_head.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_movement.svg"
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_insert_head.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_remove_tail.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_remove_tail.svg"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/index.md",
@@ -2266,8 +2286,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/23_input_buffering/index.md",

@@ -149,12 +149,12 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_directions.svg" alt="Figure 22-1: Valid directions for snake movement"></th>
+<th style="text-align: center;"><img src="images/snake_directions.svg" alt="Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right."></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 22-1: Valid directions for snake movement</strong></td>
+<td style="text-align: center;"><strong>Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.</strong></td>
 </tr>
 </tbody>
 </table>
@@ -163,24 +163,52 @@
 <p>There are various methods for handling the movement, such as iterating through each segment of the snake and updating the position of that segment to move forward.  Methods such as this though are wasteful, since visually the only parts of the snake that move on the screen are the head and the tail.</p>
 <p>Instead, a more common approach is to:</p>
 <ol>
-<li>Make a copy of the head segment.</li>
-<li>Update the properties of the copy so that it is positioned where the original head segment would have moved to</li>
-<li>Insert the copy at the front of the segment collection.</li>
-<li>Remove the tail segment.</li>
-</ol>
-<p>By doing this, no matter how many segments the snake body has, we only ever need to update two of them, the head and the tail. This is demonstrated in the following diagram:</p>
+<li><p>Make a copy of the head segment.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_movement.svg" alt="Figure 22-2: Diagram of the steps during the movement cycle for a snake"></th>
+<th style="text-align: center;"><img src="images/snake_copy_head.svg" alt="Figure 22-2: From a snake with four segments, a copy of the head segment is made, represented by the orange block"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 22-2: Diagram of the steps during the movement cycle for a snake</strong></td>
+<td style="text-align: center;"><strong>Figure 22-2 From a snake with four segments, a copy of the head segment is made, represented by the orange block</strong></td>
 </tr>
 </tbody>
 </table>
+</li>
+<li><p>Update the properties of the copy so that it is positioned where the original head segment would have moved to</p>
+</li>
+<li><p>Insert the copy at the front of the segment collection.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/snake_insert_head.svg" alt="Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Remove the tail segment.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/snake_remove_tail.svg" alt="Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward "></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>By doing this, no matter how many segments the snake body has, we only ever need to update two of them, the head and the tail.</p>
 <h3 id="growth">Growth</h3>
 <p>The next core mechanic for a snake-like game is the growth of the snake.  Typically, somewhere in the game is an objective for the snake to eat, such as an apple.  When the head of the snake reaches this objective, a new segment is added to the snake's body, making it longer, the player's score is increased, and a new objective is spawned at a random location within the game.</p>
 <p>This mechanic also acts as an artificial difficulty curve for the game.  As the body of the snake grows longer, it requires planning to avoid creating situations where the snake becomes trapped by its own body making it impossible to avoid a collision.</p>
@@ -198,7 +226,7 @@
 <h3 id="the-gamecontroller-class">The GameController Class</h3>
 <p>Currently, we have two methods dedicated to handling input in the game scene, <code>CheckKeyboardInput</code> and <code>CheckGamePadInput</code>.  Both of these methods essentially perform the same logic across different input devices. This presents an opportunity to improve our code.</p>
 <p>To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the &quot;what&quot; (game actions) from the &quot;how&quot; (specific input devices and buttons).</p>
-<p>In the game project, create a new file named <strong>GameController.cs</strong> and add the following code:</p>
+<p>In the <em>DungeonSlime</em> project (your main game project), create a new file named <em>GameController.cs</em> in the root directory and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -289,9 +317,10 @@ public static class GameController
 <li><strong>Cross-Platform Compatibility</strong>: When porting to different platforms with different input methods, you only need to update the <code>GameController</code> class to map the new input devices to your existing game actions.</li>
 </ol>
 <p>By implementing this pattern in our game, we are not only making our current input handling cleaner, but we are also establishing a foundation that would make it easier to add features like input customization or support for new input devices in the future.</p>
+<p>With our input handling system in place, now we can turn our attention to implementing the core mechanics of our snake-like game. First, we need to create a structure that will represent each segment of the slime's body.</p>
 <h3 id="the-slimesegment-struct">The SlimeSegment Struct</h3>
 <p>Next, we will need to implement a structure that can represent each segment of the slime.  This structure will store the position and movement data for each segment.</p>
-<p>In the game project, create a new directory named <em>GameObjects</em>.  We will be putting all of our code related to the objects within the game here.  Next, create a new file named <em>SlimeSegment.cs</em> inside the <em>GameObjects</em> directory you just created and add the following code:</p>
+<p>In the DungeonSlime project (your main game project), create a new directory named <em>GameObjects</em>. We will be putting all of our code related to the objects within the game here. Next, create a new file named <em>SlimeSegment.cs</em> inside the <em>GameObjects</em> directory you just created and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 
 namespace DungeonSlime;
@@ -328,11 +357,15 @@ public struct SlimeSegment
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they're allocated on the stack rather than the heap, reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will     be copying segment data during movement operations.</p>
+<p>We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they're allocated on the stack rather than the heap, reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will be copying segment data during movement operations.</p>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Structs work best with value types (like int, float, Vector2); using reference types in structs can cause boxing operations that negate the performance benefits. For more information on structs, refer to the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct">Structure Types - C# Reference</a> documentation on Microsoft Learn.</p>
 </div>
 <p>By tracking both the current (<code>At</code>) and target (<code>To</code>) positions, we can implement smooth visual movement between grid positions, creating more fluid animations than the traditional stutter step movement seen in classic snake games.  We will explore this concept a little further in this chapter.</p>
 <h3 id="the-slime-class">The Slime Class</h3>
-<p>Next, let's implement a class to encapsulate the properties and functionality of our snake-like slime.  In the <em>GameObjects</em> directory, create a new file named <em>Slime.cs</em> and add the following initial code:</p>
+<p>Next, let's implement a class to encapsulate the properties and functionality of our snake-like slime. In the <em>GameObjects</em> directory of the DungeonSlime project (your main game project), create a new file named <em>Slime.cs</em> and add the following initial code:</p>
 <pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -345,7 +378,14 @@ public class Slime
 {
 
 }
-</code></pre><h4 id="slime-fields">Slime Fields</h4>
+</code></pre>
+<p>This code sets up the basic structure for our <code>Slime</code> class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the <code>DungeonSlime.GameObjects</code> namespace to keep our code organized. The empty class will serve as our foundation, and we'll build it up piece by piece in the following sections.</p>
+<p>Now, we'll add several components to this class in sequence. Each section below should be added to the <code>Slime</code> class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.</p>
+</div>
+<h4 id="slime-fields">Slime Fields</h4>
 <p>Add the following fields to the <code>Slime</code> class:</p>
 <pre><code class="lang-csharp">// A constant value that represents the amount of time to wait between
 // movement updates.
@@ -382,7 +422,7 @@ private AnimatedSprite _sprite;
 </ul>
 <p>These fields implement core snake-like mechanics - the timed interval movement, direction control, and the segmented body that forms the snake.</p>
 <h4 id="slime-events">Slime Events</h4>
-<p>Next, add the following event to the <code>Slime</code> class:</p>
+<p>Next, add the following events to the <code>Slime</code> class after the fields:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Event that is raised if it is detected that the head segment of the slime
 /// has collided with a body segment.
@@ -391,7 +431,7 @@ public event EventHandler BodyCollision;
 </code></pre>
 <p>This event will allow the <code>Slime</code> class to notify the game scene when the head of the slime collides with another segment, triggering a game over.</p>
 <h4 id="slime-constructor">Slime Constructor</h4>
-<p>Next, add the following constructor to the <code>Slime</code> class:</p>
+<p>After the events, add the following constructor to the <code>Slime</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new Slime using the specified animated sprite.
 /// &lt;/summary&gt;
@@ -403,7 +443,7 @@ public Slime(AnimatedSprite sprite)
 </code></pre>
 <p>This is a simple constructor that requires the slime to be given the <code>AnimatedSprite</code> that will be used to draw each of the slime segments.</p>
 <h4 id="slime-initialization">Slime Initialization</h4>
-<p>Add the following <code>Initialization</code> method to the <code>Slime</code> class:</p>
+<p>Add the following <code>Initialization</code> method to the <code>Slime</code> class after the constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Initializes the slime, can be used to reset it back to an initial state.
 /// &lt;/summary&gt;
@@ -442,7 +482,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <li>Initialize the movement timer to zero.</li>
 </ul>
 <h4 id="slime-input-handling">Slime Input Handling</h4>
-<p>Next, let's add the method that will handle input for the <code>Slime</code> class:</p>
+<p>Next, let's add the <code>HandleInput</code> method to process player input. Add the following method after the <code>Initialize</code> method:</p>
 <pre><code class="lang-csharp">private void HandleInput()
 {
     Vector2 potentialNextDirection = _nextDirection;
@@ -490,7 +530,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <p>By using dot product here, this effectively implements the classic snake-like game rule that you cannot turn 180° into yourself.</p>
 </div>
 <h4 id="slime-movement-cycle">Slime Movement Cycle</h4>
-<p>Next, we will add the method to perform the logic for the snake-like movement cycle of the slime.  Add the following methods to the <code>Slime</code> class:</p>
+<p>To handle the snake-like movement cycle of the slime, we will create a method called <code>Move</code>.  Add the following method to the <code>Slime</code> class after the <code>HandleInput</code> method:</p>
 <pre><code class="lang-csharp">private void Move()
 {
     // Capture the value of the head segment
@@ -547,7 +587,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <p>This follows the common snake movement pattern as discussed in the <a href="#movement-cycle">Understanding Snake Game Mechanics: Movement Cycle</a> section above.</p>
 </div>
 <h4 id="slime-growth">Slime Growth</h4>
-<p>Next, we will add the following method to the <code>Slime</code> class to implement the snake-like growth method:</p>
+<p>To handle the snake-like growth of the slime, we'll create a method called <code>Grow</code>.  Add the following method to the <code>Slime</code> class after the <code>Move</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Informs the slime to grow by one segment.
 /// &lt;/summary&gt;
@@ -574,7 +614,7 @@ public void Grow()
 <li>Finally, it inserts this new tail into the segments collection.</li>
 </ol>
 <h4 id="slime-update">Slime Update</h4>
-<p>Next, we will add the method to update the slime in each game update cycle.  Add the following method to the <code>Slime</code> class:</p>
+<p>With most of the core snake-like mechanics now added to the <code>Slime</code> class within their own methods, let's add the <code>Update</code> method.  Add the following method to the <code>Slime</code> class after the <code>Grow</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates the slime.
 /// &lt;/summary&gt;
@@ -632,7 +672,7 @@ public void Update(GameTime gameTime)
 <p>This technique is standard practice in game development, especially for timing-sensitive mechanics like rhythmic games, animations, and movement systems.  It is a simple solution that significantly improves gameplay consistency.</p>
 </div>
 <h4 id="slime-draw">Slime Draw</h4>
-<p>Next, we need a method to call to draw the slime to the game screen.  Add the following method to the <code>Slime</code> class:</p>
+<p>We also need a method to handle drawing the slime and all of its segments.  Add the following <code>Draw</code> method after the <code>Update</code> method to the <code>Slime</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Draws the slime.
 /// &lt;/summary&gt;
@@ -661,7 +701,7 @@ public void Draw()
 <p>In our game, this is used to create a visual fluid movement illusion by interpolating between a segment's current position (<code>At</code>) and its target position (<code>To</code>) based on the elapsed time, rather than having the segments abruptly jump from one grid position to the next after each movement update.</p>
 </div>
 <h4 id="slime-bounds">Slime Bounds</h4>
-<p>For the game scene to detect collisions between the slime and other elements (walls or the bat), we need a method to calculate the current collision bounds. Add the following method to the <code>Slime</code> class:</p>
+<p>For the game scene to detect collisions between the slime and other elements (walls or the bat), we need a method to calculate the current collision bounds. Add the following method to the <code>Slime</code> class after the <code>Draw</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a Circle value that represents collision bounds of the slime.
 /// &lt;/summary&gt;
@@ -690,8 +730,10 @@ public Circle GetBounds()
 <h5>Note</h5>
 <p>We only need collision bounds for the slime's head for interactions with the bat and walls, as this matches the classic snake game mechanic where only the head's collisions matter for gameplay. For detecting collisions between the head and body segments, we use a simpler position-based check in the <code>Move</code> method since those positions are always aligned to the grid.</p>
 </div>
+<p>With all these methods in place, our Slime class now fully implements the snake-like mechanics we need. It handles movement on a grid, prevents invalid direction changes, detects self-collisions, and provides smooth visual movement between grid positions. This encapsulation allows us to manage all slime-related behavior in one place while exposing only the necessary interfaces to the game scene.</p>
+<p>Now that we have our player-controlled character implemented, let's create the object that the slime will try to collect; the bat.</p>
 <h3 id="the-bat-class">The Bat Class</h3>
-<p>Next is the <code>Bat</code> class which will encapsulate the properties and functionality of the bat. In the <em>GameObjects</em> directory, create a new file named <em>Bat.cs</em> and add the following initial code:</p>
+<p>In the <em>GameObjects</em> directory of the DungeonSlime project (your main game project), create a new file named <em>Bat.cs</em> and add the following initial code:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -704,7 +746,14 @@ public class Bat
 {
 
 }
-</code></pre><h4 id="bat-fields">Bat Fields</h4>
+</code></pre>
+<p>This code establishes the foundation for our <code>Bat</code> class. We have included the necessary using statements for MonoGame components, audio functionality, and our library references. The class is placed in the same <code>DungeonSlime.GameObjects</code> namespace as our Slime class to maintain a consistent organization.</p>
+<p>Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game. Add each of the following sections to the <code>Bat</code> class in the order they are presented.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>As with the Slime class, you may encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.</p>
+</div>
+<h4 id="bat-fields">Bat Fields</h4>
 <p>Add the following fields to the <code>Bat</code> class:</p>
 <pre><code class="lang-csharp">private const float MOVEMENT_SPEED = 5.0f;
 
@@ -726,7 +775,7 @@ private SoundEffect _bounceSoundEffect;
 <li><code>_bounceSoundEffect</code>: This store the <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> to play when the bat is told to bounce.</li>
 </ul>
 <h4 id="bat-properties">Bat Properties</h4>
-<p>Add the following property to the <code>Bat</code> class:</p>
+<p>Next, add the following property to the <code>Bat</code> class after the fields:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets or Sets the position of the bat.
 /// &lt;/summary&gt;
@@ -734,7 +783,7 @@ public Vector2 Position { get; set;}
 </code></pre>
 <p>This property exposes the position of the bat so it can be used for calculations in the game scene when determining where to place the bat after the slime eats it.</p>
 <h4 id="bat-constructor">Bat Constructor</h4>
-<p>Next, add the following constructor to the <code>Slime</code> class:</p>
+<p>After the property, dd the following constructor to the <code>Bat</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new Bat using the specified animated sprite and sound effect.
 /// &lt;/summary&gt;
@@ -748,7 +797,7 @@ public Bat(AnimatedSprite sprite, SoundEffect bounceSoundEffect)
 </code></pre>
 <p>This is a simple constructor that requires the bat to be given the <code>AnimatedSprite</code> that will be used to draw the bat and the <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect"><strong>SoundEffect</strong></a> to be played when the bat bounces off a wall.</p>
 <h4 id="bat-randomize-velocity">Bat Randomize Velocity</h4>
-<p>Next, we need a method that the game scene can call to randomize the velocity of the bat after it has been eaten by the slime.  To do this, we can take the <code>AssignRandomVelocity</code> method we originally added to the <code>GameScene</code> and move it here.  Add the following method to the <code>Bat</code> class:</p>
+<p>Currently, we have the <code>AssignRandomVelocity</code> method in the <code>GameScene</code> that we call to randomize the velocity of the bat after it has been eaten by the slime.  Let's take this method out of the <code>GameScene</code> class and put it into the <code>Bat</code> class itself.  Add the following method to the <code>Bat</code> class after the constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Randomizes the velocity of the bat.
 /// &lt;/summary&gt;
@@ -767,7 +816,7 @@ public void RandomizeVelocity()
     _velocity = direction * MOVEMENT_SPEED;
 }
 </code></pre><h4 id="bat-bounce">Bat Bounce</h4>
-<p>Next is the <code>Bounce</code> method. This method can be called from the game scene to inform the bat that it should bounce off of a wall.  Add the following method to the <code>Bat</code> class:</p>
+<p>We are also going to take the logic from the <code>GameScene</code> class that bounces the bat off the walls and move it into a dedicated method in the <code>Bat</code> class.  Add the following method to the <code>Bat</code> class after the <code>RandomizeVelocity</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Handles a bounce event when the bat collides with a wall or boundary.
 /// &lt;/summary&gt;
@@ -803,7 +852,7 @@ public void Bounce(Vector2 normal)
 </code></pre>
 <p>This method only takes a single parameter, the <a href="../12_collision_detection/index.html#bounce-collision-response">normal vector</a> of the surface the bat is bouncing against.  Based on the X and Y components of the normal vector, we can determine which wall the bat bounced against and adjust the position of the bat so that it doesn't stick to the wall.</p>
 <h4 id="bat-bounds">Bat Bounds</h4>
-<p>Similar to the <a href="#slime-bounds"><code>Slime</code> class</a>, for the game scene to detect collision between the bat and other elements, we need a method to calculate the current collision bounds of the bat.  Add the following method to the <code>Bat</code> class:</p>
+<p>Similar to the <a href="#slime-bounds"><code>Slime</code> class</a>, for the game scene to detect collision between the bat and other elements, we need a method to calculate the current collision bounds of the bat.  Add the following method to the <code>Bat</code> class after the <code>Bounce</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a Circle value that represents collision bounds of the bat.
 /// &lt;/summary&gt;
@@ -817,7 +866,7 @@ public Circle GetBounds()
     return new Circle(x, y, radius);
 }
 </code></pre><h4 id="bat-update">Bat Update</h4>
-<p>Next, add the following <code>Update</code> method to the <code>Bat</code> class:</p>
+<p>The <code>Bat</code> class will also need to be updated.  Add the following <code>Update</code> method to the <code>Bat</code> class after the <code>GetBounds</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates the bat.
 /// &lt;/summary&gt;
@@ -837,7 +886,7 @@ public void Update(GameTime gameTime)
 <p>The continuous movement of the bat contrasts with the grid-based interval movement of the slime, creating different gameplay dynamics for the player to consider.  This makes catching the bat challenging without requiring any complex behaviors.</p>
 </div>
 <h4 id="bat-draw">Bat Draw</h4>
-<p>Finally, add the following <code>Draw</code> method to the <code>Bat</code> class:</p>
+<p>Finally, we need a method to draw the bat.  Add the following <code>Draw</code> method to the <code>Bat</code> class after the <code>Update</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Draws the bat.
 /// &lt;/summary&gt;
@@ -847,6 +896,7 @@ public void Draw()
 }
 </code></pre>
 <p>This method simply draws the bat's <code>AnimatedSprite</code> at the bat's current position.</p>
+<p>With the <code>Bat</code> class complete, we've now encapsulated all the behavior needed for the collectible element in our game. The bat moves continuously around the screen and can bounce off walls, adding a twist on the classic snake-like mechanic by creating a target for the player to chase.</p>
 <h3 id="the-gamesceneui-class">The GameSceneUI Class</h3>
 <p>Currently, the <code>GameScene</code> class contains the methods for initializing and creating the pause menu.  However, now that we have a defined condition for game-over, we need to create a game-over menu as well.  To do this, we could create the game over menu directly inside the <code>GameScene</code> class the same way we did with the pause menu, or we can take this as another opportunity to refactor the code and pull the UI-specific code into its own class.</p>
 <p>In the <em>UI</em> directory of the game project, create a new file named <em>GameSceneUI</em> and add the following initial code:</p>
@@ -868,7 +918,36 @@ public class GameSceneUI : ContainerRuntime
 {
 
 }
-</code></pre><h4 id="gamesceneui-fields">GameSceneUI Fields</h4>
+</code></pre>
+<p>With our <code>Slime</code> and <code>Bat</code> classes now complete, we've successfully encapsulated the core gameplay objects. Now we need to address another important aspect of our game: the user interface elements that communicate with the player.</p>
+<p>Currently, the <code>GameScene</code> class contains the methods for initializing and creating the pause menu. However, now that we have a defined condition for game over, we need to create a game over menu as well. To do this, we could create the game over menu directly inside the <code>GameScene</code> class the same way we did with the pause menu, or we can take this as another opportunity to refactor the code and pull the UI-specific code into its own class.</p>
+<p>In the <em>UI</em> directory of the DungeonSlime project (your main game project), create a new file named <em>GameSceneUI.cs</em> and add the following initial code:</p>
+<pre><code class="lang-csharp">using System;
+using Gum.DataTypes;
+using Gum.Managers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using MonoGameGum;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+
+namespace DungeonSlime.UI;
+
+public class GameSceneUI : ContainerRuntime
+{
+
+}
+</code></pre>
+<p>This code establishes the foundation for our <code>GameSceneUI</code> class, which inherits from Gum's <code>ContainerRuntime</code> class. This inheritance means our UI class is itself a UI container that can hold and manage other UI elements. We've included all necessary using statements for MonoGame, Gum UI components, and our library references.</p>
+<p>Let's build out this class by adding each section in sequence. Follow the order below to create the complete UI management system for our game scene.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You may see compiler errors as you add these sections one by one. This is expected because some parts of the code will reference fields, properties, or methods that we haven't added yet. Once all sections are in place, these errors will resolve.</p>
+</div>
+<h4 id="gamesceneui-fields">GameSceneUI Fields</h4>
 <p>Add the following fields to the <code>GameSceneUI</code> class:</p>
 <pre><code class="lang-csharp">// The string format to use when updating the text for the score display.
 private static readonly string s_scoreFormat = &quot;SCORE: {0:D6}&quot;;
@@ -909,7 +988,7 @@ private TextRuntime _scoreText;
 <li><code>_scoreText</code>: The text display showing the player's current score.</li>
 </ul>
 <h4 id="gamesceneui-events">GameSceneUI Events</h4>
-<p>Add the following events to the <code>GameSceneUI</code> class:</p>
+<p>After the fields, add the following events to the <code>GameSceneUI</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Event invoked when the Resume button on the Pause panel is clicked.
 /// &lt;/summary&gt;
@@ -933,14 +1012,11 @@ public event EventHandler RetryButtonClick;
 <li><code>RetryButtonClick</code>: Triggered when the player clicks the Retry button on the game over panel.</li>
 </ul>
 <h4 id="gamesceneui-constructor">GameSceneUI Constructor</h4>
-<p>Add the following constructor to the <code>GameSceneUI</code> class:</p>
-<pre><code class="lang-csharp">/// &lt;summary&gt;
-/// Creates a new GameSceneUI instance.
-/// &lt;/summary&gt;
-public GameSceneUI()
+<p>Add the following constructor to the <code>GameSceneUI</code> class after the events:</p>
+<pre><code class="lang-csharp">public GameSceneUI()
 {
     // The game scene UI inherits from ContainerRuntime, so we set its
-    // dock to fill so it fills the entire screen.
+    // doc to fill so it fills the entire screen.
     Dock(Gum.Wireframe.Dock.Fill);
 
     // Add it to the root element.
@@ -957,24 +1033,24 @@ public GameSceneUI()
 
     // Create the text that will display the players score and add it as
     // a child to this container.
-    CreateScoreText();
+    _scoreText = CreateScoreText();
     AddChild(_scoreText);
 
     // Create the background overlay that fills the container with a
     // transparent blue background when the pause panel or game over
     // panel is shown to visually take focus away from the active game and
     // add it as a child to this container.
-    CreateOverlay();
+    _overlay = CreateOverlay();
     AddChild(_overlay);
 
     // Create the Pause panel that is displayed when the game is paused and
     // add it as a child to this container
-    CreatePausePanel(atlas);
+    _pausePanel = CreatePausePanel(atlas);
     AddChild(_pausePanel.Visual);
 
     // Create the Game Over panel that is displayed when a game over occurs
     // and add it as a child to this container
-    CreateGameOverPanel(atlas);
+    _gameOverPanel = CreateGameOverPanel(atlas);
     AddChild(_gameOverPanel.Visual);
 }
 </code></pre>
@@ -986,42 +1062,47 @@ public GameSceneUI()
 <li>Creates and adds child elements in the correct order.</li>
 </ol>
 <h4 id="gamesceneui-ui-creation-methods">GameSceneUI UI Creation Methods</h4>
-<p>Now let's add the methods to create the various UI elements.  First, the method to create the score text display:</p>
-<pre><code class="lang-csharp">private void CreateScoreText()
+<p>Next add the methods to create the various UI elements that are managed by the <code>GameSceneUI</code> class.  Add the following method after the constructor:</p>
+<pre><code class="lang-csharp">private TextRuntime CreateScoreText()
 {
-    _scoreText = new TextRuntime();
-    _scoreText.Anchor(Gum.Wireframe.Anchor.TopLeft);
-    _scoreText.WidthUnits = DimensionUnitType.RelativeToChildren;
-    _scoreText.X = 20.0f;
-    _scoreText.Y = 5.0f;
-    _scoreText.UseCustomFont = true;
-    _scoreText.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
-    _scoreText.FontScale = 0.25f;
-    _scoreText.Text = string.Format(s_scoreFormat, 0);
+    TextRuntime text = new TextRuntime();
+    text.Anchor(Gum.Wireframe.Anchor.TopLeft);
+    text.WidthUnits = DimensionUnitType.RelativeToChildren;
+    text.X = 20.0f;
+    text.Y = 5.0f;
+    text.UseCustomFont = true;
+    text.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+    text.FontScale = 0.25f;
+    text.Text = string.Format(s_scoreFormat, 0);
+
+    return text;
 }
 </code></pre>
-<p>Next, add the method to create the semi-transparent overlay:</p>
-<pre><code class="lang-csharp">private void CreateOverlay()
+<p>This method takes creates a <code>TextRuntime</code> element that we can use to display the player's score and returns it back.  After this method, add the following method:</p>
+<pre><code class="lang-csharp">private ColoredRectangleRuntime CreateOverlay()
 {
-    _overlay = new ColoredRectangleRuntime();
-    _overlay.Dock(Gum.Wireframe.Dock.Fill);
-    _overlay.Red = 20;
-    _overlay.Green = 23;
-    _overlay.Blue = 47;
-    _overlay.Alpha = 175;
-    _overlay.Visible = false;
+    ColoredRectangleRuntime rect = new ColoredRectangleRuntime();
+    rect = new ColoredRectangleRuntime();
+    rect.Dock(Gum.Wireframe.Dock.Fill);
+    rect.Red = 20;
+    rect.Green = 23;
+    rect.Blue = 47;
+    rect.Alpha = 175;
+    rect.Visible = false;
+
+    return rect;
 }
 </code></pre>
-<p>Then, add the method to create the pause panel:</p>
-<pre><code class="lang-csharp">private void CreatePausePanel(TextureAtlas atlas)
+<p>This method creates a <code>ColoredRectangleRuntime</code> element that is semi-transparent and returns it back.  This will be used to dim the game when the pause and game over panels are shown.  After this method, add the following method:</p>
+<pre><code class="lang-csharp">private Panel CreatePausePanel(TextureAtlas atlas)
 {
-    _pausePanel = new Panel();
-    _pausePanel.Anchor(Gum.Wireframe.Anchor.Center);
-    _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
-    _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
-    _pausePanel.Visual.Width = 264.0f;
-    _pausePanel.Visual.Height = 70.0f;
-    _pausePanel.IsVisible = false;
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
 
     TextureRegion backgroundRegion = atlas.GetRegion(&quot;panel-background&quot;);
 
@@ -1033,7 +1114,7 @@ public GameSceneUI()
     background.TextureWidth = backgroundRegion.Width;
     background.TextureTop = backgroundRegion.SourceRectangle.Top;
     background.TextureLeft = backgroundRegion.SourceRectangle.Left;
-    _pausePanel.AddChild(background);
+    panel.AddChild(background);
 
     TextRuntime text = new TextRuntime();
     text.Text = &quot;PAUSED&quot;;
@@ -1042,7 +1123,7 @@ public GameSceneUI()
     text.FontScale = 0.5f;
     text.X = 10.0f;
     text.Y = 10.0f;
-    _pausePanel.AddChild(text);
+    panel.AddChild(text);
 
     _resumeButton = new AnimatedButton(atlas);
     _resumeButton.Text = &quot;RESUME&quot;;
@@ -1053,7 +1134,7 @@ public GameSceneUI()
     _resumeButton.Click += OnResumeButtonClicked;
     _resumeButton.GotFocus += OnElementGotFocus;
 
-    _pausePanel.AddChild(_resumeButton);
+    panel.AddChild(_resumeButton);
 
     AnimatedButton quitButton = new AnimatedButton(atlas);
     quitButton.Text = &quot;QUIT&quot;;
@@ -1064,19 +1145,21 @@ public GameSceneUI()
     quitButton.Click += OnQuitButtonClicked;
     quitButton.GotFocus += OnElementGotFocus;
 
-    _pausePanel.AddChild(quitButton);
+    panel.AddChild(quitButton);
+
+    return panel;
 }
 </code></pre>
-<p>Finally, add the method to create the game over panel:</p>
-<pre><code class="lang-csharp">private void CreateGameOverPanel(TextureAtlas atlas)
+<p>This method builds the <code>Panel</code> that is shown hen the game is paused, including the &quot;Resume&quot; and &quot;Quit&quot; buttons, then returns it back. Finally, after this method, add the following method:</p>
+<pre><code class="lang-csharp">private Panel CreateGameOverPanel(TextureAtlas atlas)
 {
-    _gameOverPanel = new Panel();
-    _gameOverPanel.Anchor(Gum.Wireframe.Anchor.Center);
-    _gameOverPanel.Visual.WidthUnits = DimensionUnitType.Absolute;
-    _gameOverPanel.Visual.HeightUnits = DimensionUnitType.Absolute;
-    _gameOverPanel.Visual.Width = 264.0f;
-    _gameOverPanel.Visual.Height = 70.0f;
-    _gameOverPanel.IsVisible = false;
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
 
     TextureRegion backgroundRegion = atlas.GetRegion(&quot;panel-background&quot;);
 
@@ -1088,7 +1171,7 @@ public GameSceneUI()
     background.TextureWidth = backgroundRegion.Width;
     background.TextureTop = backgroundRegion.SourceRectangle.Top;
     background.TextureLeft = backgroundRegion.SourceRectangle.Left;
-    _gameOverPanel.AddChild(background);
+    panel.AddChild(background);
 
     TextRuntime text = new TextRuntime();
     text.Text = &quot;GAME OVER&quot;;
@@ -1098,7 +1181,7 @@ public GameSceneUI()
     text.FontScale = 0.5f;
     text.X = 10.0f;
     text.Y = 10.0f;
-    _gameOverPanel.AddChild(text);
+    panel.AddChild(text);
 
     _retryButton = new AnimatedButton(atlas);
     _retryButton.Text = &quot;RETRY&quot;;
@@ -1109,7 +1192,7 @@ public GameSceneUI()
     _retryButton.Click += OnRetryButtonClicked;
     _retryButton.GotFocus += OnElementGotFocus;
 
-    _gameOverPanel.AddChild(_retryButton);
+    panel.AddChild(_retryButton);
 
     AnimatedButton quitButton = new AnimatedButton(atlas);
     quitButton.Text = &quot;QUIT&quot;;
@@ -1120,18 +1203,15 @@ public GameSceneUI()
     quitButton.Click += OnQuitButtonClicked;
     quitButton.GotFocus += OnElementGotFocus;
 
-    _gameOverPanel.AddChild(quitButton);
+    panel.AddChild(quitButton);
+
+    return panel;
 }
 </code></pre>
-<p>Each of these methods builds a specific part of the UI:</p>
-<ul>
-<li><code>CreateScoreText</code>: Creates a text element to display the player's score.</li>
-<li><code>CreateOverlay</code>: Creates a semi-transparent background to dim the game when panels are shown.</li>
-<li><code>CreatePausePanel</code>: Builds the panel shown when the game is paused, including the &quot;Resume&quot; and &quot;Quit&quot; buttons.</li>
-<li><code>CreateGameOverPanel</code>: Builds the panel shown when a game over occurs, including the &quot;Retry&quot; and &quot;Quit&quot; buttons.</li>
-</ul>
+<p>This method builds the <code>Panel</code> that is shown when a game over occurs, including the &quot;Retry&quot; and &quot;Quit&quot; buttons.</p>
+<p>Both the pause panel and the game over panel use event handlers for their buttons.  Let's add those next.</p>
 <h4 id="gamesceneui-event-handlers">GameSceneUI Event Handlers</h4>
-<p>Add the following event handler methods to the <code>GameSceneUI</code> class:</p>
+<p>After the <code>CreateGameOverPanel</code> method, add the following method to the <code>GameSceneUI</code> class:</p>
 <pre><code class="lang-csharp">private void OnResumeButtonClicked(object sender, EventArgs args)
 {
     // Button was clicked, play the ui sound effect for auditory feedback.
@@ -1187,7 +1267,7 @@ private void OnElementGotFocus(object sender, EventArgs args)
 </code></pre>
 <p>These event handlers provide audio feedback and appropriate UI updates when buttons are clicked or UI elements receive focus.</p>
 <h4 id="gamesceneui-public-methods">GameSceneUI Public Methods</h4>
-<p>Finally, add the following public methods to the <code>GameSceneUI</code> class:</p>
+<p>Finally, add the following public methods to the <code>GameSceneUI</code> class after the <code>OnElementGotFocus</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates the text on the score display.
 /// &lt;/summary&gt;
@@ -1273,10 +1353,11 @@ public void Draw()
 <li>Show or hide the game over menu.</li>
 <li>Update and draw the UI components.</li>
 </ul>
-<p>By using this class, we encapsulate all UI-related functionality in a single component that can easily be integrated with the game scene.</p>
+<p>With the <code>GameSceneUI</code> class complete, we now have a fully encapsulated UI system that can handle displaying game information (score), providing feedback for game states (pause, game over), and processing user interactions (button clicks). This separation of UI logic from game logic will make our codebase much easier to maintain and extend.</p>
+<p>Now that we have all our specialized components ready, let's refactor the GameScene class to coordinate between them and manage the overall game flow.</p>
 <h3 id="the-gamescene-class">The GameScene Class</h3>
 <p>Now that we have created the encapsulated <a href="#the-slime-class"><code>Slime</code></a>, <a href="#the-bat-class"><code>Bat</code></a>, and <a href="#the-gamesceneui-class"><code>GameSceneUI</code></a> classes, we can refactor the <code>GameScene</code> class to leverage these new components.  This will make our code more maintainable and allow us to focus on the game logic within the scene itself.  We will rebuild the <code>GameScene</code> class to coordinate the interactions between the components.</p>
-<p>In the <em>Scenes</em> directory of the game project, open the <em>GameScene.cs</em> file and replace the code with the following initial code:</p>
+<p>In the <em>Scenes</em> directory of the DungeonSlime project (your main game project), open the <em>GameScene.cs</em> file and replace the code with the following initial code:</p>
 <pre><code class="lang-csharp">using System;
 using DungeonSlime.GameObjects;
 using DungeonSlime.UI;
@@ -1322,6 +1403,7 @@ public class GameScene : Scene
     private GameState _state;
 }
 </code></pre>
+<p>This code provides the foundation for our refactored <code>GameScene</code> class. We have included all the necessary using statements to reference our new game object classes and UI components. The class will now focus on managing the game state and coordinating between our specialized component classes rather than implementing all the functionality directly.</p>
 <p>The <code>GameScene</code> class now contains the following key fields:</p>
 <ul>
 <li><code>GameState</code>: An enum that defines the different states that the game can be in (playing, paused, or game over).</li>
@@ -1334,8 +1416,13 @@ public class GameScene : Scene
 <li><code>_ui</code>: A reference to the game scene UI component.</li>
 <li><code>_state</code>: The current state of the game represented by the <code>GameState</code> enum.</li>
 </ul>
+<p>Now we'll add the various methods needed to complete the <code>GameScene</code> class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>As with previous classes, you might encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.</p>
+</div>
 <h4 id="gamescene-initialize-method">GameScene Initialize Method</h4>
-<p>Add the following <code>Initialize</code> method to set up the scene:</p>
+<p>To set up the scene, add the following <code>Initialize</code> method after the fields in te <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Initialize()
 {
     // LoadContent is called during base.Initialize().
@@ -1376,7 +1463,7 @@ public class GameScene : Scene
 <li>Set up a new game.</li>
 </ol>
 <h4 id="gamescene-initializeui-method">GameScene InitializeUI Method</h4>
-<p>Add the following method to set up the user interface:</p>
+<p>The <code>Initialize</code> method we just added calls a method to initialize the user interface for the scene.  Let's add that method now.  Add the following method after the <code>Initialize</code> method in the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">private void InitializeUI()
 {
     // Clear out any previous UI element incase we came here
@@ -1394,7 +1481,7 @@ public class GameScene : Scene
 </code></pre>
 <p>This method creates the UI components and subscribes to its events to respond to button clicks.</p>
 <h4 id="gamescene-ui-event-handlers">GameScene UI Event Handlers</h4>
-<p>Add the following event handler methods for the UI buttons:</p>
+<p>In the <code>InitializeUI</code> method we just added, we subscribe to the events from the <code>GameSceneUI</code> class that are triggered when buttons are clicked.  Now we need to add those methods that would be called when the events are triggered.  Add the following methods to the <code>GameScene</code> class after the <code>InitializeUI</code> method:</p>
 <pre><code class="lang-csharp">private void OnResumeButtonClicked(object sender, EventArgs args)
 {
     // Change the game state back to playing
@@ -1420,7 +1507,7 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li><code>OnQuitButtonClicked</code>: Quits the game by returning to the title scene.</li>
 </ul>
 <h4 id="gamescene-initializenewgame-method">GameScene InitializeNewGame Method</h4>
-<p>Add the following method to set up a new game session:</p>
+<p>In the <code>Initialize</code> method we added above, it also makes a call to an <code>InitializeNewGame</code> method.  Let's add this now.  Add the following method to the <code>GameScene</code> class after the <code>OnQuitButtonClicked</code> method:</p>
 <pre><code class="lang-csharp">private void InitializeNewGame()
 {
     // Calculate the position for the slime, which will be at the center
@@ -1452,7 +1539,7 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li>Set the game state to &quot;Playing&quot;.</li>
 </ol>
 <h4 id="gamescene-loadcontent-method">GameScene LoadContent Method</h4>
-<p>Add the <code>LoadContent</code> method to load game assets for the scene:</p>
+<p>Next, we need to add the method to load game assets for the scene.  Add the following method to the <code>GameScene</code> class after the <code>InitializeNewGame</code> method:</p>
 <pre><code class="lang-csharp">public override void LoadContent()
 {
     // Create the texture atlas from the XML configuration file
@@ -1491,7 +1578,7 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li>Sound effects for the bat bouncing and collecting.</li>
 </ol>
 <h4 id="gamescene-update-method">GameScene Update Method</h4>
-<p>Add the <code>Update</code> method to handle game state updates:</p>
+<p>Next, to update the scene add the following method to the <code>GameScene</code> class after the <code>LoadContent</code> method:</p>
 <pre><code class="lang-csharp">public override void Update(GameTime gameTime)
 {
     // Ensure the UI is always updated
@@ -1536,7 +1623,7 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li>Check for collisions between the game objects.</li>
 </ol>
 <h4 id="gamescene-collisionchecks-method">GameScene CollisionChecks Method</h4>
-<p>Add the following method to handle collision detection:</p>
+<p>In the <code>Update</code> method we just added, it makes a call to a <code>CollisionChecks</code> method to handle the collision detection and response.  Let's add that method now.  Add the following method to the <code>GameScene</code> class after the <code>Update</code> method:</p>
 <pre><code class="lang-csharp">private void CollisionChecks()
 {
     // Capture the current bounds of the slime and bat
@@ -1608,8 +1695,8 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li>Bat-Wall collision: Causes the bat to bounce off the walls.</li>
 </ol>
 <h4 id="gamescene-positionbatawayfromslime-method">GameScene PositionBatAwayFromSlime Method</h4>
-<p>Previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  By choosing a completely random location, it could be on top of the head segment of the slime, forcing an instance collision, or it could spawn very close to the head segment, which adds no challenge for the player.</p>
-<p>To ensure the bat appears in a random but strategic location, we can instead set it to position away from the slime on the opposite side of the room.  Add the following method to the <code>GameScene</code> class:</p>
+<p>The <code>CollisionCheck</code> method makes a call to <code>PositionBatAwayFromSlime</code>.  Previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  By choosing a completely random location, it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which adds not challenge for the player.</p>
+<p>To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.  Add the following method to the <code>GameScene</code> class after the <code>CollisionCheck</code> method:</p>
 <pre><code class="lang-csharp">private void PositionBatAwayFromSlime()
 {
     // Calculate the position that is in the center of the bounds
@@ -1693,7 +1780,7 @@ private void OnQuitButtonClicked(object sender, EventArgs args)
 <li>Places the bat near that wall, making it more challenging for the player to reach.</li>
 </ol>
 <h4 id="gamescene-event-handler-and-game-state-methods">GameScene Event Handler and Game State Methods</h4>
-<p>Add the following methods to handle game events and state changes:</p>
+<p>Next, we will add some of the missing methods being called from above that handle game events and state changes.  Add the following methods to the <code>GameScene</code> class after the <code>PositionBatAwayFromSlime</code> method:</p>
 <pre><code class="lang-csharp">private void OnSlimeBodyCollision(object sender, EventArgs args)
 {
     GameOver();
@@ -1735,7 +1822,7 @@ private void GameOver()
 <li><code>GameOver</code>: Called when a game over condition is met, showing the game over UI.</li>
 </ul>
 <h4 id="gamescene-draw-method">GameScene Draw Method</h4>
-<p>Finally, add the <code>Draw</code> method to draw the scene:</p>
+<p>Finally, we need a method to draw the scene.  Add the following method to the <code>GameScene </code>class after the <code>GameOver</code> method.</p>
 <pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
@@ -1786,7 +1873,7 @@ private void GameOver()
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 22-3: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall</strong></td>
+<td style="text-align: center;"><strong>Figure 22-5: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall</strong></td>
 </tr>
 </tbody>
 </table>
