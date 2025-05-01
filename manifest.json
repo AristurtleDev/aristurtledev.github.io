@@ -1075,6 +1075,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/images/monogame-orange.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/03_the_game1_file/images/monogame-orange.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/images/solitaire.webp",
       "output": {
         "resource": {
@@ -1261,8 +1271,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1776,8 +1786,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1959,8 +1969,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2282,8 +2292,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
         "InvalidFileLink",
+        "UidNotFound",
         "codesnippet-not-found"
       ],
       "type": "Conceptual",
