@@ -1015,6 +1015,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/02_getting_started/images/devkit-extension.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/02_getting_started/images/devkit-extension.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/02_getting_started/images/game-window.png",
       "output": {
         "resource": {
@@ -2272,8 +2282,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
         "codesnippet-not-found",
+        "InvalidFileLink",
         "UidNotFound"
       ],
       "type": "Conceptual",
