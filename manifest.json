@@ -2262,9 +2262,9 @@
     },
     {
       "log_codes": [
-        "codesnippet-not-found",
         "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "codesnippet-not-found"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
