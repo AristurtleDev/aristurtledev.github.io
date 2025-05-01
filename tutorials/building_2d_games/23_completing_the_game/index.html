@@ -1,0 +1,1166 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Aristurtle | Aristurtle ">
+
+    <!-- HTML Meta Tags -->
+    <title>Aristurtle | Aristurtle </title>
+    <meta name="description" content="Official site of all Aristurtle related things">
+
+    <!-- Facebook Meta Tags -->
+    <meta name="og:url" content="https://aristurtle.net/.html"><meta name="og:type" content="website">
+    <meta name="og:title" content="Aristurtle | Aristurtle ">
+    <meta name="og:description" content="Official site of all Aristurtle related things">
+    <meta name="og:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Twtiter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="aristurtle.net">
+    <meta property="twitter:url" content="https://aristurtle.net/.html">
+    <meta name="twitter:title" content="Aristurtle | Aristurtle ">
+    <meta name="twitter:description" content="Official site of all Aristurtle related things">
+    <meta name="twitter:image" content="https://aristurtle.net/images/aristurtle.png">
+
+    <!-- Discord Meta Tags -->
+    <meta name="theme-color" content="#49c961">
+
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.aristurtle.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="Aristurtle">
+            Aristurtle
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chapter-23-completing-the-game">Chapter 23: Completing the Game</h1>
+<p class="text-secondary">Finalize game mechanics by updating our current demo into a snake-like inspired game.</p>
+<p>IN <a href="../22_snake_game_mechanics/index.html">Chapter 22</a> we implemented the core mechanics of a snake-like game by creating the <a href="../22_snake_game_mechanics/index.html#the-slime-class"><code>Slime</code></a>, <a href="../22_snake_game_mechanics/index.html#the-bat-class"><code>Bat</code></a> and <a href="../22_snake_game_mechanics/index.html#the-gamecontroller-class"><code>GameController</code></a> classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.</p>
+<p>In this chapter, you will:</p>
+<ul>
+<li>Create a dedicated UI class to manage the UI for the game scene.</li>
+<li>Implement pause and game over screens with appropriate controls.</li>
+<li>Refactor the <code>GameScene</code> class to coordinate all game elements.</li>
+<li>Add game state management to handle playing, paused, and game over conditions</li>
+<li>Connect all elements to create a complete, playable game.</li>
+</ul>
+<h2 id="the-gamesceneui-class">The GameSceneUI Class</h2>
+<p>Currently, the <code>GameScene</code> class contains the methods for initializing and creating the pause menu.  However, now that we have a defined condition for game over, we need to create a game-over menu as well.  To do this, we will take the opportunity to refactor the current code and pull the UI-specific code into its own class.</p>
+<p>In the <em>UI</em> directory of the game project, create a new file named <em>GameSceneUI</em> and add the following initial code:</p>
+<pre><code class="lang-csharp">using System;
+using Gum.DataTypes;
+using Gum.Managers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using MonoGameGum;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+
+namespace DungeonSlime.UI;
+
+public class GameSceneUI : ContainerRuntime
+{
+
+}
+</code></pre>
+<p>This code establishes the foundation for our <code>GameSceneUI</code> class, which inherits from Gum's <code>ContainerRuntime</code> class. This inheritance means our UI class is itself a UI container that can hold and manage other UI elements. We've included all necessary using statements for MonoGame, Gum UI components, and our library references.</p>
+<p>Let's build out this class by adding each section in sequence. Follow the order below to create the complete UI management system for our game scene.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You may see compiler errors as you add these sections one by one. This is expected because some parts of the code will reference fields, properties, or methods that we haven't added yet. Once all sections are in place, these errors will resolve.</p>
+</div>
+<h3 id="gamesceneui-fields">GameSceneUI Fields</h3>
+<p>Add the following fields to the <code>GameSceneUI</code> class:</p>
+<pre><code class="lang-csharp">// The string format to use when updating the text for the score display.
+private static readonly string s_scoreFormat = &quot;SCORE: {0:D6}&quot;;
+
+// The sound effect to play for auditory feedback of the user interface.
+private SoundEffect _uiSoundEffect;
+
+// A colored rectangle used to overlay the game scene when the pause or
+// game over panels are visible.
+private ColoredRectangleRuntime _overlay;
+
+// The pause panel
+private Panel _pausePanel;
+
+// The resume button on the pause panel. Field is used to track reference so
+// focus can be set when the pause panel is shown.
+private AnimatedButton _resumeButton;
+
+// The game over panel.
+private Panel _gameOverPanel;
+
+// The retry button on the game over panel. Field is used to track reference
+// so focus can be set when the game over panel is shown.
+private AnimatedButton _retryButton;
+
+// The text runtime used to display the players score on the game screen.
+private TextRuntime _scoreText;
+</code></pre>
+<p>Let's break down what each of these fields is responsible for:</p>
+<ul>
+<li><code>s_scoreFormat</code>: A string format template used to display the player's score with leading zeros.</li>
+<li><code>_uiSoundEffect</code>: Stores the sound effect played for UI interactions like button clicks and focus changes.</li>
+<li><code>_overlay</code>: A semi-transparent overlay that darkens the game screen when a menu is displayed.</li>
+<li><code>_pausePanel</code>: The panel containing the UI elements shown when the game is paused.</li>
+<li><code>_resumeButton</code>: A reference to the resume button, allowing us to set focus on it when the pause panel is shown.</li>
+<li><code>_gameOverPanel</code>: The panel containing the UI elements shown when a game over occurs.</li>
+<li><code>_retryButton</code>: A reference to the retry button, allowing us to set focus to it when the game over panel is shown.</li>
+<li><code>_scoreText</code>: The text display showing the player's current score.</li>
+</ul>
+<h3 id="gamesceneui-events">GameSceneUI Events</h3>
+<p>After the fields, add the following events to the <code>GameSceneUI</code> class:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Event invoked when the Resume button on the Pause panel is clicked.
+/// &lt;/summary&gt;
+public event EventHandler ResumeButtonClick;
+
+/// &lt;summary&gt;
+/// Event invoked when the Quit button on either the Pause panel or the
+/// Game Over panel is clicked.
+/// &lt;/summary&gt;
+public event EventHandler QuitButtonClick;
+
+/// &lt;summary&gt;
+/// Event invoked when the Retry button on the Game Over panel is clicked.
+/// &lt;/summary&gt;
+public event EventHandler RetryButtonClick;
+</code></pre>
+<p>These events allow the <code>GameSceneUI</code> class to notify the <code>GameScene</code> when important UI actions occur:</p>
+<ul>
+<li><code>ResumeButtonClick</code>: Triggered when the player clicks the Resume button on the pause panel.</li>
+<li><code>QuitButtonClick</code>: Triggered when the player clicks the Quit button on either panel.</li>
+<li><code>RetryButtonClick</code>: Triggered when the player clicks the Retry button on the game over panel.</li>
+</ul>
+<h3 id="gamesceneui-constructor">GameSceneUI Constructor</h3>
+<p>Add the following constructor to the <code>GameSceneUI</code> class after the events:</p>
+<pre><code class="lang-csharp">public GameSceneUI()
+{
+    // The game scene UI inherits from ContainerRuntime, so we set its
+    // doc to fill so it fills the entire screen.
+    Dock(Gum.Wireframe.Dock.Fill);
+
+    // Add it to the root element.
+    this.AddToRoot();
+
+    // Get a reference to the content manager that was registered with the
+    // GumService when it was original initialized.
+    ContentManager content = GumService.Default.ContentLoader.XnaContentManager;
+
+    // Use that content manager to load the sound effect and atlas for the
+    // user interface elements
+    _uiSoundEffect = content.Load&lt;SoundEffect&gt;(&quot;audio/ui&quot;);
+    TextureAtlas atlas = TextureAtlas.FromFile(content, &quot;images/atlas-definition.xml&quot;);
+
+    // Create the text that will display the players score and add it as
+    // a child to this container.
+    _scoreText = CreateScoreText();
+    AddChild(_scoreText);
+
+    // Create the background overlay that fills the container with a
+    // transparent blue background when the pause panel or game over
+    // panel is shown to visually take focus away from the active game and
+    // add it as a child to this container.
+    _overlay = CreateOverlay();
+    AddChild(_overlay);
+
+    // Create the Pause panel that is displayed when the game is paused and
+    // add it as a child to this container
+    _pausePanel = CreatePausePanel(atlas);
+    AddChild(_pausePanel.Visual);
+
+    // Create the Game Over panel that is displayed when a game over occurs
+    // and add it as a child to this container
+    _gameOverPanel = CreateGameOverPanel(atlas);
+    AddChild(_gameOverPanel.Visual);
+}
+</code></pre>
+<p>This constructor initializes all UI components:</p>
+<ol>
+<li>Set the container to fill the entire screen.</li>
+<li>Adds itself to Gum's root element.</li>
+<li>Loads necessary assets (sound effect and texture atlas).</li>
+<li>Creates and adds child elements in the correct order.</li>
+</ol>
+<h3 id="gamesceneui-ui-creation-methods">GameSceneUI UI Creation Methods</h3>
+<p>Next add the methods to create the various UI elements that are managed by the <code>GameSceneUI</code> class.  Add the following method after the constructor:</p>
+<pre><code class="lang-csharp">private TextRuntime CreateScoreText()
+{
+    TextRuntime text = new TextRuntime();
+    text.Anchor(Gum.Wireframe.Anchor.TopLeft);
+    text.WidthUnits = DimensionUnitType.RelativeToChildren;
+    text.X = 20.0f;
+    text.Y = 5.0f;
+    text.UseCustomFont = true;
+    text.CustomFontFile = @&quot;fonts/04b_30.fnt&quot;;
+    text.FontScale = 0.25f;
+    text.Text = string.Format(s_scoreFormat, 0);
+
+    return text;
+}
+</code></pre>
+<p>This method takes creates a <code>TextRuntime</code> element that we can use to display the player's score and returns it back.  After this method, add the following method:</p>
+<pre><code class="lang-csharp">private ColoredRectangleRuntime CreateOverlay()
+{
+    ColoredRectangleRuntime rect = new ColoredRectangleRuntime();
+    rect = new ColoredRectangleRuntime();
+    rect.Dock(Gum.Wireframe.Dock.Fill);
+    rect.Red = 20;
+    rect.Green = 23;
+    rect.Blue = 47;
+    rect.Alpha = 175;
+    rect.Visible = false;
+
+    return rect;
+}
+</code></pre>
+<p>This method creates a <code>ColoredRectangleRuntime</code> element that is semi-transparent and returns it back.  This will be used to dim the game when the pause and game over panels are shown.  After this method, add the following method:</p>
+<pre><code class="lang-csharp">private Panel CreatePausePanel(TextureAtlas atlas)
+{
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
+
+    TextureRegion backgroundRegion = atlas.GetRegion(&quot;panel-background&quot;);
+
+    NineSliceRuntime background = new NineSliceRuntime();
+    background.Dock(Gum.Wireframe.Dock.Fill);
+    background.Texture = backgroundRegion.Texture;
+    background.TextureAddress = TextureAddress.Custom;
+    background.TextureHeight = backgroundRegion.Height;
+    background.TextureWidth = backgroundRegion.Width;
+    background.TextureTop = backgroundRegion.SourceRectangle.Top;
+    background.TextureLeft = backgroundRegion.SourceRectangle.Left;
+    panel.AddChild(background);
+
+    TextRuntime text = new TextRuntime();
+    text.Text = &quot;PAUSED&quot;;
+    text.UseCustomFont = true;
+    text.CustomFontFile = &quot;fonts/04b_30.fnt&quot;;
+    text.FontScale = 0.5f;
+    text.X = 10.0f;
+    text.Y = 10.0f;
+    panel.AddChild(text);
+
+    _resumeButton = new AnimatedButton(atlas);
+    _resumeButton.Text = &quot;RESUME&quot;;
+    _resumeButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+    _resumeButton.Visual.X = 9.0f;
+    _resumeButton.Visual.Y = -9.0f;
+
+    _resumeButton.Click += OnResumeButtonClicked;
+    _resumeButton.GotFocus += OnElementGotFocus;
+
+    panel.AddChild(_resumeButton);
+
+    AnimatedButton quitButton = new AnimatedButton(atlas);
+    quitButton.Text = &quot;QUIT&quot;;
+    quitButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    quitButton.Visual.X = -9.0f;
+    quitButton.Visual.Y = -9.0f;
+
+    quitButton.Click += OnQuitButtonClicked;
+    quitButton.GotFocus += OnElementGotFocus;
+
+    panel.AddChild(quitButton);
+
+    return panel;
+}
+</code></pre>
+<p>This method builds the <code>Panel</code> that is shown hen the game is paused, including the &quot;Resume&quot; and &quot;Quit&quot; buttons, then returns it back. Finally, after this method, add the following method:</p>
+<pre><code class="lang-csharp">private Panel CreateGameOverPanel(TextureAtlas atlas)
+{
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
+
+    TextureRegion backgroundRegion = atlas.GetRegion(&quot;panel-background&quot;);
+
+    NineSliceRuntime background = new NineSliceRuntime();
+    background.Dock(Gum.Wireframe.Dock.Fill);
+    background.Texture = backgroundRegion.Texture;
+    background.TextureAddress = TextureAddress.Custom;
+    background.TextureHeight = backgroundRegion.Height;
+    background.TextureWidth = backgroundRegion.Width;
+    background.TextureTop = backgroundRegion.SourceRectangle.Top;
+    background.TextureLeft = backgroundRegion.SourceRectangle.Left;
+    panel.AddChild(background);
+
+    TextRuntime text = new TextRuntime();
+    text.Text = &quot;GAME OVER&quot;;
+    text.WidthUnits = DimensionUnitType.RelativeToChildren;
+    text.UseCustomFont = true;
+    text.CustomFontFile = &quot;fonts/04b_30.fnt&quot;;
+    text.FontScale = 0.5f;
+    text.X = 10.0f;
+    text.Y = 10.0f;
+    panel.AddChild(text);
+
+    _retryButton = new AnimatedButton(atlas);
+    _retryButton.Text = &quot;RETRY&quot;;
+    _retryButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+    _retryButton.Visual.X = 9.0f;
+    _retryButton.Visual.Y = -9.0f;
+
+    _retryButton.Click += OnRetryButtonClicked;
+    _retryButton.GotFocus += OnElementGotFocus;
+
+    panel.AddChild(_retryButton);
+
+    AnimatedButton quitButton = new AnimatedButton(atlas);
+    quitButton.Text = &quot;QUIT&quot;;
+    quitButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    quitButton.Visual.X = -9.0f;
+    quitButton.Visual.Y = -9.0f;
+
+    quitButton.Click += OnQuitButtonClicked;
+    quitButton.GotFocus += OnElementGotFocus;
+
+    panel.AddChild(quitButton);
+
+    return panel;
+}
+</code></pre>
+<p>This method builds the <code>Panel</code> that is shown when a game over occurs, including the &quot;Retry&quot; and &quot;Quit&quot; buttons.</p>
+<p>Both the pause panel and the game over panel use event handlers for their buttons.  Let's add those next.</p>
+<h3 id="gamesceneui-event-handlers">GameSceneUI Event Handlers</h3>
+<p>After the <code>CreateGameOverPanel</code> method, add the following method to the <code>GameSceneUI</code> class:</p>
+<pre><code class="lang-csharp">private void OnResumeButtonClicked(object sender, EventArgs args)
+{
+    // Button was clicked, play the ui sound effect for auditory feedback.
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+    // Since the resume button was clicked, we need to hide the pause panel.
+    HidePausePanel();
+
+    // Invoke the ResumeButtonClick event
+    if(ResumeButtonClick != null)
+    {
+        ResumeButtonClick(sender, args);
+    }
+}
+
+private void OnRetryButtonClicked(object sender, EventArgs args)
+{
+    // Button was clicked, play the ui sound effect for auditory feedback.
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+    // Since the retry button was clicked, we need to hide the game over panel.
+    HideGameOverPanel();
+
+    // Invoke the RetryButtonClick event.
+    if(RetryButtonClick != null)
+    {
+        RetryButtonClick(sender, args);
+    }
+}
+
+private void OnQuitButtonClicked(object sender, EventArgs args)
+{
+    // Button was clicked, play the ui sound effect for auditory feedback.
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+    // Both panels have a quit button, so hide both panels
+    HidePausePanel();
+    HideGameOverPanel();
+
+    // Invoke the QuitButtonClick event.
+    if(QuitButtonClick != null)
+    {
+        QuitButtonClick(sender, args);
+    }
+}
+
+private void OnElementGotFocus(object sender, EventArgs args)
+{
+    // A ui element that can receive focus has received focus, play the
+    // ui sound effect for auditory feedback.
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+}
+</code></pre>
+<p>These event handlers provide audio feedback and appropriate UI updates when buttons are clicked or UI elements receive focus.</p>
+<h3 id="gamesceneui-public-methods">GameSceneUI Public Methods</h3>
+<p>Finally, add the following public methods to the <code>GameSceneUI</code> class after the <code>OnElementGotFocus</code> method:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Updates the text on the score display.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;score&quot;&gt;The score to display.&lt;/param&gt;
+public void UpdateScoreText(int score)
+{
+    _scoreText.Text = string.Format(s_scoreFormat, score);
+}
+
+/// &lt;summary&gt;
+/// Tells the game scene ui to show the pause panel.
+/// &lt;/summary&gt;
+public void ShowPausePanel()
+{
+    // Make the overlay and the pause panel visible.
+    _overlay.Visible = true;
+    _pausePanel.IsVisible = true;
+
+    // Give the resume button focus for keyboard/gamepad input.
+    _resumeButton.IsFocused = true;
+
+    // Ensure the game over panel isn't visible.
+    _gameOverPanel.IsVisible = false;
+}
+
+/// &lt;summary&gt;
+/// Tells the game scene ui to hide the pause panel.
+/// &lt;/summary&gt;
+public void HidePausePanel()
+{
+    // Hide the overlay and the pause panel.
+    _overlay.Visible = false;
+    _pausePanel.IsVisible = false;
+}
+
+/// &lt;summary&gt;
+/// Tells the game scene ui to show the game over panel.
+/// &lt;/summary&gt;
+public void ShowGameOverPanel()
+{
+    // Make the overlay and the game over panel visible.
+    _overlay.Visible = true;
+    _gameOverPanel.IsVisible = true;
+
+    // Give the retry button focus for keyboard/gamepad input.
+    _retryButton.IsFocused =true;
+
+    // Ensure the pause panel isn't visible.
+    _pausePanel.IsVisible = false;
+}
+
+/// &lt;summary&gt;
+/// Tells the game scene ui to hide the game over panel.
+/// &lt;/summary&gt;
+public void HideGameOverPanel()
+{
+    // Hide the overlay and game over panel.
+    _overlay.Visible = false;
+    _gameOverPanel.IsVisible = false;
+}
+
+/// &lt;summary&gt;
+/// Updates the game scene ui.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;gameTime&quot;&gt;A snapshot of the timing values for the current update cycle.&lt;/param&gt;
+public void Update(GameTime gameTime)
+{
+    GumService.Default.Update(gameTime);
+}
+
+/// &lt;summary&gt;
+/// Draws the game scene ui.
+/// &lt;/summary&gt;
+public void Draw()
+{
+    GumService.Default.Draw();
+}
+</code></pre>
+<p>These public methods provide the interface for the <code>GameScene</code> to:</p>
+<ul>
+<li>Update the score display.</li>
+<li>Show or hide the pause menu.</li>
+<li>Show or hide the game over menu.</li>
+<li>Update and draw the UI components.</li>
+</ul>
+<p>With the <code>GameSceneUI</code> class complete, we now have a fully encapsulated UI system that can handle displaying game information (score), providing feedback for game states (pause, game over), and processing user interactions (button clicks). This separation of UI logic from game logic will make our codebase much easier to maintain and extend.</p>
+<p>Now that we have all our specialized components ready, let's refactor the GameScene class to coordinate between them and manage the overall game flow.</p>
+<h2 id="refactoring-the-gamescene-class">Refactoring The GameScene Class</h2>
+<p>Now that we have created the encapsulated <a href="../22_snake_game_mechanics/index.html#the-slime-class"><code>Slime</code></a>, <a href="../22_snake_game_mechanics/index.html#the-bat-class"><code>Bat</code></a>, and <a href="#the-gamesceneui-class"><code>GameSceneUI</code></a> classes, we can refactor the <code>GameScene</code> class to leverage these new components.  This will make our code more maintainable and allow us to focus on the game logic within the scene itself.  We will rebuild the <code>GameScene</code> class to coordinate the interactions between the components.</p>
+<p>In the <em>Scenes</em> directory of the DungeonSlime project (your main game project), open the <em>GameScene.cs</em> file and replace the code with the following initial code:</p>
+<pre><code class="lang-csharp">using System;
+using DungeonSlime.GameObjects;
+using DungeonSlime.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGameGum;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Scenes;
+
+namespace DungeonSlime.Scenes;
+
+public class GameScene : Scene
+{
+    private enum GameState
+    {
+        Playing,
+        Paused,
+        GameOver
+    }
+
+    // Reference to the slime.
+    private Slime _slime;
+
+    // Reference to the bat.
+    private Bat _bat;
+
+    // Defines the tilemap to draw.
+    private Tilemap _tilemap;
+
+    // Defines the bounds of the room that the slime and bat are contained within.
+    private Rectangle _roomBounds;
+
+    // The sound effect to play when the slime eats a bat.
+    private SoundEffect _collectSoundEffect;
+
+    // Tracks the players score.
+    private int _score;
+
+    private GameSceneUI _ui;
+
+    private GameState _state;
+}
+</code></pre>
+<p>This code provides the foundation for our refactored <code>GameScene</code> class. We have included all the necessary using statements to reference our new game object classes and UI components. The class will now focus on managing the game state and coordinating between our specialized component classes rather than implementing all the functionality directly.</p>
+<p>The <code>GameScene</code> class now contains the following key fields:</p>
+<ul>
+<li><code>GameState</code>: An enum that defines the different states that the game can be in (playing, paused, or game over).</li>
+<li><code>_slime</code>: A reference to the slime (snake-like player character) instance.</li>
+<li><code>_bat</code>: A reference to the bat (food) instance.</li>
+<li><code>_tilemap</code>: The tilemap that defines the level layout.</li>
+<li><code>_roomBounds</code>: A rectangle defining the playable area within the walls.</li>
+<li><code>_collectSoundEffect</code>: The sound effect played when the slime eats a bat.</li>
+<li><code>_score</code>: Tracks the player's current score.</li>
+<li><code>_ui</code>: A reference to the game scene UI component.</li>
+<li><code>_state</code>: The current state of the game represented by the <code>GameState</code> enum.</li>
+</ul>
+<p>Now we'll add the various methods needed to complete the <code>GameScene</code> class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>As with previous classes, you might encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.</p>
+</div>
+<h3 id="gamescene-initialize-method">GameScene Initialize Method</h3>
+<p>To set up the scene, add the following <code>Initialize</code> method after the fields in te <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">public override void Initialize()
+{
+    // LoadContent is called during base.Initialize().
+    base.Initialize();
+
+    // During the game scene, we want to disable exit on escape. Instead,
+    // the escape key will be used to return back to the title screen
+    Core.ExitOnEscape = false;
+
+    // Create the room bounds by getting the bounds of the screen then
+    // using the Inflate method to &quot;Deflate&quot; the bounds by the width and
+    // height of a tile so that the bounds only covers the inside room of
+    // the dungeon tilemap.
+    _roomBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+    _roomBounds.Inflate(-_tilemap.TileWidth, -_tilemap.TileHeight);
+
+    // Subscribe to the slime's BodyCollision event so that a game over
+    // can be triggered when this event is raised.
+    _slime.BodyCollision += OnSlimeBodyCollision;
+
+    // Create any UI elements from the root element created in previous
+    // scenes
+    GumService.Default.Root.Children.Clear();
+
+    // Initialize the user interface for the game scene.
+    InitializeUI();
+
+    // Initialize a new game to be played.
+    InitializeNewGame();
+}
+</code></pre>
+<p>This method sets up the initial state of the game scene:</p>
+<ol>
+<li>Disables the &quot;exit on escape&quot; behavior so we can use the escape key for pausing.</li>
+<li>Calculate the playable area within the tilemap walls.</li>
+<li>Subscribes to the slime's body collision event to detect when the player collides with itself triggering a game over state.</li>
+<li>Initialize the UI components.</li>
+<li>Set up a new game.</li>
+</ol>
+<h3 id="gamescene-initializeui-method">GameScene InitializeUI Method</h3>
+<p>The <code>Initialize</code> method we just added calls a method to initialize the user interface for the scene.  Let's add that method now.  Add the following method after the <code>Initialize</code> method in the <code>GameScene</code> class:</p>
+<pre><code class="lang-csharp">private void InitializeUI()
+{
+    // Clear out any previous UI element incase we came here
+    // from a different scene.
+    GumService.Default.Root.Children.Clear();
+
+    // Create the game scene ui instance.
+    _ui = new GameSceneUI();
+
+    // Subscribe to the events from the game scene ui.
+    _ui.ResumeButtonClick += OnResumeButtonClicked;
+    _ui.RetryButtonClick += OnRetryButtonClicked;
+    _ui.QuitButtonClick += OnQuitButtonClicked;
+}
+</code></pre>
+<p>This method creates the UI components and subscribes to its events to respond to button clicks.</p>
+<h3 id="gamescene-ui-event-handlers">GameScene UI Event Handlers</h3>
+<p>In the <code>InitializeUI</code> method we just added, we subscribe to the events from the <code>GameSceneUI</code> class that are triggered when buttons are clicked.  Now we need to add those methods that would be called when the events are triggered.  Add the following methods to the <code>GameScene</code> class after the <code>InitializeUI</code> method:</p>
+<pre><code class="lang-csharp">private void OnResumeButtonClicked(object sender, EventArgs args)
+{
+    // Change the game state back to playing
+    _state = GameState.Playing;
+}
+
+private void OnRetryButtonClicked(object sender, EventArgs args)
+{
+    // Player has chosen to retry, so initialize a new game
+    InitializeNewGame();
+}
+
+private void OnQuitButtonClicked(object sender, EventArgs args)
+{
+    // Player has chosen to quit, so return back to the title scene
+    Core.ChangeScene(new TitleScene());
+}
+</code></pre>
+<p>These methods respond to the UI events:</p>
+<ul>
+<li><code>OnResumeButtonClicked</code>: Resumes the game from a paused state.</li>
+<li><code>OnRetryButtonClicked</code>: Restarts the game after a game over.</li>
+<li><code>OnQuitButtonClicked</code>: Quits the game by returning to the title scene.</li>
+</ul>
+<h3 id="gamescene-initializenewgame-method">GameScene InitializeNewGame Method</h3>
+<p>In the <code>Initialize</code> method we added above, it also makes a call to an <code>InitializeNewGame</code> method.  Let's add this now.  Add the following method to the <code>GameScene</code> class after the <code>OnQuitButtonClicked</code> method:</p>
+<pre><code class="lang-csharp">private void InitializeNewGame()
+{
+    // Calculate the position for the slime, which will be at the center
+    // tile of the tile map.
+    Vector2 slimePos = new Vector2();
+    slimePos.X = (_tilemap.Columns / 2) * _tilemap.TileWidth;
+    slimePos.Y = (_tilemap.Rows / 2) * _tilemap.TileHeight;
+
+    // Initialize the slime
+    _slime.Initialize(slimePos, _tilemap.TileWidth);
+
+    // Initialize the bat
+    _bat.RandomizeVelocity();
+    PositionBatAwayFromSlime();
+
+    // Reset the score
+    _score = 0;
+
+    // Set the game state to playing
+    _state = GameState.Playing;
+}
+</code></pre>
+<p>This method will:</p>
+<ol>
+<li>Position the slime in the center of the map.</li>
+<li>Initialize the slime with its starting position and movement stride.</li>
+<li>Randomize the bat's velocity and position it away from the slime.</li>
+<li>Reset the player's score.</li>
+<li>Set the game state to &quot;Playing&quot;.</li>
+</ol>
+<h3 id="gamescene-loadcontent-method">GameScene LoadContent Method</h3>
+<p>Next, we need to add the method to load game assets for the scene.  Add the following method to the <code>GameScene</code> class after the <code>InitializeNewGame</code> method:</p>
+<pre><code class="lang-csharp">public override void LoadContent()
+{
+    // Create the texture atlas from the XML configuration file
+    TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
+
+    // Create the tilemap from the XML configuration file.
+    _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+    _tilemap.Scale = new Vector2(4.0f, 4.0f);
+
+    // Create the animated sprite for the slime from the atlas.
+    AnimatedSprite slimeAnimation = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+    slimeAnimation.Scale = new Vector2(4.0f, 4.0f);
+
+    // Create the slime
+    _slime = new Slime(slimeAnimation);
+
+    // Create the animated sprite for the bat from the atlas.
+    AnimatedSprite batAnimation = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+    batAnimation.Scale = new Vector2(4.0f, 4.0f);
+
+    // Load the bounce sound effect for the bat
+    SoundEffect bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
+
+    // Create the bat
+    _bat = new Bat(batAnimation, bounceSoundEffect);
+
+    // Load the collect sound effect
+    _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
+}
+</code></pre>
+<p>This method loads all necessary assets for the game scene:</p>
+<ol>
+<li>The texture atlas containing the sprite graphics</li>
+<li>The tilemap that defines the level layout.</li>
+<li>The animated sprites for the slime and bat.</li>
+<li>Sound effects for the bat bouncing and collecting.</li>
+</ol>
+<h3 id="gamescene-update-method">GameScene Update Method</h3>
+<p>Next, to update the scene add the following method to the <code>GameScene</code> class after the <code>LoadContent</code> method:</p>
+<pre><code class="lang-csharp">public override void Update(GameTime gameTime)
+{
+    // Ensure the UI is always updated
+    _ui.Update(gameTime);
+
+    // If the game is in a game over state, immediately return back
+    // here
+    if (_state == GameState.GameOver)
+    {
+        return;
+    }
+
+    // If the pause button is pressed, toggle the pause state
+    if (GameController.Pause())
+    {
+        TogglePause();
+    }
+
+    // At this point, if the game is paused, just return back early
+    if (_state == GameState.Paused)
+    {
+        return;
+    }
+
+    // Update the slime;
+    _slime.Update(gameTime);
+
+    // Update the bat;
+    _bat.Update(gameTime);
+
+    // Perform collision checks
+    CollisionChecks();
+}
+</code></pre>
+<p>This method updates the scene in each frame to:</p>
+<ol>
+<li>Always update the UI, regardless of game state.</li>
+<li>Return early if the game is over.</li>
+<li>Check for pause input and toggle the pause state if needed.</li>
+<li>Return early if the game is paused.</li>
+<li>Update the slime and bat.</li>
+<li>Check for collisions between the game objects.</li>
+</ol>
+<h3 id="gamescene-collisionchecks-method">GameScene CollisionChecks Method</h3>
+<p>In the <code>Update</code> method we just added, it makes a call to a <code>CollisionChecks</code> method to handle the collision detection and response.  Let's add that method now.  Add the following method to the <code>GameScene</code> class after the <code>Update</code> method:</p>
+<pre><code class="lang-csharp">private void CollisionChecks()
+{
+    // Capture the current bounds of the slime and bat
+    Circle slimeBounds = _slime.GetBounds();
+    Circle batBounds = _bat.GetBounds();
+
+    // FIrst perform a collision check to see if the slime is colliding with
+    // the bat, which means the slime eats the bat.
+    if (slimeBounds.Intersects(batBounds))
+    {
+        // Move the bat to a new position away from the slime.
+        PositionBatAwayFromSlime();
+
+        // Randomize the velocity of the bat.
+        _bat.RandomizeVelocity();
+
+        // Tell the slime to grow.
+        _slime.Grow();
+
+        // Increment the score.
+        _score += 100;
+
+        // Update the score display on the UI.
+        _ui.UpdateScoreText(_score);
+
+        // Play the collect sound effect
+        Core.Audio.PlaySoundEffect(_collectSoundEffect);
+    }
+
+    // Next check if the slime is colliding with the wall by validating if
+    // it is within the bounds of the room.  If it is outside the room
+    // bounds, then it collided with a wall which triggers a game over.
+    if (slimeBounds.Top &lt; _roomBounds.Top ||
+       slimeBounds.Bottom &gt; _roomBounds.Bottom ||
+       slimeBounds.Left &lt; _roomBounds.Left ||
+       slimeBounds.Right &gt; _roomBounds.Right)
+    {
+        GameOver();
+        return;
+    }
+
+    // Finally, check if the bat is colliding with a wall by validating if
+    // it is within the bounds of the room.  If it is outside the room
+    // bounds, then it collided with a wall, and the bat should bounce
+    // off of that wall.
+    if (batBounds.Top &lt; _roomBounds.Top)
+    {
+        _bat.Bounce(Vector2.UnitY);
+    }
+    else if (batBounds.Bottom &gt; _roomBounds.Bottom)
+    {
+        _bat.Bounce(-Vector2.UnitY);
+    }
+
+    if (batBounds.Left &lt; _roomBounds.Left)
+    {
+        _bat.Bounce(Vector2.UnitX);
+    }
+    else if (batBounds.Right &gt; _roomBounds.Right)
+    {
+        _bat.Bounce(-Vector2.UnitX);
+    }
+}
+</code></pre>
+<p>This method checks for three types of collisions:</p>
+<ol>
+<li>Slime-Bat collision: The slime &quot;eats&quot; the bat, gains points, grows, and the bat respawns.</li>
+<li>Slime-Wall collision: Triggers a game over if the slime hits a wall.</li>
+<li>Bat-Wall collision: Causes the bat to bounce off the walls.</li>
+</ol>
+<h3 id="gamescene-positionbatawayfromslime-method">GameScene PositionBatAwayFromSlime Method</h3>
+<p>The <code>CollisionCheck</code> method makes a call to <code>PositionBatAwayFromSlime</code>.  Previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  By choosing a completely random location, it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which adds not challenge for the player.</p>
+<p>To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.  Add the following method to the <code>GameScene</code> class after the <code>CollisionCheck</code> method:</p>
+<pre><code class="lang-csharp">private void PositionBatAwayFromSlime()
+{
+    // Calculate the position that is in the center of the bounds
+    // of the room.
+    float roomCenterX = _roomBounds.X + _roomBounds.Width * 0.5f;
+    float roomCenterY = _roomBounds.Y + _roomBounds.Height * 0.5f;
+    Vector2 roomCenter = new Vector2(roomCenterX, roomCenterY);
+
+    // Get the bounds of the slime and calculate the center position
+    Circle slimeBounds = _slime.GetBounds();
+    Vector2 slimeCenter = new Vector2(slimeBounds.X, slimeBounds.Y);
+
+    // Calculate the distance vector from the center of the room to the
+    // center of the slime.
+    Vector2 centerToSlime = slimeCenter - roomCenter;
+
+    // Get the bounds of the bat
+    Circle batBounds =_bat.GetBounds();
+
+    // Calculate the amount of padding we will add to the new position of
+    // the bat to ensure it is not sticking to walls
+    int padding = batBounds.Radius * 2;
+
+    // Calculate the new position of the bat by finding which component of
+    // the center to slime vector (X or Y) is larger and in which direction.
+    Vector2 newBatPosition = Vector2.Zero;
+    if (Math.Abs(centerToSlime.X) &gt; Math.Abs(centerToSlime.Y))
+    {
+        // The slime is closer to either the left or right wall, so the Y
+        // position will be a random position between the top and bottom
+        // walls.
+        newBatPosition.Y = Random.Shared.Next(
+            _roomBounds.Top + padding,
+            _roomBounds.Bottom - padding
+        );
+
+        if (centerToSlime.X &gt; 0)
+        {
+            // The slime is closer to the right side wall, so place the
+            // bat on the left side wall
+            newBatPosition.X = _roomBounds.Left + padding;
+        }
+        else
+        {
+            // The slime is closer ot the left side wall, so place the
+            // bat on the right side wall.
+            newBatPosition.X = _roomBounds.Right - padding * 2;
+        }
+    }
+    else
+    {
+        // The slime is closer to either the top or bottom wall, so the X
+        // position will be a random position between the left and right
+        // walls.
+        newBatPosition.X = Random.Shared.Next(
+            _roomBounds.Left + padding,
+            _roomBounds.Right - padding
+        );
+
+        if (centerToSlime.Y &gt; 0)
+        {
+            // The slime is closer to the top wall, so place the bat on the
+            // bottom wall
+            newBatPosition.Y = _roomBounds.Top + padding;
+        }
+        else
+        {
+            // The slime is closer to the bottom wall, so place the bat on
+            // the top wall.
+            newBatPosition.Y = _roomBounds.Bottom - padding * 2;
+        }
+    }
+
+    // Assign the new bat position
+    _bat.Position = newBatPosition;
+}
+</code></pre>
+<p>This method positions the bat after it's been eaten:</p>
+<ol>
+<li>Determines which wall (top, bottom, left, or right) is furthest from the slime.</li>
+<li>Places the bat near that wall, making it more challenging for the player to reach.</li>
+</ol>
+<h3 id="gamescene-event-handler-and-game-state-methods">GameScene Event Handler and Game State Methods</h3>
+<p>Next, we will add some of the missing methods being called from above that handle game events and state changes.  Add the following methods to the <code>GameScene</code> class after the <code>PositionBatAwayFromSlime</code> method:</p>
+<pre><code class="lang-csharp">private void OnSlimeBodyCollision(object sender, EventArgs args)
+{
+    GameOver();
+}
+
+private void TogglePause()
+{
+    if (_state == GameState.Paused)
+    {
+        // We're now unpausing the game, so hide the pause panel
+        _ui.HidePausePanel();
+
+        // And set the state back to playing
+        _state = GameState.Playing;
+    }
+    else
+    {
+        // We're now pausing the game, so show the pause panel
+        _ui.ShowPausePanel();
+
+        // And set the state to paused
+        _state = GameState.Paused;
+    }
+}
+
+private void GameOver()
+{
+    // Show the game over panel
+    _ui.ShowGameOverPanel();
+
+    // Set the game state to game over
+    _state = GameState.GameOver;
+}
+</code></pre>
+<p>These methods handle specific game events:</p>
+<ul>
+<li><code>OnSlimeBodyCollision</code>: Called when the slime collides with itself, triggering a game over.</li>
+<li><code>TogglePause</code>: Switches between paused and playing states.</li>
+<li><code>GameOver</code>: Called when a game over condition is met, showing the game over UI.</li>
+</ul>
+<h3 id="gamescene-draw-method">GameScene Draw Method</h3>
+<p>Finally, we need a method to draw the scene.  Add the following method to the <code>GameScene </code>class after the <code>GameOver</code> method.</p>
+<pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
+{
+    // Clear the back buffer.
+    Core.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+    // Begin the sprite batch to prepare for rendering.
+    Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+    // Draw the tilemap
+    _tilemap.Draw(Core.SpriteBatch);
+
+    // Draw the slime.
+    _slime.Draw();
+
+    // Draw the bat.
+    _bat.Draw();
+
+    // Always end the sprite batch when finished.
+    Core.SpriteBatch.End();
+
+    // Draw the UI
+    _ui.Draw();
+}
+</code></pre>
+<p>This method handles drawing the scene by:</p>
+<ol>
+<li>Clearing the screen.</li>
+<li>Drawing the tilemap as the background.</li>
+<li>Drawing the slime and bat sprites.</li>
+<li>Drawing the UI elements on top.</li>
+</ol>
+<p>By refactoring our game into these encapsulated components, we have created a more maintainable codebase with a clear separation of concerns:</p>
+<ul>
+<li>The <code>Slime</code> class handles snake-like movement and growth.</li>
+<li>The <code>Bat</code> class manages its movement and bouncing.</li>
+<li>The <code>GameSceneUI</code> class manages all UI components.</li>
+<li>The <code>GameScene</code> class coordinates between these components and manages the game state.</li>
+</ul>
+<p>This architecture makes it easier to add new features or fix bugs, as changes to one component are less likely to affect others.</p>
+<h2 id="putting-it-all-together">Putting It All Together</h2>
+<p>With all of these components now in place, our Dungeon Slime game has transformed from a simple demo built on learning MonoGame concepts into a complete snake-like game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.</p>
+<p>Let's see how it all looks and plays:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><video width="500" height="281" controls=""><source type="video/webm" src="videos/gameplay.webm"></video></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 23-1: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>The game starts with a single slime segment in the center of the room.</li>
+<li>The player controls the direction of the slime by using the keyboard (arrow keys or WASD) or by using a game pad (DPad or left thumbstick).</li>
+<li>The slime moves at regular intervals, creating a grid-based movement pattern.</li>
+<li>When the slime eats a bat, it grows longer by adding a new segment to its tail.</li>
+<li>The bat respawns at a strategic location after being eaten.</li>
+<li>The player's score increases with each bat consumed.</li>
+<li>If the slime collides with a wall or its own body, the game over panel appears.</li>
+<li>On the game over panel, the player can choose to retry or return to the title scene.</li>
+</ol>
+<p>With these mechanics implemented, Dungeon Slime is now a complete game with clear objectives, escalating difficulty, and a game feedback loop.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this chapter, we have transformed our technical demo into a complete game by integrating UI systems with game mechanics. We have accomplished several important goals:</p>
+<ul>
+<li>Created a dedicated <a href="#the-gamesceneui-class"><code>GameSceneUI</code></a> class to manage the game's user interface.</li>
+<li>Implemented pause and game over screens that provide clear feedback to the player.</li>
+<li>Refactored the <code>GameScene</code> class to coordinate all game components.</li>
+<li>Added game state management to handle different gameplay conditions.</li>
+<li>Connected all of the elements to create a complete playable game.</li>
+</ul>
+<p>The refactoring process we undertook demonstrates an important game development principle: separating concerns into specialized components makes code more maintainable and easier to extend. The <code>Slime</code> class manages snake-like behavior, the <code>Bat</code> class handles movement and collision response, and the <code>GameSceneUI</code> class encapsulates all UI-related functionality.</p>
+<h2 id="test-your-knowledge">Test Your Knowledge</h2>
+<ol>
+<li><p>How does the game handle different states (playing, paused, game over), and why is this state management important?</p>
+<div class="question-answer"><p>The game uses an enum (<code>GameState</code>) to track its current state and implements different behavior based on that state:</p>
+<ul>
+<li>During the <code>Playing</code> state, the game updates all objects and checks for collisions</li>
+<li>During the <code>Paused</code> state, the game shows the pause menu and stops updating game objects</li>
+<li>During the <code>GameOver</code> state, the game shows the game over menu and prevents further gameplay</li>
+</ul>
+<p>This state management is important because it:</p>
+<ul>
+<li>Prevents inappropriate updates during non-gameplay states</li>
+<li>Creates a clear flow between different game conditions</li>
+<li>Simplifies conditional logic by using explicit states rather than multiple boolean flags</li>
+<li>Makes the game's behavior more predictable and easier to debug</li>
+</ul>
+</div>
+</li>
+<li><p>Why is it important to position the bat away from the slime after it's been eaten rather than at a completely random location?</p>
+<div class="question-answer"><p>Positioning the bat away from the slime after it's been eaten rather than at a completely random location is important because:</p>
+<ul>
+<li>It prevents unfair situations where the bat might spawn right on top of the slime causing an immediate collision</li>
+<li>It creates a more strategic gameplay experience by forcing the player to navigate toward the bat</li>
+<li>It ensures the player faces an appropriate level of challenge that increases as the slime grows longer</li>
+<li>It prevents potential frustration from random spawns that might be either too easy or too difficult to reach</li>
+<li>It creates a more balanced and predictable game experience while still maintaining variety</li>
+</ul>
+</div>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © 2023 Christopher Whitley
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/public/questionAnswer.js"></script>
+  </body>
+</html>

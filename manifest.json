@@ -2222,64 +2222,75 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_copy_head.svg",
+      "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_copy_head.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_copy_head.svg"
+          "relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_copy_head.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_directions.svg",
+      "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_directions.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_directions.svg"
+          "relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_directions.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_insert_head.svg",
+      "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_insert_head.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_insert_head.svg"
+          "relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_insert_head.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_remove_tail.svg",
+      "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_remove_tail.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/images/snake_remove_tail.svg"
+          "relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/images/snake_remove_tail.svg"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
+        "codesnippet-not-found",
         "InvalidFileLink",
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/index.md",
+      "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
       "output": {
         ".html": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/index.html"
+          "relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/23_completing_the_game/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/23_completing_the_game/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/22_completing_the_game/videos/gameplay.webm",
+      "source_relative_path": "tutorials/building_2d_games/23_completing_the_game/videos/gameplay.webm",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/22_completing_the_game/videos/gameplay.webm"
+          "relative_path": "tutorials/building_2d_games/23_completing_the_game/videos/gameplay.webm"
         }
       },
       "version": ""

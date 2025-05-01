@@ -119,12 +119,12 @@
         <article data-uid="">
 <h1 id="building-2d-games-with-monogame">Building 2D Games with MonoGame</h1>
 <p class="text-secondary">A beginner tutorial for building 2D games with MonoGame.</p>
-<p>This tutorial covers game development concepts using the MonoGame framework as our tool.  Throughout each chapter, we will explore game development with MonoGame, introducing new concepts to build upon previous ones as we go. we will create a Snake game, which will serve as the vehicle to apply the concepts learned throughout the tutorial.  The goal of this tutorial is to give you a solid foundation in 2D game development with MonoGame and provide you with reusable modules that you can jump start future projects.</p>
+<p>This tutorial covers game development concepts using the MonoGame framework as our tool. Throughout each chapter, we will explore game development with MonoGame, introducing new concepts to build upon previous ones as we go. We will create a Snake game, which will serve as the vehicle to apply the concepts learned throughout the tutorial. The goal of this tutorial is to give you a solid foundation in 2D game development with MonoGame and provide you with reusable modules that you can leverage to jump start future projects.</p>
 <h2 id="who-this-is-for">Who This Is For</h2>
 <p>This documentation is meant to be an introduction to game development and MonoGame. Readers should have a foundational understanding of C# and be comfortable with concepts such as classes and objects.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>If you are just getting started with C# for the first time, I would recommend following the official <a href="https://dotnet.microsoft.com/en-us/learn/csharp">Learn C#</a> tutorials provided by Microsoft. These are free tutorials that teach you programming concepts as well as the C# languages. Once you feel you have a good foundation with that, come back and continue here.</p>
+<p>If you are just getting started with C# for the first time, I would recommend following the official <a href="https://dotnet.microsoft.com/en-us/learn/csharp">Learn C#</a> tutorials provided by Microsoft. These free tutorials will teach you programming concepts as well as the C# language. Once you feel you have a good foundation, come back and continue here.</p>
 </div>
 <h2 id="how-this-documentation-is-organized">How This Documentation Is Organized</h2>
 <p>This documentation will introduce game development concepts using the MonoGame framework while walking the reader through the development of a Snake clone. The documentation is organized such that each chapter should be read sequentially, with each introducing new concepts and building off of the previous chapters.</p>
@@ -143,12 +143,12 @@
 <tbody>
 <tr>
 <td><a href="01_what_is_monogame/index.html">01: What Is MonoGame</a></td>
-<td>Learn about the history of MonoGame and explore the features it provides developers when creating games.</td>
+<td>Learn about the history of MonoGame and explore the features it provides to developers when creating games.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="02_getting_started/index.html">02: Getting Started</a></td>
-<td>Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.</td>
+<td>Setup your development environment for .NET development and MonoGame using Visual Studio Code as your IDE.</td>
 <td></td>
 </tr>
 <tr>
@@ -178,7 +178,7 @@
 </tr>
 <tr>
 <td><a href="08_the_sprite_class/index.html">08: The Sprite Class</a></td>
-<td>Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.</td>
+<td>Explore creating a reusable Sprite class to efficiently manage sprites and their rendering properties, including position, rotation, scale, and more.</td>
 <td></td>
 </tr>
 <tr>
@@ -208,7 +208,7 @@
 </tr>
 <tr>
 <td><a href="14_soundeffects_and_music/index.html">14: Sound Effects and Music</a></td>
-<td>Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once.</td>
+<td>Learn how to load and play sound effects and background music in MonoGame, including managing audio volume, looping, and handling multiple simultaneous sound effects.</td>
 <td></td>
 </tr>
 <tr>
@@ -242,18 +242,23 @@
 <td></td>
 </tr>
 <tr>
-<td><a href="22_completing_the_game/index.html">22: Completing the Game</a></td>
-<td>Finalize game mechanics by updating our current demo into a snake-like inspired game</td>
+<td><a href="21_customizing_gum_ui/index.html">21: Customizing Gum UI</a></td>
+<td>Learn how to create custom UI components with animations and visual styling in Gum.</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="23_input_buffering/index.html">23: Input Buffering</a></td>
-<td>Learn how to implement input buffering for more responsive controls</td>
+<td><a href="22_snake_game_mechanics/index.html">22: Snake Game Mechanics</a></td>
+<td>Learn how to implement classic snake-like game mechanics and organize game objects into reusable components.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="23_completing_the_game/index.html">23: Completing the Game</a></td>
+<td>Finalize game mechanics by updating our current demo into a snake-like inspired game.</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:</p>
+<p>In addition to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:</p>
 <table>
 <thead>
 <tr>
@@ -269,16 +274,16 @@
 </tbody>
 </table>
 <h2 id="conventions-used-in-this-documentation">Conventions Used in This Documentation</h2>
-<p>The following conventions are used in this documentation</p>
+<p>The following conventions are used in this documentation.</p>
 <h3 id="italics">Italics</h3>
-<p><em>Italics</em> are used for emphasis, technical terms, and paths such as file paths including filenames and extensions.</p>
+<p><em>Italics</em> are used for emphasis, technical terms, and paths such as file paths, including filenames and extensions.</p>
 <h3 id="inline-code-blocks">Inline Code Blocks</h3>
-<p><code>Inline code</code> blocks are used for methods, functions, and variable names when they are discussed with the body a text paragraph.</p>
+<p><code>Inline code</code> blocks are used for methods, functions, and variable names when they are discussed within the body of a paragraph.</p>
 <h3 id="code-blocks">Code Blocks</h3>
 <pre><code class="lang-cs">// Example Code Block
 public void Foo() { }
 </code></pre>
-<p>Code blocks are used to show code examples with syntax highlighting</p>
+<p>Code blocks are used to show code examples with syntax highlighting.</p>
 <h2 id="monogame">MonoGame</h2>
 <p>If you ever have questions about MonoGame or would like to talk with other developers to share ideas or just hang out with us, you can find us in the various MonoGame communities below</p>
 <ul>
@@ -290,9 +295,9 @@ public void Foo() { }
 </ul>
 <h2 id="note-from-author">Note From Author</h2>
 <blockquote>
-<p>I have been using MonoGame for the past several years (since 2017). It was a time in my game development journey where I was looking for something that I had more control over. I didn't want to spend the time to write a full game engine, but I also wanted to have more control than what the current engines at the time (i.e. Unity) offered. At that time, there was a vast amount of resources available for getting started, but none of them felt like they fit a good beginner series. Even now, the resources available still seem this way. They either require the reader to have a great understanding of game development and programming, or they assume the reader has none and instead focuses on teaching programming more than teaching MonoGame. Even still, some relied too heavily on third party libraries, others were simply very bare bones asking the reader to just copy and paste code without explaining the <em>what</em> of it all.</p>
+<p>I have been using MonoGame for the past several years (since 2017). It was a time in my game development journey where I was looking for something that I had more control over. I didn't want to spend the time to write a full game engine, but I also wanted to have more control than what the current engines at the time (i.e. Unity) offered. At that time, there was a vast amount of resources available for getting started, but none of them felt like they fit a good beginner series. Even now, the resources available still seem this way. They either require the reader to have a great understanding of game development and programming, or they assume the reader has none and instead focuses on teaching programming more than teaching MonoGame. Even still, some relied too heavily on third party libraries, while others were simply very bare bones, asking the reader to just copy and paste code without explaining the <em>what</em> of it all.</p>
 <p>Since then, I have written various small self contained tutorials on different topics for MonoGame to try and give back to the community for those getting started. I also participate regularly in the community discussion channels, answering questions and offering technical advice, so I'm very familiar with the topics and pain points that users get hung up on when first starting out.</p>
-<p>With this documentation, I hope to take the lessons I've learned and provide a tutorial series that I wish was available when I first started.. To present using MonoGame in a straight forward way, introducing concepts and building off of them as we go along in a way that makes sense and is easy to follow.</p>
+<p>With this documentation, I hope to take the lessons I've learned and provide a tutorial series that I wish was available when I first started, and to present using MonoGame in a straight forward way, introducing concepts and building off of them as we go along in a way that makes sense and is easy to follow.</p>
 <p>- Christopher Whitley (Aristurtle)</p>
 </blockquote>
 <h2 id="acknowledgements">Acknowledgements</h2>
