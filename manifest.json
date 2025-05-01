@@ -965,6 +965,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/bastion.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/bastion.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/celeste.png",
       "output": {
         "resource": {
@@ -1241,8 +1251,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1766,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1939,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2263,8 +2273,8 @@
     {
       "log_codes": [
         "codesnippet-not-found",
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
