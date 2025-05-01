@@ -126,6 +126,7 @@
 <li>Implement pause and game over screens with appropriate controls.</li>
 <li>Refactor the <code>GameScene</code> class to coordinate all game elements.</li>
 <li>Add game state management to handle playing, paused, and game over conditions</li>
+<li>Implement input buffering to improve control responsiveness</li>
 <li>Connect all elements to create a complete, playable game.</li>
 </ul>
 <h2 id="the-gamesceneui-class">The GameSceneUI Class</h2>
@@ -1071,6 +1072,183 @@ private void GameOver()
 <li>The <code>GameScene</code> class coordinates between these components and manages the game state.</li>
 </ul>
 <p>This architecture makes it easier to add new features or fix bugs, as changes to one component are less likely to affect others.</p>
+<h2 id="adding-input-buffering-to-the-slime-class">Adding Input Buffering to the Slime Class</h2>
+<p>The game at this point is now playable.  If you test it out though, you may notice a small issue with inputs.  In games where movement updates happen at fixed intervals that are less frequent than input polling, inputs can sometimes feel unresponsive, expecially when trying to make multiple inputs in succession.</p>
+<p>For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered.  When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely.  This occurs because the second input overwrites the first one before the game has a change to process it, leading to frustrating gameplay where the slime does not respond to the player's complete sequence of commands.</p>
+<h3 id="understanding-input-buffering">Understanding Input Buffering</h3>
+<p>Input buffering is a technique used in game development to temporarily store player inputs that cannot be immediately processed. Instead of discarding these inputs, they are placed in a queue and processed in order when the game is ready to handle them.</p>
+<p>In our snake-like game, the slime moves at fixed intervals rather than continuously. This creates a disconnect between when the player presses a button (which is checked every frame) and when the game can actually respond (which happens on a less frequent movement cycle). Without input buffering:</p>
+<ul>
+<li>Players must time their inputs perfectly to align with the game's update cycle.</li>
+<li>Rapid inputs are lost because only the last input is remembered.</li>
+<li>The game feels unresponsive during quick turns.</li>
+</ul>
+<p>A well-implemented input buffer gives players a more forgiving and responsive experience by:</p>
+<ol>
+<li>Storing inputs that arrive between movement updates.</li>
+<li>Preserving the order of inputs for more predictable behavior.</li>
+<li>Creating a sense that the game is actually listening to the player.</li>
+</ol>
+<p>The size of an input buffer is an important design decision. If it is too small, players still might feel the game isn't responsive enough during complex sequences. If it is too large, the game might feel like it is playing itself as it works through the backlog of buffered commands.</p>
+<p>For our snake-style game, a buffer size of two is typically ideal - enough to handle quick two-direction turns (like up-then-left to navigate a corner) without letting players queue too many moves ahead.</p>
+<h3 id="implementing-input-buffering-in-the-slime-class">Implementing Input Buffering in the Slime Class</h3>
+<p>Let's modify our <code>Slime</code> class to include an input buffer system. First, we'll add the necessary fields to store our input queue.  In the <em>GameObjects</em> directory of the <em>DungeonSlime</em> project (your main game project), open the <em>Slime.cs</em> file and add the folliwing fields after the <code>_sprite</code> field:</p>
+<pre><code class="lang-csharp">// Buffer to queue inputs input by player during input polling.
+private Queue&lt;Vector2&gt; _inputBuffer;
+
+// The maximum size of the buffer queue.
+private const int MAX_BUFFER_SIZE = 2;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0%3E"><code>Queue&lt;T&gt;</code></a> is a First In, First Out (FIFO) collection in C#. When you add items with <code>Enqueue()</code>, they join the end of the line, and when you retrieve items with <code>Dequeue()</code>, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.</p>
+<p>This contrasts with a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0%3E"><code>Stack&lt;T&gt;</code></a>, which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.</p>
+</div>
+<p>This queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.</p>
+<p>Next, we need to initialize this queue.  In the <code>Slime</code> class, locate the <code>Initialize</code> method and and update it to the following:</p>
+<pre><code class="lang-csharp" highlight-lines="30-31">/// &lt;summary&gt;
+/// Initializes the slime, can be used to reset it back to an initial state.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;startingPosition&quot;&gt;The position the slime should start at.&lt;/param&gt;
+/// &lt;param name=&quot;stride&quot;&gt;The total number of pixels to move the head segment during each movement cycle.&lt;/param&gt;
+public void Initialize(Vector2 startingPosition, float stride)
+{
+    // Initialize the segment collection.
+    _segments = new List&lt;SlimeSegment&gt;();
+
+    // Set the stride
+    _stride = stride;
+
+    // Create the initial head of the slime chain.
+    SlimeSegment head = new SlimeSegment();
+    head.At = startingPosition;
+    head.To = startingPosition + new Vector2(_stride, 0);
+    head.Direction = Vector2.UnitX;
+
+    // Add it to the segment collection.
+    _segments.Add(head);
+
+    // Set the initial next direction as the same direction the head is
+    // moving.
+    _nextDirection = head.Direction;
+
+    // Zero out the movement timer.
+    _movementTimer = TimeSpan.Zero;
+
+    // initialize the input buffer.
+    _inputBuffer = new Queue&lt;Vector2&gt;(MAX_BUFFER_SIZE);
+}
+</code></pre>
+<p>Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwritting the <code>_nextDirection</code> field.  In the <code>Slime</code> class, locate the <code>HandleInput</code> method and update it to the following</p>
+<pre><code class="lang-csharp">private void HandleInput()
+{
+    Vector2 potentialNextDirection = Vector2.Zero;
+
+    if (GameController.MoveUp())
+    {
+        potentialNextDirection = -Vector2.UnitY;
+    }
+    else if (GameController.MoveDown())
+    {
+        potentialNextDirection = Vector2.UnitY;
+    }
+    else if (GameController.MoveLeft())
+    {
+        potentialNextDirection = -Vector2.UnitX;
+    }
+    else if (GameController.MoveRight())
+    {
+        potentialNextDirection = Vector2.UnitX;
+    }
+
+    // If a new direction was input, consider adding it to the buffer
+    if (potentialNextDirection != Vector2.Zero &amp;&amp; _inputBuffer.Count &lt; MAX_BUFFER_SIZE)
+    {
+        // If the buffer is empty, validate against the current direction;
+        // otherwise, validate against the last buffered direction
+        Vector2 validateAgainst = _inputBuffer.Count &gt; 0 ?
+                                  _inputBuffer.Last() :
+                                  _segments[0].Direction;
+
+        // Only allow direction change if it is not reversing the current
+        // direction.  This prevents th slime from backing into itself
+        float dot = Vector2.Dot(potentialNextDirection, validateAgainst);
+        if (dot &gt;= 0)
+        {
+            _inputBuffer.Enqueue(potentialNextDirection);
+        }
+    }
+}
+</code></pre>
+<ol>
+<li>The <code>potentialNewDirection</code> is now given the initial value of <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a>.</li>
+<li>A check is made to see if the player has pressed a direction key and if the input buffer is not already at maximum capacity.</li>
+<li>If a new direction key is pressed and the buffer has space:
+<ol>
+<li>The validation is made using <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> just like before to ensure it is a valid direction</li>
+<li>If it is a valid direciton, then it is added to the queue.</li>
+</ol>
+</li>
+</ol>
+<p>Finally, we need to modifiy how we apply the movement direction during the movement update cycle.  In the <code>Slime</code> class, locate the <code>Move</code> method and update it to the following:</p>
+<pre><code class="lang-csharp" highlight-lines="3-7">private void Move()
+{
+    // Get the next direction from the input buffer if one is available
+    if (_inputBuffer.Count &gt; 0)
+    {
+        _nextDirection = _inputBuffer.Dequeue();
+    }
+
+    // Capture the value of the head segment
+    SlimeSegment head = _segments[0];
+
+    // Update the direction the head is supposed to move in to the
+    // next direction cached.
+    head.Direction = _nextDirection;
+
+    // Update the head's &quot;at&quot; position to be where it was moving &quot;to&quot;
+    head.At = head.To;
+
+    // Update the head's &quot;to&quot; position to the next tile in the direction
+    // it is moving.
+    head.To = head.At + head.Direction * _stride;
+
+    // Insert the new adjusted value for the head at the front of the
+    // segments and remove the tail segment. This effectively moves
+    // the entire chain forward without needing to loop through every
+    // segment and update its &quot;at&quot; and &quot;to&quot; positions.
+    _segments.Insert(0, head);
+    _segments.RemoveAt(_segments.Count - 1);
+
+    // Iterate through all of the segments except the head and check
+    // if they are at the same position as the head. If they are, then
+    // the head is colliding with a body segment and a body collision
+    // has occurred.
+    for (int i = 1; i &lt; _segments.Count; i++)
+    {
+        SlimeSegment segment = _segments[i];
+
+        if (head.At == segment.At)
+        {
+            if (BodyCollision != null)
+            {
+                BodyCollision.Invoke(this, EventArgs.Empty);
+            }
+
+            return;
+        }
+    }
+}
+</code></pre>
+<p>The key change here is that we now dequeue a direction from the input buffer rather than directly using the <code>_nextDirection</code> value. This ensures we process inputs in the order they were received, preserving the player's intent.</p>
+<p>With these changes in place, our game now supports input buffering. This small enhancement improves how the game feels to play, particularly when making rapid directional changes.</p>
+<p>Players will notice:</p>
+<ul>
+<li>When navigating a corner, they can quickly press up followed by left (or any other valid combination), and both inputs will be respected</li>
+<li>The game feels more responsive since it remembers inputs between movement update cycles</li>
+<li>Complex maneuvers are easier to execute since timing is more forgiving</li>
+</ul>
+<p>The difference might seem subtle, but it significantly reduces frustration during gameplay.</p>
 <h2 id="putting-it-all-together">Putting It All Together</h2>
 <p>With all of these components now in place, our Dungeon Slime game has transformed from a simple demo built on learning MonoGame concepts into a complete snake-like game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.</p>
 <p>Let's see how it all looks and plays:</p>
@@ -1104,6 +1282,7 @@ private void GameOver()
 <li>Implemented pause and game over screens that provide clear feedback to the player.</li>
 <li>Refactored the <code>GameScene</code> class to coordinate all game components.</li>
 <li>Added game state management to handle different gameplay conditions.</li>
+<li>Enhanced player control through input buffering for more responsive gameplay</li>
 <li>Connected all of the elements to create a complete playable game.</li>
 </ul>
 <p>The refactoring process we undertook demonstrates an important game development principle: separating concerns into specialized components makes code more maintainable and easier to extend. The <code>Slime</code> class manages snake-like behavior, the <code>Bat</code> class handles movement and collision response, and the <code>GameSceneUI</code> class encapsulates all UI-related functionality.</p>
@@ -1133,6 +1312,16 @@ private void GameOver()
 <li>It ensures the player faces an appropriate level of challenge that increases as the slime grows longer</li>
 <li>It prevents potential frustration from random spawns that might be either too easy or too difficult to reach</li>
 <li>It creates a more balanced and predictable game experience while still maintaining variety</li>
+</ul>
+</div>
+</li>
+<li><p>What problem does input buffering solve and how does our implementation address it?</p>
+<div class="question-answer"><p>Input buffering solves the timing disconnect between when players press buttons and when the game can actually process those inputs in games with fixed movement cycles. Without buffering, inputs that occur between movement cycles are lost, especially when players make rapid sequential inputs like navigating corners.</p>
+<p>Our implementation addresses this by:</p>
+<ul>
+<li>Using a queue data structure to store up to two directional inputs</li>
+<li>Processing inputs in First-In-First-Out order to preserve the player's intended sequence</li>
+<li>Validating each input against the previous one to prevent impossible movements</li>
 </ul>
 </div>
 </li>

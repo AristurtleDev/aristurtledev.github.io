@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1939,8 +1939,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2262,9 +2262,9 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
         "UidNotFound",
-        "codesnippet-not-found"
+        "codesnippet-not-found",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
@@ -2276,6 +2276,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/23_completing_the_game/index.md",
       "output": {
@@ -2291,30 +2294,6 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/23_completing_the_game/videos/gameplay.webm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "tutorials/building_2d_games/23_input_buffering/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/building_2d_games/23_input_buffering/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/23_input_buffering/videos/gameplay.webm",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/23_input_buffering/videos/gameplay.webm"
         }
       },
       "version": ""
