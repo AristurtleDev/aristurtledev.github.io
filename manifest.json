@@ -1128,30 +1128,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg",
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png"
         }
       },
       "version": ""
@@ -1271,8 +1251,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1786,8 +1766,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1969,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2292,8 +2272,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
