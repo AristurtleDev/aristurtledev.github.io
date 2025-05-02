@@ -216,7 +216,7 @@ if(keyboardState.IsKeyDown(Keys.Space))
 </table>
 <div class="NOTE">
 <h5>Note</h5>
-<p><a href="xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue"><strong>ScrollWheelValue</strong></a> returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We'll discuss comparing previous and current frame values for inputs in the next chapter.</p>
+<p><a href="xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue"><strong>ScrollWheelValue</strong></a> returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We will discuss comparing previous and current frame values for inputs in the next chapter.</p>
 </div>
 <p>Unlike keyboard input which uses <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyDown(Keys)</strong></a>/<a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyUp(Keys)</strong></a> methods mouse buttons return a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a>:</p>
 <ul>
@@ -1074,7 +1074,7 @@ public class Game1 : Core
 <li>Implement movement controls using different input methods.</li>
 <li>Consider controller-specific details like coordinate systems and analog vs digital input.</li>
 </ul>
-<p>In the next chapter, we'll learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.</p>
+<p>In the next chapter, we will learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Why do we store the result of <code>GetState</code> in a variable instead of calling it multiple times?</p>

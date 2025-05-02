@@ -176,7 +176,7 @@ protected override void Update(GameTime gameTime)
 <p>This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a &quot;just pressed&quot; or &quot;just released&quot; state, you'll need to compare the current input state with the previous frame's state.</p>
 <p>So far, we've only been working with our game within the <em>Game1.cs</em> file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable <code>InputManager</code> class to simplify this for us.</p>
 <p>Before we create the <code>InputManager</code> class, let's first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the <code>InputManager</code>.</p>
-<p>To get started, create a new folder called <em>Input</em> in the <em>MonoGameLibrary</em> project.  We'll put all of our input related classes here.</p>
+<p>To get started, create a new folder called <em>Input</em> in the <em>MonoGameLibrary</em> project.  We will put all of our input related classes here.</p>
 <h2 id="the-keyboardinfo-class">The KeyboardInfo Class</h2>
 <p>Let's start our input management system by creating a class to handle keyboard input. The <code>KeyboardInfo</code> class will encapsulate all keyboard-related functionality, making it easier to:</p>
 <ul>
@@ -238,7 +238,7 @@ public void Update()
 <h5>Note</h5>
 <p>Each time <code>Update</code> is called, the current state becomes the previous state, and we get a fresh current state. This creates our frame-to-frame comparison chain.</p>
 </div>
-<p>Next, we'll add methods to check various key states:</p>
+<p>Next, we will add methods to check various key states:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates if the specified key is currently down.
 /// &lt;/summary&gt;
@@ -295,7 +295,7 @@ public bool WasKeyJustReleased(Keys key)
 </div>
 <p>That's it for the <code>KeyboardInfo</code> class, let's move on to mouse input next.</p>
 <h2 id="mousebutton-enum">MouseButton Enum</h2>
-<p>Recall from the <a href="../10_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we'll create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
+<p>Recall from the <a href="../10_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we will create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
 <p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>MouseButton.cs</em> with the following code:</p>
 <pre><code class="lang-csharp">namespace MonoGameLibrary.Input;
 
@@ -352,7 +352,7 @@ public MouseState PreviousState { get; private set; }
 /// &lt;/summary&gt;
 public MouseState CurrentState { get; private set; }
 </code></pre>
-<p>Next, we'll add properties for handling cursor position:</p>
+<p>Next, we will add properties for handling cursor position:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets or Sets the current position of the mouse cursor in screen space.
 /// &lt;/summary&gt;
@@ -382,7 +382,7 @@ public int Y
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The position properties use a <code>SetPosition</code> method that we'll implement later. This method will handle the actual cursor positioning on screen.</p>
+<p>The position properties use a <code>SetPosition</code> method that we will implement later. This method will handle the actual cursor positioning on screen.</p>
 </div>
 <p>These properties provide different ways to work with the cursor position:</p>
 <ul>
@@ -390,7 +390,7 @@ public int Y
 <li><code>X</code>: Gets/sets just the horizontal position.</li>
 <li><code>Y</code>: Gets/sets just the vertical position.</li>
 </ul>
-<p>Next, we'll add properties for determining if the mouse cursor moved between game frames and if so how much:</p>
+<p>Next, we will add properties for determining if the mouse cursor moved between game frames and if so how much:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the difference in the mouse cursor position between the previous and current frame.
 /// &lt;/summary&gt;
@@ -418,7 +418,7 @@ public bool WasMoved =&gt; PositionDelta != Point.Zero;
 <li><code>YDelta</code>: Gets how much the cursor moved vertically between frames.</li>
 <li><code>WasMoved</code>: Indicates if the cursor moved between frames.</li>
 </ul>
-<p>Finally, we'll add properties for handling the scroll wheel:</p>
+<p>Finally, we will add properties for handling the scroll wheel:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the cumulative value of the mouse scroll wheel since the start of the game.
 /// &lt;/summary&gt;
@@ -466,7 +466,7 @@ public void Update()
     CurrentState = Mouse.GetState();
 }
 </code></pre>
-<p>Next, we'll add methods to check various button states:</p>
+<p>Next, we will add methods to check various button states:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates whether the specified mouse button is currently down.
 /// &lt;/summary&gt;
@@ -602,7 +602,7 @@ public void SetPosition(int x, int y)
 <h5>Tip</h5>
 <p>Notice that after setting the position, we immediately update the <code>CurrentState</code>. This ensures our state tracking remains accurate even when manually moving the cursor.</p>
 </div>
-<p>That's it for the <code>MouseInfo</code> class, next we'll move onto gamepad input.</p>
+<p>That's it for the <code>MouseInfo</code> class, next we will move onto gamepad input.</p>
 <h2 id="the-gamepadinfo-class">The GamePadInfo Class</h2>
 <p>To manage gamepad input effectively, we need to track both current and previous states, is the gamepad still connected, as well as provide easy access to the thumbstick values, trigger values, and button states. The <code>GamePadInfo</code> class will encapsulate all of this functionality, making it easier to:</p>
 <ul>
@@ -629,7 +629,7 @@ public class GamePadInfo
 <p>We use vibration in gamepads to provide haptic feedback to the player.  The <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the <code>GamePadInfo</code> class:</p>
 <pre><code class="lang-csharp">private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
 </code></pre>
-<p>Recall from the <a href="../10_handling_input/index.html#gamepad-input">previous chapter</a> that a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.</p>
+<p>Recall from the <a href="../10_handling_input/index.html#gamepad-input">previous chapter</a> that a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we will need a property to track the player index this gamepad info is for.</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the index of the player this gamepad is for.
 /// &lt;/summary&gt;
@@ -718,7 +718,7 @@ public void Update(GameTime gameTime)
 <h5>Note</h5>
 <p>Unlike keyboard and mouse input, the gamepad update method takes a <a href="xref:Microsoft.Xna.Framework.GameTime"><strong>GameTime</strong></a> parameter. This allows us to track and manage timed vibration effects.</p>
 </div>
-<p>Next, we'll add methods to check various button states:</p>
+<p>Next, we will add methods to check various button states:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates whether the specified gamepad button is current down.
 /// &lt;/summary&gt;
@@ -769,7 +769,7 @@ public bool WasButtonJustReleased(Buttons button)
 <li><code>WasButtonJustPressed</code>: Returns true only on the frame when a button changes from up-to-down.</li>
 <li><code>WasButtonJustReleased</code>: Returns true only on the frame when a button changes from down-to-up.</li>
 </ul>
-<p>Finally, we'll add methods for controlling gamepad vibration:</p>
+<p>Finally, we will add methods for controlling gamepad vibration:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Sets the vibration for all motors of this gamepad.
 /// &lt;/summary&gt;
@@ -865,7 +865,7 @@ public void Update(GameTime gameTime)
     }
 }
 </code></pre><h2 id="implementing-the-inputmanager-class">Implementing the InputManager Class</h2>
-<p>Now tha we have our input management system complete, let's update our game to use it.  We'll do this in two steps:</p>
+<p>Now tha we have our input management system complete, let's update our game to use it.  We will do this in two steps:</p>
 <ol>
 <li>First, update the <code>Core</code> class to add the <code>InputManager</code> globally.</li>
 <li>Update the <code>Game1</code> class to use the global input manager from <code>Core</code>.</li>

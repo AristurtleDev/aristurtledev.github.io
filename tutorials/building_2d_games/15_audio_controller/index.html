@@ -467,13 +467,13 @@ protected void Dispose(bool disposing)
 <p>Fore more information on <code>IDisposable</code> and the <code>Dispose</code> method, check out the <a href="https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">Implementing a Dispose Method</a> article on Microsoft Learn.</p>
 </div>
 <h2 id="implementing-the-audiocontroller-class">Implementing the AudioController Class</h2>
-<p>Now that we have the audio controller class complete, let's update the game to use it.  We'll do this in two steps:</p>
+<p>Now that we have the audio controller class complete, let's update the game to use it.  We will do this in two steps:</p>
 <ol>
 <li>First, update the <code>Core</code> class to add the <code>AudioController</code> globally.</li>
 <li>Update the <code>Game1</code> class to use the global audio controller from <code>Core</code>.</li>
 </ol>
 <h3 id="updating-the-core-class">Updating the Core Class</h3>
-<p>The <code>Core</code> class serves as our the base game class, so we'll update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
+<p>The <code>Core</code> class serves as our the base game class, so we will update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="6,50-53,112-113,116-122,129-130">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -1032,7 +1032,7 @@ public class Game1 : Core
 <li>Added keyboard controls to adjust volume and toggle mute state.</li>
 </ul>
 <p>The <code>AudioController</code> class you created is a significant improvement over directly using MonoGame's audio APIs. It handles common audio management tasks that would otherwise need to be implemented repeatedly in different parts of your game. By centralizing these functions, you make your code more maintainable and provide a consistent audio experience across your game.</p>
-<p>In the next chapter, we'll start exploring fonts and adding text to the game.</p>
+<p>In the next chapter, we will start exploring fonts and adding text to the game.</p>
 
 </article>
 

@@ -265,7 +265,7 @@
     &lt;/Animations&gt;
 &lt;/TextureAtlas&gt;
 </code></pre><h3 id="adding-bitmap-fonts">Adding Bitmap Fonts</h3>
-<p>While MonoGame natively uses <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to draw text, Gum uses the <a href="https://www.angelcode.com/products/bmfont/">AngelCode Bitmap Font (.fnt)</a> font file format. This means we'll need to supply Gum with the <em>.fnt</em> file that defines our font.</p>
+<p>While MonoGame natively uses <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to draw text, Gum uses the <a href="https://www.angelcode.com/products/bmfont/">AngelCode Bitmap Font (.fnt)</a> font file format. This means we will need to supply Gum with the <em>.fnt</em> file that defines our font.</p>
 <p>First, download the <em>.fnt</em> file by right-clicking the following link and saving it as <em>04b_30.fnt</em> in the game project's <em>Content/fonts</em> folder:</p>
 <ul>
 <li><a href="files/04b_30.fnt">04b_30.fnt</a></li>
@@ -320,7 +320,7 @@ public float LeftTextureCoordinate =&gt; SourceRectangle.Left / (float)Texture.W
 /// &lt;/summary&gt;
 public float RightTextureCoordinate =&gt; SourceRectangle.Right / (float)Texture.Width;
 </code></pre><h2 id="creating-custom-ui-components">Creating Custom UI Components</h2>
-<p>Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We'll start with an animated button that uses our game's visual style, then move on to creating a custom slider.</p>
+<p>Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.</p>
 <h3 id="the-animatedbutton-class">The AnimatedButton Class</h3>
 <p>Our first custom component will be an <code>AnimatedButton</code> that inherits from Gum's base <code>Button</code> class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.</p>
 <p>First, create a new folder in the game project called <em>UI</em> to store our custom UI components. Then, add a new file called <em>AnimatedButton.cs</em> with the following code:</p>

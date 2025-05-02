@@ -380,8 +380,8 @@ public class Slime
 
 }
 </code></pre>
-<p>This code sets up the basic structure for our <code>Slime</code> class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the <code>DungeonSlime.GameObjects</code> namespace to keep our code organized. The empty class will serve as our foundation, and we'll build it up piece by piece in the following sections.</p>
-<p>Now, we'll add several components to this class in sequence. Each section below should be added to the <code>Slime</code> class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.</p>
+<p>This code sets up the basic structure for our <code>Slime</code> class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the <code>DungeonSlime.GameObjects</code> namespace to keep our code organized. The empty class will serve as our foundation, and we will build it up piece by piece in the following sections.</p>
+<p>Now, we will add several components to this class in sequence. Each section below should be added to the <code>Slime</code> class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.</p>
@@ -588,7 +588,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <p>This follows the common snake movement pattern as discussed in the <a href="#movement-cycle">Understanding Snake Game Mechanics: Movement Cycle</a> section above.</p>
 </div>
 <h4 id="slime-growth">Slime Growth</h4>
-<p>To handle the snake-like growth of the slime, we'll create a method called <code>Grow</code>.  Add the following method to the <code>Slime</code> class after the <code>Move</code> method:</p>
+<p>To handle the snake-like growth of the slime, we will create a method called <code>Grow</code>.  Add the following method to the <code>Slime</code> class after the <code>Move</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Informs the slime to grow by one segment.
 /// &lt;/summary&gt;

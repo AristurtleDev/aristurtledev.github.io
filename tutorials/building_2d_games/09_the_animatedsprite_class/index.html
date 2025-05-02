@@ -138,7 +138,7 @@
 </tbody>
 </table>
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
-<p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
+<p>In this chapter, we will build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
 <p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
 <pre><code class="lang-csharp">using System;
@@ -321,12 +321,12 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
             XElement root = doc.Root;
 
             // The &lt;Texture&gt; element contains the content path for the Texture2D to load.
-            // So we'll retrieve that value then use the content manager to load the texture.
+            // So we will retrieve that value then use the content manager to load the texture.
             string texturePath = root.Element(&quot;Texture&quot;).Value;
             atlas.Texture = content.Load&lt;Texture2D&gt;(texturePath);
 
             // The &lt;Regions&gt; element contains individual &lt;Region&gt; elements, each one describing
-            // a different texture region within the atlas.  
+            // a different texture region within the atlas.
             //
             // Example:
             // &lt;Regions&gt;
@@ -654,7 +654,7 @@ public class Game1 : Core
 <li>Applied inheritance to add animation capabilities while maintaining existing sprite functionality.</li>
 <li>Used XML configuration to define animations separately from code.</li>
 </ul>
-<p>Now that we can efficiently manage and render sprites and animations, in the next chapter we'll start taking a look at user input.</p>
+<p>Now that we can efficiently manage and render sprites and animations, in the next chapter we will start taking a look at user input.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Why did we create a separate <code>Animation</code> class instead of putting animation properties directly in <code>AnimatedSprite</code>?</p>

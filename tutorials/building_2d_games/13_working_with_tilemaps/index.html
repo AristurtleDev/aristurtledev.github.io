@@ -138,7 +138,7 @@
 <li>Decorative elements like plants and furniture.</li>
 <li>Special tiles like doors, ladders, or water.</li>
 </ul>
-<p>Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we'll add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.</p>
+<p>Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we will add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.</p>
 <table>
 <thead>
 <tr>
@@ -506,7 +506,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
     }
 }
 </code></pre><h2 id="updating-the-game">Updating the Game</h2>
-<p>Now that we have the <code>Tilemap</code> and <code>Tileset</code> classes defined, let's update our game to use them. We'll need to</p>
+<p>Now that we have the <code>Tilemap</code> and <code>Tileset</code> classes defined, let's update our game to use them. We will need to</p>
 <ol>
 <li>Update the texture atlas to include the tileset.</li>
 <li>Create a tilemap xml configuration file.</li>
@@ -579,7 +579,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
 </tbody>
 </table>
 <h3 id="update-the-game1-class">Update the Game1 Class</h3>
-<p>With all of the assets now in place and configured, let's update the <code>Game1</code> class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
+<p>With all of the assets now in place and configured, let's update the <code>Game1</code> class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
 <pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -944,7 +944,7 @@ public class Game1 : Core
 <li>Created an XML-based tilemap definition system for storing level layouts.</li>
 <li>Updated our game to use tilemaps for the game environment.</li>
 </ul>
-<p>In the next chapter, we'll start exploring audio to add sound effects when a collision occurs and background music to our game.</p>
+<p>In the next chapter, we will start exploring audio to add sound effects when a collision occurs and background music to our game.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the main advantage of using tilemaps for game environments rather than individual sprites?</p>

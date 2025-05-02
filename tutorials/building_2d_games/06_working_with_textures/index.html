@@ -364,7 +364,7 @@
 <tr>
 <td><em>layerDepth</em></td>
 <td><code>float</code></td>
-<td>Specifies the depth at which the texture is rendered. Textures with a higher layer depth value are drawn on top of those with a lower layer depth value. <strong>Note: This value will only apply when using <code>SpriteSortMode.FrontToBack</code> or <code>SpriteSortMode.BackToFront</code>. We'll cover this in a moment.</strong></td>
+<td>Specifies the depth at which the texture is rendered. Textures with a higher layer depth value are drawn on top of those with a lower layer depth value. <strong>Note: This value will only apply when using <code>SpriteSortMode.FrontToBack</code> or <code>SpriteSortMode.BackToFront</code>. We will cover this in a moment.</strong></td>
 </tr>
 </tbody>
 </table>
@@ -908,7 +908,7 @@ Final Blue = Sprite Blue * 1.0f;
 <ul>
 <li>Two new <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a> values called <code>iconSourceRect</code> and <code>wordmarkSourceRect</code> that represent the boundaries of the MonoGame icon and wordmark regions within the logo texture were added.</li>
 <li>The <em>sourceRectangle</em> parameter of the <code>_spriteBatch.Draw</code> was updated to use the new <code>iconSourceRect</code> value. <strong>Notice that we are still telling it to draw the <code>_logo</code> for the <em>texture</em>, we've just supplied it with a source rectangle this time.</strong></li>
-<li>The <em>origin</em> parameter was updated to use the width and height of the <code>iconSourceRect</code>. Since the overall dimensions of what we'll be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.</li>
+<li>The <em>origin</em> parameter was updated to use the width and height of the <code>iconSourceRect</code>. Since the overall dimensions of what we will be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.</li>
 <li>Finally, a second <code>_spriteBatch.Draw</code> call is made, this time using the <code>wordmarkSourceRect</code> as the source rectangle so that the wordmark is drawn.</li>
 </ul>
 <p>If you run the game now, you should see the following:</p>
@@ -926,7 +926,7 @@ Final Blue = Sprite Blue * 1.0f;
 </table>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Making use of the <code>sourceRectangle</code> parameter to draw different sprites from the same texture is optimization technique that we'll explore further in the next chapter.</p>
+<p>Making use of the <code>sourceRectangle</code> parameter to draw different sprites from the same texture is optimization technique that we will explore further in the next chapter.</p>
 </div>
 <h3 id="layer-depth">Layer Depth</h3>
 <p>The final parameter to discuss is the <code>layerDepth</code> parameter. Notice that in Figure 6-15 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.</p>
@@ -1076,7 +1076,7 @@ Final Blue = Sprite Blue * 1.0f;
 </table>
 <p>There are also two additional <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode"><strong>SpriteSortMode</strong></a> values that can be used.  These, however, are situational and can have draw backs when using them, so understanding what they are for is important.</p>
 <p>The first is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Texture"><strong>SpriteSortMode.Texture</strong></a>.  This works similar to <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a> in that draw calls happen in the order they are made.  However, before the draw calls are made, they are sorted by texture.  This can be helpful when using multiple textures to reduce texture swapping, however it can have unintended results with layering if you're not careful.</p>
-<p>The second is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a>.  When using this sort mode, when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring the layer depth, instead of batched and drawn when <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> is called. Using this can cause performance issues and should only be used when necessary.  We'll discuss an example of using this in a later chapter when we discuss shaders, since with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a> you can adjust shader parameters for each individual draw call.</p>
+<p>The second is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a>.  When using this sort mode, when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring the layer depth, instead of batched and drawn when <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> is called. Using this can cause performance issues and should only be used when necessary.  We will discuss an example of using this in a later chapter when we discuss shaders, since with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate"><strong>SpriteSortMode.Immediate</strong></a> you can adjust shader parameters for each individual draw call.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Let's review what you accomplished in this chapter:</p>
 <ul>
@@ -1089,7 +1089,7 @@ Final Blue = Sprite Blue * 1.0f;
 <li>You used the <code>sourceRectangle</code> parameter to draw specific regions from a texture.</li>
 <li>You explored sprite layering using the <code>layerDepth</code> parameter and different <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode"><strong>SpriteSortMode</strong></a> options.</li>
 </ul>
-<p>In the next chapter, we'll take what we've learned about working with textures and learn techniques to optimize rendering to reduce texture swapping.</p>
+<p>In the next chapter, we will take what we've learned about working with textures and learn techniques to optimize rendering to reduce texture swapping.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the purpose of the <code>origin</code> parameter in SpriteBatch.Draw, and how does it affect position, rotation and scaling?</p>

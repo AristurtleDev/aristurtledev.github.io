@@ -626,7 +626,7 @@ public class GameScene : Scene
 <li><code>_ui</code>: A reference to the game scene UI component.</li>
 <li><code>_state</code>: The current state of the game represented by the <code>GameState</code> enum.</li>
 </ul>
-<p>Now we'll add the various methods needed to complete the <code>GameScene</code> class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.</p>
+<p>Now we will add the various methods needed to complete the <code>GameScene</code> class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>As with previous classes, you might encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.</p>
@@ -1092,7 +1092,7 @@ private void GameOver()
 <p>The size of an input buffer is an important design decision. If it is too small, players still might feel the game isn't responsive enough during complex sequences. If it is too large, the game might feel like it is playing itself as it works through the backlog of buffered commands.</p>
 <p>For our snake-style game, a buffer size of two is typically ideal - enough to handle quick two-direction turns (like up-then-left to navigate a corner) without letting players queue too many moves ahead.</p>
 <h3 id="implementing-input-buffering-in-the-slime-class">Implementing Input Buffering in the Slime Class</h3>
-<p>Let's modify our <code>Slime</code> class to include an input buffer system. First, we'll add the necessary fields to store our input queue.  In the <em>GameObjects</em> directory of the <em>DungeonSlime</em> project (your main game project), open the <em>Slime.cs</em> file and add the folliwing fields after the <code>_sprite</code> field:</p>
+<p>Let's modify our <code>Slime</code> class to include an input buffer system. First, we will add the necessary fields to store our input queue.  In the <em>GameObjects</em> directory of the <em>DungeonSlime</em> project (your main game project), open the <em>Slime.cs</em> file and add the folliwing fields after the <code>_sprite</code> field:</p>
 <pre><code class="lang-csharp">// Buffer to queue inputs input by player during input polling.
 private Queue&lt;Vector2&gt; _inputBuffer;
 
