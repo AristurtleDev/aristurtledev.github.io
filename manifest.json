@@ -965,16 +965,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/bastion.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/bastion.jpg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/01_what_is_monogame/images/celeste.png",
       "output": {
         "resource": {
@@ -1009,16 +999,6 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/01_what_is_monogame/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/02_getting_started/images/devkit-extension.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/02_getting_started/images/devkit-extension.png"
         }
       },
       "version": ""
@@ -1075,16 +1055,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/images/monogame-orange.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/03_the_game1_file/images/monogame-orange.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/03_the_game1_file/images/solitaire.webp",
       "output": {
         "resource": {
@@ -1128,10 +1098,30 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/with-class-library.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg",
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library-diagram.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/04_creating_a_class_library/images/without-class-library.png"
         }
       },
       "version": ""
@@ -1155,6 +1145,16 @@
       "output": {
         "resource": {
           "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/add-file-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png"
         }
       },
       "version": ""

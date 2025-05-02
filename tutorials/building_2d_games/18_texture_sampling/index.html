@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-18-texture-sampling-and-tiling-backgrounds">Chapter 18: Texture Sampling and Tiling Backgrounds</h1>
 <p class="text-secondary">Learn how to use texture sampling states and add a scrolling background effect to the game.</p>
-<p>In previous chapters, we have <a href="../08_the_sprite_class/index.html#using-the-sprite-class">drawn individual sprites and textures</a> with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the <a href="../13_working_with_tilemaps/index.html#the-tilemap-class">tilemap system</a> that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.</p>
+<p>In previous chapters, we've <a href="../08_the_sprite_class/index.html#using-the-sprite-class">drawn individual sprites and textures</a> with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the <a href="../13_working_with_tilemaps/index.html#the-tilemap-class">tilemap system</a> that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn about texture sampling and sampler states in MonoGame.</li>
@@ -128,7 +128,7 @@
 </ul>
 <h2 id="understanding-texture-sampling">Understanding Texture Sampling</h2>
 <p>When a texture is drawn to the screen, MonoGame uses a process called &quot;sampling&quot; to determine which pixels from the texture should be displayed.  Sampling is the process by which a graphics pipeline determines what color value to use from a texture when mapping it onto a surface.  Think of it like placing a grid over an image and selecting which pixels to use when that image needs to be transformed in some way.  When textures are drawn at their exact pixel size and position, with no rotation, sampling is straightforward, a direct 1:1 mapping for each pixel.  However, when a texture is scaled, rotated, or only partially visible, the graphics hardware needs to decide how to interpret the texture data.</p>
-<p>For example, if you draw a texture twice its size, there are not enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.</p>
+<p>For example, if you draw a texture twice its size, there aren't enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.</p>
 <h3 id="texture-coordinates">Texture Coordinates</h3>
 <p>In graphics programming, textures are addressed using a normalized coordinate system ranging from 0.0 to 1.0, regardless of the texture's actual pixel dimensions:</p>
 <ul>
@@ -148,7 +148,7 @@
 <p>In MonoGame, these sampler states are represented by the <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState"><strong>SamplerState</strong></a> class, which provides several predefined states for common scenarios.</p>
 <h3 id="filtering-modes">Filtering Modes</h3>
 <p>One aspect of sampler states if the filtering mode.  Filtering in computer graphics refers to how the graphics hardware decides to blend or select pixels when a texture is displayed at a different size than its original dimensions.  The filter mode determines how pixels are interpolated (calculated and combined) when a texture is scaled up or down.</p>
-<p>Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that did not exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.</p>
+<p>Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that didn't exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.</p>
 <p>There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.</p>
 <h4 id="point-filtering-mode">Point Filtering Mode</h4>
 <p>Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.  Point filtering is the least computationally expensive filtering mode of the three since it only samples a single pixel without any blending calculations. This makes it the fastest option, especially on lower-end hardware or when rendering many textures simultaneously.</p>
@@ -195,7 +195,7 @@
 </tbody>
 </table>
 <h3 id="addressing-modes">Addressing Modes</h3>
-<p>The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture does not naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:</p>
+<p>The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture doesn't naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:</p>
 <h4 id="wrap-mode">Wrap Mode</h4>
 <p>When using Wrap mode, at every whole integer of the texture coordinates (0.0 and 1.0), the texture coordinate is wrapped to stay within the 0.0 to 1.0 range (i.e. if the texture coordinate is 1.2, then that wraps to become 0.2). This creates a tiled pattern.</p>
 <p>For example, if we were to take the MonoGame logo at 128x128 pixels and draw it to a destination rectangle that was three times the size at 384x384 pixels, then the texture coordinates of the destination rectangle become (0.0, 0.0) (top-left), (3.0, 0.0) (top-right), (0.0) (bottom-left), and (3.0, 3.0) bottom-right.  The MonoGame logo texture would repeat three times horizontally and vertically within the destination.</p>
@@ -308,17 +308,17 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 <p>The default sampler state for <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> is <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp"><strong>SamplerState.LinearClamp</strong></a> in MonoGame, though <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"><strong>SamplerState.PointClamp</strong></a> is often preferred for pixel art games to prevent blurring.</p>
 </div>
 <h2 id="adding-a-scrolling-background-to-the-title-scene">Adding a Scrolling Background to the Title Scene</h2>
-<p>We will now update title scene of our game by adding a scrolling background pattern using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.</p>
-<p>First, download the following image of a repeatable background pattern by right-clicking it and saving it as <em>background-pattern.png</em> in the <em>Content/images</em> folder of the game project:</p>
+<p>Let's update title scene of our game by adding a scrolling background pattern using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.</p>
+<p>First, download the following image of a repeatable background pattern by right-clicking it and saving it as <em>background-pattern.png</em> in the <em>Content/images</em> directory of the game project:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/background-pattern.png" alt="Figure 18-9: The repeatable background pattern we will use for the title screen"></th>
+<th style="text-align: center;"><img src="images/background-pattern.png" alt="Figure 18-9: The repeatable background pattern we'll use for the title screen"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 18-9: The repeatable background pattern we will use for the title screen</strong></td>
+<td style="text-align: center;"><strong>Figure 18-9: The repeatable background pattern we'll use for the title screen</strong></td>
 </tr>
 </tbody>
 </table>
@@ -342,7 +342,7 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 </tbody>
 </table>
 <h3 id="updating-the-title-scene">Updating the Title Scene</h3>
-<p>Now that we have the background pattern texture added, we can update the <code>TitleScene</code> class to implement the scrolling background. Open the <em>TitleScene.cs</em> file in the game project and update it to the following</p>
+<p>Now that we have the background pattern texture added, let's update the <code>TitleScene</code> class to implement the scrolling background. Open the <em>TitleScene.cs</em> file in the game project and update it to the following</p>
 <pre><code class="lang-csharp" highlight-lines="39-50,79-81,92-93,104-113,120-123">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -473,14 +473,14 @@ public class TitleScene : Scene
         // The color to use for the drop shadow text.
         Color dropShadowColor = Color.Black * 0.5f;
 
-        // Draw the Dungeon text slightly offset from it is original position and
+        // Draw the Dungeon text slightly offset from it's original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the Dungeon text on top of that at its original position
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Slime text slightly offset from it is original position and
+        // Draw the Slime text slightly offset from it's original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 

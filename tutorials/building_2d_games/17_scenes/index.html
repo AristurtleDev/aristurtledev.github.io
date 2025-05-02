@@ -150,12 +150,12 @@
 </li>
 </ol>
 <h2 id="the-scene-base-class">The Scene Base Class</h2>
-<p>The base <code>Scene</code> class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we will create concrete implementations of this, like a title scene.</p>
+<p>The base <code>Scene</code> class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we'll create concrete implementations of this, like a title scene.</p>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new folder named <em>Scenes</em>.</p>
+<li><p>Create a new directory named <em>Scenes</em>.</p>
 </li>
-<li><p>Add a new class file named <em>Scene.cs</em> to the <em>Scenes</em> folder you just created.</p>
+<li><p>Add a new class file named <em>Scene.cs</em> to the <em>Scenes</em> directory you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class:</p>
 <pre><code class="lang-csharp">using System;
@@ -213,7 +213,7 @@ public Scene()
 ~Scene() =&gt; Dispose(false);
 </code></pre>
 <ul>
-<li>The constructor initializes the scene's content manager and sets the root folder to match that of the base game's content manager.</li>
+<li>The constructor initializes the scene's content manager and sets the root directory to match that of the base game's content manager.</li>
 <li>The finalizer is called by the garbage collector automatically when a scene object is collected which just calls the <code>Dispose</code> method to ensure resources are disposed of properly.</li>
 </ul>
 <h3 id="scene-methods">Scene Methods</h3>
@@ -490,7 +490,7 @@ public class Core : Game
         // Change the currently active scene to the new scene
         s_activeScene = s_nextScene;
 
-        // Null out the next scene value so it does not trigger a change over and over.
+        // Null out the next scene value so it doesn't trigger a change over and over.
         s_nextScene = null;
 
         // If the active scene now is not null, initialize it.
@@ -529,9 +529,9 @@ public class Core : Game
 <p>Notice that we use a two-step process for scene transitions with separate <code>_activeScene</code> and <code>_nextScene</code> fields. This design allows the current scene to complete its update/draw cycle before the transition occurs, preventing potential issues that could arise from changing scenes in the middle of processing. The actual transition happens at a controlled point in the game loop, ensuring clean disposal of the old scene before initializing the new one.</p>
 </div>
 <h2 id="updating-the-game">Updating the Game</h2>
-<p>With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
+<p>With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
 <ol>
-<li>Right-click the <em>fonts</em> folder and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
+<li>Right-click the <em>fonts</em> directory and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
 <li>Select <em>SpriteFont Description (.spritefont)</em> from the options</li>
 <li>Name the file <em>04B_30_5x.spritefont</em> and click <em>Create</em>.</li>
 </ol>
@@ -565,12 +565,12 @@ public class Core : Game
   &lt;/Asset&gt;
 &lt;/XnaContent&gt;
 </code></pre><h3 id="the-title-scene">The Title Scene</h3>
-<p>The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We will use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.</p>
+<p>The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We'll use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.</p>
 <p>To get started, first:</p>
 <ol>
-<li><p>Create a new folder named <em>Scenes</em>.  We will put all of our game specific scenes here.</p>
+<li><p>Create a new directory named <em>Scenes</em>.  We'll put all of our game specific scenes here.</p>
 </li>
-<li><p>Add a new class file named <em>TitleScene.cs</em> to the <em>Scenes</em> folder you just created.</p>
+<li><p>Add a new class file named <em>TitleScene.cs</em> to the <em>Scenes</em> directory you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class.</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
@@ -694,7 +694,7 @@ private Vector2 _pressEnterOrigin;
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Your editor might show an error here since we have not created the <code>GameScene</code> class yet.  We will create it in a moment after finishing the title scene.</p>
+<p>Your editor might show an error here since we haven't created the <code>GameScene</code> class yet.  We'll create it in a moment after finishing the title scene.</p>
 </div>
 <h5 id="title-scene-draw">Title Scene Draw</h5>
 <p>Add the following override for the <code>Draw</code> method to the <code>TitleScene</code> class:</p>
@@ -708,14 +708,14 @@ private Vector2 _pressEnterOrigin;
     Color dropShadowColor = new Color(19, 23, 46, 175);
     dropShadowColor = Color.Black * 0.5f;
 
-    // Draw the Dungeon text slightly offset from it is original position and
+    // Draw the Dungeon text slightly offset from it's original position and
     // with a transparent color to give it a drop shadow
     Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
     // Draw the Dungeon text on top of that at its original position
     Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-    // Draw the Slime text slightly offset from it is original position and
+    // Draw the Slime text slightly offset from it's original position and
     // with a transparent color to give it a drop shadow
     Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
@@ -737,7 +737,7 @@ private Vector2 _pressEnterOrigin;
 <li>The &quot;Press Enter To Start&quot; text is drawn.</li>
 </ul>
 <h3 id="the-game-scene">The Game Scene</h3>
-<p>The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our <code>Game1</code> class in previous chapters, but now we will move it into a dedicated scene class. In the <em>Scenes</em> folder:</p>
+<p>The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our <code>Game1</code> class in previous chapters, but now we'll move it into a dedicated scene class. In the <em>Scenes</em> directory:</p>
 <ol>
 <li><p>Add a new class file named <em>GameScene.cs</em>.</p>
 </li>
@@ -810,7 +810,7 @@ private Vector2 _scoreTextOrigin;
 <li>The <code>_slimePosition</code> and <code>_batPosition</code> fields track the current position of the slime and bat.</li>
 <li>The <code>MOVEMENT_SPEED</code> constant defines the base movement speed for both the slime and bat.</li>
 <li>The <code>_batVelocity</code> field tracks the current velocity of the bat as it moves around the screen.</li>
-<li>The <code>_tilemap</code> field stores the tilemap that we will load and draw for the level background environment.</li>
+<li>The <code>_tilemap</code> field stores the tilemap that we'll load and draw for the level background environment.</li>
 <li>The <code>_roomBounds</code> field defines a rectangular boundary that represents the boundary of the room that the slime and bat stays within.</li>
 <li>The <code>_bounceSoundEffect</code> and <code>_collectSoundEffect</code> fields store the sound effects to play when the bat bounces off a screen edge or is eaten by the slime.</li>
 <li>The <code>_font</code> field stores the font used to display the player's score.</li>
@@ -851,7 +851,7 @@ private Vector2 _scoreTextOrigin;
     // room bounds, and to vertically be at the center of the first tile.
     _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-    // Set the origin of the text so it is left-centered.
+    // Set the origin of the text so it's left-centered.
     float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
     _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
@@ -904,7 +904,7 @@ private Vector2 _scoreTextOrigin;
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Notice how we are following a consistent pattern across scenes: global assets are loaded with <code>Core.Instance.Content</code> while scene-specific assets are loaded with the scene's <code>Content</code> property.</p>
+<p>Notice how we're following a consistent pattern across scenes: global assets are loaded with <code>Core.Instance.Content</code> while scene-specific assets are loaded with the scene's <code>Content</code> property.</p>
 </div>
 <h5 id="game-scene-update">Game Scene Update</h5>
 <p>Add the following override for the <code>Update</code> method to the <code>GameScene</code> class:</p>
@@ -930,7 +930,7 @@ private Vector2 _scoreTextOrigin;
     );
 
     // Use distance based checks to determine if the slime is within the
-    // bounds of the game screen, and if it is outside that screen edge,
+    // bounds of the game screen, and if it's outside that screen edge,
     // move it back inside.
     if (slimeBounds.Left &lt; _roomBounds.Left)
     {
@@ -963,7 +963,7 @@ private Vector2 _scoreTextOrigin;
     Vector2 normal = Vector2.Zero;
 
     // Use distance based checks to determine if the bat is within the
-    // bounds of the game screen, and if it is outside that screen edge,
+    // bounds of the game screen, and if it's outside that screen edge,
     // reflect it about the screen edge normal
     if (batBounds.Left &lt; _roomBounds.Left)
     {
@@ -1282,8 +1282,8 @@ public class Game1 : Core
 <li>Created a <code>GameScene</code> that encapsulates the gameplay mechanics.</li>
 <li>Refactored the main <code>Game1</code> class to be much simpler by using the scene system.</li>
 </ul>
-<p>The approach we have taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.</p>
-<p>In the next chapter, we will explore <a href="xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D"><strong>RenderTarget2D</strong></a> and how we can use it to add different types of transitions when switching scenes.</p>
+<p>The approach we've taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.</p>
+<p>In the next chapter, we'll explore <a href="xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D"><strong>RenderTarget2D</strong></a> and how we can use it to add different types of transitions when switching scenes.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are the main benefits of implementing a scene management system in a game?</p>

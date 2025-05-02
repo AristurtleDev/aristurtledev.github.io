@@ -128,20 +128,17 @@
 <li>Sprite effects to flip horizontally and/or vertically.</li>
 <li>Layer depth for draw order layering.</li>
 </ul>
-<p>Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we will solve this by creating a class that encapsulates sprite information and handles rendering.</p>
+<p>Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we'll solve this by creating a class that encapsulates sprite information and handles rendering.</p>
 <h2 id="the-sprite-class">The Sprite Class</h2>
 <p>A sprite in our game represents a visual object created from a texture region along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.</p>
 <p>By creating a <code>Sprite</code> class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.</p>
-<p>In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Sprite.cs</em>.  Add the following code for the foundation of the <code>Sprite</code> class to the <em>Sprite.cs</em> file:</p>
+<p>In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Sprite.cs</em>.  Add the following code for the foundation of the <code>Sprite</code> class to the <em>Sprite.cs</em> file:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Sprite 
-{
-
-}
+public class Sprite { }
 </code></pre><h3 id="properties">Properties</h3>
 <p>The <code>Sprite</code> class will utilize properties that mirror the parameters used in <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable%7BMicrosoft.Xna.Framework.Rectangle%7D,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> so the rendering parameter for each sprite is self contained.  Add the following properties:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -236,7 +233,7 @@ public Sprite(TextureRegion region)
 </code></pre>
 <p>The default constructor creates an empty sprite that can be configured later, while the parameterized constructor allows you to specify the source texture region for the sprite.</p>
 <h3 id="methods">Methods</h3>
-<p>Finally, add the following two method to the <code>Sprite</code> class:</p>
+<p>Finally, the <code>Sprite</code> class provides the following two methods:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Sets the origin of this sprite to the center
 /// &lt;/summary&gt;
@@ -284,7 +281,7 @@ public Sprite CreateSprite(string regionName)
     return new Sprite(region);
 }
 </code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
-<p>Now we can adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
+<p>Let's adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
 <pre><code class="lang-csharp" highlight-lines="11-15,34-40,63-67">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -391,7 +388,7 @@ public class Game1 : Core
 <p>Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, we created a reusable <code>Sprite</code> class that encapsulates the properties for each sprite that we would render.  The <code>TextureAtlas</code> class was updated to simplify sprite creation based on the <code>Sprite</code> class we created.</p>
-<p>In the next chapter, we will build upon the <code>Sprite</code> class to create an <code>AnimatedSprite</code> class that will allow us to bring our sprites to life through animation.</p>
+<p>In the next chapter, we'll build upon the <code>Sprite</code> class to create an <code>AnimatedSprite</code> class that will allow us to bring our sprites to life through animation.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the benefit of using a Sprite class instead of managing texture regions directly?</p>
