@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-23-completing-the-game">Chapter 23: Completing the Game</h1>
 <p class="text-secondary">Finalize game mechanics by updating our current demo into a snake-like inspired game.</p>
-<p>IN <a href="../22_snake_game_mechanics/index.html">Chapter 22</a> we implemented the core mechanics of a snake-like game by creating the <a href="../22_snake_game_mechanics/index.html#the-slime-class"><code>Slime</code></a>, <a href="../22_snake_game_mechanics/index.html#the-bat-class"><code>Bat</code></a> and <a href="../22_snake_game_mechanics/index.html#the-gamecontroller-class"><code>GameController</code></a> classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.</p>
+<p>In <a href="../22_snake_game_mechanics/index.html">Chapter 22</a> we implemented the core mechanics of a snake-like game by creating the <a href="../22_snake_game_mechanics/index.html#the-slime-class"><code>Slime</code></a>, <a href="../22_snake_game_mechanics/index.html#the-bat-class"><code>Bat</code></a> and <a href="../22_snake_game_mechanics/index.html#the-gamecontroller-class"><code>GameController</code></a> classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Create a dedicated UI class to manage the UI for the game scene.</li>
@@ -260,7 +260,9 @@ public event EventHandler RetryButtonClick;
 <li>Creates and adds child elements in the correct order.</li>
 </ol>
 <h3 id="gamesceneui-ui-creation-methods">GameSceneUI UI Creation Methods</h3>
-<p>Next add the methods to create the various UI elements that are managed by the <code>GameSceneUI</code> class.  Add the following method after the constructor:</p>
+<p>To keep the code more organized, we will create separate functions to build the individual UI elements that will be managed by the <code>GameSceneUI</code> class.</p>
+<h4 id="creating-the-score-text">Creating the Score Text</h4>
+<p>First, we will add a method to create a <code>TextRuntime</code> element that is used to display the player's score.  Add the following method to the <code>GameSceneUI</code>  after the constructor:</p>
 <pre><code class="lang-csharp">private TextRuntime CreateScoreText()
 {
     TextRuntime text = new TextRuntime();
@@ -275,8 +277,8 @@ public event EventHandler RetryButtonClick;
 
     return text;
 }
-</code></pre>
-<p>This method takes creates a <code>TextRuntime</code> element that we can use to display the player's score and returns it back.  After this method, add the following method:</p>
+</code></pre><h4 id="creating-the-pause-panel">Creating the Pause Panel</h4>
+<p>Next, we will add a method to create a <code>Panel</code> element that is shown when the game is paused, including the &quot;Resume&quot; and &quot;Quit&quot; buttons.  Add the following method to the <code>GameSceneUI</code> class after the <code>CreateScoreText</code> method:</p>
 <pre><code class="lang-csharp">private Panel CreatePausePanel(TextureAtlas atlas)
 {
     Panel panel = new Panel();
@@ -332,8 +334,8 @@ public event EventHandler RetryButtonClick;
 
     return panel;
 }
-</code></pre>
-<p>This method builds the <code>Panel</code> that is shown hen the game is paused, including the &quot;Resume&quot; and &quot;Quit&quot; buttons, then returns it back. Finally, after this method, add the following method:</p>
+</code></pre><h4 id="creating-the-game-over-panel">Creating the Game Over Panel</h4>
+<p>Finally, we will add a method to create a <code>Panel</code> element that is shown when a game over occurs, including the &quot;Retry&quot; and &quot;Quit&quot; buttons.  Add the following method to the <code>GameSceneUI</code> class after the <code>CreatePausePanel</code> method:</p>
 <pre><code class="lang-csharp">private Panel CreateGameOverPanel(TextureAtlas atlas)
 {
     Panel panel = new Panel();
@@ -391,7 +393,6 @@ public event EventHandler RetryButtonClick;
     return panel;
 }
 </code></pre>
-<p>This method builds the <code>Panel</code> that is shown when a game over occurs, including the &quot;Retry&quot; and &quot;Quit&quot; buttons.</p>
 <p>Both the pause panel and the game over panel use event handlers for their buttons.  Let's add those next.</p>
 <h3 id="gamesceneui-event-handlers">GameSceneUI Event Handlers</h3>
 <p>After the <code>CreateGameOverPanel</code> method, add the following method to the <code>GameSceneUI</code> class:</p>

@@ -150,7 +150,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_directions.svg" alt="Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right."></th>
+<th style="text-align: center;"><img src="images/snake_directions.png" alt="Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right."></th>
 </tr>
 </thead>
 <tbody>
@@ -168,7 +168,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_copy_head.svg" alt="Figure 22-2: From a snake with four segments, a copy of the head segment is made, represented by the orange block"></th>
+<th style="text-align: center;"><img src="images/snake_copy_head.png" alt="Figure 22-2: From a snake with four segments, a copy of the head segment is made, represented by the orange block"></th>
 </tr>
 </thead>
 <tbody>
@@ -184,7 +184,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_insert_head.svg" alt="Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)"></th>
+<th style="text-align: center;"><img src="images/snake_insert_head.png" alt="Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)"></th>
 </tr>
 </thead>
 <tbody>
@@ -198,7 +198,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/snake_remove_tail.svg" alt="Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward "></th>
+<th style="text-align: center;"><img src="images/snake_remove_tail.png" alt="Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward "></th>
 </tr>
 </thead>
 <tbody>
@@ -324,7 +324,7 @@ public static class GameController
 <p>In the DungeonSlime project (your main game project), create a new directory named <em>GameObjects</em>. We will be putting all of our code related to the objects within the game here. Next, create a new file named <em>SlimeSegment.cs</em> inside the <em>GameObjects</em> directory you just created and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 
-namespace DungeonSlime;
+namespace DungeonSlime.GameObjects
 
 public struct SlimeSegment
 {
@@ -380,8 +380,8 @@ public class Slime
 
 }
 </code></pre>
-<p>This code sets up the basic structure for our <code>Slime</code> class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the <code>DungeonSlime.GameObjects</code> namespace to keep our code organized. The empty class will serve as our foundation, and we will build it up piece by piece in the following sections.</p>
-<p>Now, we will add several components to this class in sequence. Each section below should be added to the <code>Slime</code> class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.</p>
+<p>This code sets up the basic structure for our <code>Slime</code> class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the <code>DungeonSlime.GameObjects</code> namespace to keep our code organized. The empty class will serve as our foundation, and we'll build it up piece by piece in the following sections.</p>
+<p>Now, we'll add several components to this class in sequence. Each section below should be added to the <code>Slime</code> class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.</p>
@@ -390,7 +390,7 @@ public class Slime
 <p>Add the following fields to the <code>Slime</code> class:</p>
 <pre><code class="lang-csharp">// A constant value that represents the amount of time to wait between
 // movement updates.
-private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(10000);
+private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(200);
 
 // The amount of time that has elapsed since the last movement update.
 private TimeSpan _movementTimer;
@@ -588,7 +588,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <p>This follows the common snake movement pattern as discussed in the <a href="#movement-cycle">Understanding Snake Game Mechanics: Movement Cycle</a> section above.</p>
 </div>
 <h4 id="slime-growth">Slime Growth</h4>
-<p>To handle the snake-like growth of the slime, we will create a method called <code>Grow</code>.  Add the following method to the <code>Slime</code> class after the <code>Move</code> method:</p>
+<p>To handle the snake-like growth of the slime, we'll create a method called <code>Grow</code>.  Add the following method to the <code>Slime</code> class after the <code>Move</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Informs the slime to grow by one segment.
 /// &lt;/summary&gt;
@@ -899,7 +899,7 @@ public void Draw()
 <p>This method simply draws the bat's <code>AnimatedSprite</code> at the bat's current position.</p>
 <p>With the <code>Bat</code> class complete, we've now encapsulated all the behavior needed for the collectible element in our game. The bat moves continuously around the screen and can bounce off walls, adding a twist on the classic snake-like mechanic by creating a target for the player to chase.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>IN this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:</p>
+<p>In this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:</p>
 <ul>
 <li>A <a href="#the-gamecontroller-class"><code>GameController</code></a> class that provides a unified input interface, separating game actions from specific input devices.</li>
 <li>A <a href="#the-slimesegment-struct"><code>SlimeSegment</code></a> struct to efficiently store and manage individual segments of our snake-like character.</li>
