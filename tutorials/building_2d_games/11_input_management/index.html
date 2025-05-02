@@ -335,7 +335,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input;
 
-public class MouseInfo { }
+public class MouseInfo
+{
+
+}
 </code></pre><h3 id="mouseinfo-properties">MouseInfo Properties</h3>
 <p>The <code>MouseInfo</code> class needs properties to track both mouse states and provide easy access to common mouse information. Let's add these properties.</p>
 <p>First, we need properties for tracking mouse states:</p>
@@ -618,7 +621,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input;
 
-public class GamePadInfo { }
+public class GamePadInfo
+{
+
+}
 </code></pre><h3 id="gamepadinfo-properties">GamePadInfo Properties</h3>
 <p>We use vibration in gamepads to provide haptic feedback to the player.  The <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the <code>GamePadInfo</code> class:</p>
 <pre><code class="lang-csharp">private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;

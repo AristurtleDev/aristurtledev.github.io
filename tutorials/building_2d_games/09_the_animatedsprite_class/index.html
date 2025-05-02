@@ -146,7 +146,10 @@ using System.Collections.Generic;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Animation { }
+public class Animation
+{
+
+}
 </code></pre><h3 id="animation-properties">Animation Properties</h3>
 <p>An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the <code>Animation</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -414,7 +417,10 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Graphics;
 
-public class AnimatedSprite : Sprite { }
+public class AnimatedSprite : Sprite
+{
+
+}
 </code></pre><h3 id="animatedsprite-members">AnimatedSprite Members</h3>
 <p>An animated sprite needs to track both its current animation state and timing information. Let's add the following members to the <code>AnimatedSprite</code> class:</p>
 <pre><code class="lang-csharp">private int _currentFrame;
