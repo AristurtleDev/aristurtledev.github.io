@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-10-handling-input">Chapter 10: Handling Input</h1>
 <p class="text-secondary">Learn how to handle keyboard, mouse, and gamepad input in MonoGame.</p>
-<p>When you play a game, you need ways to control what's happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:</p>
+<p>When you play a game, you need ways to control what is happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:</p>
 <ul>
 <li><a href="xref:Microsoft.Xna.Framework.Input.Keyboard"><strong>Keyboard</strong></a>: Detects which keys are being pressed.</li>
 <li><a href="xref:Microsoft.Xna.Framework.Input.Mouse"><strong>Mouse</strong></a>: Tracks mouse movement, button clicks, and scroll wheel use.</li>
@@ -1081,7 +1081,7 @@ public class Game1 : Core
 <div class="question-answer"><p>Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each <code>GetState</code> call polls the device, which can impact performance if called repeatedly.</p>
 </div>
 </li>
-<li><p>What's the main difference between how keyboard and mouse/gamepad button states are checked?</p>
+<li><p>What is the main difference between how keyboard and mouse/gamepad button states are checked?</p>
 <div class="question-answer"><p>Keyboard input uses <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyUp</strong></a>/<a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)"><strong>IsKeyDown</strong></a> methods, while mouse and gamepad buttons return a <a href="xref:Microsoft.Xna.Framework.Input.ButtonState"><strong>ButtonState</strong></a> enum value (Pressed or Released).</p>
 </div>
 </li>
@@ -1089,11 +1089,11 @@ public class Game1 : Core
 <div class="question-answer"><p>The thumbstick Y-axis values (-1.0f down to 1.0f up) are inverted compared to MonoGame's screen coordinate system (Y increases downward). Multiplying by -1 aligns the thumbstick direction with screen movement.</p>
 </div>
 </li>
-<li><p>What's the difference between analog and digital trigger input on a gamepad?</p>
+<li><p>What is the difference between analog and digital trigger input on a gamepad?</p>
 <div class="question-answer"><p>Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.</p>
 </div>
 </li>
-<li><p>What's the key difference between <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> and <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a>?</p>
+<li><p>What is the key difference between <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> and <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a>?</p>
 <div class="question-answer"><p><a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> returns information about current touch points on the screen, while <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a> provides information about specific gesture patterns like taps, drags, and pinches that have been performed.</p>
 </div>
 </li>
