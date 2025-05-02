@@ -234,6 +234,16 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 </div>
 <p>Now that we have a fully configured XML configuration for the atlas, we need to update the <code>TextureAtlas</code> class to manage animation data.  Open the <em>TextureAtlas.cs</em> file and make the following changes:</p>
 <ol>
+<li><p>Add the following using statement so we can reference the <code>TimeSpan</code> struct:</p>
+<pre><code class="lang-csharp" highlight-lines="1">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+</code></pre></li>
 <li><p>Add storage for animations</p>
 <pre><code class="lang-csharp">// Stores animations added to this atlas.
 private Dictionary&lt;string, Animation&gt; _animations;
@@ -411,7 +421,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 <p>By inheriting from <code>Sprite</code>, our <code>AnimatedSprite</code> class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding animation-specific functionality.</p>
 </div>
 <p>The key to this design is the <code>Sprite.Region</code> property. Our <code>Sprite</code> class already knows how to render whatever region is currently set, so our <code>AnimatedSprite</code> class just needs to update this region property to the correct animation frame at the right time.</p>
-<p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
+<p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em> and add the following initial code to that file:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
@@ -473,7 +483,7 @@ public AnimatedSprite(Animation animation)
 <p>Both constructors inherit from the base <code>Sprite</code> class, so an <code>AnimatedSprite</code> will have all the same rendering properties (position, rotation, scale, etc.) as a regular sprite.</p>
 </div>
 <h3 id="animatedsprite-methods">AnimatedSprite Methods</h3>
-<p>The <code>AnimatedSprite</code> class needs a way to update its animation state over time. This is handled by a single <code>Update</code> method:</p>
+<p>The <code>AnimatedSprite</code> class needs a way to update its animation state over time. Add the following method to the <code>AnimatedSprite</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates this animated sprite.
 /// &lt;/summary&gt;
