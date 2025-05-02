@@ -128,9 +128,9 @@
 <li>Understand the parent-child relationship for UI elements.</li>
 <li>Learn about accessibility considerations in game UI design.</li>
 </ul>
-<p>Let's start by understanding what a user interface is and how it functions in game development.</p>
+<p>We will first start by understanding what a user interface is and how it functions in game development.</p>
 <h2 id="understanding-game-user-interfaces">Understanding Game User Interfaces</h2>
-<p>A user interface in games serves as a bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can't effectively interact with it.</p>
+<p>A user interface in games serves as a bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players ca not effectively interact with it.</p>
 <p>Game UIs consist of various visual elements that serve different purposes:</p>
 <ol>
 <li><strong>Information Display</strong>: Elements like health bars, score counters, or minimap displays provide players with game state information.  These elements help players understand their progress, resources, and current status without interrupting gameplay.</li>
@@ -145,7 +145,7 @@
 <h2 id="ui-layout-systems">UI Layout Systems</h2>
 <p>When designing and implementing game UI systems, developers must decide how UI elements will be positioned on the screen.  Two primary approaches exist, each with distinct advantages and trade-offs:</p>
 <ol>
-<li><p><strong>Absolute Positioning</strong>:  In this approach, each UI element is placed at specific coordinates on the screen.  Elements are positioned using exact locations, which gives precise control over the layout.  This approach is straightforward to implement and works well for static layouts where elements don't need to adjust based on screen size or content changes.  The main disadvantage of absolute positioning is its lack of flexibility, as iterating on design can be more difficult since one change may have cascading effects on other elements.  If the screen resolution changes or if an element's size changes, manual adjustments to positions are often necessary to maintain the desired layout.</p>
+<li><p><strong>Absolute Positioning</strong>:  In this approach, each UI element is placed at specific coordinates on the screen.  Elements are positioned using exact locations, which gives precise control over the layout.  This approach is straightforward to implement and works well for static layouts where elements do not need to adjust based on screen size or content changes.  The main disadvantage of absolute positioning is its lack of flexibility, as iterating on design can be more difficult since one change may have cascading effects on other elements.  If the screen resolution changes or if an element's size changes, manual adjustments to positions are often necessary to maintain the desired layout.</p>
 </li>
 <li><p><strong>Layout engines</strong>: These system position UI elements relative to one another using rules and constraints.  Elements might be positioned using concepts like &quot;center&quot;, &quot;align to parent&quot;, or &quot;flow horizontally with spacing&quot;.  Layout engines add complexity but provide flexibility.  The advantage of layout engines is adaptability to different screen sizes and content changes.  However, they require more initial setup and can be more complex to implement from scratch.</p>
 </li>
@@ -209,7 +209,7 @@
 <h3 id="visual-accessibility">Visual Accessibility</h3>
 <ul>
 <li><strong>Color contrast</strong>: Ensure sufficient contrast between text and backgrounds</li>
-<li><strong>Use shapes</strong>: Don't rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.</li>
+<li><strong>Use shapes</strong>: Do not rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.</li>
 <li><strong>Text size and scaling</strong>: Allow players to adjust text size or implement a UI scaling option.</li>
 <li><strong>Internationalization (i18n)</strong>: Consider how your UI might be interpreted across different cultures and regions. Number formatting can vary significantly - some regions use periods for thousands separators (1.000.000) while others use commas (1,000,000). Control symbolism also differs culturally; for example, on console controllers, the Cross button typically means &quot;Select&quot; in Western regions but &quot;Cancel&quot; in Japan, with Circle having the opposite meaning.</li>
 </ul>
@@ -238,7 +238,7 @@
 <div class="question-answer"><p>The two main types are:</p>
 <ul>
 <li><strong>Diegetic UI</strong>: Elements that exist within the game world itself and are part of the narrative (like health meters integrated into a character's suit or cockpit instruments in racing games). These enhance immersion by making UI feel like a natural part of the game world.</li>
-<li><strong>Non-diegetic UI</strong>: Elements that exist outside the game world, overlaid on top of gameplay (like traditional menus, health bars in screen corners, score displays). While less immersive, they're often clearer and easier to read.</li>
+<li><strong>Non-diegetic UI</strong>: Elements that exist outside the game world, overlaid on top of gameplay (like traditional menus, health bars in screen corners, score displays). While less immersive, they are often clearer and easier to read.</li>
 </ul>
 </div>
 </li>

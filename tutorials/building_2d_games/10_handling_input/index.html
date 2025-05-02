@@ -343,7 +343,7 @@ if(mouseState.LeftButton == ButtonState.Pressed)
 <div class="NOTE">
 <h5>Note</h5>
 <p>Recall from <a href="../01_what_is_monogame/index.html">Chapter 01</a> that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.</p>
-<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.BigButton"><strong>BigButton</strong></a> refers to the large, centrally located button on special Xbox 360 controllers created for games like &quot;Scene It?&quot; - this button is not present on standard controllers and isn't mapped to any button on modern controllers. It remains in the API for backward compatibility with XNA.</p>
+<p>The <a href="xref:Microsoft.Xna.Framework.Input.GamePadButtons.BigButton"><strong>BigButton</strong></a> refers to the large, centrally located button on special Xbox 360 controllers created for games like &quot;Scene It?&quot; - this button is not present on standard controllers and is not mapped to any button on modern controllers. It remains in the API for backward compatibility with XNA.</p>
 <table>
 <thead>
 <tr>
@@ -812,7 +812,7 @@ foreach(TouchLocation touchLocation in touchCollection)
 <p>Each time <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a> is called, it will dequeue the next gesture.  So to ensure that we handle the complete gesture, we loop the gesture queue until there are none left.</p>
 </div>
 <h2 id="implementing-input-in-our-game">Implementing Input in Our Game</h2>
-<p>For our game, we're going to implement keyboard and gamepad controls based on the following criteria:</p>
+<p>For our game, we are going to implement keyboard and gamepad controls based on the following criteria:</p>
 <table>
 <thead>
 <tr>
@@ -1065,7 +1065,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this chapter, you learned how to:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Handle keyboard input to detect key presses.</li>
 <li>Handle mouse input including button clicks and cursor position.</li>
@@ -1090,7 +1090,7 @@ public class Game1 : Core
 </div>
 </li>
 <li><p>What is the difference between analog and digital trigger input on a gamepad?</p>
-<div class="question-answer"><p>Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.</p>
+<div class="question-answer"><p>Analog triggers provide values between 0.0f and 1.0f based on how far they are pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.</p>
 </div>
 </li>
 <li><p>What is the key difference between <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState"><strong>TouchPanel.GetState</strong></a> and <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture"><strong>TouchPanel.ReadGesture</strong></a>?</p>
@@ -1102,7 +1102,7 @@ public class Game1 : Core
 </div>
 </li>
 <li><p>How does touch input differ from mouse input in terms of handling multiple input points?</p>
-<div class="question-answer"><p>Touch input can handle multiple simultaneous touch points through the <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection"><strong>TouchCollection</strong></a>, while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that aren't possible with a mouse.</p>
+<div class="question-answer"><p>Touch input can handle multiple simultaneous touch points through the <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection"><strong>TouchCollection</strong></a>, while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that are not possible with a mouse.</p>
 </div>
 </li>
 <li><p>What are the different states a <a href="xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation"><strong>TouchLocation</strong></a> can have and what do they indicate?</p>

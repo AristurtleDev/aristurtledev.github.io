@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-05-content-pipeline">Chapter 05: Content Pipeline</h1>
 <p class="text-secondary">Learn the advantages of using the Content Pipeline to load assets and go through the processes of loading your first asset</p>
-<p>Every game has assets; images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. <em>.png</em> image files or <em>.mp3</em> audio files), which you'll need to load into the game to use.</p>
+<p>Every game has assets; images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. <em>.png</em> image files or <em>.mp3</em> audio files), which you will need to load into the game to use.</p>
 <h2 id="loading-assets">Loading Assets</h2>
 <p>Loading assets can be done during runtime directly from file, or it can be loaded through the <strong>Content Pipeline</strong>  Both of these methods are two sides of the same coin and there are trade offs to each approach.</p>
 <p>For instance, to load an image file directly at runtime, you would need to:</p>
@@ -169,7 +169,7 @@
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The content project is the <em>Content.mgcb</em> file in your game project folder.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.</p>
+<p>The content project is the <em>Content.mgcb</em> file in your game project folder.  This file can be edited manually by hand, however it is much easier to use the MGCB Editor instead.</p>
 </div>
 <h3 id="opening-the-mgcb-editor">Opening the MGCB Editor</h3>
 <p>There are different methods of opening the MGCB Editor tool depending on your IDE and environment:</p>
@@ -245,8 +245,8 @@
 </ol>
 <p>When adding existing assets to the content project, a pop-up dialog will appear with the following options:</p>
 <ul>
-<li><strong>Copy the file to the folder</strong>: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file won't affect your project.</li>
-<li><strong>Add a link</strong>: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you'll need to reestablish the link.</li>
+<li><strong>Copy the file to the folder</strong>: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file wo not affect your project.</li>
+<li><strong>Add a link</strong>: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you will need to reestablish the link.</li>
 <li><strong>Skip</strong>: Cancels adding the current file while continuing with any other selected files.</li>
 </ul>
 <table>
@@ -318,7 +318,7 @@
 <li>Adding existing assets directly to the folder</li>
 <li>Creating new assets within the folder</li>
 </ul>
-<p>The folder structure you create in the MGCB Editor affects how you'll access your content in code. It's good practice to establish a folder structure early in your project development to avoid having to reorganize and update content paths later.</p>
+<p>The folder structure you create in the MGCB Editor affects how you will access your content in code. It is good practice to establish a folder structure early in your project development to avoid having to reorganize and update content paths later.</p>
 <h2 id="the-contentmanager-class">The ContentManager Class</h2>
 <p>To load assets in code that have been processed through the content pipeline, MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> class.</p>
 <div class="NOTE">
@@ -441,7 +441,7 @@
 </code></pre>
 <p>When the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> is used to load these assets, it looks for them relative to its <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>RootDirectory</strong></a> property. By default, this is set to <code>&quot;Content&quot;</code> in the <code>Game1</code> constructor to match where the compiled assets are copied. The path used to load an asset must match its location relative to the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>RootDirectory</strong></a>, minus any extension. For example, to load the above assets, the paths would be <code>&quot;images/logo&quot;</code> and <code>&quot;sounds/music&quot;</code>.</p>
 <h2 id="loading-our-first-asset">Loading Our First Asset</h2>
-<p>Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we will first need an image to load.  Right-click the following image of the MonoGame logo and save it named <em>logo.png</em> somewhere on your computer:</p>
+<p>Now, we will walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we will first need an image to load.  Right-click the following image of the MonoGame logo and save it named <em>logo.png</em> somewhere on your computer:</p>
 <table>
 <thead>
 <tr>
@@ -469,7 +469,7 @@
 </ol>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>After changes have been made in the MGCB Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved</p>
+<p>After changes have been made in the MGCB Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and have not saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved</p>
 </div>
 <table>
 <thead>
@@ -568,7 +568,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>You learned about the advantages of loading assets using the <strong>Content Pipeline</strong>.</li>
 <li>You added an image file asset to the <em>Content.mgcb</em> content project using the MGCB Editor.</li>

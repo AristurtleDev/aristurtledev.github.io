@@ -490,7 +490,7 @@ public class Core : Game
         // Change the currently active scene to the new scene
         s_activeScene = s_nextScene;
 
-        // Null out the next scene value so it doesn't trigger a change over and over.
+        // Null out the next scene value so it does not trigger a change over and over.
         s_nextScene = null;
 
         // If the active scene now is not null, initialize it.
@@ -694,7 +694,7 @@ private Vector2 _pressEnterOrigin;
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Your editor might show an error here since we haven't created the <code>GameScene</code> class yet.  We will create it in a moment after finishing the title scene.</p>
+<p>Your editor might show an error here since we have not created the <code>GameScene</code> class yet.  We will create it in a moment after finishing the title scene.</p>
 </div>
 <h5 id="title-scene-draw">Title Scene Draw</h5>
 <p>Add the following override for the <code>Draw</code> method to the <code>TitleScene</code> class:</p>
@@ -708,14 +708,14 @@ private Vector2 _pressEnterOrigin;
     Color dropShadowColor = new Color(19, 23, 46, 175);
     dropShadowColor = Color.Black * 0.5f;
 
-    // Draw the Dungeon text slightly offset from it's original position and
+    // Draw the Dungeon text slightly offset from it is original position and
     // with a transparent color to give it a drop shadow
     Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
     // Draw the Dungeon text on top of that at its original position
     Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-    // Draw the Slime text slightly offset from it's original position and
+    // Draw the Slime text slightly offset from it is original position and
     // with a transparent color to give it a drop shadow
     Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
@@ -851,7 +851,7 @@ private Vector2 _scoreTextOrigin;
     // room bounds, and to vertically be at the center of the first tile.
     _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-    // Set the origin of the text so it's left-centered.
+    // Set the origin of the text so it is left-centered.
     float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
     _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
@@ -904,7 +904,7 @@ private Vector2 _scoreTextOrigin;
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Notice how we're following a consistent pattern across scenes: global assets are loaded with <code>Core.Instance.Content</code> while scene-specific assets are loaded with the scene's <code>Content</code> property.</p>
+<p>Notice how we are following a consistent pattern across scenes: global assets are loaded with <code>Core.Instance.Content</code> while scene-specific assets are loaded with the scene's <code>Content</code> property.</p>
 </div>
 <h5 id="game-scene-update">Game Scene Update</h5>
 <p>Add the following override for the <code>Update</code> method to the <code>GameScene</code> class:</p>
@@ -930,7 +930,7 @@ private Vector2 _scoreTextOrigin;
     );
 
     // Use distance based checks to determine if the slime is within the
-    // bounds of the game screen, and if it's outside that screen edge,
+    // bounds of the game screen, and if it is outside that screen edge,
     // move it back inside.
     if (slimeBounds.Left &lt; _roomBounds.Left)
     {
@@ -963,7 +963,7 @@ private Vector2 _scoreTextOrigin;
     Vector2 normal = Vector2.Zero;
 
     // Use distance based checks to determine if the bat is within the
-    // bounds of the game screen, and if it's outside that screen edge,
+    // bounds of the game screen, and if it is outside that screen edge,
     // reflect it about the screen edge normal
     if (batBounds.Left &lt; _roomBounds.Left)
     {
@@ -1282,7 +1282,7 @@ public class Game1 : Core
 <li>Created a <code>GameScene</code> that encapsulates the gameplay mechanics.</li>
 <li>Refactored the main <code>Game1</code> class to be much simpler by using the scene system.</li>
 </ul>
-<p>The approach we've taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.</p>
+<p>The approach we have taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.</p>
 <p>In the next chapter, we will explore <a href="xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D"><strong>RenderTarget2D</strong></a> and how we can use it to add different types of transitions when switching scenes.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>

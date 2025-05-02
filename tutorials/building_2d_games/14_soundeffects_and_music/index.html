@@ -128,7 +128,7 @@
 <li>Implement sound effects for collision events.</li>
 <li>Add background music to enhance atmosphere.</li>
 </ul>
-<p>Let's start by understanding how MonoGame approaches audio content.</p>
+<p>We will first start by understanding how MonoGame approaches audio content.</p>
 <h2 id="understanding-audio-in-monogame">Understanding Audio in MonoGame</h2>
 <p>Recall from <a href="../01_what_is_monogame/index.html">Chapter 01</a> that MonoGame is an implementation of the XNA API.  With XNA, there were two methods for implementing audio in your game: the <em>Microsoft Cross-Platform Audio Creation Tool</em> (XACT) and the simplified sound API.</p>
 <div class="IMPORTANT">
@@ -450,7 +450,7 @@ public class Game1 : Core
         // Load the background theme music
         Song theme = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
 
-        // Ensure media player isn't already playing on device, if so, stop it
+        // Ensure media player is not already playing on device, if so, stop it
         if (MediaPlayer.State == MediaState.Playing)
         {
             MediaPlayer.Stop();
@@ -490,7 +490,7 @@ public class Game1 : Core
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left &lt; _roomBounds.Left)
         {
@@ -523,7 +523,7 @@ public class Game1 : Core
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left &lt; _roomBounds.Left)
         {
@@ -738,7 +738,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Learned about MonoGame's audio system including sound effects and music.</li>
 <li>Explored the key differences between:
@@ -773,7 +773,7 @@ public class Game1 : Core
 </div>
 </li>
 <li><p>What file formats are best suited for sound effects and music, respectively, and why?</p>
-<div class="question-answer"><p>For sound effects, .wav files are generally best because they're uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.</p>
+<div class="question-answer"><p>For sound effects, .wav files are generally best because they are uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.</p>
 </div>
 </li>
 <li><p>What is the difference between using <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play"><strong>SoundEffect.Play</strong></a> directly and creating a <a href="xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance"><strong>SoundEffectInstance</strong></a>?</p>

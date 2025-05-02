@@ -138,7 +138,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Sprite
+public class Sprite 
 {
 
 }
@@ -198,7 +198,7 @@ public SpriteEffects Effects { get; set; } = SpriteEffects.None;
 public float LayerDepth { get; set; } = 0.0f;
 
 /// &lt;summary&gt;
-/// Gets the width, in pixels, of this sprite.
+/// Gets the width, in pixels, of this sprite. 
 /// &lt;/summary&gt;
 /// &lt;remarks&gt;
 /// Width is calculated by multiplying the width of the source texture region by the x-axis scale factor.
@@ -284,7 +284,7 @@ public Sprite CreateSprite(string regionName)
     return new Sprite(region);
 }
 </code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
-<p>Let's adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
+<p>Now we can adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
 <pre><code class="lang-csharp" highlight-lines="11-15,34-40,63-67">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
