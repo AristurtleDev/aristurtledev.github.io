@@ -203,7 +203,7 @@
 <p>Try adjusting the position and color parameters and see how they can affect the image being drawn.</p>
 <p>MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, let's try to center the logo on the game window.</p>
 <p>To center content on the screen, we need to find the window's center point. We can access this using the <a href="xref:Microsoft.Xna.Framework.GameWindow.ClientBounds"><strong>Window.ClientBounds</strong></a> property from the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class, which represents the rectangular bounds of the game window.  <a href="xref:Microsoft.Xna.Framework.GameWindow.ClientBounds"><strong>Window.ClientBounds</strong></a> exposes both  <a href="xref:Microsoft.Xna.Framework.Rectangle.Width"><strong>Width</strong></a> and <a href="xref:Microsoft.Xna.Framework.Rectangle.Height"><strong>Height</strong></a> properties for the window's dimensions in pixels.  By dividing these dimensions in half, we can can calculate the window's center coordinates.  Let's update our <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)"><strong>Draw</strong></a> method to use this:</p>
-<pre><code class="lang-csharp" highlight-lines="9-15">protected override void Draw(GameTime gameTime)
+<pre><code class="lang-csharp" highlight-lines="9-16">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -215,7 +215,8 @@
     SpriteBatch.Draw(
         _logo,          // texture
         new Vector2(    // position
-        Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f,
+            Window.ClientBounds.Width, 
+            Window.ClientBounds.Height) * 0.5f,
         Color.White     // color
     );
 
@@ -363,7 +364,7 @@
 <tr>
 <td><em>layerDepth</em></td>
 <td><code>float</code></td>
-<td>Specifies the depth at which the texture is rendered. Textures with a higher layer depth value are drawn on top of those with a lower layer depth value. <strong>Note: This value will only apply when using <code>SpriteSortMode.FrontToBack</code> or `SpriteSortMode.BackToFront. We'll cover this in a moment.</strong></td>
+<td>Specifies the depth at which the texture is rendered. Textures with a higher layer depth value are drawn on top of those with a lower layer depth value. <strong>Note: This value will only apply when using <code>SpriteSortMode.FrontToBack</code> or <code>SpriteSortMode.BackToFront</code>. We'll cover this in a moment.</strong></td>
 </tr>
 </tbody>
 </table>
@@ -426,8 +427,13 @@
 </tr>
 </tbody>
 </table>
-<p>To resolve the rotation issue we had, we only need to change the <code>origin</code> parameter so that instead of defaulting to the upper-left corner of the sprite, it is set to the center of the sprite.  When doing this, we need to set the values based on the sprites width and height, so the center origin will be half the width and height of the sprite. Update the code to:</p>
-<pre><code class="lang-csharp" highlight-lines="18-20">protected override void Draw(GameTime gameTime)
+<p>To resolve the rotation issue we had, we need to need to change two things:</p>
+<ol>
+<li>Set the <code>origin</code> parameter to the center of the sprite instead of defaulting to the upper-left corner.</li>
+<li>Change the <code>position</code> parameter back to the center of the screen.</li>
+</ol>
+<p>Update the code to:</p>
+<pre><code class="lang-csharp" highlight-lines="12-14,18-20">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -458,7 +464,11 @@
     base.Draw(gameTime);
 }
 </code></pre>
-<p>By moving the sprite's origin point to its center, this not only corrects the point of rotation, but also eliminates the need to offset the position by half the sprite's dimensions. Running the game now shows the log properly centered and rotated 90°.</p>
+<p>By moving the sprite's origin point to its center, this not only corrects the point of rotation, but also allows us to use the screen center position directly without needing additional position offset calculations.  Running the game now shows the log properly centered and rotated 90°.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When setting the <code>origin</code> parameter, it is based on the sprites width and height, so the center origin will be half the width and half the height of the sprite.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -472,8 +482,9 @@
 </tbody>
 </table>
 <h3 id="scale">Scale</h3>
-<p>The <code>scale</code> parameter specifies the amount of scaling to apply to the sprite when it is rendered.  The default value is <code>1.0f</code>, which can be read as &quot;rendering the sprite at 1x the size&quot;.  Increasing this will scale up the size of the sprite and decreasing it will scale down the sprite.  Let's see an example of this by setting the scale of the logo sprite to <code>1.5f</code>:</p>
-<pre><code class="lang-csharp" highlight-lines="21">protected override void Draw(GameTime gameTime)
+<p>The <code>scale</code> parameter specifies the amount of scaling to apply to the sprite when it is rendered.  The default value is <code>1.0f</code>, which can be read as &quot;rendering the sprite at 1x the size&quot;.  Increasing this will scale up the size of the sprite and decreasing it will scale down the sprite.</p>
+<p>For this example, let's first reset the rotation back to <code>0.0f</code> (removing the 90° rotation we applied above) so we can clearly see the scaling effect.  Then we will set the scale of the logo sprite to <code>1.5f</code></p>
+<pre><code class="lang-csharp" highlight-lines="17,21">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -628,8 +639,8 @@
 </tr>
 </tbody>
 </table>
-<p>Let's see this by applying the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally"><strong>SpriteEffects.FlipHorizontally</strong></a> value to the sprite:</p>
-<pre><code class="lang-csharp" highlight-lines="22">protected override void Draw(GameTime gameTime)
+<p>For this example, let's reset the scale back to <code>1.0f</code> and apply the  <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally"><strong>SpriteEffects.FlipHorizontally</strong></a> value to the sprite:</p>
+<pre><code class="lang-csharp" highlight-lines="21,22">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -727,8 +738,8 @@ Final Green = Sprite Green * 1.0f
 Final Blue = Sprite Blue * 1.0f;
 </code></pre>
 <p>Since multiplying by <code>1.0f</code> doesn't change the value, <a href="xref:Microsoft.Xna.Framework.Color.White"><strong>Color.White</strong></a> essentially preserves the original colors of the sprite.</p>
-<p>Let's change the <code>color</code> parameter to use <a href="xref:Microsoft.Xna.Framework.Color.Green"><strong>Color.Green</strong></a>:</p>
-<pre><code class="lang-csharp" highlight-lines="16">protected override void Draw(GameTime gameTime)
+<p>For this example, let's reset the <code>effects</code>  parameter back to <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.None"><strong>SpriteEffects.None</strong></a> and update the <code>color</code> parameter to use <a href="xref:Microsoft.Xna.Framework.Color.Green"><strong>Color.Green</strong></a>:</p>
+<pre><code class="lang-csharp" highlight-lines="16,22">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -918,7 +929,7 @@ Final Blue = Sprite Blue * 1.0f;
 <p>Making use of the <code>sourceRectangle</code> parameter to draw different sprites from the same texture is optimization technique that we'll explore further in the next chapter.</p>
 </div>
 <h3 id="layer-depth">Layer Depth</h3>
-<p>The final parameter to discuss is the <code>layerDepth</code> parameter. Notice that in Figure 5-14 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.</p>
+<p>The final parameter to discuss is the <code>layerDepth</code> parameter. Notice that in Figure 6-15 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.</p>
 <p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> method contains several optional parameters, one of which is the <code>sortMode</code> parameter.  By default, this value is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a>, which means what is drawn is done so in the order of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> calls.  Each subsequent call will be drawn visually on top of the previous call.</p>
 <p>When <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a> is used, then the <code>layerDepth</code> parameter in the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> call is essentially ignored.  For instance, in the first <code>_spriteBatch.Draw</code> method call, update the <code>layerDepth</code> parameter to <code>1.0f</code>.</p>
 <pre><code class="lang-csharp" highlight-lines="29">protected override void Draw(GameTime gameTime)
