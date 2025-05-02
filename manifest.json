@@ -2322,6 +2322,19 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/24_shaders/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/24_shaders/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/index.md",
       "output": {
         ".html": {

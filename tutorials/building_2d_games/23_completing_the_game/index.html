@@ -165,10 +165,6 @@ private static readonly string s_scoreFormat = &quot;SCORE: {0:D6}&quot;;
 // The sound effect to play for auditory feedback of the user interface.
 private SoundEffect _uiSoundEffect;
 
-// A colored rectangle used to overlay the game scene when the pause or
-// game over panels are visible.
-private ColoredRectangleRuntime _overlay;
-
 // The pause panel
 private Panel _pausePanel;
 
@@ -190,7 +186,6 @@ private TextRuntime _scoreText;
 <ul>
 <li><code>s_scoreFormat</code>: A string format template used to display the player's score with leading zeros.</li>
 <li><code>_uiSoundEffect</code>: Stores the sound effect played for UI interactions like button clicks and focus changes.</li>
-<li><code>_overlay</code>: A semi-transparent overlay that darkens the game screen when a menu is displayed.</li>
 <li><code>_pausePanel</code>: The panel containing the UI elements shown when the game is paused.</li>
 <li><code>_resumeButton</code>: A reference to the resume button, allowing us to set focus on it when the pause panel is shown.</li>
 <li><code>_gameOverPanel</code>: The panel containing the UI elements shown when a game over occurs.</li>
@@ -246,13 +241,6 @@ public event EventHandler RetryButtonClick;
     _scoreText = CreateScoreText();
     AddChild(_scoreText);
 
-    // Create the background overlay that fills the container with a
-    // transparent blue background when the pause panel or game over
-    // panel is shown to visually take focus away from the active game and
-    // add it as a child to this container.
-    _overlay = CreateOverlay();
-    AddChild(_overlay);
-
     // Create the Pause panel that is displayed when the game is paused and
     // add it as a child to this container
     _pausePanel = CreatePausePanel(atlas);
@@ -289,21 +277,6 @@ public event EventHandler RetryButtonClick;
 }
 </code></pre>
 <p>This method takes creates a <code>TextRuntime</code> element that we can use to display the player's score and returns it back.  After this method, add the following method:</p>
-<pre><code class="lang-csharp">private ColoredRectangleRuntime CreateOverlay()
-{
-    ColoredRectangleRuntime rect = new ColoredRectangleRuntime();
-    rect = new ColoredRectangleRuntime();
-    rect.Dock(Gum.Wireframe.Dock.Fill);
-    rect.Red = 20;
-    rect.Green = 23;
-    rect.Blue = 47;
-    rect.Alpha = 175;
-    rect.Visible = false;
-
-    return rect;
-}
-</code></pre>
-<p>This method creates a <code>ColoredRectangleRuntime</code> element that is semi-transparent and returns it back.  This will be used to dim the game when the pause and game over panels are shown.  After this method, add the following method:</p>
 <pre><code class="lang-csharp">private Panel CreatePausePanel(TextureAtlas atlas)
 {
     Panel panel = new Panel();
@@ -492,8 +465,6 @@ public void UpdateScoreText(int score)
 /// &lt;/summary&gt;
 public void ShowPausePanel()
 {
-    // Make the overlay and the pause panel visible.
-    _overlay.Visible = true;
     _pausePanel.IsVisible = true;
 
     // Give the resume button focus for keyboard/gamepad input.
@@ -508,8 +479,6 @@ public void ShowPausePanel()
 /// &lt;/summary&gt;
 public void HidePausePanel()
 {
-    // Hide the overlay and the pause panel.
-    _overlay.Visible = false;
     _pausePanel.IsVisible = false;
 }
 
@@ -518,8 +487,6 @@ public void HidePausePanel()
 /// &lt;/summary&gt;
 public void ShowGameOverPanel()
 {
-    // Make the overlay and the game over panel visible.
-    _overlay.Visible = true;
     _gameOverPanel.IsVisible = true;
 
     // Give the retry button focus for keyboard/gamepad input.
@@ -534,8 +501,6 @@ public void ShowGameOverPanel()
 /// &lt;/summary&gt;
 public void HideGameOverPanel()
 {
-    // Hide the overlay and game over panel.
-    _overlay.Visible = false;
     _gameOverPanel.IsVisible = false;
 }
 
