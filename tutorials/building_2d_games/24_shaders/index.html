@@ -444,60 +444,9 @@ technique SpriteDrawing
 </li>
 </ol>
 <h4 id="understanding-the-shader-code">Understanding the Shader Code</h4>
-<p>The heart of the grayscale effect is this line</p>
-<pre><code class="lang-c">#if OPENGL
-    #define SV_POSITION POSITION
-    #define VS_SHADERMODEL vs_3_0
-    #define PS_SHADERMODEL ps_3_0
-#else
-    #define VS_SHADERMODEL vs_4_0_level_9_1
-    #define PS_SHADERMODEL ps_4_0_level_9_1
-#endif
-
-Texture2D SpriteTexture;
-
-// A value between 0 and 1 that controls the intensity of the grayscale effect.
-// 0 = full color, 1 = full grayscale.
-float Saturation = 1.0;
-
-sampler2D SpriteTextureSampler = sampler_state
-{
-    Texture = &lt;SpriteTexture&gt;;
-};
-
-struct VertexShaderOutput
-{
-    float4 Position : SV_POSITION;
-    float4 Color : COLOR0;
-    float2 TextureCoordinates : TEXCOORD0;
-};
-
-float4 MainPS(VertexShaderOutput input) : COLOR
-{
-    // Sample the texture
-    float4 color = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
-
-    // Calculate the grayscale value based on human perception of colors
-    float grayscale = dot(color.rgb, float3(0.3, 0.59, 0.11));
-
-    // create a grayscale color vector (same value for R, G, and B)
-    float3 grayscaleColor = float3(grayscale, grayscale, grayscale);
-
-    // Linear interpolation between he grayscale color and the original color's
-    // rgb values based on the saturation parameter.
-    float3 finalColor = lerp(grayscale, color.rgb, Saturation);
-
-    // Return the final color with the original alpha value
-    return float4(finalColor, color.a);
-}
-
-technique SpriteDrawing
-{
-    pass P0
-    {
-        PixelShader = compile PS_SHADERMODEL MainPS();
-    }
-};
+<p>The heart of the grayscale effect is this line:</p>
+<pre><code class="lang-c">// Calculate the grayscale value based on human perception of colors
+float grayscale = dot(color.rgb, float3(0.3, 0.59, 0.11));
 </code></pre>
 <p>This uses the <a href="https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-dot"><code>dot</code></a> function to calculate the do product between the color's RGB values and the vector <span class="math">\((0.3, 0.59, 0.11)\)</span>.  This effectively calculates a weighted average where:</p>
 <ul>
@@ -753,15 +702,14 @@ spriteBatch.End();
 <li>Effect parameters allow runtime control of shader behavior.</li>
 <li>In Monogame, shaders are written in High-Level Shader Language (HLSL) and can be loaded through the content pipeline like other game assets.</li>
 <li>Pixel shaders determine the color of each rendered pixel, making them ideal for effects like our grayscale shader.</li>
-<li>The timing of the shader application depends on the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode">**SpriteSortMode</a> used with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>, with most effects being applied during the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> call.</li>
+<li>The timing of the shader application depends on the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode"><strong>SpriteSortMode</strong></a> used with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a>, with most effects being applied during the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> call.</li>
 </ul>
 <p>While we only focused on a simple grayscale effect, the principles learned here can be used to start learning more about shaders and creating more complex visual effects.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the primary difference between pixel shaders and vertex shaders in the context of 2D games?</p>
-<p>::question-answer
-Pixel shaders determine the color of each pixel being rendered, making them ideal for visual effects like grayscale, color tinting, and image filters. Vertex shaders manipulate the position of vertices, which can be used for effects like distortion, waves, or character deformation. In 2D games, pixel shaders are more commonly used for visual effects while vertex shaders are less frequently needed.</p>
-<div></div>
+<div class="question-answer"><p>Pixel shaders determine the color of each pixel being rendered, making them ideal for visual effects like grayscale, color tinting, and image filters. Vertex shaders manipulate the position of vertices, which can be used for effects like distortion, waves, or character deformation. In 2D games, pixel shaders are more commonly used for visual effects while vertex shaders are less frequently needed.</p>
+</div>
 </li>
 <li><p>What function is used in the shader to blend between grayscale and the original color, and how does it work?</p>
 <div class="question-answer"><p>The <a href="https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-lerp"><code>lerp</code></a> function (linear interpolation) is used to blend between grayscale and original colors. It takes three parameters: the first is the grayscale color vector, the second is the original color's RGB values, and the third is the <code>Saturation</code> parameter (between 0 and 1). When Saturation is 0, the output is fully grayscale; when it's 1, the output is the original color; values in between create a partial blend of both.</p>
