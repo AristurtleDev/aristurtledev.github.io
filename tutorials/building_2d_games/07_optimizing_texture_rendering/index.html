@@ -225,7 +225,10 @@ namespace MonoGameLibrary.Graphics;
 /// &lt;summary&gt;
 /// Represents a rectangular region within a texture.
 /// &lt;/summary&gt;
-public class TextureRegion { }
+public class TextureRegion
+{
+
+}
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -359,7 +362,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class TextureAtlas { }
+public class TextureAtlas
+{
+
+}
 </code></pre><h3 id="textureatlas-members">TextureAtlas Members</h3>
 <p>The <code>TextureAtlas</code> class needs two key members to manage texture regions. Add the following:</p>
 <pre><code class="lang-csharp">private Dictionary&lt;string, TextureRegion&gt; _regions;
@@ -460,7 +466,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
             atlas.Texture = content.Load&lt;Texture2D&gt;(texturePath);
 
             // The &lt;Regions&gt; element contains individual &lt;Region&gt; elements, each one describing
-            // a different texture region within the atlas.  
+            // a different texture region within the atlas.
             //
             // Example:
             // &lt;Regions&gt;
