@@ -153,9 +153,9 @@
 <p>The base <code>Scene</code> class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we'll create concrete implementations of this, like a title scene.</p>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new directory named <em>Scenes</em>.</p>
+<li><p>Create a new folder named <em>Scenes</em>.</p>
 </li>
-<li><p>Add a new class file named <em>Scene.cs</em> to the <em>Scenes</em> directory you just created.</p>
+<li><p>Add a new class file named <em>Scene.cs</em> to the <em>Scenes</em> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class:</p>
 <pre><code class="lang-csharp">using System;
@@ -213,7 +213,7 @@ public Scene()
 ~Scene() =&gt; Dispose(false);
 </code></pre>
 <ul>
-<li>The constructor initializes the scene's content manager and sets the root directory to match that of the base game's content manager.</li>
+<li>The constructor initializes the scene's content manager and sets the root folder to match that of the base game's content manager.</li>
 <li>The finalizer is called by the garbage collector automatically when a scene object is collected which just calls the <code>Dispose</code> method to ensure resources are disposed of properly.</li>
 </ul>
 <h3 id="scene-methods">Scene Methods</h3>
@@ -529,61 +529,54 @@ public class Core : Game
 <p>Notice that we use a two-step process for scene transitions with separate <code>_activeScene</code> and <code>_nextScene</code> fields. This design allows the current scene to complete its update/draw cycle before the transition occurs, preventing potential issues that could arise from changing scenes in the middle of processing. The actual transition happens at a controlled point in the game loop, ensuring clean disposal of the old scene before initializing the new one.</p>
 </div>
 <h2 id="updating-the-game">Updating the Game</h2>
-<p>With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.</p>
-<h3 id="the-title-scene">The Title Scene</h3>
-<p>The title scene serves as the game's initial starting point, making the first impression on the player when they first launch the game.  For our game, this scene will display stylized text for the title of the game and a prompt for an action for the user to perform to start the game.  The stylized text is a graphic that was created and added to the texture atlas which features the title of the game with a drop shadow effect on the text.  So first, let's update the texture atlas to the new version with the title graphic.  Download the new texture atlas below by right-clicking the following image and saving it as <em>atlas.png</em> in the <em>Content/images</em> directory of the game project, overwriting the existing one:</p>
+<p>With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
+<ol>
+<li>Right-click the <em>fonts</em> folder and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
+<li>Select <em>SpriteFont Description (.spritefont)</em> from the options</li>
+<li>Name the file <em>04B_30_5x.spritefont</em> and click <em>Create</em>.</li>
+</ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/atlas.png" alt="Figure 17-1: The texture atlas for our game updated to include the title sprite"></th>
+<th style="text-align: center;"><img src="images/font_added.png" alt="Figure 17-1: The 04B_30_5x.spritefont file created in the MGCB Editor"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 17-1: The texture atlas for our game updated to include the title sprite</strong></td>
+<td style="text-align: center;"><strong>Figure 17-1: The <em>04B_30_5x.spritefont</em> file created in the MGCB Editor</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Next, open the <em>atlas-definition.xml</em> file and add the region for the title sprite:</p>
-<pre><code class="lang-xml" highlight-lines="10">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;TextureAtlas&gt;
-    &lt;Texture&gt;images/atlas&lt;/Texture&gt;
-    &lt;Regions&gt;
-        &lt;Region name=&quot;slime-1&quot; x=&quot;320&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;slime-2&quot; x=&quot;320&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-1&quot; x=&quot;320&quot; y=&quot;160&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-2&quot; x=&quot;320&quot; y=&quot;240&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-3&quot; x=&quot;400&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;title-card&quot; x=&quot;0&quot; y=&quot;320&quot; width=&quot;751&quot; height=&quot;240&quot; /&gt;
-    &lt;/Regions&gt;
-    &lt;Animations&gt;
-        &lt;Animation name=&quot;slime-animation&quot; delay=&quot;200&quot;&gt;
-            &lt;Frame region=&quot;slime-1&quot; /&gt;
-            &lt;Frame region=&quot;slime-2&quot; /&gt;
-        &lt;/Animation&gt;
-        &lt;Animation name=&quot;bat-animation&quot; delay=&quot;200&quot;&gt;
-            &lt;Frame region=&quot;bat-1&quot; /&gt;
-            &lt;Frame region=&quot;bat-2&quot; /&gt;
-            &lt;Frame region=&quot;bat-1&quot; /&gt;
-            &lt;Frame region=&quot;bat-3&quot; /&gt;
-        &lt;/Animation&gt;
-    &lt;/Animations&gt;
-&lt;/TextureAtlas&gt;
-</code></pre>
-<p>With the atlas now updated, create the <code>TitleScene</code> class file.  In the main game project:</p>
+<p>Next, open the <em>04B_30_5x.spritefont</em> file and make the following changes:</p>
+<pre><code class="lang-xml" highlight-lines="4-5">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;XnaContent xmlns:Graphics=&quot;Microsoft.Xna.Framework.Content.Pipeline.Graphics&quot;&gt;
+  &lt;Asset Type=&quot;Graphics:FontDescription&quot;&gt;
+    &lt;FontName&gt;04B_30.ttf&lt;/FontName&gt;
+    &lt;Size&gt;87.5&lt;/Size&gt;
+    &lt;Spacing&gt;0&lt;/Spacing&gt;
+    &lt;UseKerning&gt;true&lt;/UseKerning&gt;
+    &lt;Style&gt;Regular&lt;/Style&gt;
+    &lt;CharacterRegions&gt;
+      &lt;CharacterRegion&gt;
+        &lt;Start&gt;&amp;#32;&lt;/Start&gt;
+        &lt;End&gt;&amp;#126;&lt;/End&gt;
+      &lt;/CharacterRegion&gt;
+    &lt;/CharacterRegions&gt;
+  &lt;/Asset&gt;
+&lt;/XnaContent&gt;
+</code></pre><h3 id="the-title-scene">The Title Scene</h3>
+<p>The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We'll use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.</p>
+<p>To get started, first:</p>
 <ol>
-<li><p>Create a new directory named <em>Scenes</em>.  We'll put all of our game specific scenes here.</p>
+<li><p>Create a new folder named <em>Scenes</em>.  We'll put all of our game specific scenes here.</p>
 </li>
-<li><p>Add a new class file named <em>TitleScene.cs</em> to the <em>Scenes</em> directory you just created.</p>
+<li><p>Add a new class file named <em>TitleScene.cs</em> to the <em>Scenes</em> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class.</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
-using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
 
 namespace DungeonSlime.Scenes;
@@ -596,16 +589,27 @@ public class TitleScene : Scene
 </ol>
 <h4 id="title-scene-fields">Title Scene Fields</h4>
 <p>Add the following fields to the <code>TitleScene</code> class:</p>
-<pre><code class="lang-csharp">private const string PRESS_ENTER = &quot;Press Enter To Start&quot;;
+<pre><code class="lang-csharp">private const string DUNGEON_TEXT = &quot;Dungeon&quot;;
+private const string SLIME_TEXT = &quot;Slime&quot;;
+private const string PRESS_ENTER_TEXT = &quot;Press Enter To Start&quot;;
 
 // The font to use to render normal text.
 private SpriteFont _font;
 
-// The sprite to draw for the stylized title
-private Sprite _titleSprite;
+// The font used to render the title text.
+private SpriteFont _font5x;
 
-// The position to draw the title sprite at.
-private Vector2 _titlePos;
+// The position to draw the dungeon text at.
+private Vector2 _dungeonTextPos;
+
+// The origin to set for the dungeon text.
+private Vector2 _dungeonTextOrigin;
+
+// The position to draw the slime text at.
+private Vector2 _slimeTextPos;
+
+// The origin to set for the slime text.
+private Vector2 _slimeTextOrigin;
 
 // The position to draw the press enter text at.
 private Vector2 _pressEnterPos;
@@ -614,11 +618,12 @@ private Vector2 _pressEnterPos;
 private Vector2 _pressEnterOrigin;
 </code></pre>
 <ul>
-<li>The <code>PRESS_ENTER</code> constant is the text we'll draw for the press enter prompt for the user.</li>
-<li>The <code>_font</code> field stores a reference to the sprite font we'll load to render the press enter prompt with.</li>
-<li>The <code>_titleSprite</code> field stores a reference the sprite we'll render for the stylized title from the texture atlas</li>
-<li>The <code>_titlePos</code> and <code>_pressEnterPos</code> fields store the precalculated positions for the title sprite and the press enter prompt text when they are drawn.  Since they are stationary, we can just calculate the positions once and store it instead of calculating it each frame.</li>
-<li>The <code>_pressEnterOrigin</code> field stores the precalculated origin for hte press enter prompt text when it is drawn.  Like with the position, we only need to calculate this once and store it instead of calculating it each frame.</li>
+<li>Three <code>const</code> fields (<code>DUNGEON_TEXT</code>, <code>SLIME_TEXT</code>, <code>PRESS_ENTER_TEXT</code>) are added for the text that will be displayed on the title screen.</li>
+<li>The <code>_font</code> field stores a reference to the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> we will use to draw the press enter prompt with.</li>
+<li>The <code>_font3x</code> field stores a reference to the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> we will use to draw the dungeon and slime text with that will make up the title of the game.</li>
+<li>The <code>_dungeonTextPos</code> and <code>_dungeonTextOrigin</code> fields store the position and origin we will use to draw the &quot;Dungeon&quot; text at.</li>
+<li>The <code>_slimeTextPos</code> and <code>_slimeTextOrigin</code> fields store the position and origin we will draw the &quot;Slime&quot; text at.</li>
+<li>The <code>_pressEnterPos</code> and <code>_pressEnterOrigin</code> fields store the position and origin we will draw the &quot;Press Enter To Start&quot; text at.</li>
 </ul>
 <h4 id="title-scene-methods">Title Scene Methods</h4>
 <p>The <code>TitleScene</code> class will override the various methods from the base <code>Scene</code> class that it derives from to provide the initialization, content loading, update, and drawing logic.</p>
@@ -633,54 +638,40 @@ private Vector2 _pressEnterOrigin;
     // can close the game by pressing the escape key.
     Core.ExitOnEscape = true;
 
-    // Get the bounds of the screen for position calculations
-    Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+    // Set the position and origin for the Dungeon text.
+    Vector2 size = _font5x.MeasureString(DUNGEON_TEXT);
+    _dungeonTextPos = new Vector2(640, 100);
+    _dungeonTextOrigin = size * 0.5f;
 
-    // Precalculate the positions and origins for texts and the slime sprite
-    // so we're not calculating it every draw frame.
-    _titlePos = new Vector2(
-        screenBounds.Width * 0.5f,
-        80 + _titleSprite.Height * 0.5f);
+    // Set the position and origin for the Slime text.
+    size = _font5x.MeasureString(SLIME_TEXT);
+    _slimeTextPos = new Vector2(757, 207);
+    _slimeTextOrigin = size * 0.5f;
 
-    // Center the origin of the title sprite.
-    _titleSprite.CenterOrigin();
-
-    // Precalculate the position of for the press enter text so that it is
-    // centered horizontally and place 100 pixels above the bottom of the
-    // screen.
-    _pressEnterPos = new Vector2(
-        screenBounds.Width * 0.5f,
-        screenBounds.Height - 100
-    );
-
-    // Precalculate the center origin of the press enter text.
-    Vector2 pressEnterSize = _font.MeasureString(PRESS_ENTER);
-    _pressEnterOrigin = pressEnterSize * 0.5f;
+    // Set the position and origin for the press enter text.
+    size = _font.MeasureString(PRESS_ENTER_TEXT);
+    _pressEnterPos = new Vector2(640, 620);
+    _pressEnterOrigin = size * 0.5f;
 }
 </code></pre>
 <ul>
 <li>We set the <code>Core.ExitOnEscape</code> to true to allow players to exit the game when on the title screen by pressing the escape key.</li>
-<li>The bounds of the screen is captures by using the <code>Core.GraphicsDevice.PresentationParameters.Bounds</code> value.</li>
-<li>The position to draw the title sprite is precalculated so that it will be centered horizontally and 80px down from the top of the screen.  The origin is set to center.</li>
-<li>The position to draw the press enter prompt is precalculated so that it will be centered horizontally and 100 px above the bottom of the screen.  The string is measured and used to center the origin for the text.</li>
+<li>The position and origin for the &quot;Dungeon&quot;, &quot;Slime&quot;, and &quot;Press Enter To Start&quot; texts are set.</li>
 </ul>
 <h5 id="title-scene-loadcontent">Title Scene LoadContent</h5>
 <p>Add the following override for the <code>LoadContent</code> method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">public override void LoadContent()
 {
-    // Load the font for the standard txt.
-    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
+    // Load the font for the standard text.
+    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
 
-    // Create a texture atlas from the XML configuration file.
-    TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, &quot;images/atlas-definition.xml&quot;);
-
-    _titleSprite = atlas.CreateSprite(&quot;title-card&quot;);
+    // Load the font for the title text
+    _font5x = Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30_5x&quot;);
 }
 </code></pre>
 <ul>
-<li>The font used to draw the press enter prompt is loaded.</li>
-<li>The texture atlas is loaded using the XML configuration file.</li>
-<li>The <code>_titleSprite</code> is generated from the <code>&quot;title-card&quot;</code> region in the atlas.</li>
+<li>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> used to draw the &quot;Press Enter To Start&quot; text is loaded using the global content manager.</li>
+<li>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> used to draw the &quot;Dungeon&quot; and &quot;Slime&quot; text is loaded using the scene's content manager.</li>
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
@@ -714,11 +705,25 @@ private Vector2 _pressEnterOrigin;
     // Begin the sprite batch to prepare for rendering.
     Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-    // Draw that title sprite
-    _titleSprite.Draw(Core.SpriteBatch, _titlePos);
+    Color dropShadowColor = new Color(19, 23, 46, 175);
+    dropShadowColor = Color.Black * 0.5f;
+
+    // Draw the Dungeon text slightly offset from it's original position and
+    // with a transparent color to give it a drop shadow
+    Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+    // Draw the Dungeon text on top of that at its original position
+    Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+    // Draw the Slime text slightly offset from it's original position and
+    // with a transparent color to give it a drop shadow
+    Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+    // Draw the Slime text on top of that at its original position
+    Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos, Color.White, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
     // Draw the press enter text
-    Core.SpriteBatch.DrawString(_font, PRESS_ENTER, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
+    Core.SpriteBatch.DrawString(_font, PRESS_ENTER_TEXT, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
 
     // Always end the sprite batch when finished.
     Core.SpriteBatch.End();
@@ -726,11 +731,13 @@ private Vector2 _pressEnterOrigin;
 </code></pre>
 <ul>
 <li>The back buffer is cleared.</li>
-<li>The title sprite is drawn at its precalculated position.</li>
-<li>The press enter prompt is drawn at its precalculated position.</li>
+<li>The <code>dropShadowColor</code> is created which is the color black with half transparency.</li>
+<li>The &quot;Dungeon&quot; text is draw, first 10px down and to the left of the actual position using the drop shadow color, then it is drawn again at its normal position overtop.  Layering this way creates the drop shadow effect.</li>
+<li>The &quot;Slime&quot; text is draw, again offset from its position first using the drop shadow color and then drawn again at its normal position overtop.</li>
+<li>The &quot;Press Enter To Start&quot; text is drawn.</li>
 </ul>
 <h3 id="the-game-scene">The Game Scene</h3>
-<p>The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our <code>Game1</code> class in previous chapters, but now we'll move it into a dedicated scene class. In the <em>Scenes</em> directory:</p>
+<p>The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our <code>Game1</code> class in previous chapters, but now we'll move it into a dedicated scene class. In the <em>Scenes</em> folder:</p>
 <ol>
 <li><p>Add a new class file named <em>GameScene.cs</em>.</p>
 </li>
@@ -826,23 +833,23 @@ private Vector2 _scoreTextOrigin;
     Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
 
     _roomBounds = new Rectangle(
-        _tilemap.TileSize,
-        _tilemap.TileSize,
-        screenBounds.Width - _tilemap.TileSize * 2,
-        screenBounds.Height - _tilemap.TileSize * 2
-    );
+         (int)_tilemap.TileWidth,
+         (int)_tilemap.TileHeight,
+         screenBounds.Width - (int)_tilemap.TileWidth * 2,
+         screenBounds.Height - (int)_tilemap.TileHeight * 2
+     );
 
     // Initial slime position will be the center tile of the tile map.
     int centerRow = _tilemap.Rows / 2;
     int centerColumn = _tilemap.Columns / 2;
-    _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+    _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
     // Initial bat position will the in the top left corner of the room
     _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
 
     // Set the position of the score text to align to the left edge of the
     // room bounds, and to vertically be at the center of the first tile.
-    _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileSize * 0.5f);
+    _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
     // Set the origin of the text so it's left-centered.
     float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
@@ -869,12 +876,15 @@ private Vector2 _scoreTextOrigin;
 
     // Create the slime animated sprite from the atlas.
     _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+    _slime.Scale = new Vector2(4.0f, 4.0f);
 
     // Create the bat animated sprite from the atlas.
     _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+    _bat.Scale = new Vector2(4.0f, 4.0f);
 
-    // Load the tilemap from the XML configuration file.
+    // Create the tilemap from the XML configuration file.
     _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+    _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
     // Load the bounce sound effect
     _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
@@ -883,7 +893,7 @@ private Vector2 _scoreTextOrigin;
     _collectSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/collect&quot;);
 
     // Load the font
-    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/gameFont&quot;);
+    _font = Core.Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
 }
 </code></pre>
 <ul>

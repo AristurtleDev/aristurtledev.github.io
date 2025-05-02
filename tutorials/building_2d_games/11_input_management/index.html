@@ -176,7 +176,7 @@ protected override void Update(GameTime gameTime)
 <p>This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a &quot;just pressed&quot; or &quot;just released&quot; state, you'll need to compare the current input state with the previous frame's state.</p>
 <p>So far, we've only been working with our game within the <em>Game1.cs</em> file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable <code>InputManager</code> class to simplify this for us.</p>
 <p>Before we create the <code>InputManager</code> class, let's first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the <code>InputManager</code>.</p>
-<p>To get started, create a new directory called <em>Input</em> in the <em>MonoGameLibrary</em> project.  We'll put all of our input related classes here.</p>
+<p>To get started, create a new folder called <em>Input</em> in the <em>MonoGameLibrary</em> project.  We'll put all of our input related classes here.</p>
 <h2 id="the-keyboardinfo-class">The KeyboardInfo Class</h2>
 <p>Let's start our input management system by creating a class to handle keyboard input. The <code>KeyboardInfo</code> class will encapsulate all keyboard-related functionality, making it easier to:</p>
 <ul>
@@ -184,7 +184,7 @@ protected override void Update(GameTime gameTime)
 <li>Detect when keys are pressed or released</li>
 <li>Check if keys are being held down</li>
 </ul>
-<p>In the <em>Input</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>KeyboardInfo.cs</em> with this initial structure:</p>
+<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>KeyboardInfo.cs</em> with this initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input;
@@ -296,7 +296,7 @@ public bool WasKeyJustReleased(Keys key)
 <p>That's it for the <code>KeyboardInfo</code> class, let's move on to mouse input next.</p>
 <h2 id="mousebutton-enum">MouseButton Enum</h2>
 <p>Recall from the <a href="../10_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we'll create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
-<p>In the <em>Input</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>MouseButton.cs</em> with the following code:</p>
+<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>MouseButton.cs</em> with the following code:</p>
 <pre><code class="lang-csharp">namespace MonoGameLibrary.Input;
 
 public enum MouseButton
@@ -329,7 +329,7 @@ public enum MouseButton
 <li>Detect when mouse buttons are pressed or released</li>
 <li>Check if mouse buttons are being held down</li>
 </ul>
-<p>Let's create this class in the <em>Input</em> directory of the <em>MonoGameLibrary</em> project. Add a new file named <em>MouseInfo.cs</em> with the following initial structure:</p>
+<p>Let's create this class in the <em>Input</em> folder of the <em>MonoGameLibrary</em> project. Add a new file named <em>MouseInfo.cs</em> with the following initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -611,7 +611,7 @@ public void SetPosition(int x, int y)
 <li>Check if gamepad buttons are being held down.</li>
 <li>Start and Stop vibration of a gamepad.</li>
 </ul>
-<p>Let's create this class in the <em>Input</em> directory of the <em>MonoGameLibrary</em> project. Add a new file named <em>GamePadInfo.cs</em> with the following initial structure:</p>
+<p>Let's create this class in the <em>Input</em> folder of the <em>MonoGameLibrary</em> project. Add a new file named <em>GamePadInfo.cs</em> with the following initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -795,7 +795,7 @@ public void StopVibration()
 <p>That's it for the <code>GamePadInfo</code> class.  Next, let's create the actual input manager.</p>
 <h2 id="the-inputmanager-class">The InputManager Class</h2>
 <p>Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling.</p>
-<p>In the <em>Input</em> directory of the <em>MonoGameLibrary</em> project, add a new file named <em>InputManager.cs</em> with this initial structure:</p>
+<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>InputManager.cs</em> with this initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
@@ -1001,7 +1001,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Now let's update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <em>Game1.cs</em> in the game project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="71,77,83,89,95,103,108,111,115,121,123-124,129,135,141,147">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -1043,15 +1043,20 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
     {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -1111,11 +1116,11 @@ public class Game1 : Core
         if (gamePadOne.IsButtonDown(Buttons.A))
         {
             speed *= 1.5f;
-            GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(1));
         }
         else
         {
-            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+            gamePadOne.StopVibration();
         }
 
         // Check thumbstick first since it has priority over which gamepad input

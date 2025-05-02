@@ -211,7 +211,7 @@
 
 <p>To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:</p>
 <ol>
-<li>Open a new Command Prompt or Terminal window in the same directory as the <em>DungeonSlime.sln</em> solution file.</li>
+<li>Open a new Command Prompt or Terminal window in the same folder as the <em>DungeonSlime.sln</em> solution file.</li>
 <li>Enter the command <code>dotnet new mglib -n MonoGameLibrary</code> to create the project, placing it in a folder next to your game project.</li>
 <li>Enter the command <code>dotnet sln DungeonSlime.sln add ./MonoGameLibrary/MonoGameLibrary.csproj</code> to add the newly created class library project to the <em>DungeonSlime.sln</em> solution file.</li>
 </ol>
@@ -262,16 +262,16 @@
 
 <p>To add the game library project as a reference to the game project with the dotnet CLI:</p>
 <ol>
-<li>Open a new Command Prompt or Terminal window in the same directory as the <em>DungeonSlime.csproj</em> C# project file.</li>
+<li>Open a new Command Prompt or Terminal window in the same folder as the <em>DungeonSlime.csproj</em> C# project file.</li>
 <li>Enter the command <code>dotnet add ./DungeonSlime.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj</code>.  This will add the <em>MonoGameLibrary</em> reference to the <em>DungeonSlime</em> game project.</li>
 </ol>
 </section>
 </div>
 <h3 id="clean-up">Clean Up</h3>
-<p>When using the <em>MonoGame Game Library</em> project template, the generated project contains file similar to a standard MonoGame game project, including a <em>dotnet-tools.json</em> manifest file, a <em>Content.mgcb</em> file, and a <em>Game1.cs</em> file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the <em>MonoGameLibrary</em> project directory and delete them:</p>
+<p>When using the <em>MonoGame Game Library</em> project template, the generated project contains file similar to a standard MonoGame game project, including a <em>dotnet-tools.json</em> manifest file, a <em>Content.mgcb</em> file, and a <em>Game1.cs</em> file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the <em>MonoGameLibrary</em> project folder and delete them:</p>
 <ol>
-<li>The <em>.config/</em> directory.</li>
-<li>The <em>Content/</em> directory</li>
+<li>The <em>.config/</em> folder.</li>
+<li>The <em>Content/</em> folder</li>
 <li>The <em>Game1.cs</em> file.</li>
 </ol>
 <div class="TIP">

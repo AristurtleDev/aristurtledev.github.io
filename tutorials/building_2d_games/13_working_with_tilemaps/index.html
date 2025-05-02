@@ -182,7 +182,7 @@
 <p>Let's implement this concept in our game by creating a <code>Tileset</code> class and a <code>Tilemap</code> class.</p>
 <h2 id="the-tileset-class">The Tileset Class</h2>
 <p>The <code>Tileset</code> class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a <code>TextureRegion</code>, building on the tools in the library we created earlier.</p>
-<p>In the <em>Graphics</em> directory of the <em>MonoGameLibrary</em> project, create a new file named <em>Tileset.cs</em> with the following code as the initial structure:</p>
+<p>In the <em>Graphics</em> folder of the <em>MonoGameLibrary</em> project, create a new file named <em>Tileset.cs</em> with the following code as the initial structure:</p>
 <pre><code class="lang-csharp">namespace MonoGameLibrary.Graphics;
 
 public class Tileset
@@ -241,7 +241,7 @@ public Tileset(TextureRegion textureRegion, int tileWidth, int tileHeight)
     {
         int x = i % Columns * tileWidth;
         int y = i / Columns * tileHeight;
-        _tiles[i] = new TextureRegion(textureRegion.Texture, x, y, tileWidth, tileHeight);
+        _tiles[i] = new TextureRegion(textureRegion.Texture, textureRegion.SourceRectangle.X + x, textureRegion.SourceRectangle.Y + y, tileWidth, tileHeight);
     }
 }
 </code></pre><h3 id="tileset-methods">Tileset Methods</h3>
@@ -266,7 +266,7 @@ public TextureRegion GetTile(int column, int row)
 }
 </code></pre><h2 id="the-tilemap-class">The Tilemap Class</h2>
 <p>Now that we have a <code>Tileset</code> class to define our tile collection, we need a <code>Tilemap</code> class to arrange these tiles into a game level.  The <code>Tilemap</code> class will store which tile goes where in our game world and provide methods to draw the entire map.</p>
-<p>In the <em>Graphics</em> directory of the <em>MonoGameLibrary</em> project, create a new file named <em>Tilemap.cs</em> with the following code as the initial structure:</p>
+<p>In the <em>Graphics</em> folder of the <em>MonoGameLibrary</em> project, create a new file named <em>Tilemap.cs</em> with the following code as the initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using System.IO;
 using System.Xml;
@@ -302,9 +302,19 @@ public int Columns { get; }
 public int Count { get; }
 
 /// &lt;summary&gt;
-/// Gets the size of each tile in this tilemap.
+/// Gets or Sets the scale factor to draw each tile at.
 /// &lt;/summary&gt;
-public int TileSize { get; }
+public Vector2 Scale { get; set; }
+
+/// &lt;summary&gt;
+/// Gets the width, in pixels, each tile is drawn at.
+/// &lt;/summary&gt;
+public float TileWidth =&gt; _tileset.TileWidth * Scale.X;
+
+/// &lt;summary&gt;
+/// Gets the height, in pixels, each tile is drawn at.
+/// &lt;/summary&gt;
+public float TileHeight =&gt; _tileset.TileHeight * Scale.Y;
 </code></pre><h3 id="tilemap-constructor">Tilemap Constructor</h3>
 <p>The <code>Tilemap</code> constructor should require the <code>Tilemap</code> to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.  Add the following constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -313,14 +323,13 @@ public int TileSize { get; }
 /// &lt;param name=&quot;tileset&quot;&gt;The tileset used by this tilemap.&lt;/param&gt;
 /// &lt;param name=&quot;columns&quot;&gt;The total number of columns in this tilemap.&lt;/param&gt;
 /// &lt;param name=&quot;rows&quot;&gt;The total number of rows in this tilemap.&lt;/param&gt;
-/// &lt;param name=&quot;tileSize&quot;&gt;The size of each tile in this tilemap.&lt;/param&gt;
-public Tilemap(Tileset tileset, int columns, int rows, int tileSize)
+public Tilemap(Tileset tileset, int columns, int rows)
 {
     _tileset = tileset;
     Rows = rows;
     Columns = columns;
     Count = Columns * Rows;
-    TileSize = tileSize;
+    Scale = Vector2.One;
     _tiles = new int[Count];
 }
 </code></pre><h3 id="tilemap-tile-management-methods">Tilemap Tile Management Methods</h3>
@@ -387,8 +396,8 @@ public void Draw(SpriteBatch spriteBatch)
         int x = i % Columns;
         int y = i / Columns;
 
-        Vector2 position = new Vector2(x * TileSize, y * TileSize);
-        tile.Draw(spriteBatch, position, Color.White);
+        Vector2 position = new Vector2(x * TileWidth, y * TileHeight);
+        tile.Draw(spriteBatch, position, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 1.0f);
     }
 }
 </code></pre><h3 id="tilemap-fromfile-method">Tilemap FromFile Method</h3>
@@ -409,10 +418,6 @@ public static Tilemap FromFile(ContentManager content, string filename)
         {
             XDocument doc = XDocument.Load(reader);
             XElement root = doc.Root;
-
-            // The &lt;Tilemap&gt; element contains an attribute that specifies the
-            // size of each tile in the tilemap
-            int tileSize = int.Parse(root.Attribute(&quot;tileSize&quot;)?.Value ?? &quot;0&quot;);
 
             // The &lt;Tileset&gt; element contains the information about the tileset
             // used by the tilemap.
@@ -474,7 +479,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
             int columnCount = rows[0].Split(&quot; &quot;, StringSplitOptions.RemoveEmptyEntries).Length;
 
             // Create the tilemap
-            Tilemap tilemap = new Tilemap(tileset, columnCount, rows.Length, tileSize);
+            Tilemap tilemap = new Tilemap(tileset, columnCount, rows.Length);
 
             // Process each row
             for (int row = 0; row &lt; rows.Length; row++)
@@ -508,7 +513,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
 <li>Update the game to load the tilemap from the configuration file and draw it.</li>
 </ol>
 <h3 id="update-the-texture-atlas">Update the Texture Atlas</h3>
-<p>Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as <em>atlas.png</em> in the <em>Content/images</em> directory of the game project, overwriting the existing one.</p>
+<p>Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as <em>atlas.png</em> in the <em>Content/images</em> folder of the game project, overwriting the existing one.</p>
 <table>
 <thead>
 <tr>
@@ -521,38 +526,16 @@ public static Tilemap FromFile(ContentManager content, string filename)
 </tr>
 </tbody>
 </table>
-<p>Since the texture atlas image was updated and the location of the slime and bat sprites were repositioned, we need to update the atlas configuration file as well.  Open the <em>atlas-definition.xml</em> configuration file and update it to the following:</p>
-<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;TextureAtlas&gt;
-    &lt;Texture&gt;images/atlas&lt;/Texture&gt;
-    &lt;Regions&gt;
-        &lt;Region name=&quot;slime-1&quot; x=&quot;320&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;slime-2&quot; x=&quot;320&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-1&quot; x=&quot;320&quot; y=&quot;160&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-2&quot; x=&quot;320&quot; y=&quot;240&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-3&quot; x=&quot;400&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-    &lt;/Regions&gt;
-    &lt;Animations&gt;
-        &lt;Animation name=&quot;slime-animation&quot; delay=&quot;200&quot;&gt;
-            &lt;Frame region=&quot;slime-1&quot; /&gt;
-            &lt;Frame region=&quot;slime-2&quot; /&gt;
-        &lt;/Animation&gt;
-        &lt;Animation name=&quot;bat-animation&quot; delay=&quot;200&quot;&gt;
-            &lt;Frame region=&quot;bat-1&quot; /&gt;
-            &lt;Frame region=&quot;bat-2&quot; /&gt;
-            &lt;Frame region=&quot;bat-1&quot; /&gt;
-            &lt;Frame region=&quot;bat-3&quot; /&gt;
-        &lt;/Animation&gt;
-    &lt;/Animations&gt;
-&lt;/TextureAtlas&gt;
-</code></pre>
-<p>This change just adjusts the x and y coordinate positions to match the new locations of the slime and bat sprites in the atlas.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Since the slime and bat sprites are in the same position in the new texture atlas, we do not need to update the atlas XML configuration file.</p>
+</div>
 <h2 id="creating-a-tilemap-xml-configuration">Creating a Tilemap XML Configuration</h2>
 <p>Now that we have the texture atlas updated to include the tileset, let's create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.</p>
-<p>Create a new file named <em>tilemap-definition.xml</em> in the <em>Content/images</em> directory of the game project and add the following:</p>
+<p>Create a new file named <em>tilemap-definition.xml</em> in the <em>Content/images</em> folder of the game project and add the following:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;Tilemap tileSize=&quot;80&quot;&gt;
-    &lt;Tileset region=&quot;0 0 320 320&quot; tileWidth=&quot;80&quot; tileHeight=&quot;80&quot;&gt;images/atlas&lt;/Tileset&gt;
+&lt;Tilemap&gt;
+    &lt;Tileset region=&quot;0 40 80 80&quot; tileWidth=&quot;20&quot; tileHeight=&quot;20&quot;&gt;images/atlas&lt;/Tileset&gt;
     &lt;Tiles&gt;
         00 01 02 01 02 01 02 01 02 01 02 01 02 01 02 03
         04 05 05 06 05 05 06 05 05 06 05 05 06 05 05 07
@@ -597,7 +580,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
 </table>
 <h3 id="update-the-game1-class">Update the Game1 Class</h3>
 <p>With all of the assets now in place and configured, let's update the <code>Game1</code> class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="31-35,46-61,78-79,111,113,115,117,120,122,124,126,144,147,149,152,155,158,160,163,183-186,308-309">using System;
+<pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -644,17 +627,17 @@ public class Game1 : Core
 
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
-        _roomBounds = new Rectangle(
-            _tilemap.TileSize,
-            _tilemap.TileSize,
-            screenBounds.Width - _tilemap.TileSize * 2,
-            screenBounds.Height - _tilemap.TileSize * 2
+       _roomBounds = new Rectangle(
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)_tilemap.TileWidth * 2,
+            screenBounds.Height - (int)_tilemap.TileHeight * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -670,12 +653,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
@@ -774,13 +760,7 @@ public class Game1 : Core
 
         if (slimeBounds.Intersects(batBounds))
         {
-            // Divide the width  and height of the screen into equal columns and
-            // rows based on the width and height of the bat.
-            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
             // Choose a random row and column based on the total number of each
-            // available within the bounds of the tilemap walls.
             int column = Random.Shared.Next(1, _tilemap.Columns - 1);
             int row = Random.Shared.Next(1, _tilemap.Rows - 1);
 
@@ -930,7 +910,12 @@ public class Game1 : Core
 <li>The starting position of the slime is now set to be in the center of the room.</li>
 </ol>
 </li>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>, the tilemap is loaded from the XML configuration file.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a>:
+<ol>
+<li>The tilemap is loaded from the XML configuration file.</li>
+<li>The scale of the tilemap is set to a factor of 4.0.</li>
+</ol>
+</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the <code>screenBounds</code> variable was removed and the collision logic has been updated to instead use the <code>_roomBounds</code> instead.</li>
 <li>In <a href="Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> the tilemap is drawn.</li>
 </ol>

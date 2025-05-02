@@ -140,7 +140,7 @@
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
 <p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
-<p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
+<p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 
@@ -199,11 +199,11 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 &lt;TextureAtlas&gt;
     &lt;Texture&gt;images/atlas&lt;/Texture&gt;
     &lt;Regions&gt;
-        &lt;Region name=&quot;slime-1&quot; x=&quot;0&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;slime-2&quot; x=&quot;80&quot; y=&quot;0&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-1&quot; x=&quot;0&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-2&quot; x=&quot;80&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
-        &lt;Region name=&quot;bat-3&quot; x=&quot;160&quot; y=&quot;80&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;
+        &lt;Region name=&quot;slime-1&quot; x=&quot;0&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;slime-2&quot; x=&quot;0&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-1&quot; x=&quot;20&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-2&quot; x=&quot;20&quot; y=&quot;20&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+        &lt;Region name=&quot;bat-3&quot; x=&quot;40&quot; y=&quot;0&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
     &lt;/Regions&gt;
     &lt;Animations&gt;
         &lt;Animation name=&quot;slime-animation&quot; delay=&quot;200&quot;&gt;
@@ -408,7 +408,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 <p>By inheriting from <code>Sprite</code>, our <code>AnimatedSprite</code> class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding animation-specific functionality.</p>
 </div>
 <p>The key to this design is the <code>Sprite.Region</code> property. Our <code>Sprite</code> class already knows how to render whatever region is currently set, so our <code>AnimatedSprite</code> class just needs to update this region property to the correct animation frame at the right time.</p>
-<p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
+<p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
@@ -527,7 +527,7 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
 }
 </code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
 <p>Let's adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-38,48-52">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,50-54">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -562,9 +562,11 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
@@ -608,7 +610,7 @@ public class Game1 : Core
 <ul>
 <li>The <code>_slime</code> and <code>_bat</code> members were changed from <code>Sprite</code>  to <code>AnimatedSprite</code>.</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> the <code>_slime</code> and <code>_bat</code> sprites are now created using the new <code>TextureAtlas.CreateAnimatedSprite</code> method.</li>
-<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the animations are updated based on the game time using hte <code>AnimatedSprite.Update</code> method.</li>
+<li>In <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>, the animations are updated based on the game time using the <code>AnimatedSprite.Update</code> method.</li>
 </ul>
 <p>Running the game now shows both sprites animating automatically:</p>
 <ul>

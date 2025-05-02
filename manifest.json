@@ -1161,16 +1161,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png",
-      "output": {
-        "resource": {
-          "relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/images/content-pipeline-workflow-full.svg",
       "output": {
         "resource": {
@@ -1251,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1766,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1896,10 +1886,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF",
+      "source_relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_11.TTF"
+          "relative_path": "tutorials/building_2d_games/16_working_with_spritefonts/files/04B_30.ttf"
         }
       },
       "version": ""
@@ -1939,18 +1929,28 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/17_scenes/images/atlas.png"
+          "relative_path": "tutorials/building_2d_games/17_scenes/files/04B_30_5x.spritefont"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/17_scenes/images/font_added.png"
         }
       },
       "version": ""
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2096,20 +2096,30 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/anchor.png",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_anchor.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/anchor.png"
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_anchor.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/dock.png",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_anchor_positioning.svg",
       "output": {
         "resource": {
-          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/dock.png"
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_anchor_positioning.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_dock.svg",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/19_user_interface_fundamentals/images/user_interface_dock.svg"
         }
       },
       "version": ""
@@ -2272,8 +2282,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",

@@ -163,51 +163,43 @@
 <h2 id="anchoring-and-docking">Anchoring and Docking</h2>
 <p>In UI systems, two important concepts help with positioning elements: anchoring and docking.</p>
 <h3 id="anchoring">Anchoring</h3>
-<p>Anchoring allows you to position UI elements relative to specific reference points on their parents. Common anchor points include</p>
-<ul>
-<li>TopLeft</li>
-<li>Top</li>
-<li>TopRight</li>
-<li>Left</li>
-<li>Center</li>
-<li>Right</li>
-<li>BottomLeft</li>
-<li>Bottom</li>
-<li>BottomRight</li>
-</ul>
+<p>Anchoring allows you to position UI elements relative to specific reference points on their parents. The following diagram demonstrates common anchor points:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/anchor.png" alt="Figure 19-1: Diagram showing the different anchor points"></th>
+<th style="text-align: center;"><img src="images/user_interface_anchor.svg" alt="Figure 19-1: Diagram showing common anchor points"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 19-1: Diagram showing the different anchor points</strong></td>
+<td style="text-align: center;"><strong>Figure 19-1: Diagram showing common anchor points</strong></td>
 </tr>
 </tbody>
 </table>
-<p>When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a &quot;Right&quot; anchor and an X value of -5, you element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the parent's size.</p>
-<h3 id="docking">Docking</h3>
-<p>Docking takes anchoring a step further by also adjusting an element's size to fill available space.  Common docking options include:</p>
-<ul>
-<li>Top: Anchors to top edge and fills horizontally.</li>
-<li>Left: Anchors to left edge and fills vertically.</li>
-<li>Right: Anchors to right edge and fills vertically.</li>
-<li>Bottom: Anchors to bottom edge and fills horizontally.</li>
-<li>Fill: Anchors to the center and fills the entire parent area vertically and horizontally.</li>
-<li>FillHorizontally: Stretches across parent's width, filling horizontally.</li>
-<li>FillVertically: Stretches across parent's height, filling vertically.</li>
-</ul>
+<p>When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a &quot;Right&quot; anchor and an X value of -5, you element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the parent's size, as demonstrated in the following diagram:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/dock.png" alt="Figure 19-2: Diagram showing the different docks"></th>
+<th style="text-align: center;"><img src="images/user_interface_anchor_positioning.svg" alt="Figure 19-2: Diagram showing anchored element positioning relative to anchor regardless of parent size"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 19-2: Diagram showing the different docks</strong></td>
+<td style="text-align: center;"><strong>Figure 19-2: Diagram showing anchored element positioning relative to anchor regardless of parent size</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="docking">Docking</h3>
+<p>Docking takes anchoring a step further by also adjusting an element's size to fill available space.  The following diagram demonstrates common docking options:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/user_interface_dock.svg" alt="Figure 19-3: Diagram showing the common docking options"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 19-3: Diagram showing the common docking options</strong></td>
 </tr>
 </tbody>
 </table>

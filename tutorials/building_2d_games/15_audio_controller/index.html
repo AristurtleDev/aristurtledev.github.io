@@ -139,9 +139,9 @@
 <h2 id="the-audiocontroller-class">The AudioController Class</h2>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new directory named <em>Audio</em>.</p>
+<li><p>Create a new folder named <em>Audio</em>.</p>
 </li>
-<li><p>Add a new class file named <em>AudioController.cs</em> to the <em>Audio</em> directory you just created.</p>
+<li><p>Add a new class file named <em>AudioController.cs</em> to the <em>Audio</em> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class</p>
 <pre><code class="lang-csharp">using System;
@@ -624,7 +624,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="45-46,77-78,101-102,196-197,215-216,269-287">using System;
+<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,199-200,218-219,272-290">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -683,16 +683,16 @@ public class Game1 : Core
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
         _roomBounds = new Rectangle(
-            _tilemap.TileSize,
-            _tilemap.TileSize,
-            screenBounds.Width - _tilemap.TileSize * 2,
-            screenBounds.Height - _tilemap.TileSize * 2
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)_tilemap.TileWidth * 2,
+            screenBounds.Height - (int)_tilemap.TileHeight * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -711,12 +711,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite(&quot;slime-animation&quot;);
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
-        // Load the tilemap from the XML configuration file.
+        // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
+        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         // Load the bounce sound effect
         _bounceSoundEffect = Content.Load&lt;SoundEffect&gt;(&quot;audio/bounce&quot;);
@@ -908,8 +911,8 @@ public class Game1 : Core
         // If the - button was pressed, decrease the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
         {
-            Audio.SongVolume += 0.1f;
-            Audio.SoundEffectVolume += 0.1f;
+            Audio.SongVolume -= 0.1f;
+            Audio.SoundEffectVolume -= 0.1f;
         }
     }
 
