@@ -2381,6 +2381,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/25_packaging_game/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/25_packaging_game/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
