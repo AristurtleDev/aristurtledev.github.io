@@ -130,7 +130,7 @@
 </ul>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation fo understanding how to create shader effect (<em>.fx</em>) files, loading them through the content pipeline, and using them in your game.</p>
+<p>This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation of understanding how to create shader effect (<em>.fx</em>) files, loading them through the content pipeline, and using them in your game.</p>
 <p>If you want to learn more about the shader language itself, a good place to start would be the <a href="https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl">High-level shader language (HLSL)</a> documentation on Microsoft Learn.</p>
 <p>For inspiration on what can be achieved with shaders, check out <a href="https://www.shadertoy.com">ShaderToy</a>, which showcases real-time shader effects created by others.  Note that ShaderToy uses <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">OpenGL Shading Language (GLSL)</a> which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.</p>
 </div>
@@ -166,6 +166,34 @@
 <h5>Note</h5>
 <p>There are other types of shaders beyond vertex and pixel shaders, such as compute shaders, geometry shaders, and hull/domain shaders.  These more advanced shader types enabled powerful features like physics simulations, procedural geometry, and complex post-processing effects.  However, they are not currently supported in the standard MonoGame implementation and are beyond the scope of this beginner tutorial.  As the MonoGame graphics pipeline evolves, support for these advanced shader types may be added in future versions.</p>
 </div>
+<h3 id="the-shader-pipeline">The Shader Pipeline</h3>
+<p>To understand how shaders work, it helps to visualize how data flow through the rendering pipeline.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/shader-pipeline.png" alt="Figure 24-1: Basic shader pipeline showing how data flows through the rendering process"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 24-1: Basic shader pipeline showing how data flows through the rendering process</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This diagram illustrates the fundamental steps of the shader pipeline:</p>
+<ol>
+<li><strong>Input Data</strong>: The process begins with input data that is sent to the GPU to render:
+<ol>
+<li><strong>Vertex Data</strong>: The vertex data (positions, colors, etc.) that define the geometry of what is being drawn.</li>
+<li><strong>Texture</strong>: The image data that will be applied to the geometry.</li>
+</ol>
+</li>
+<li><strong>Vertex Shader</strong>: Processes each vertex, calculating its final position on the screen and passing the data to the next stage.</li>
+<li><strong>Sampler</strong>: Controls how texture data is accessed, applying <a href="../18_texture_sampling/index.html#filtering-modes">filtering</a> (how pixels blend when scaled) and <a href="../18_texture_sampling/index.html#addressing-modes">addressing</a> (what happens at texture edges).</li>
+<li><strong>Pixel Shader</strong>: Takes the transformed vertices and sampled texture data to calculate the final color of each pixel.</li>
+<li><strong>Output</strong>: The final rendered image that appears on your screen.</li>
+</ol>
+<p>When working with <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> (2D) in MonoGame, the framework handles most of the vertex shader work automatically, which is why we will focus primarily on writing pixel shaders for visual effects.</p>
 <h3 id="shader-languages-and-cross-platform-considerations">Shader Languages and Cross-Platform Considerations</h3>
 <p>MonoGame uses the <a href="https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl">High-Level Shader Language (HLSL)</a> for writing shader effects. HLSL is a C-like programming language developed by Microsoft for DirectX. As MonoGame also supports OpenGL which uses the <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">OpenGL Shading Language (GLSL)</a> instead of DirectX, it needs a way to make shaders work everywhere.</p>
 <p>This is where MojoShader comes in. MojoShader is a library that automatically translates your HLSL shader code into whatever format the target platform requires (like GLSL for OpenGL platforms). This translation happens during the content build process when you compile your game.</p>
@@ -456,7 +484,7 @@ technique SpriteDrawing
 </code></pre>
 <p>The key modifications made to create this grayscale effect include:</p>
 <ol>
-<li><p><strong>Added a Parameter</strong>: A <code>Saturation</code> parameter was added that controls he intensity of the grayscale effect.</p>
+<li><p><strong>Added a Parameter</strong>: A <code>Saturation</code> parameter was added that controls the intensity of the grayscale effect.</p>
 <ul>
 <li>When set to 0, the image will be fully grayscale.</li>
 <li>When set to 1, the image will be its original color.</li>
