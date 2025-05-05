@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1949,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2322,8 +2322,8 @@
     },
     {
       "log_codes": [
-        "UidNotFound",
-        "InvalidFileLink"
+        "InvalidFileLink",
+        "UidNotFound"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
@@ -2396,6 +2396,186 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/25_packaging_game/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/basic-information.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/basic-information.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/community.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/community.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/cover-image-uploaded.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/cover-image-uploaded.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/cover-image.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/cover-image.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/description.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/description.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/download-install-instructions.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/download-install-instructions.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/game-page-popup.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/game-page-popup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/gameover-screen.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/gameover-screen.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/gameplay-screen.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/gameplay-screen.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/metadata.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/metadata.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/options-screen.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/options-screen.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/pricing.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/pricing.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/project-page.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/project-page.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/screenshots-added.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/screenshots-added.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/title-screen.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/title-screen.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/upload.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/upload.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/visibility-access.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/images/visibility-access.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/26_publish_to_itch/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/26_publish_to_itch/index.html"
         }
       },
       "version": ""
