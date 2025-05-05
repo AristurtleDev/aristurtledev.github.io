@@ -1050,7 +1050,7 @@ private Queue&lt;Vector2&gt; _inputBuffer;
 // The maximum size of the buffer queue.
 private const int MAX_BUFFER_SIZE = 2;
 </code></pre>
-<p>This queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.</p>
+<p>The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.</p>
 <p>Next, we need to initialize this queue.  In the <code>Slime</code> class, locate the <code>Initialize</code> method and and update it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="30-31">/// &lt;summary&gt;
 /// Initializes the slime, can be used to reset it back to an initial state.
