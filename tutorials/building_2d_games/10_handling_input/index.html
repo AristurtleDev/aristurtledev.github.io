@@ -1079,8 +1079,8 @@ public class Game1 : Core
 <li>Preserving the order of inputs for more predictable behavior.</li>
 <li>Creating a sense that the game is actually listening to the player.</li>
 </ol>
-<h3 id="implementing-a-simple-input-buffer">Implementing a Simple Input Buffer</h3>
-<p>A basic input buffer can be implemented using a queue data structure, which follows a First-In-First-Out (FIFO) pattern:</p>
+<h3 id="example-of-a-simple-input-buffer">Example of a Simple Input Buffer</h3>
+<p>A basic input buffer can be implemented using a queue data structure, which follows a First-In-Out (FIFO) pattern.  The following is an example of how this might work:</p>
 <pre><code class="lang-csharp">// Use a queue directly for input buffering
 private Queue&lt;Vector2&gt; _inputBuffer;
 private const int MAX_BUFFER_SIZE = 2;
