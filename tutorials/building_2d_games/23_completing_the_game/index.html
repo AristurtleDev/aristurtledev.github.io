@@ -1051,7 +1051,7 @@ private Queue&lt;Vector2&gt; _inputBuffer;
 private const int MAX_BUFFER_SIZE = 2;
 </code></pre>
 <p>The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.</p>
-<p>Next, we need to initialize this queue.  In the <code>Slime</code> class, locate the <code>Initialize</code> method and and update it to the following:</p>
+<p>Next, we need to initialize The queue.  In the <code>Slime</code> class, locate the <code>Initialize</code> method and and update it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="30-31">/// &lt;summary&gt;
 /// Initializes the slime, can be used to reset it back to an initial state.
 /// &lt;/summary&gt;
@@ -1086,7 +1086,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 }
 </code></pre>
 <p>Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwriting the <code>_nextDirection</code> field.  In the <code>Slime</code> class, locate the <code>HandleInput</code> method and update it to the following</p>
-<pre><code class="lang-csharp">private void HandleInput()
+<pre><code class="lang-csharp" highlight-lines="3,22-38">private void HandleInput()
 {
     Vector2 potentialNextDirection = Vector2.Zero;
 
