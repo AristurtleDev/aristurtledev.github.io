@@ -1241,8 +1241,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/05_content_pipeline/index.md",
@@ -1756,8 +1756,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/13_working_with_tilemaps/index.md",
@@ -1949,8 +1949,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/17_scenes/index.md",
@@ -2322,8 +2322,8 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink",
-        "UidNotFound"
+        "UidNotFound",
+        "InvalidFileLink"
       ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/building_2d_games/22_snake_game_mechanics/index.md",
@@ -2549,6 +2549,16 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/building_2d_games/26_publish_to_itch/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/building_2d_games/27_conclusion/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/building_2d_games/27_conclusion/index.html"
         }
       },
       "version": ""
