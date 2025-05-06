@@ -117,19 +117,17 @@
         </div>
 
         <article data-uid="">
-<h1 id="understanding-itchio-as-a-distribution-platform">Understanding itch.io as a Distribution Platform</h1>
+<h1 id="chapter-26-publishing-your-game-to-itchio">Chapter 26: Publishing Your Game to itch.io</h1>
 <p class="text-secondary">Learn how to deploy your MonoGame project to itch.io and configure it for players across different platforms.</p>
-<p>After packaging your game for various platforms in <a href="../25_packaging_game/index.html">Chapter 25</a>, the next step is to make it available for other players.  While there are many distribution platforms available (<a href="https://store.steampowered.com/">Steam</a>, <a href="https://publish.unrealengine.com/v3/welcome">Unreal</a>, <a href="https://www.gog.com/en">Good Old Games (GOG)</a>), <a href="https://itch.io/">itch.io</a> has become a popular choice for indie developers due to its simple publishing processes, developer-friendly revenue model, and strong community focus.</p>
+<p>After packaging your game for various platforms in <a href="../25_packaging_game/index.html">Chapter 25</a>, the next step is to make it available for other players.  While there are many distribution platforms available (<a href="https://store.steampowered.com/">Steam</a>, <a href="https://store.epicgames.com/en-US/">Epic Games store</a>, <a href="https://www.gog.com/en">Good Old Games (GOG)</a>), <a href="https://itch.io/">itch.io</a> has become a popular choice for indie developers due to its simple publishing processes, developer-friendly revenue model, and strong community focus.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn about itch.io and why it is beneficial for indie game developers.</li>
+<li>Create and configure an itch.io developer account with appropriate security measures.</li>
 <li>Create a project page that effectively showcases your game.</li>
-<li>Upload and configure platform-specific builds.</li>
-<li>Set up proper metadata and screenshots to attract players.</li>
-<li>Test your published game to ensure everything works correctly.</li>
 </ul>
 <h2 id="understanding-itchio-as-a-distribution-platform">Understanding itch.io as a Distribution Platform</h2>
-<p>Itch.io is an open marketplace for independent digital creators with a focus on indie games.  Unlike larger platforms with strict approval processes, itch.io allows any developer to publish their games instantly.  this makes it a good starting point for new developers looking to build an audience.</p>
+<p>Itch.io is an open marketplace for independent digital creators with a focus on indie games.  Unlike larger platforms with strict approval processes, itch.io allows any developer to publish their games instantly.  This makes it an ideal starting point for new developers looking to build an audience.</p>
 <p>Key benefits of itch.io for developers include:</p>
 <ol>
 <li><strong>Simple Publishing Process</strong>: No approval waiting periods or complex requirements.</li>
@@ -137,9 +135,11 @@
 <li><strong>Cross-Platform Support</strong>: Easy distribution for Windows, macOS, and Linux builds.</li>
 <li><strong>Community Focused</strong>: Built-in tools for building a community around you and your games, including devlogs and comments.</li>
 <li><strong>Developer-Friendly Revenue Split</strong>: The platform lets developers choose their revenue share (the default 90% to developers, 10% to itch.io).</li>
+<li><strong>Analytics and Insights</strong>: Basic analytics to track downloads, views, and purchases.</li>
+<li><strong>Game Jams</strong>: Integrated tools for hosting and participating in game development competitions.</li>
 </ol>
 <h2 id="setting-up-an-itchio-account">Setting Up an itch.io Account</h2>
-<p>Before you can publish your game, you need to create an itch.io account and setup your developer profile.  To do this</p>
+<p>Before you can publish your game, you need to create an itch.io account and set up your developer profile.  To do this</p>
 <ol>
 <li><p>Navigate to <a href="https://itch.io">itch.io</a> and click &quot;Register&quot; in the top-right corner.</p>
 </li>
@@ -150,9 +150,9 @@
 <p>The username can be changed later in your account settings if needed.</p>
 </div>
 </li>
-<li><p>After registering, you will automatically be logged in, however for some additional configurations that need to be made, you must validate your email address.  Check the email address you entered when you registered above for a new email from itch.io to validate the email address.</p>
+<li><p>After registering, you will automatically be logged in.  However, for some additional configurations that need to be made, you must validate your email address.  Check the email address you entered when you registered for a new email from itch.io to validate the email address.</p>
 </li>
-<li><p>After validating your email address, go to your account settings by clicking your username in the top-right corner, and then choosing &quot;Settings&quot;</p>
+<li><p>After validating your email address, go to your account settings by clicking your username in the top-right corner, and then choosing &quot;Settings&quot;.</p>
 </li>
 <li><p>The settings page opens with your developer profile configuration.  Complete your developer profile with:</p>
 <ul>
@@ -166,352 +166,547 @@
 <li><p>If you plan to sell your game, you will need to configure your publisher information.  To do this, click the &quot;Get Started&quot; section under &quot;Publisher&quot; on the left and follow the steps presented to configure your account to accept payments.</p>
 </li>
 </ol>
-<h2 id="creating-a-project-page-for-dungeon-slime">Creating a Project Page for Dungeon Slime</h2>
-<p>Once your account is setup, you can created a dedicated page for the game. This page will host all the information, screenshots, and download files.  In this section, we begin by setting the initial information to create a project page.  Complete the following:</p>
-<ol>
-<li>Select the &quot;Dashboard&quot; navigation link at the top of the itch.io page.</li>
-<li>From the dashboard, select &quot;Create new project&quot;.</li>
-</ol>
-<p>This will open the &quot;Create a new project&quot; page which presents you with a form to complete to detail information about the ame, upload the game files, and screenshots.</p>
-<h3 id="basic-project-information">Basic Project Information</h3>
-<p>First, we will fill in the basic project information on the form. Complete the following:</p>
-<ol>
-<li><p><strong>Title</strong>: The title of the game is how it will be displayed and shown on itch.io.  For this project, enter &quot;Dungeon Slime&quot;.</p>
-</li>
-<li><p><strong>Project URL</strong>: Once you enter a title, a project URl will be automatically generated based on the title entered.  Since we entered &quot;Dungeon Slime&quot; as the title, the project URl that is automatically generated is <code>https://yourusername.itch.io/dungeon-slime</code>.  For this project we will leave it as is, however it can be customized if you wish to do so.</p>
-</li>
-<li><p><strong>Short Description or tagline</strong>: Here you can enter a short description that is shown in embedded link previews for your game when you or others share it on different social media platforms.  For this project, enter the following:</p>
-<pre><code class="lang-text">A snake-like game where you control a growing slime creature that eats bats to grow larger.
-</code></pre>
-</li>
-<li><p><strong>Kind of Project</strong>: Here you can choose the kind of project being uploaded.  Since MonOgame is distrusted by packaging the game and giving players the archived bundle, it is a &quot;Downloadable&quot; kind, so choose this.</p>
-</li>
-<li><p><strong>Release Status</strong>: Here you can choose the status of the release.  If the project is completed and ready for others to download and play, you can choose &quot;Released&quot;; otherwise, there are other options such as &quot;In development&quot;, &quot;On hold&quot;, &quot;Cancelled&quot;, and &quot;Prototype&quot;.  For this project, choose &quot;Released&quot;.</p>
-</li>
-</ol>
+<h2 id="creating-a-new-project">Creating a New Project</h2>
+<p>To put your game on itch.io, you first need to create a new project.  When creating a new project, you will be filling out information about the game to generate a project page that contains all the information about the game including the title, description, screenshots, and download files.</p>
+<p>To create a new project, click the arrow beside your username in the top-right corner of the page, and choose &quot;Upload new project&quot;.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/basic-information.png" alt="Figure 25-1: Example of basic project information filled in for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/upload-new-project.png" alt="Figure 26-1: Drop-down menu after clicking the arrow beside user name with &quot;Upload new project&quot; highlighted"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-1: Example of basic project information filled in for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-1: Drop-down menu after clicking the arrow beside user name with &quot;Upload new project&quot; highlighted</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This will open the &quot;Create a new project page&quot;, which presents you with a form to to enter information abut the game, upload the game files, and add screenshots.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/create-a-new-project-page.png" alt="Figure 26-2: The &quot;Create a new project&quot; page on itch.io"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 26-2: The &quot;Create a new project&quot; page on itch.io</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You can also create a new project by going to your dashboard by clicking the &quot;Dashboard&quot; navigation link at the top of the page, then clicking the &quot;Create new project&quot; button on the dashboard page.</p>
+</div>
+<h3 id="basic-project-information">Basic Project Information</h3>
+<p>The first section of the form contains fields for the basic information about the project.</p>
+<ol>
+<li><p><strong>Title</strong>: The title of the game.  This is how it will be displayed and shown throughout the itch.io website.</p>
+</li>
+<li><p><strong>Project URL</strong>: The URL of the project.  This is the address you will share on social media platforms and other communities to point others to the project page for your game.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When you enter the title of your game, the project URL will automatically generate based on the title entered (e.g. <code>https://yourusername.itch.io/project-title</code>).  The autogenerated URL is usually fine, but you can customize it if you are not happy with it.</p>
+</div>
+</li>
+<li><p><strong>Short description or tagline</strong>: Here you can enter a short description that is shown in embedded link previews for your game when it is shared on different social media platforms.</p>
+</li>
+<li><p><strong>Kind of project</strong>: The type of project you are uploading.  The available options are:</p>
+<ul>
+<li><strong>Downloadable</strong>: For projects that require users to download and run files locally.  This is the appropriate choice for MonoGame projects since they are distributed as executable packages.</li>
+<li><strong>HTML</strong>: For web-based games or applications that run directly in the browser, typically using HTML5, JavaScript, and CSS.</li>
+<li><strong>Flash</strong>: For legacy Flash applications that require the Flash Player plugin.  This format is largely obsolete since Adobe discontinued Flash support.</li>
+<li><strong>Java applet</strong>: For Java-based applications that run in a browser.  Like Flash, this technology has been largely phased out of modern web development.</li>
+<li><strong>Unity &lt;= 5.3</strong>: For older Unity Web Player games that run in the browser.  Newer Unity games typically use WebGL, which would fall under the HTML category.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Since MonoGame games are distributed by packaging them into an archived bundle, you should choose the &quot;Downloadable&quot; option.</p>
+</div>
+</li>
+<li><p><strong>Classification</strong>: What type of project are you uploading.  The available options are:</p>
+<ul>
+<li><strong>Games</strong>: Interactive software designed primarily for entertainment or educational purposes.</li>
+<li><strong>Game assets</strong>: Resources used in game development, such as graphics, audio, fonts, or code modules.</li>
+<li><strong>Game mods</strong>: Modifications that alter or enhance an existing game's content or mechanics.</li>
+<li><strong>Physical games</strong>: Tabletop, card, or other non-digital games that can be printed or manufactured.</li>
+<li><strong>Albums &amp; soundtracks</strong>: Musical compositions, including game soundtracks or independent music projects.</li>
+<li><strong>Tools</strong>: Utility software that assists in game development or other creative processes.</li>
+<li><strong>Comics</strong>: Sequential art narratives in digital format.</li>
+<li><strong>Books</strong>: Literary works including novels, guides, or educational texts.</li>
+<li><strong>Other</strong>: Projects that don't fit into the predefined categories.</li>
+</ul>
+</li>
+<li><p><strong>Release Status</strong>: Set the development status of the project.  The available options are:</p>
+<ul>
+<li><strong>Released</strong>: The project is complete and ready for public distribution, though it may receive updates.</li>
+<li><strong>In development</strong>: The project is actively being worked on and may be available as an early access version.</li>
+<li><strong>On hold</strong>: Development has been temporarily paused but is expected to resume in the future.</li>
+<li><strong>Canceled</strong>: Development has been permanently discontinued.</li>
+<li><strong>Prototype</strong>: An early experimental version meant for concept testing rather than complete gameplay.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can change the release status of the project at any time after creating the project page.</p>
+</div>
+</li>
+</ol>
+<p>The following is an example of the basic project information that would be filled in for the Dungeon Slime game we developed throughout this tutorial series:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/basic-information.png" alt="Figure 26-3: The basic project information for the Dungeon Slime game"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 26-3: The basic project information for the Dungeon Slime game</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="pricing">Pricing</h3>
-<p>Itch.io offers three pricing models for your project:</p>
+<p>Following the basic information about the project, the next section of the form is for setting the price users would pay to download the game.  Itch.io offers three pricing models for a project:</p>
 <ol>
-<li><strong>$0 or donate</strong>: With this pricing model, the game can be downloaded for free, but users are given a prompt to ask if they would like to donate an amount.  A suggested minimum donation amount can be configured for this</li>
-<li><strong>Paid</strong>: With this pricing model, users must pay a minimum price to download the game.  The price that you set is just the minimum price, users can opt to pay more if they wish to.</li>
-<li><strong>No Payment</strong>: With this pricing model, the game is completely free and users will not be prompted for a donation.</li>
+<li><strong>$0 or donate</strong>: This model makes your game freely available while encouraging optional financial support.  When users download your game, they are presented with a donation prompt showing your suggested amount.  While they can contribute any amount they choose, they also have the option to download without payment by selecting &quot;No thanks, take me to the download.&quot;.</li>
+<li><strong>Paid</strong>: This model requires users to purchase your game before downloading.  You set a minimum price that all users must pay, though they have the option to contribute more if they wish.</li>
+<li><strong>No Payment</strong>: This model provides your game completely free with no payment prompts.  When users click to download, they are taken directly to the download page without any suggestion to donate.</li>
 </ol>
-<p>You can choose whichever option you feel comfortable with.  For the upload for this tutorial, I have chosen the <strong>$0 or donate</strong> option.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Consider your goals when selecting a pricing model.  The &quot;$0 or donate&quot; option often provides a good balance for indie developers, removing financial barriers to trying your game while still providing a path for supportive players to contribute.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/pricing.png" alt="Figure 25-2: Example of pricing information filled in for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/pricing.png" alt="Figure 25-4: The pricing options for a new project on itch.io"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-2: Example of pricing information filled in for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 25-4: The pricing options for a new project on itch.io</strong></td>
 </tr>
 </tbody>
 </table>
-<h3 id="upload-game-builds">Upload Game Builds</h3>
-<p>Next on the form is the uploads for the game builds.  Here,we will add the platform-specific builds created in <a href="../25_packaging_game/index.html">Chapter 25</a>.  Itch.io supports multiple file uploads for different platforms, allowing you to provide the appropriate version for each player's operating system.</p>
+<h3 id="uploads">Uploads</h3>
+<p>After choosing the pricing options for the project, the next part of the form is for uploading files that users can download for the project.  This is where you will add the platform-specific builds you created using the steps in <a href="../25_packaging_the_game/index.md">Chapter 25</a>.  Itch.io supports multiple file uploads, allowing you to provide the appropriate version for each platform you support.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Before uploading, ensure the builds are properly packaged into either ZIP (Windows) or tar.gz (macOS/Linux) archives as discussed in <a href="../25_packaging_game/index.html">Chapter 25</a>.</p>
+<p>Before uploading, ensure the builds are properly packaged into either ZIP (Windows) or tar.gz (macOS/Linux) archives as discussed in <a href="../25_packaging_the_game/index.md">Chapter 25</a>.</p>
 </div>
-<p>To upload, for each build you created:</p>
+<p>To upload a file for the project:</p>
 <ol>
 <li>Click the &quot;Upload files&quot; button.</li>
-<li>In the file select dialog, choose the archive for the platform build you are uploading.</li>
-<li>Once the upload is completed, set the type of upload as &quot;Executable&quot;, then check the box for the operating system that build is for.</li>
+<li>In the file select dialog, navigate to and select the file you want to upload.</li>
 </ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For a MonoGame game project, you would upload the archived builds that you created through the steps in <a href="../25_packaging_the_game/index.md">Chapter 25</a>.</p>
+</div>
+<p>Once the upload has completed, you will be presented with options to set the following:</p>
+<ol>
+<li><p><strong>Download Type</strong>: Here you can set the type of file that the user will be downloading.  The available options are:</p>
+<ul>
+<li><strong>Executable</strong>: The main game application that users will run to play your game.  For MonoGame projects, your packaged builds fall into this category.</li>
+<li><strong>Source code</strong>: The underlying code of your game, useful for open-source projects or educational examples.</li>
+<li><strong>Soundtrack</strong>: Music files from your game, typically provided in MP3 or other audio formats.</li>
+<li><strong>Book or Document</strong>: Text content such as manuals, guides, or other written materials.</li>
+<li><strong>Video</strong>: Video content such as trailers, gameplay footage, or tutorials.</li>
+<li><strong>Mod</strong>: Add-ons or modifications that enhance or alter your base game.</li>
+<li><strong>Graphical assets</strong>: Art, textures, models, or other visual elements used in your game.</li>
+<li><strong>Audio assets</strong>: Sound effects, voice recordings, or other audio components.</li>
+<li><strong>Documentation or Instructions</strong>: Help files, control references, or other guidance for players.</li>
+<li><strong>Other</strong>: Any file type that doesn't fit into the above categories.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Even if the project you are creating is a game, you can include additional downloads for users such as the soundtrack and an instruction manual.  Providing these supplementary materials can enhance the perceived value of your project and demonstrate professionalism and attention to detail.</p>
+</div>
+</li>
+<li><p>If the download type is &quot;Executable&quot;, you will be presented with checkboxes to choose which operating system it is for.  The available options are:</p>
+<ul>
+<li><strong>Windows</strong>: For Windows-compatible executable files (.exe).</li>
+<li><strong>Linux</strong>: For Linux-compatible executable files.</li>
+<li><strong>macOS</strong>: For macOS-compatible application bundles (.app).</li>
+<li><strong>Android</strong>: For Android-compatible application packages (.apk).</li>
+</ul>
+</li>
+</ol>
+<p>For each file that is uploaded, you are also given the following options:</p>
+<ul>
+<li><strong>Set a different price for this file</strong>: This allows you to adjust pricing for specific downloads, useful for offering premium content or special editions.</li>
+<li><strong>Hide this file and prevent it from being downloaded</strong>: This can be used to temporarily remove access to a file without deleting it, which is helpful when updating content or preparing future releases.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Itch.io also provides a command-line tool called <strong>butler</strong> that can automate the upload process for your game builds.  This is particularly useful for developers who frequently update their games or need to manage multiple platforms.  For more information, see the <a href="https://github.com/itchio/butler">butler GitHub page</a>.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/upload.png" alt="Figure 25-3: Example of uploaded files for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/upload.png" alt="FFigure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-3: Example of uploaded files for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="description">Description</h3>
-<p>When writing a description for your game, you try to write a compelling project description:</p>
+<p>The description section is where you can showcase your game's unique appeal and provide potential players with compelling reasons to download it.  An effective game description serves multiple purposes: it explains what your game is about, highlights its distinctive features, and gives players an idea of what to expect.</p>
+<p>When writing a description for your game, consider the following strategies to create a compelling presentation:</p>
 <ul>
-<li>Start with a concise summary of the game's concepts.</li>
-<li>List key features and gameplay mechanics.</li>
-<li>Mention third party tool and technologies used in developing the game (e.g. MonoGame 😉).</li>
-<li>Include credits for any team members, assets or tools uses that require attribution.</li>
+<li><strong>Start with a hook</strong>: Begin with a concise, attention-grabbing summary that clearly communicates your game's concept and unique selling point.</li>
+<li><strong>Structure for readability</strong>: Use short paragraphs, bullet points, and clear headings to make your description easy to scan.</li>
+<li><strong>Highlight key features</strong>: List the most notable gameplay mechanics, visual elements, and player experiences your game offers.</li>
+<li><strong>Include technical information</strong>: Mention the technologies used (such as MonoGame 😉), supported platforms, and any special hardware requirements or recommendations.</li>
+<li><strong>Describe the controls</strong>: Briefly explain how players will interact with your game, especially if you support multiple input methods.</li>
+<li><strong>Add attribution</strong>: Include proper credits for team members, external assets, and tools used in development that require attributions.</li>
+<li><strong>Consider your audience</strong>: Write in a tone that resonates with your target players.</li>
 </ul>
-<p>For the Dungeon Slime project, here is an example description you can enter:</p>
-<pre><code class="lang-text">Dungeon Slime is a snake-like game where you control a growing slime creature navigating through a dungeon room environment.  Eat bats to grow longer, but be careful not to collide with walls or your own body!
+<p>Here is an example structure for a game description:</p>
+<pre><code class="lang-text">[Game Name] is a [genre] game where players [main gameplay activity].  [One additional sentence about a unique hook or setting].
 
 Features:
 
-- Classic snake-like gameplay with a dungeon theme.
-- Animated pixel art visuals.
-- Responsive controls with keyboard or gamepad support.
-- Progressive difficulty as your slime grows longer.
+- [Key Feature 1]
+- [Key Feature 2]
+- [Key Feature 3]
+- [Key Feature 4]
 
-Developed with C# and MonoGame as part of the Building 2D Games With MonoGame tutorial series.
+Controls:
+- [Control scheme for keyboard/mouse]
+- [Control scheme for gamepad, if supported]
+
+Developed with MonoGame
 </code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Consider reviewing descriptions of popular games in your genre for inspiration, but ensure your description authentically represents your game.  False or exaggerated claims will lead to disappointed players and negative reviews.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/description.png" alt="Figure 25-4: Example of description for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/description.png" alt="Figure 25-6: Example of description a game"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-4: Example of description for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 25-6: Example of description a game</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="metadata">Metadata</h3>
-<p>Itch.io provides different fields for metadata that can be set for the project tht will be displayed and used whens someone makes a search for a game.  Enter the following for this projects metadata fields:</p>
+<p>Itch.io provides several metadata fields that help categorize your game and make it more discoverable when users search the platform.  Properly configured metadata increases visibility and helps your game reach its intended audience.  Let's explore each of these important fields:</p>
 <ol>
-<li><p><strong>Genre</strong>: Choose the genre that best describes the type of game you are uploading.  For the Dungeon Slime project, choose &quot;Action&quot;</p>
-</li>
-<li><p><strong>Tags</strong>: Here you an set keywords for when someone searches to find your game.  Itch.io offers guidelines for tags in the <a href="https://itch.io/docs/creators/quality-guidelines#tags">Use relevant tags, prefer using suggested tags</a> documentation page. For the Dungeon Slime project, enter the following keywords</p>
+<li><p><strong>Genre</strong>: Select the genre that most accurately represents your game's core gameplay experience.  While many games span multiple genres, choose the one that best captures your game's primary appeal.  Common genres include:</p>
 <ul>
-<li>2d</li>
-<li>arcade</li>
-<li>monogame</li>
-<li>pixel-art</li>
-<li>singleplayer</li>
+<li>Action (for games focusing on reflexes and coordination)</li>
+<li>Adventure (for exploration and narrative-driven experiences)</li>
+<li>Puzzle (for games centered on problem-solving)</li>
+<li>Role Playing (for character development and progression systems)</li>
+<li>Simulation (for realistic system modeling)</li>
+<li>Strategy (for tactical decision-making games)</li>
 </ul>
 </li>
-<li><p><strong>Ai generation disclosure</strong>: You must disclose if your game is using assets that were generated using AI generative tools.  For more information, see the <a href="https://itch.io/docs/creators/quality-guidelines#ai-disclosure">Accurately tag your use of generative AI</a> documentation page on Itch.io.  For the Dungeon Slime project, no assets were created using generative AI, so select the &quot;No&quot; options.</p>
+<li><p><strong>Tags</strong>: Tags are keywords that help users find your game when searching or browsing.  Effective tagging significantly impacts your game's discoverability.  Consider including:</p>
+<ul>
+<li>Platform identifiers (2d, 3d)</li>
+<li>Visual style (pixel-art, low-poly, realistic)</li>
+<li>Technical elements (monogame, procedural)</li>
+<li>Player configuration (singleplayer, multiplayer)</li>
+<li>Gameplay mechanics (shooter, platformer, roguelike)</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Itch.io recommends using their suggested tags when possible.  Review their <a href="https://itch.io/docs/creators/quality-guidelines#tags">tagging guidelines</a> for best practices.  Focus on accuracy rather than quantity—irrelevant tags may attract the wrong audience and lead to disappointed players.</p>
+</div>
 </li>
-<li><p><strong>App store links</strong>: If the game is available on other app stores such as Steam, Apple App Store, or Google Play, you can include the link to it here.  There are no others to include for the Dungeon Slime project so you can skip this one.</p>
+<li><p><strong>AI generation disclosure</strong>: This field requires you to indicate whether your game contains AI-generated assets.  This transparency helps users make informed decisions about the content they consume.  Options include:</p>
+<ul>
+<li>Yes: The project contains AI-generated assets.</li>
+<li>No: The project does not contain any AI-generated assets.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Itch.io takes this disclosure seriously.  For detailed information about their AI disclosure policy, visit their <a href="https://itch.io/docs/creators/quality-guidelines#ai-disclosure">generative AI guidelines</a>.</p>
+</div>
 </li>
-<li><p><strong>Custom Noun</strong>: Here you can provide a custom noun for how itch.io will refer to your project.  If you leave it blank, it will refer to it as &quot;game&quot; by default.  Since the Dungeon Slime project is a game, leave this blank.</p>
+<li><p><strong>App store links</strong>: If your game is available on other platforms like Steam, Apple App Store, or Google Play, you can provide links to these listings.  This helps players find your game on their preferred platform and establishes your game's presence across multiple marketplaces.</p>
+</li>
+<li><p><strong>Custom Noun</strong>: By default, itch.io refers to your project as a &quot;game.&quot; If your project fits better with another descriptor (like &quot;tool,&quot; &quot;experience,&quot; or &quot;interactive story&quot;), you can specify a custom noun here.  This affects how your project is described throughout the itch.io interface.</p>
 </li>
 </ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/metadata.png" alt="Figure 25-5: Example of game metadata for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/metadata.png" alt="Figure 26-6: Example of metadata configuration for a game project"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-5: Example of game metadata for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-6: Example of metadata configuration for a game project</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="download-and-install-instructions">Download and Install Instructions</h3>
-<p>On this part of the form, you enter the steps users should take after downloading the game file in order to play the game.  For example, when uploading an archived file (ZIP or tar.gz archive), users will need to extract the archive then launch the game executable that is extracted.  For the Dungeon Slime project, enter the following:</p>
+<p>The download and installation instructions section is where you provide clear guidance to users on how to get your game up and running after they download it.  Well-written instructions reduce confusion and ensure players can quickly start enjoying your game.</p>
+<p>Since MonoGame projects are typically distributed as archived files (ZIP for Windows, tar.gz for macOS and Linux), it's essential to provide step-by-step instructions for extracting and launching your game on each supported platform.</p>
+<ul>
+<li><strong>Be platform-specific</strong>: Separate instructions for each operating system you support.</li>
+<li><strong>Use numbered steps</strong>: Sequential numbering makes instructions easier to follow.</li>
+<li><strong>Be explicit</strong>: Specify exact filenames and actions to take.</li>
+<li><strong>Address common issues</strong>: Mention any special permissions or requirements users might encounter.</li>
+<li><strong>Use simple language</strong>: Avoid technical jargon when possible, as players may have varying technical expertise.</li>
+</ul>
+<p>Here's an example template for installation instructions for a MonoGame project:</p>
 <pre><code class="lang-text">Once the download has completed:
 
 For Windows:
-    1. Extract the contents of the ZIP archive downloaded.
-    2. Run the &quot;DungeonSlime.exe&quot; executable from the contents you extracted above.
+    1. Extract the contents of the ZIP archive.
+    2. Run the &quot;[YourGameName].exe&quot; executable from the extracted folder.
 
-For Linux
-    1. Extract the contents of the tar.gz archive downloaded.
-    2. Execute the &quot;DungeonSlime&quot; executable from the contents you extracted above.
+For Linux:
+    1. Extract the contents of the tar.gz archive.
+    2. Run the &quot;[YourGameName]&quot; executable from the extracted folder.
+    3. If the game does not open or states it is not executable, you may need to change the file permissions.  To do this:
+        1. Open a terminal in the extracted directory.
+        2. Make the game executable with the command: chmod +x ./[YourGameName]
+
+For macOS:
+    1. Extract the contents of the tar.gz archive.
+    2. Run the [YourGameName].app executable from the extracted folder.
+    3. If the game does not open or states it is not an executable, you may need to change the file permissions.  To do this:
+        1. Open a terminal in the extracted directory.
+        2. Make the game executable with the command: chmod +x ./[YourGameName].app/Contents/MacOS/[YourGameName]
 </code></pre>
+<p>[!TIP]
+Consider testing your installation instructions on a clean system or with someone who hasn't seen your game before.  This can help identify any missing steps or assumptions you might have made.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/download-install-instructions.png" alt="Figure 25-5: Example of download and install instructions for the for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/download-install-instructions.png" alt="Figure 26-7: Example of download and installation instructions for a MonoGame project"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-5: Example of download and install instructions for the for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-7: Example of download and installation instructions for a MonoGame project</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="community">Community</h3>
-<p>Here you can choose the community options to enable for the project from the following:</p>
+<p>Building a community around your game can significantly enhance its lifespan and success.  Itch.io offers several options for enabling player interaction directly on your project page.  Choosing the right level of community engagement depends on your game's needs and your capacity to moderate interactions.</p>
+<p>The platform provides three community feature options:</p>
 <ul>
-<li><strong>Disabled</strong>: No community options will be included for the project.</li>
-<li><strong>Comments</strong>: The project page will allow community members to leave comments on the project.</li>
-<li><strong>Discussion board</strong>: A full discussion board dedicated to the project will be created that the community can use to make posts and reply to each other about the project.</li>
+<li><p><strong>Disabled</strong>: No community interaction features will be available on your project page.  This option is appropriate when you prefer to direct community engagement elsewhere (such as Discord or social media), or when you don't have the resources to moderate community content.  This is also suitable for projects in very early development stages where you're not yet ready for public feedback.</p>
+</li>
+<li><p><strong>Comments</strong>: This enables a simple comment section at the bottom of your project page where players can leave feedback, ask questions, or share their experiences.  As the developer, you receive notifications when new comments are posted, allowing you to respond promptly.  This option provides a good balance between community engagement and moderation requirements, making it ideal for most indie games.</p>
+</li>
+<li><p><strong>Discussion board</strong>: This creates a full-featured forum dedicated to your project, with support for multiple topics, threaded replies, and content organization.  Discussion boards are beneficial for games with complex mechanics, active development cycles, or strong communities.  However, they require more active moderation and engagement from developers to remain valuable.</p>
+</li>
 </ul>
-<p>For the Dungeon Slime project, choose the <em>Comments</em> option.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Regardless of which option you choose, regularly engaging with your community demonstrates that you value player feedback and can build a loyal following.  Consider setting aside specific times each week to respond to comments or discussions.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/community.png" alt="Figure 25-6: Example of community settings for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/community.png" alt="Figure 26-8: Community feature settings available for game projects"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-6: Example of community settings for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-8: Community feature settings available for game projects</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="visibility-and-access">Visibility and Access</h3>
-<p>Here, you can choose the visibility of the project page from the following:</p>
+<p>The visibility settings control who can access your project page.  This feature allows you to prepare your page privately before making it public, or to create restricted access for testers or supporters.  Understanding these options helps you manage your game's release strategy effectively.</p>
+<p>Itch.io offers three visibility levels:</p>
 <ul>
-<li><strong>Draft</strong>: When choosing this, the project page is only accessible by you and anyone else you might have added with edit access to the project.</li>
-<li><strong>Restricted</strong>: When choosing this, the project page is only accessible by those that have been given explicit access to view it</li>
-<li><strong>Public</strong>: When choosing this, the project page is accessible to everyone.</li>
+<li><p><strong>Draft</strong>: This setting makes your project page visible only to you and any collaborators you've explicitly given edit access.  Draft mode is ideal during the initial setup phase when you're still uploading files, writing descriptions, and configuring your page.  It provides a safe environment to experiment with different layouts and content without public exposure.</p>
+</li>
+<li><p><strong>Restricted</strong>: This option limits access to specific individuals you designate.  When you select this option, you can generate and share access keys with testers, reviewers, or early supporters.  Restricted access is valuable for beta testing, gathering feedback from a controlled group, or offering early access to supporters before a wider release.</p>
+</li>
+<li><p><strong>Public</strong>: This makes your project accessible to everyone visiting itch.io.  Once public, your game will appear in search results and category listings, making it discoverable by the platform's user base.  This is the appropriate setting when your game is ready for distribution.</p>
+</li>
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Initially, you can only choose between &quot;Draft&quot; and &quot;Restricted&quot;.  Once you have saved the initial changes for the project, you can then go back and change it to public when you are ready to fully publish it for others to view and download.</p>
-<p>This is to help ensure you have fully prepared the project page before making it public.</p>
+<p>Itch.io intentionally limits your initial options to either &quot;Draft&quot; or &quot;Restricted&quot; mode.  This design encourages you to completely prepare your project page before making it public.  Only after saving your initial project setup can you then return to change the visibility to &quot;Public.&quot; This workflow helps prevent incomplete or unpolished project pages from being publicly visible.</p>
 </div>
-<p>For the Dungeon Slime project, choose &quot;Draft&quot; for now.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Consider using a phased release approach: start in Draft mode while building your page, switch to Restricted for beta testing with a select audience, then finally move to Public when you're confident in your game's presentation and stability.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/visibility-access.png" alt="Figure 25-7: Example of the visibility settings for the Dungeon Slime game"></th>
+<th style="text-align: center;"><img src="images/visibility-access.png" alt="Figure 26-9: Visibility and access settings for publishing your game"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-7: Example of visibility settings for the Dungeon Slime game</strong></td>
+<td style="text-align: center;"><strong>Figure 26-9: Visibility and access settings for publishing your game</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="adding-visual-assets">Adding Visual Assets</h3>
-<p>Visual assets significantly impact a player's decision to try your game.  High-quality screenshots, cover images, and even short gameplay videos can generate interest in your project.</p>
-<p>Event though itch.io doesn't require it, at minimum you should always prepare the following for your project:</p>
+<p>Visual assets are often the first elements potential players notice about your game and play a crucial role in marketing.  According to industry research, games with high-quality visual presentations typically receive more downloads and engagement than those with minimal or poor-quality visuals.  Taking time to create compelling visual assets can significantly improve your game's appeal on the itch.io marketplace.</p>
+<p>At minimum, you should prepare the following visual assets for your project:</p>
 <ol>
-<li><strong>Cover Image</strong>: This is the primary image displayed on the game's page, in search results, and embedded links on social media posts.  Itch.io recommends a size of 630x500 with a minimum size requirement of 315x250.</li>
-<li><strong>Screenshots</strong>: At least 3 to 5 screenshots showing different aspects of the game and gameplay.</li>
+<li><p><strong>Cover Image</strong>: This is your game's primary visual representation, displayed on the game's page, in search results, and in embedded links when shared on social media.  Itch.io recommends a size of 630×500 pixels, with a minimum requirement of 315×250 pixels.  Your cover image should:</p>
+<ul>
+<li>Clearly represent your game's visual style</li>
+<li>Include your game's title</li>
+<li>Avoid cluttered compositions that become illegible when scaled down</li>
+</ul>
+</li>
+<li><p><strong>Screenshots</strong>: Include 3-5 high-quality screenshots that showcase different aspects of your game.  Effective screenshots should:</p>
+<ul>
+<li>Demonstrate core gameplay mechanics</li>
+<li>Highlight unique visual elements or features</li>
+<li>Show different environments or levels if applicable</li>
+<li>Include UI elements only when relevant to showcase</li>
+<li>Maintain consistent aspect ratios across all screenshots</li>
+</ul>
+</li>
+<li><p><strong>Trailer or Gameplay Video</strong> (optional but recommended): A short video (30-90 seconds) can increase player interest.  Videos allow you to demonstrate gameplay flow, audio design, and interactive elements that static images cannot capture.</p>
+</li>
 </ol>
 <div class="TIP">
 <h5>Tip</h5>
-<p>To create screenshots:</p>
+<p>When capturing screenshots and video:</p>
 <ul>
-<li><strong>Windows</strong>: You can use the built-in Snipping tool or press <code>Windows+Shift+S</code> to capture screenshots.</li>
-<li><strong>macOS</strong>: You can press <code>Command+Shift+4</code> to capture a selected area of the screen.</li>
-<li><strong>Linux</strong>: You can use tools like GNOME Screenshot.</li>
+<li><strong>Windows</strong>: Use the built-in Game Bar (Windows+G), Snipping Tool, or press <code>Windows+Shift+S</code> for screenshots.  OBS Studio works well for video capture.</li>
+<li><strong>macOS</strong>: Press <code>Command+Shift+4</code> for area screenshots or <code>Command+Shift+5</code> for screen recording.  QuickTime Player also offers screen recording functionality.</li>
+<li><strong>Linux</strong>: Use tools like GNOME Screenshot, Flameshot, or SimpleScreenRecorder.</li>
 </ul>
 </div>
-<p>Below you can find a sample cover image you can use for the Dungeon Slime game, or you can create and provide your own.  To use the following cover image, first download it by right-clicking and selecting &quot;Save As...&quot;.</p>
+<p>To add a cover image to your project:</p>
+<ol>
+<li>Prepare your image at the recommended 630×500 pixel size.</li>
+<li>At the top-right of the &quot;Create a new project&quot; page, click the &quot;Upload Cover Image&quot; button.</li>
+<li>Select your cover image file in the file browser dialog.</li>
+</ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/cover-image.png" alt="Figure 25-8: Dungeon Slime example cover image"></th>
+<th style="text-align: center;"><img src="images/cover-image-uploaded.png" alt="Figure 26-10: Example of uploading a cover image for a game project"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-8: Dungeon Slime example cover image</strong></td>
+<td style="text-align: center;"><strong>Figure 26-10: Example of uploading a cover image for a game project</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Next, to set the cover image, at the top-right of the Create a new project page,click teh &quot;Upload Cover Image&quot; button and choose the cover image you want to upload.</p>
+<p>To add screenshots to your project:</p>
+<ol>
+<li>Prepare 3-5 screenshots showcasing different aspects of your game.</li>
+<li>Click the &quot;Add Screenshots&quot; button located below the cover image section.</li>
+<li>Select your screenshot files in the file browser dialog.</li>
+<li>Arrange screenshots in order of importance by hovering over then and using the &quot;Move Up&quot; and &quot;Move Down&quot; actions after uploading.</li>
+</ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/cover-image-uploaded.png" alt="Figure 25-9: Cover image uploaded"></th>
+<th style="text-align: center;"><img src="images/screenshots-added.png" alt="Figure 26-11: Example of multiple screenshots added to a game project"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-9: Cover image uploaded</strong></td>
+<td style="text-align: center;"><strong>Figure 26-11: Example of multiple screenshots added to a game project</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Now to add screenshots, below you can find four screenshots from the Dungeon Slime game you can use to upload as screenshots, or you can create and provide your own. To use the following screenshots, first download them by right-clicking and selecting &quot;Save As...&quot; for each image.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>While itch.io doesn't strictly require these visual assets, projects with complete visual presentations receive more attention than those without.</p>
+</div>
+<h3 id="saving-and-publishing-your-project">Saving and Publishing Your Project</h3>
+<p>After filling out all the necessary form fields, uploading your game files, and adding visual assets, it is time to save your project and prepare it for publishing.  This process involves several steps designed to ensure your project is ready for your intended audience.</p>
+<h4 id="initial-save-and-preview">Initial Save and Preview</h4>
+<p>Once you've completed the project creation form:</p>
+<ol>
+<li><p>Scroll to the bottom of the form and click the &quot;Save &amp; view page&quot; button.</p>
+</li>
+<li><p>This action saves all your current information and generates a preview of your project page.</p>
+</li>
+<li><p>A popup will appear with important information about your project's status and next steps.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/title-screen.png" alt="Figure 24-10: The Dungeon Slime title screen"></th>
-<th style="text-align: center;"><img src="images/gameplay-screen.png" alt="Figure 24-11: The Dungeon Slime gameplay screen"></th>
+<th style="text-align: center;"><img src="images/game-page-popup.png" alt="Figure 26-12: Initial information popup after saving a new project"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 24-10: The Dungeon Slime title screen</strong></td>
-<td style="text-align: center;"><strong>Figure 24-11: The Dungeon Slime gameplay screen</strong></td>
-</tr>
-<tr>
-<td style="text-align: center;"><img src="images/options-screen.png" alt="Figure 24-12: The Dungeon Slime options screen"></td>
-<td style="text-align: center;"><img src="images/gameover-screen.png" alt="Figure 24-13: The Dungeon Slime gameover screen"></td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>Figure 24-12: The Dungeon Slime options screen</strong></td>
-<td style="text-align: center;"><strong>Figure 24-13: The Dungeon Slime gameover screen</strong></td>
+<td style="text-align: center;"><strong>Figure 26-12: Initial information popup after saving a new project</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Next, to add the screenshots, click the &quot;Add Screenshots&quot; button just below the cover image section and select the image files you wish to upload as screenshots.</p>
+</li>
+<li><p>Click the &quot;Got it&quot; button after reading to close the popup and view your project page preview.</p>
+</li>
+</ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/screenshots-added.png" alt="Figure 25-14: Screenshots added"></th>
+<th style="text-align: center;"><img src="images/project-page.png" alt="Figure 26-13: Example of a project page preview after initial save"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 25-14: Screenshots added</strong></td>
+<td style="text-align: center;"><strong>Figure 26-13: Example of a project page preview after initial save</strong></td>
 </tr>
 </tbody>
 </table>
-<h3 id="saving-and-making-changes">Saving and Making Changes</h3>
-<p>With the form now completed, a cover image uploaded, and screenshots uploaded, scroll to the bottom of the form and click the &quot;Save &amp; view page&quot; button to save the changes. This will take you to a preview of the game's page with the following popup</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><img src="images/game-page-popup.png" alt="Figure 25-15: The initial popup shown after creating your project page on itch.io"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 25-15: The initial popup shown after creating your project page on itch.io</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Click the &quot;Got it&quot; button after reading to close the popup and preview the page.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><img src="images/project-page.png" alt="Figure 25-16: The example project page for Dungeon Slime that we created"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 25-16: The example project page for Dungeon Slime that we created</strong></td>
-</tr>
-</tbody>
-</table>
-<p>From this page, as the project editor, you can click the &quot;Edit theme&quot; button at the top to make additional changes to the project page such as:</p>
+<h4 id="visual-customization">Visual Customization</h4>
+<p>The preview page provides additional customization options beyond the basic project information you've already entered.  As the project owner, you'll notice an &quot;Edit theme&quot; button at the top of your preview page.  This feature allows you to customize the visual presentation of your project page with options including:</p>
 <ul>
-<li>Background color</li>
-<li>Font</li>
-<li>Layout</li>
-<li>Banner Image</li>
-<li>Background Image</li>
+<li><strong>Background color</strong>: Change the page's background to match your game's aesthetic.</li>
+<li><strong>Font selection</strong>: Choose typography that complements your game's style.</li>
+<li><strong>Layout options</strong>: Modify how elements are arranged on the page.</li>
+<li><strong>Banner image</strong>: Add a wider image at the top of your page for additional visual impact.</li>
+<li><strong>Background image</strong>: Set a tiled or full-page background image.</li>
 </ul>
-<p>We will not be covering these in this tutorial as they are self explanatory, however you should play around with them to create a page design you like.</p>
-<p>Once you are satisfied with the project page, its now time to make it public.  To do this, or if you ever want to make general edits to the page, click the &quot;Edit game&quot; link in the top navigation bar to be take back to the project form.  Once back on the project form, scroll to the bottom and change the <strong>Visibility &amp; access</strong> to &quot;Public&quot; and click the &quot;Save&quot; button.</p>
+<p>These visual customizations can significantly enhance your project's presentation and help it stand out among other games on the platform.  Experiment with different combinations to find a design that complements your game's identity while maintaining readability and usability.</p>
+<h4 id="publishing-your-project">Publishing Your Project</h4>
+<p>When you're satisfied with your project page and ready to make it publicly available:</p>
+<ol>
+<li>Click the &quot;Edit game&quot; link in the top navigation bar to return to the project form.</li>
+<li>Scroll to the bottom of the form to the <strong>Visibility &amp; access</strong> section.</li>
+<li>Change the setting from &quot;Draft&quot; to &quot;Public.&quot;</li>
+<li>Click the &quot;Save&quot; button to apply the change.</li>
+</ol>
+<p>Your game is now publicly accessible to the itch.io community.  It will appear in search results and category listings based on the metadata you provided.</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Before widely sharing your game, consider sending the link to a few friends or fellow developers to test the download and installation process. They might catch issues you might have overlooked.</p>
+<p>Before widely promoting your game, consider a soft launch approach:</p>
+<ol>
+<li>Share the link with a small group of trusted friends or fellow developers.</li>
+<li>Ask them to test the download and installation process on different devices and operating systems.</li>
+<li>Collect feedback on any unclear instructions or technical issues.</li>
+<li>Make necessary adjustments before promoting your game to a wider audience.</li>
+</ol>
+<p>This approach helps identify potential issues you may have missed before presenting it to a larger audience.</p>
 </div>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this chapter, you learned how to publish your MonOGame project on itch.io.  You walked through the entire process from setting up an itch.io developer account to creating a project page for the game.</p>
-<p>You have learned how to:</p>
+<p>In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You've gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.</p>
+<p>Through this chapter, you've learned how to:</p>
 <ul>
-<li>Create an configure an itch.io developer account.</li>
-<li>Set up a project page with proper game information and metadata</li>
-<li>Upload platform-specific builds.</li>
-<li>Configure your game's visibility and access settings.</li>
-<li>Add visual assets like cover images and screenshots.</li>
-<li>Write clear download and installation instructions for different platforms.</li>
-<li>Enable community features.</li>
-<li>Make the game public and available for download.</li>
+<li>Create and configure an itch.io developer account with the appropriate security measures.</li>
+<li>Set up a project page with compelling descriptions and relevant metadata.</li>
+<li>Upload platform-specific builds for different operating systems.</li>
+<li>Configure pricing options that align with your goals.</li>
+<li>Write clear download and installation instructions to ensure a smooth player experience.</li>
+<li>Add visual assets that showcase your game effectively.</li>
+<li>Enable appropriate community features to engage with your audience.</li>
+<li>Customize your project page's visual presentation.</li>
 </ul>
-<p>Publishing a game represents a significant milestone for any game developer.  While itch.io is just one of many distribution platforms available, it provides an accessible starting point for indie developers to share their creations with the world.</p>
+<p>Publishing a game represents a significant milestone in your journey as a game developer.  While itch.io is just one of many distribution platforms available, it provides an excellent starting point for indie developers due to its accessible nature, developer-friendly policies, and supportive community.  The skills you've learned in this chapter extend beyond itch.io and establish a foundation for publishing on other platforms.</p>
 
 </article>
 
