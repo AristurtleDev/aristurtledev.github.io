@@ -513,7 +513,7 @@ using MonoGameGum.Forms.Controls;
     // Initialize the Gum service
     GumService.Default.Initialize(this);
 
-    // Tell the Gum service which content manager to use.  We'll tell it to
+    // Tell the Gum service which content manager to use.  We will tell it to
     // use the global content manager from our Core.
     GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 
@@ -534,7 +534,7 @@ using MonoGameGum.Forms.Controls;
        new KeyCombo() { PushedKey = Microsoft.Xna.Framework.Input.Keys.Down });
 
     // The assets created for the UI were done so at 1/4th the size to keep the size of the
-    // texture atlas small.  So we'll set the default canvas size to be 1/4th the size of
+    // texture atlas small.  So we will set the default canvas size to be 1/4th the size of
     // the game's resolution then tell gum to zoom in by a factor of 4.
     GumService.Default.CanvasWidth = GraphicsDevice.PresentationParameters.BackBufferWidth / 4.0f;
     GumService.Default.CanvasHeight = GraphicsDevice.PresentationParameters.BackBufferHeight / 4.0f;
@@ -716,7 +716,7 @@ private Button _optionsBackButton;
 <p>Now we should implement the event handlers for these controls:</p>
 <pre><code class="lang-csharp">private void HandleSfxSliderChanged(object sender, EventArgs args)
 {
-    // Intentionally not playing the UI sound effect here so that it's not
+    // Intentionally not playing the UI sound effect here so that it is not
     // constantly triggered as the user adjusts the slider's thumb on the
     // track.
 
@@ -733,7 +733,7 @@ private Button _optionsBackButton;
 }
 </code></pre><pre><code class="lang-csharp">private void HandleMusicSliderValueChanged(object sender, EventArgs args)
 {
-    // Intentionally not playing the UI sound effect here so that it's not
+    // Intentionally not playing the UI sound effect here so that it is not
     // constantly triggered as the user adjusts the slider's thumb on the
     // track.
 
@@ -869,14 +869,14 @@ private Button _optionsBackButton;
         // The color to use for the drop shadow text.
         Color dropShadowColor = Color.Black * 0.5f;
 
-        // Draw the Dungeon text slightly offset from it's original position and
+        // Draw the Dungeon text slightly offset from it is original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the Dungeon text on top of that at its original position
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Slime text slightly offset from it's original position and
+        // Draw the Slime text slightly offset from it is original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
@@ -910,7 +910,8 @@ private Button _optionsBackButton;
 <h3 id="adding-gamescene-ui">Adding GameScene UI</h3>
 <p>Now that we have setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.</p>
 <p>First, open the <em>GameScene.cs</em> file in the game project and add the following using declarations to the top of the <code>GameScene</code> class.</p>
-<pre><code class="lang-csharp" highlight-lines="2,7-9">using System;
+<pre><code class="lang-csharp" highlight-lines="2-3,8-10">using System;
+using Gum.DataTypes;
 using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -1060,7 +1061,7 @@ private SoundEffect _uiSoundEffect;
     // room bounds, and to vertically be at the center of the first tile.
     _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-    // Set the origin of the text so it's left-centered.
+    // Set the origin of the text so it is left-centered.
     float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
     _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
