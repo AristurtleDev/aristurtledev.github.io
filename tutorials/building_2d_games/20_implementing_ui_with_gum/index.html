@@ -586,8 +586,12 @@ FrameworkElement.TabReverseKeyCombos.Clear();
 <p>Gum is now fully initialized and we can use it in our scenes to add UI to our game.</p>
 <h3 id="adding-titlescene-ui">Adding TitleScene UI</h3>
 <p>With Gum added and initialized in our game, we can now implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.</p>
+</div>
 <p>First, open the <em>TitleScene.cs</em> file in the game project and add the following using declarations to the top of the <code>TitleScene</code> class:</p>
-<pre><code class="lang-csharp" highlight-lines="1,6-8">using System;
+<pre><code class="lang-csharp" highlight-lines="1,3,6-8">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -598,14 +602,14 @@ using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Scenes;
 </code></pre>
-<p>Next, add the following fields:</p>
+<p>Next, add the following fields to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">private SoundEffect _uiSoundEffect;
 private Panel _titleScreenButtonsPanel;
 private Panel _optionsPanel;
 private Button _optionsButton;
 private Button _optionsBackButton;
 </code></pre><h4 id="creating-the-title-panel">Creating the Title Panel</h4>
-<p>First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the <code>TitleScene</code> class:</p>
+<p>First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the <code>TitleScene</code> class after the fields:</p>
 <pre><code class="lang-csharp">private void CreateTitlePanel()
 {
     // Create a container to hold all of our buttons
@@ -639,7 +643,7 @@ private Button _optionsBackButton;
 <h5>Note</h5>
 <p>Notice how we use <code>Anchor</code> to position the buttons relative to the panel's edges, with the &quot;Start&quot; button anchored at the bottom left and the &quot;Options&quot; button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.</p>
 </div>
-<p>Each button registers a <code>Click</code> event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the <code>TitleScene</code> class:</p>
+<p>Each button registers a <code>Click</code> event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the <code>TitleScene</code> class after the <code>CreateTitlePanel</code> method:</p>
 <pre><code class="lang-csharp">private void HandleStartClicked(object sender, EventArgs e)
 {
     // A UI interaction occurred, play the sound effect
@@ -665,7 +669,7 @@ private Button _optionsBackButton;
 </code></pre>
 <p>These handlers are called when the <code>Click</code> event is raised for each button.  The handler for the &quot;Start&quot; button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.</p>
 <h4 id="creating-the-options-panel">Creating the Options Panel</h4>
-<p>Next, we will create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the <code>TitleScene</code> class:</p>
+<p>Next, we will create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the <code>TitleScene</code> class after the <code>HandleOptionsClicked</code> method:</p>
 <pre><code class="lang-csharp">private void CreateOptionsPanel()
 {
     _optionsPanel = new Panel();
@@ -713,7 +717,7 @@ private Button _optionsBackButton;
 }
 </code></pre>
 <p>This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the &quot;Music Volume&quot; slider and the &quot;Sound Effects Volume&quot; slider register events to be called when the value of the sliders change and when the value change has been completed.  The &quot;Back&quot; button registers a click event similar to the ones from the main menu.</p>
-<p>Now we should implement the event handlers for these controls:</p>
+<p>Now we should implement the event handlers for these controls.  Add the following methods to the <code>TitleScene</code> class after the <code>CreateOptionsPanel</code> method:</p>
 <pre><code class="lang-csharp">private void HandleSfxSliderChanged(object sender, EventArgs args)
 {
     // Intentionally not playing the UI sound effect here so that it is not
@@ -770,7 +774,7 @@ private Button _optionsBackButton;
 <p>Notice that for both sliders, we registered a method for the <code>ValueChangeCompleted</code> event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the <code>ValueChanged</code> event, then the UI sound effect would trigger constantly while the slider is being adjusted if using a mouse to drag it.</p>
 </div>
 <h4 id="initializing-the-ui">Initializing the UI</h4>
-<p>Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the <code>TitleScene</code> class:</p>
+<p>Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the <code>TitleScene</code> class after the <code>HandleOptionsButtonBack</code> method:</p>
 <pre><code class="lang-csharp">private void InitializeUI()
 {
     // Clear out any previous UI in case we came here from
@@ -783,7 +787,7 @@ private Button _optionsBackButton;
 </code></pre>
 <p>This method first clears any existing UI elements from Gum's root container to prevent duplication, then calls our panel creation methods to build the complete interface.</p>
 <h4 id="integrating-with-the-game-loop">Integrating with the Game Loop</h4>
-<p>Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First, add the call to <code>InitializeUI()</code> in the <code>Initialize</code> method:</p>
+<p>Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First, add the call to <code>InitializeUI()</code> in the <code>Initialize</code> method by updating it to the following:</p>
 <pre><code highlight-lines="27">public override void Initialize()
 {
     // LoadContent is called during base.Initialize().
@@ -829,7 +833,7 @@ private Button _optionsBackButton;
    _uiSoundEffect = Core.Content.Load&lt;SoundEffect&gt;(&quot;audio/ui&quot;);
 }
 </code></pre>
-<p>Next update the <code>Update</code> method to include Gum's update logic:</p>
+<p>Next modify the <code>Update</code> method to include Gum's update logic:</p>
 <pre><code highlight-lines="14">public override void Update(GameTime gameTime)
 {
     // Update the offsets for the background pattern wrapping so that it
@@ -909,6 +913,10 @@ private Button _optionsBackButton;
 </div>
 <h3 id="adding-gamescene-ui">Adding GameScene UI</h3>
 <p>Now that we have setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.</p>
+</div>
 <p>First, open the <em>GameScene.cs</em> file in the game project and add the following using declarations to the top of the <code>GameScene</code> class.</p>
 <pre><code class="lang-csharp" highlight-lines="2-3,8-10">using System;
 using Gum.DataTypes;
@@ -925,7 +933,7 @@ using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
 using MonoGameLibrary.Scenes;
 </code></pre>
-<p>Next, add the following fields:</p>
+<p>Next, add the following fields to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">// A reference to the pause panel UI element so we can set its visibility
 // when the game is paused.
 private Panel _pausePanel;
@@ -937,7 +945,7 @@ private Button _resumeButton;
 // The UI sound effect to play when a UI event is triggered.
 private SoundEffect _uiSoundEffect;
 </code></pre><h4 id="pausing-the-game">Pausing the Game</h4>
-<p>To pause the game, first we will create a method that makes the pause panel visible. Add the following method to the <code>GameScene</code> class:</p>
+<p>To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the <code>GameScene</code> class after the fields:</p>
 <pre><code class="lang-csharp">private void PauseGame()
 {
     // Make the pause panel UI element visible.
@@ -947,7 +955,7 @@ private SoundEffect _uiSoundEffect;
     _resumeButton.IsFocused = true;
 }
 </code></pre>
-<p>Next, update the <code>CheckKeyboardInput</code> method so that when the escape key is pressed, we pause the game instead of returning to the title scene:</p>
+<p>Next, update the <code>CheckKeyboardInput</code> method so that when the escape key is pressed, instead of returning to the title scene, we now pause the game:</p>
 <pre><code class="lang-csharp" highlight-lines="6-10">private void CheckKeyboardInput()
 {
     // Get a reference to the keyboard info
@@ -962,7 +970,7 @@ private SoundEffect _uiSoundEffect;
     // Existing keyboard input code
     // ...
 </code></pre>
-<p>Finally, update the <code>CheckGamePadInput</code> method so the game is paused when the start button is pressed:</p>
+<p>Finally, update the <code>CheckGamePadInput</code> method so that when the start button is pressed, it pauses the game:</p>
 <pre><code class="lang-csharp" highlight-lines="6-10">private void CheckGamePadInput()
 {
     // Get the gamepad info for gamepad one.
@@ -1020,7 +1028,7 @@ private SoundEffect _uiSoundEffect;
     _pausePanel.AddChild(quitButton);
 }
 </code></pre><h4 id="initializing-the-ui-1">Initializing the UI</h4>
-<p>Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the <code>GameScene</code> class:</p>
+<p>Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the <code>GameScene</code> class after the <code>CreatePausePanel</code> method:</p>
 <pre><code class="lang-csharp">private void InitializeUI()
 {
     GumService.Default.Root.Children.Clear();
@@ -1030,7 +1038,7 @@ private SoundEffect _uiSoundEffect;
 </code></pre>
 <p>Just like with the <code>TitleScene</code>, we first clear any existing UI elements from Gum's root before creating the UI elements for this scene.</p>
 <h4 id="integrating-with-the-game-loop-1">Integrating with the Game Loop</h4>
-<p>Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to <code>InitializeUI()</code> in the <code>Initialize</code> method:</p>
+<p>Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to <code>InitializeUI()</code> in the <code>Initialize</code> method by updating it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="38">public override void Initialize()
 {
     // LoadContent is called during base.Initialize().
@@ -1102,7 +1110,7 @@ private SoundEffect _uiSoundEffect;
     _uiSoundEffect = Core.Content.Load&lt;SoundEffect&gt;(&quot;audio/ui&quot;);
 }
 </code></pre>
-<p>Next, update the <code>Update</code> method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:</p>
+<p>Next, modify the <code>Update</code> method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:</p>
 <pre><code class="lang-csharp" highlight-lines="3-10">public override void Update(GameTime gameTime)
 {
     // Ensure the UI is always updated
@@ -1130,7 +1138,7 @@ private SoundEffect _uiSoundEffect;
     GumService.Default.Draw();
 }
 </code></pre>
-<p>WIth these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the <code>Update</code> method and draws them during the <code>Draw</code> method.  If the game is paused, as determined by the <code>IsVisible</code> property of the pause menu, then updating the actual game logic is skipped.</p>
+<p>With these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the <code>Update</code> method and draws them during the <code>Draw</code> method.  If the game is paused, as determined by the <code>IsVisible</code> property of the pause menu, then updating the actual game logic is skipped.</p>
 <table>
 <thead>
 <tr>

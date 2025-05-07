@@ -745,7 +745,6 @@ private Vector2 _pressEnterOrigin;
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -1214,7 +1213,7 @@ private void CheckGamePadInput()
 <li>The player's score is drawn at using its precalculated position and origin so that it is in the top left of the room bounds centered on the wall sprite.</li>
 </ul>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
-<p>With our scene system and scene classes in place, we can now simplify our main <code>Game1</code> class to just initialize the game and start with the title scene. Open the <em>Game1.cs</em> file and update it to the following:</p>
+<p>With our scene system and scene classes in place, we can now simplify our main <code>Game1</code> class to just initialize the game and start with the title scene. Open the <em>Game1.cs</em> file and replace its entire contents with this simplified implementation:</p>
 <pre><code class="lang-csharp">using DungeonSlime.Scenes;
 using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
