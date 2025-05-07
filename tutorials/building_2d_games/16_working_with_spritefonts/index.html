@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-16-working-with-spritefonts">Chapter 16: Working with SpriteFonts</h1>
 <p class="text-secondary">Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.</p>
-<p>In <a href="../06_working_with_textures/index.html">Chapter 06</a>, you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class to handle text rendering, which works together with the familiar <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> we've already been using for drawing textures.</p>
+<p>In <a href="../06_working_with_textures/index.html">Chapter 06</a>, you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class to handle text rendering, which works together with the familiar <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> we have already been using for drawing textures.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn how MonoGame handles text rendering with SpriteFonts.</li>
@@ -128,7 +128,7 @@
 <li>Render text using various parameters to control appearance.</li>
 <li>Implement text rendering in our game.</li>
 </ul>
-<p>Let's start by understanding how text rendering works in MonoGame.</p>
+<p>We will first start by understanding how text rendering works in MonoGame.</p>
 <h2 id="understanding-spritefonts">Understanding SpriteFonts</h2>
 <p>MonoGame processes fonts through the content pipeline to create a texture atlas of font characters.  MonoGame uses the texture atlas approach rather than directly using system fonts for several important reasons:</p>
 <ul>
@@ -213,7 +213,7 @@ with.
   &lt;/Asset&gt;
 &lt;/XnaContent&gt;
 </code></pre>
-<p>When creating a SpriteFont Description for your game, you'll need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.</p>
+<p>When creating a SpriteFont Description for your game, you will need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.</p>
 <h3 id="customizing-the-spritefont">Customizing the SpriteFont</h3>
 <p>The SpriteFont Description file allows you to customize various aspects of how the font will be processed and appear in your game. Here are the key elements you can modify:</p>
 <h4 id="fontname">FontName</h4>
@@ -222,14 +222,14 @@ with.
 <h5>Important</h5>
 <p>MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame recommends using <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>.</p>
 </div>
-<p>Alternatively, for better portability across development environments, it's recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this</p>
+<p>Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this</p>
 <ol>
 <li><p>Download or locate a TTF or OTF font file.</p>
 </li>
-<li><p>Place it in the same directory as the <em>.spritefont</em> file.</p>
+<li><p>Place it in the same folder as the <em>.spritefont</em> file.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>You place the font file in the same directory as the <em>.spritefont</em> file directly, not through the MGCB Editor.</p>
+<p>You place the font file in the same folder as the <em>.spritefont</em> file directly, not through the MGCB Editor.</p>
 </div>
 </li>
 <li><p>Update the <code>&lt;FontName&gt;</code> element to include the exact filename with extension.</p>
@@ -254,22 +254,22 @@ with.
 </ul>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.</p>
+<p>Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You will also now have multiple assets to manage both as asset files and references in code.</p>
 <p>An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.</p>
 <p>There are tradeoffs to each approach and you should choose the one that works best for your game.</p>
 </div>
 <h4 id="spacing">Spacing</h4>
 <p>The <code>&lt;Spacing&gt;</code> element adjusts the space between characters. The default value of 0 uses the font's built-in spacing. Positive values increase spacing, while negative values (though rarely used) can decrease it.</p>
 <h4 id="usekerning">UseKerning</h4>
-<p>The <code>&lt;UseKerning&gt;</code> element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you'll want to leave this as <code>true</code>.</p>
+<p>The <code>&lt;UseKerning&gt;</code> element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you will want to leave this as <code>true</code>.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>While kerning typically improves text appearance, some fonts (including Arial) may not respond optimally to kerning adjustments. If you notice unusual character spacing with a particular font, try setting this value to <code>false</code>.</p>
 </div>
 <h4 id="style">Style</h4>
-<p>The <code>&lt;Style&gt;</code> element sets the font style. Valid options are &quot;Regular&quot;, &quot;Bold&quot;, &quot;Italic&quot;, or &quot;Bold, Italic&quot;. Note that not all fonts have all styles available, and using a style that doesn't exist will fall back to Regular.</p>
+<p>The <code>&lt;Style&gt;</code> element sets the font style. Valid options are &quot;Regular&quot;, &quot;Bold&quot;, &quot;Italic&quot;, or &quot;Bold, Italic&quot;. Note that not all fonts have all styles available, and using a style that does not exist will fall back to Regular.</p>
 <h4 id="defaultcharacter">DefaultCharacter</h4>
-<p>The <code>&lt;DefaultCharacter&gt;</code> element (commented out by default) specifies what character to use as a fallback when trying to render a character that isn't included in the font. This is useful for handling special characters or international text.</p>
+<p>The <code>&lt;DefaultCharacter&gt;</code> element (commented out by default) specifies what character to use as a fallback when trying to render a character that is not included in the font. This is useful for handling special characters or international text.</p>
 <h4 id="characterregions">CharacterRegions</h4>
 <p>The <code>&lt;CharacterRegions&gt;</code> element defines which Unicode character ranges to include in the font. The default range (32-126) covers basic Latin characters, which is sufficient for English text. Including more characters increases the font texture size but allows support for more languages or special symbols.</p>
 <p>For most games, the default range is sufficient.</p>
@@ -288,7 +288,7 @@ SpriteFont font = Content.Load&lt;SpriteFont&gt;(&quot;font&quot;);
     Color.White             // color
 );
 </code></pre>
-<p>Let's look at the parameters:</p>
+<p>This overload contains the following parameters:</p>
 <ol>
 <li><strong>font</strong>: The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> to use for rendering.</li>
 <li><strong>text</strong>: The text to display (as a string or <code>StringBuilder</code>).</li>
@@ -361,12 +361,12 @@ _spriteBatch.DrawString(
     0.0f                    // layerDepth
 );
 </code></pre><h2 id="implementing-text-in-our-game">Implementing Text in Our Game</h2>
-<p>Let's add some text to our game to display information to the player.  We'll add a score counter that increases when the slime eats the bat.</p>
+<p>To explore implementing text, we will add text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.</p>
 <h3 id="adding-the-spritefont-description">Adding the SpriteFont Description</h3>
-<p>First, we'll need to create a SpriteFont Definition.  Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
+<p>First, we will need to create a SpriteFont Definition.  Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
 <ol>
-<li>Create a new directory called <em>fonts</em> (right-click <em>Content</em> &gt; <em>Add</em> &gt; <em>New Folder</em>).</li>
-<li>Right-click the new <em>fonts</em> directory and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
+<li>Create a new folder called <em>fonts</em> (right-click <em>Content</em> &gt; <em>Add</em> &gt; <em>New Folder</em>).</li>
+<li>Right-click the new <em>fonts</em> folder and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
 <li>Select <em>SpriteFont Description (.spritefont)</em> from the options.</li>
 <li>Name the file <em>04B_30.spritefont</em> and click <em>Create</em>.</li>
 </ol>
@@ -384,10 +384,10 @@ _spriteBatch.DrawString(
 </table>
 <div class="NOTE">
 <h5>Note</h5>
-<p>We've named the SpriteFont Description file with the same name as the font we'll be using.  This makes it easier to remember when updating the code later.</p>
+<p>We have named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.</p>
 </div>
 <h3 id="download-the-font-file">Download the Font File</h3>
-<p>Next, right-click the following TTF font and choose &quot;Save Link as...&quot; and save it in the same directory as the <em>04B_30.spriteFont</em> file we just created.</p>
+<p>Next, right-click the following TTF font and choose &quot;Save Link as...&quot; and save it in the same folder as the <em>04B_30.spriteFont</em> file we just created.</p>
 <ul>
 <li><a href="files/04B_30.ttf">04B_30.ttf</a></li>
 </ul>
@@ -513,7 +513,7 @@ public class Game1 : Core
         // room bounds, and to vertically be at the center of the first tile.
         _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-        // Set the origin of the text so it's left-centered.
+        // Set the origin of the text so it is left-centered.
         float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
@@ -576,7 +576,7 @@ public class Game1 : Core
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left &lt; _roomBounds.Left)
         {
@@ -609,7 +609,7 @@ public class Game1 : Core
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left &lt; _roomBounds.Left)
         {
@@ -856,7 +856,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Learned how to create SpriteFont definitions with the MGCB Editor.</li>
 <li>Learned how to reference font files for better cross-platform compatibility.</li>
@@ -865,7 +865,7 @@ public class Game1 : Core
 <li>Learned how to measure text dimensions.</li>
 <li>Implementing a score display and boost indicator in our game.</li>
 </ul>
-<p>In the next chapter we'll discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.</p>
+<p>In the next chapter we will discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are the key components of a SpriteFont in MonoGame?</p>
@@ -878,7 +878,7 @@ public class Game1 : Core
 </div>
 </li>
 <li><p>Why is it recommended to include the font file in your content project rather than referencing system fonts?</p>
-<div class="question-answer"><p>Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach doesn't depend on fonts being installed on the system where the content is built.</p>
+<div class="question-answer"><p>Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach does not depend on fonts being installed on the system where the content is built.</p>
 </div>
 </li>
 <li><p>What method would you use to determine how much space a text string will occupy when rendered, and what does it return?</p>

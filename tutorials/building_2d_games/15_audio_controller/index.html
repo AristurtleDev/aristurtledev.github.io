@@ -135,13 +135,13 @@
 <li>Integrate the audio controller with your game's core systems.</li>
 <li>Implement keyboard shortcuts for audio control.</li>
 </ul>
-<p>By the end of this chapter, you'll have an audio control system that can be easily reused in future game projects.</p>
+<p>By the end of this chapter, you will have an audio control system that can be easily reused in future game projects.</p>
 <h2 id="the-audiocontroller-class">The AudioController Class</h2>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new directory named <em>Audio</em>.</p>
+<li><p>Create a new folder named <em>Audio</em>.</p>
 </li>
-<li><p>Add a new class file named <em>AudioController.cs</em> to the <em>Audio</em> directory you just created.</p>
+<li><p>Add a new class file named <em>AudioController.cs</em> to the <em>Audio</em> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class</p>
 <pre><code class="lang-csharp">using System;
@@ -158,7 +158,7 @@ public class AudioController : IDisposable
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <code>AudioController</code> class will implement the <code>IDisposable</code> interface,  This interface is part of .NET and provides a standardized implementation for an object to release resources.  Implementing <code>IDisposable</code> allows other code to properly clean up the resources held by our audio controller when it's no longer needed.  For more information on <code>IDisposable</code>, you can read the <a href="https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose Method</a> article on Microsoft Learn.</p>
+<p>The <code>AudioController</code> class will implement the <code>IDisposable</code> interface,  This interface is part of .NET and provides a standardized implementation for an object to release resources.  Implementing <code>IDisposable</code> allows other code to properly clean up the resources held by our audio controller when it is no longer needed.  For more information on <code>IDisposable</code>, you can read the <a href="https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose Method</a> article on Microsoft Learn.</p>
 </div>
 </li>
 </ol>
@@ -288,7 +288,7 @@ public void Update()
     }
 }
 </code></pre><h4 id="audiocontroller-playback">AudioController Playback</h4>
-<p>While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way doesn't work if you need to pause them because the game paused.  Instead, we can add playback methods through the <code>AudioController</code> that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:</p>
+<p>While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the <code>AudioController</code> that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Plays the given sound effect.
 /// &lt;/summary&gt;
@@ -337,7 +337,7 @@ public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect, float volume
 public void PlaySong(Song song, bool isRepeating = true)
 {
     // Check if the media player is already playing, if so, stop it.
-    // If we don't stop it, this could cause issues on some platforms
+    // If we do not stop it, this could cause issues on some platforms
     if (MediaPlayer.State == MediaState.Playing)
     {
         MediaPlayer.Stop();
@@ -454,8 +454,8 @@ protected void Dispose(bool disposing)
     IsDisposed = true;
 }
 </code></pre>
-<p>Games often use limited system resources like audio channels. When we're done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the <code>IDisposable</code> interface.</p>
-<p>Think of <code>IDisposable</code> like a cleanup checklist that runs when you're finished with something:</p>
+<p>Games often use limited system resources like audio channels. When we are done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the <code>IDisposable</code> interface.</p>
+<p>Think of <code>IDisposable</code> like a cleanup checklist that runs when you are finished with something:</p>
 <ol>
 <li>The interface provides a <code>Dispose</code> method that contains all cleanup logic.</li>
 <li>When called, <code>Dispose</code> releases any resources the class was using.</li>
@@ -467,13 +467,13 @@ protected void Dispose(bool disposing)
 <p>Fore more information on <code>IDisposable</code> and the <code>Dispose</code> method, check out the <a href="https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">Implementing a Dispose Method</a> article on Microsoft Learn.</p>
 </div>
 <h2 id="implementing-the-audiocontroller-class">Implementing the AudioController Class</h2>
-<p>Now that we have the audio controller class complete, let's update the game to use it.  We'll do this in two steps:</p>
+<p>Now that we have the audio controller class complete, we can update the game to use it.  We will do this in two steps:</p>
 <ol>
 <li>First, update the <code>Core</code> class to add the <code>AudioController</code> globally.</li>
 <li>Update the <code>Game1</code> class to use the global audio controller from <code>Core</code>.</li>
 </ol>
 <h3 id="updating-the-core-class">Updating the Core Class</h3>
-<p>The <code>Core</code> class serves as our the base game class, so we'll update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
+<p>The <code>Core</code> class serves as our the base game class, so we will update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="6,50-53,112-113,116-122,129-130">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -758,7 +758,7 @@ public class Game1 : Core
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left &lt; _roomBounds.Left)
         {
@@ -791,7 +791,7 @@ public class Game1 : Core
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left &lt; _roomBounds.Left)
         {
@@ -1021,7 +1021,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Created a reusable <code>AudioController</code> class to centralize audio management.</li>
 <li>Learned about proper resource management for audio using the <code>IDisposable</code> pattern.</li>
@@ -1032,7 +1032,7 @@ public class Game1 : Core
 <li>Added keyboard controls to adjust volume and toggle mute state.</li>
 </ul>
 <p>The <code>AudioController</code> class you created is a significant improvement over directly using MonoGame's audio APIs. It handles common audio management tasks that would otherwise need to be implemented repeatedly in different parts of your game. By centralizing these functions, you make your code more maintainable and provide a consistent audio experience across your game.</p>
-<p>In the next chapter, we'll start exploring fonts and adding text to the game.</p>
+<p>In the next chapter, we will start exploring fonts and adding text to the game.</p>
 
 </article>
 

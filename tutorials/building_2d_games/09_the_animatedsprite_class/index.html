@@ -138,17 +138,20 @@
 </tbody>
 </table>
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
-<p>In this chapter, we'll build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
+<p>In this chapter, we will build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
-<p>Before we can create animated sprites, we need a way to manage animation data. Let's create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
+<p>Before we can create animated sprites, we need a way to manage animation data. We will create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Animation { }
+public class Animation 
+{
+
+}
 </code></pre><h3 id="animation-properties">Animation Properties</h3>
-<p>An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the <code>Animation</code> class:</p>
+<p>An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Add these properties to the <code>Animation</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// The texture regions that make up the frames of this animation.  The order of the regions within the collection
 /// are the order that the frames should be displayed in.
@@ -160,7 +163,7 @@ public List&lt;TextureRegion&gt; Frames { get; set; }
 /// &lt;/summary&gt;
 public TimeSpan Delay { get; set; }
 </code></pre>
-<p>The <code>Frames</code> property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they'll be displayed in the same sequence they're added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.</p>
+<p>The <code>Frames</code> property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they will be displayed in the same sequence they are added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.</p>
 <p>The <code>Delay</code> property defines how long each frame should be displayed before moving to the next one. This timing control allows us to adjust the speed of our animations; a shorter delay creates faster animations, while a longer delay creates slower ones.</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -194,7 +197,7 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 <p>The default 100 milliseconds delay provides a good starting point for most animations, roughly equivalent to 10 animation frame changes per second.</p>
 </div>
 <h2 id="creating-animations-with-the-textureatlas-class">Creating Animations With The TextureAtlas Class</h2>
-<p>The <code>TextureAtlas</code> class we created in <a href="../07_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 07</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <em>atlas.png</em> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our <em>atlas-definition.xml</em> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.  Open the <em>atlas-definition.xml</em> file and replace the contents with the following:</p>
+<p>The <code>TextureAtlas</code> class we created in <a href="../07_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 07</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <em>atlas.png</em> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our <em>atlas-definition.xml</em> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.  Open the <em>atlas-definition.xml</em> file and replace the contents with the following:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;TextureAtlas&gt;
     &lt;Texture&gt;images/atlas&lt;/Texture&gt;
@@ -231,6 +234,16 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 </div>
 <p>Now that we have a fully configured XML configuration for the atlas, we need to update the <code>TextureAtlas</code> class to manage animation data.  Open the <em>TextureAtlas.cs</em> file and make the following changes:</p>
 <ol>
+<li><p>Add the following using statement so we can reference the <code>TimeSpan</code> struct:</p>
+<pre><code class="lang-csharp" highlight-lines="1">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+</code></pre></li>
 <li><p>Add storage for animations</p>
 <pre><code class="lang-csharp">// Stores animations added to this atlas.
 private Dictionary&lt;string, Animation&gt; _animations;
@@ -308,7 +321,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
             XElement root = doc.Root;
 
             // The &lt;Texture&gt; element contains the content path for the Texture2D to load.
-            // So we'll retrieve that value then use the content manager to load the texture.
+            // So we will retrieve that value then use the content manager to load the texture.
             string texturePath = root.Element(&quot;Texture&quot;).Value;
             atlas.Texture = content.Load&lt;Texture2D&gt;(texturePath);
 
@@ -408,15 +421,18 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 <p>By inheriting from <code>Sprite</code>, our <code>AnimatedSprite</code> class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding animation-specific functionality.</p>
 </div>
 <p>The key to this design is the <code>Sprite.Region</code> property. Our <code>Sprite</code> class already knows how to render whatever region is currently set, so our <code>AnimatedSprite</code> class just needs to update this region property to the correct animation frame at the right time.</p>
-<p>Let's create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> directory within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
+<p>Now we will create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Graphics;
 
-public class AnimatedSprite : Sprite { }
+public class AnimatedSprite : Sprite 
+{
+
+}
 </code></pre><h3 id="animatedsprite-members">AnimatedSprite Members</h3>
-<p>An animated sprite needs to track both its current animation state and timing information. Let's add the following members to the <code>AnimatedSprite</code> class:</p>
+<p>An animated sprite needs to track both its current animation state and timing information. Add the following members to the <code>AnimatedSprite</code> class:</p>
 <pre><code class="lang-csharp">private int _currentFrame;
 private TimeSpan _elapsed;
 private Animation _animation;
@@ -497,7 +513,7 @@ public void Update(GameTime gameTime)
 <ul>
 <li>Resets the elapsed time counter</li>
 <li>Advances to the next frame</li>
-<li>Loops back to the first frame if we've reached the end</li>
+<li>Loops back to the first frame if we have reached the end</li>
 <li>Updates the sprite's region to display the current frame</li>
 </ul>
 </li>
@@ -526,7 +542,7 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
     return new AnimatedSprite(animation);
 }
 </code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
-<p>Let's adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
+<p>We can now adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
 <pre><code class="lang-csharp" highlight-lines="11-15,34-40,50-54">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -606,7 +622,7 @@ public class Game1 : Core
     }
 }
 </code></pre>
-<p>Let's examine the key changes in this implementation:</p>
+<p>Here are the key changes in this implementation:</p>
 <ul>
 <li>The <code>_slime</code> and <code>_bat</code> members were changed from <code>Sprite</code>  to <code>AnimatedSprite</code>.</li>
 <li>In <a href="xref:Microsoft.Xna.Framework.Game.LoadContent"><strong>LoadContent</strong></a> the <code>_slime</code> and <code>_bat</code> sprites are now created using the new <code>TextureAtlas.CreateAnimatedSprite</code> method.</li>
@@ -630,7 +646,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Created an <code>Animation</code> class to manage frame sequences and timing.</li>
 <li>Extended the <code>TextureAtlas</code> class to support animation definitions.</li>
@@ -638,7 +654,7 @@ public class Game1 : Core
 <li>Applied inheritance to add animation capabilities while maintaining existing sprite functionality.</li>
 <li>Used XML configuration to define animations separately from code.</li>
 </ul>
-<p>Now that we can efficiently manage and render sprites and animations, in the next chapter we'll start taking a look at user input.</p>
+<p>Now that we can efficiently manage and render sprites and animations, in the next chapter we will start taking a look at user input.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>Why did we create a separate <code>Animation</code> class instead of putting animation properties directly in <code>AnimatedSprite</code>?</p>
@@ -649,7 +665,7 @@ public class Game1 : Core
 <div class="question-answer"><p><code>TimeSpan</code> provides precise timing control and makes it easier to synchronize animations with game time. It also makes the delay values more explicit (milliseconds vs arbitrary numbers) and helps prevent timing errors.</p>
 </div>
 </li>
-<li><p>Why does the <code>AnimatedSprite</code> class need an <code>Update</code> method while the base <code>Sprite</code> class doesn't?</p>
+<li><p>Why does the <code>AnimatedSprite</code> class need an <code>Update</code> method while the base <code>Sprite</code> class does not?</p>
 <div class="question-answer"><p>The <code>AnimatedSprite</code> needs to track elapsed time and change frames based on the animation's timing. This requires updating its state over time, while a regular sprite's appearance remains static until explicitly changed.</p>
 </div>
 </li>

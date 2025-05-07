@@ -128,9 +128,9 @@
 <li>Learn how to handle object overlap and response.</li>
 <li>Build a reusable collision system for your game.</li>
 </ul>
-<p>Let's start by understanding the basics of collision detection and the different approaches we can use.</p>
+<p>We will first start by understanding the basics of collision detection and the different approaches that can be used.</p>
 <h2 id="understanding-collision-detection">Understanding Collision Detection</h2>
-<p>Before we start implementing collision detection, let's discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:</p>
+<p>Before we start implementing collision detection, we should discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:</p>
 <h3 id="proximity-collision-detection">Proximity Collision Detection</h3>
 <p>The simplest form is checking if objects are within a certain range of each other.  This is useful when you only need to know if objects are &quot;near&quot; each other like detecting if an enemy is close enough to chase a player or if two objects are close enough to perform a more complex collision check.</p>
 <h3 id="simple-shape-based-collision-detection">Simple Shape Based Collision Detection</h3>
@@ -187,20 +187,20 @@ if(radii &lt; distanceSquared)
 </code></pre>
 <div class="TIP">
 <h5>Tip</h5>
-<p>MonoGame also provides a distance calculation method with <a href="xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Distance</strong></a> which returns the distance by providing the square root of the distance squared.  So why don't we use this instead?</p>
-<p>Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it's more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.</p>
+<p>MonoGame also provides a distance calculation method with <a href="xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Distance</strong></a> which returns the distance by providing the square root of the distance squared.  So why do not we use this instead?</p>
+<p>Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.</p>
 </div>
 <h4 id="rectangle-collision-detection">Rectangle Collision Detection</h4>
-<p>Rectangles, often called <em>bounding boxes</em>, typically uses what's called <em>Axis-Aligned Bounding Box</em> (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.</p>
+<p>Rectangles, often called <em>bounding boxes</em>, typically uses what is called <em>Axis-Aligned Bounding Box</em> (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/aabb-vs-non-aabb.svg" alt="Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe."></th>
+<th style="text-align: center;"><img src="images/aabb-vs-non-aabb.svg" alt="Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axe."></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes</strong></td>
+<td style="text-align: center;"><strong>Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axes</strong></td>
 </tr>
 </tbody>
 </table>
@@ -526,10 +526,10 @@ _ballVelocity = newPosition;
 <h3 id="optimizing-collision-performance">Optimizing Collision Performance</h3>
 <p>When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as <span class="math">\((n * (n - 1)) / 2\)</span> where <span class="math">\(n\)</span> is the total number of objects.  For example, if you have 100 objects in your game, that's <span class="math">\((100 * 99) / 2 = 4950\)</span> collision checks every frame.  To improve performance, we can use a two-phase approach:</p>
 <ol>
-<li>Broad Phase: A quick, simple check to rule out objects that definitely aren't colliding.</li>
+<li>Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.</li>
 <li>Narrow Phase: A more precise check only performed on objects that passed the broad phase.</li>
 </ol>
-<p>For our simple game with just two objects, this optimization isn't necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.</p>
+<p>For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.</p>
 <h2 id="the-circle-struct">The Circle Struct</h2>
 <p>For our game, we are going to implement circle based collision detection.   MonoGame does not have a <code>Circle</code> struct to represent a circle like it does with <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a>.  Before we can perform circle collision, we will need to create our own.</p>
 <p>In the <em>MonoGameLibrary</em> project, add a new file named <em>Circle.cs</em>.  Add the following code as the foundation of the <code>Circle</code> struct:</p>
@@ -538,7 +538,10 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary;
 
-public readonly struct Circle : IEquatable&lt;Circle&gt; { }
+public readonly struct Circle : IEquatable&lt;Circle&gt; 
+{
+    
+}
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -712,15 +715,15 @@ public static bool operator !=(Circle lhs, Circle rhs) =&gt; !lhs.Equals(rhs);
 Circle circle2 = new Circle(0, 0, 5);
 bool areEqual = circle1 == circle2;    // Returns true
 </code></pre></div>
-<p>Now that we have a struct to represent a circle and check for overlapping, let's update our game to implement collision detection and responses.</p>
+<p>Now that we have a struct to represent a circle and check for overlapping, we will update our game to implement collision detection and responses.</p>
 <h2 id="adding-collision-to-our-game">Adding Collision To Our Game</h2>
-<p>If you run the game right now and move the slime around, you'll notice a few issues that can be fixed by adding collision detection and response:</p>
+<p>If you run the game right now and move the slime around, you will notice a few issues that can be fixed by adding collision detection and response:</p>
 <ol>
 <li>You can move the slime outside the bounds of the screen.</li>
 <li>Nothing occurs when the slime collides with the bat.</li>
-<li>The bat doesn't move, providing no challenge in the game.</li>
+<li>The bat does not move, providing no challenge in the game.</li>
 </ol>
-<p>Let's update our game to implement these changes using collision detection and response. Open <em>Game1.cs</em> and make the following changes:</p>
+<p>To resolve this, we can update our game to implement these changes using collision detection and response.  In the <em>DungeonSlime</em> project (your main game project), open the <em>Game1.cs</em> file and make the following changes to the <code>Game1</code> class:</p>
 <pre><code class="lang-csharp" highlight-lines="1,5,25-29,40-45,81-181,186-198,298-299">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -817,7 +820,7 @@ public class Game1 : Core
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left &lt; screenBounds.Left)
         {
@@ -850,7 +853,7 @@ public class Game1 : Core
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left &lt; screenBounds.Left)
         {
@@ -1067,7 +1070,7 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="conclusion">Conclusion</h2>
-<p>Let's review what you accomplished in this chapter:</p>
+<p>In this chapter, you accomplished the following:</p>
 <ul>
 <li>Learned about different approaches to collision detection:
 <ul>
@@ -1103,7 +1106,7 @@ public class Game1 : Core
 </ul>
 </li>
 </ul>
-<p>In the next chapter, we'll explore using tilesets and tilemaps to create tile based environments for our game.</p>
+<p>In the next chapter, we will explore using tilesets and tilemaps to create tile based environments for our game.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What is the difference between collision detection and collision response?</p>
@@ -1135,10 +1138,10 @@ public class Game1 : Core
 <li><p>Why might you choose to use circle collision over rectangle collision for certain objects?</p>
 <div class="question-answer"><p>Circle collision might be chosen because:</p>
 <ul>
-<li>It's more accurate for round objects</li>
+<li>It is more accurate for round objects</li>
 <li>It handles rotating objects better</li>
-<li>It's simpler for continuous collision detection</li>
-<li>It's natural for radius-based interactions</li>
+<li>It is simpler for continuous collision detection</li>
+<li>It is natural for radius-based interactions</li>
 </ul>
 </div>
 </li>
