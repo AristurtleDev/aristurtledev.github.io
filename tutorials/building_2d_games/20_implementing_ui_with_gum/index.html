@@ -1027,7 +1027,30 @@ private SoundEffect _uiSoundEffect;
 
     _pausePanel.AddChild(quitButton);
 }
-</code></pre><h4 id="initializing-the-ui-1">Initializing the UI</h4>
+</code></pre>
+<p>Now we should implement the event handlers for these controls. First, we will implement the handler for the &quot;Resume&quot; button. Add the following method to the <code>GameScene</code> class after the <code>CreatePausePanel</code> method:</p>
+<pre><code class="lang-csharp">private void HandleResumeButtonClicked(object sender, EventArgs e)
+{
+    // A UI interaction occurred, play the sound effect
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+    // Make the pause panel invisible to resume the game.
+    _pausePanel.IsVisible = false;
+}
+</code></pre>
+<p>This method plays the UI sound effect for auditory feedback and then hides the pause panel so that the game can resume.</p>
+<p>Next is the handler for the &quot;Quit&quot; button.  Add the following method to the <code>GameScene</code> class after the <code>HandleResumeButtonClicked</code> method:</p>
+<pre><code class="lang-csharp">private void HandleQuitButtonClicked(object sender, EventArgs e)
+{
+    // A UI interaction occurred, play the sound effect
+    Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+    // Go back to the title scene.
+    Core.ChangeScene(new TitleScene());
+}
+</code></pre>
+<p>This method as well plays the UI sound effect for auditory feedback, then quits the game by changing scenes back to the title scene.</p>
+<h4 id="initializing-the-ui-1">Initializing the UI</h4>
 <p>Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the <code>GameScene</code> class after the <code>CreatePausePanel</code> method:</p>
 <pre><code class="lang-csharp">private void InitializeUI()
 {
