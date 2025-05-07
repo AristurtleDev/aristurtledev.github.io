@@ -548,7 +548,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 <p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../05_content_pipeline/index.html">Chapter 05: The Content Pipeline</a>.</p>
 </div>
 <p>First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="5,11-15,31-47,67-77">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="5,11-15,31-47,65-75">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -595,8 +595,6 @@ public class Game1 : Core
 
         // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -741,8 +739,6 @@ public class Game1 : Core
 
         // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

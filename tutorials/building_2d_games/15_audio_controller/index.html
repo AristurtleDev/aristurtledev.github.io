@@ -624,7 +624,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,199-200,218-219,272-290">using System;
+<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,197-198,216-217,270-288">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -729,8 +729,6 @@ public class Game1 : Core
 
         // Load the background theme music
         _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

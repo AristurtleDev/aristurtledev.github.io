@@ -351,7 +351,7 @@ MediaPlayer.Play(song);
 <li>Save the changes and close the MGCB Editor.</li>
 </ol>
 <p>Next, open the <em>Game1.cs</em> file and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="3,6,39-43,92-111,205-206,224-225">using System;
+<pre><code class="lang-csharp" highlight-lines="3,6,39-43,92-111,203-204,222-223">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -462,8 +462,6 @@ public class Game1 : Core
 
         // Set the theme music to repeat.
         MediaPlayer.IsRepeating = true;
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

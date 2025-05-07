@@ -417,7 +417,7 @@ _spriteBatch.DrawString(
 </ol>
 <h3 id="updating-the-game">Updating the Game</h3>
 <p>Finally, open the <em>Game1.cs</em> file and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,246-247,391-402">using System;
+<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,244-245,389-400">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -547,8 +547,6 @@ public class Game1 : Core
 
         // Load the font
         _font = Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

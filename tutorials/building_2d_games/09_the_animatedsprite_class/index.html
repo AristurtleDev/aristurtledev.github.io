@@ -543,7 +543,7 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
 }
 </code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
 <p>We can now adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-40,50-54">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,48-52">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -583,8 +583,6 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

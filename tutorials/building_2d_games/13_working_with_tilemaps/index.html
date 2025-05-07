@@ -580,7 +580,7 @@ public static Tilemap FromFile(ContentManager content, string filename)
 </table>
 <h3 id="update-the-game1-class">Update the Game1 Class</h3>
 <p>With all of the assets now in place and configured, we can update the <code>Game1</code> class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306">using System;
+<pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,112,114,116,128,121,123,125,127,145,148,150,153,156,159,161,164,179-181,303-304">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -662,8 +662,6 @@ public class Game1 : Core
         // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
         _tilemap.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
