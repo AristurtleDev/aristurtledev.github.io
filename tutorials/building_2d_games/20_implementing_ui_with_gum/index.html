@@ -453,7 +453,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <li>Choose <code>Add NuGet Package</code> from the context menu.</li>
 <li>Enter <code>Gum.MonoGame</code> in the <code>Add NuGet Package</code> search prompt and press Enter.</li>
 <li>When the search finishes, select the <code>Gum.MonoGame</code> package in the results</li>
-<li>When prompted for a version, choose the latest version (&quot;2025.4.23.1&quot;  at the time of writing&quot;).</li>
+<li>When prompted for a version choose version <code>2025.5.1.1</code>.</li>
 </ol>
 </section>
 <section id="tabpanel_1_vs2022" role="tabpanel" data-tab="vs2022" aria-hidden="true" hidden="hidden">
@@ -465,7 +465,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <li>In the NuGet Package Manager window, select the <code>Browse</code> tab if it is not already selected.</li>
 <li>In the search box, enter <code>Gum.MonoGame</code>.</li>
 <li>Select the &quot;Gum.MonoGame&quot; package from the search results.</li>
-<li>Ensure the latest version is selected in the dropdown menu (&quot;2025.4.23.1&quot;  at the time of writing&quot;) and click the <em>Install</em> button.</li>
+<li>On the right, in the version dropdown, select version <code>2025.5.1.1</code> and click the &quot;Install&quot; button.</li>
 </ol>
 </section>
 <section id="tabpanel_1_dotnetcli" role="tabpanel" data-tab="dotnetcli" aria-hidden="true" hidden="hidden">
@@ -475,19 +475,22 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =&gt;
 <li><p>Open a Command Prompt or Terminal window in the same folder as the <code>DungeonSlime.csproj</code> project file.</p>
 </li>
 <li><p>Enter the following command:</p>
-<pre><code class="lang-sh">dotnet add DungeonSlime.csproj package Gum.MonoGame
+<pre><code class="lang-sh">dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.5.1.1
 </code></pre>
 </li>
 </ol>
-<p>This will install the latest version of the package, which is &quot;2025.4.23.1&quot; at the time of writing.</p>
 </section>
 </div>
 
 <div class="TIP">
 <h5>Tip</h5>
 <p>You can verify the package was successfully added by examining your <code>DungeonSlime.csproj</code> file, which should now contain a reference like:</p>
-<pre><code class="lang-xml">&lt;PackageReference Include=&quot;Gum.MonoGame&quot; Version=&quot;2025.4.23.1&quot; /&gt;
+<pre><code class="lang-xml">&lt;PackageReference Include=&quot;Gum.MonoGame&quot; Version=&quot;2025.5.5.1&quot; /&gt;
 </code></pre>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>This tutorial uses version <code>2025.5.5.1</code> of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the Gum documentation before updating in case there are any breaking changes from the code that is presented in this tutorial.</p>
 </div>
 <h3 id="adding-ui-sound-effect">Adding UI Sound Effect</h3>
 <p>To make our UI more responsive and engaging, we will add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.</p>
@@ -662,8 +665,7 @@ private Button _optionsBackButton;
 <h5>Note</h5>
 <p>Notice how we use <code>Anchor</code> to position the buttons relative to the panel's edges, with the &quot;Start&quot; button anchored at the bottom left and the &quot;Options&quot; button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.</p>
 </div>
-<p>Each button registers a <code>Click</code> event handler to respond when the players selects it, we should implement the event handler method for these buttons next.</p>
-<p>Add the following methods to the <code>TitleScene</code> class:</p>
+<p>Each button registers a <code>Click</code> event handler to respond when the players selects it, we should implement the event handler method for these buttons next.  First we will implement the handler for the &quot;Start&quot; button.  Add the following method to the <code>TitleScene</code> class after the <code>CreateTitlePanel</code> method:</p>
 <pre><code class="lang-csharp">private void HandleStartClicked(object sender, EventArgs e)
 {
     // A UI interaction occurred, play the sound effect
@@ -672,7 +674,10 @@ private Button _optionsBackButton;
     // Change to the game scene to start the game.
     Core.ChangeScene(new GameScene());
 }
-</code></pre><pre><code class="lang-csharp">private void HandleOptionsClicked(object sender, EventArgs e)
+</code></pre>
+<p>When the &quot;Start&quot; button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene tot he game scene so the player can start playing the game.</p>
+<p>Next is the handler for the &quot;Options&quot; button.  Add the following method to the <code>TitleScene</code> class after the <code>HandleStartClicked</code> method:</p>
+<pre><code class="lang-csharp">private void HandleOptionsClicked(object sender, EventArgs e)
 {
     // A UI interaction occurred, play the sound effect
     Core.Audio.PlaySoundEffect(_uiSoundEffect);
@@ -687,7 +692,7 @@ private Button _optionsBackButton;
     _optionsBackButton.IsFocused = true;
 }
 </code></pre>
-<p>These handlers are called when the <code>Click</code> event is raised for each button.  The handler for the &quot;Start&quot; button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.</p>
+<p>When the &quot;Options&quot; button is clicked and this method is called, it will play the UI sound effect for auditory feedback then hide the title panel and show the options panel.</p>
 <h4 id="creating-the-options-panel">Creating the Options Panel</h4>
 <p>Next, we will create the options panel with sliders to adjust the volume for music and sound effects.</p>
 <p>Add the following method to the <code>TitleScene</code> class:</p>
@@ -738,7 +743,7 @@ private Button _optionsBackButton;
 }
 </code></pre>
 <p>This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the &quot;Music Volume&quot; slider and the &quot;Sound Effects Volume&quot; slider register events to be called when the value of the sliders change and when the value change has been completed.  The &quot;Back&quot; button registers a click event similar to the ones from the main menu.</p>
-<p>Now we should implement the event handlers for these controls.  Add the following methods to the <code>TitleScene</code> class after the <code>CreateOptionsPanel</code> method:</p>
+<p>Now we should implement the event handlers for these controls.  First, we will implement the handler for when the value of the sound effect volume slider changes.  Add the following method to the <code>TitleScene</code> class after the <code>CreateOptionsPanel</code> method:</p>
 <pre><code class="lang-csharp">private void HandleSfxSliderChanged(object sender, EventArgs args)
 {
     // Intentionally not playing the UI sound effect here so that it is not
@@ -751,12 +756,18 @@ private Button _optionsBackButton;
     // Set the global sound effect volume to the value of the slider.;
     Core.Audio.SoundEffectVolume = (float)slider.Value;
 }
-</code></pre><pre><code class="lang-csharp">private void HandleSfxSliderChangeCompleted(object sender, EventArgs e)
+</code></pre>
+<p>When the value of the &quot;Sound Effects Volume&quot; slider changes and this method is called, a reference to the slider is captured and then the the global sound effect volume is adjusted based on the value of the slider.</p>
+<p>Next is the handler when the &quot;Sound Effects Volume&quot; slider has completed a value change.  Add the following method to the <code>TitleScene</code> class after the <code>HandleSfxSliderChanged</code> method:</p>
+<pre><code class="lang-csharp">private void HandleSfxSliderChangeCompleted(object sender, EventArgs e)
 {
     // Play the UI Sound effect so the player can hear the difference in audio.
     Core.Audio.PlaySoundEffect(_uiSoundEffect);
 }
-</code></pre><pre><code class="lang-csharp">private void HandleMusicSliderValueChanged(object sender, EventArgs args)
+</code></pre>
+<p>When the value of the &quot;Sound Effects Volume&quot; slider has completed a change and this method is called, it plays the UI sound effect to provide auditory feedback so the player can hear the difference in volume.</p>
+<p>After this is the handler for when the &quot;Music Volume&quot; slider value changes.  Add the following method to the <code>TitleScene</code> class after the <code>HandleSfxSliderChangeCompleted</code> method:</p>
+<pre><code class="lang-csharp">private void HandleMusicSliderValueChanged(object sender, EventArgs args)
 {
     // Intentionally not playing the UI sound effect here so that it is not
     // constantly triggered as the user adjusts the slider's thumb on the
@@ -768,12 +779,18 @@ private Button _optionsBackButton;
     // Set the global song volume to the value of the slider.
     Core.Audio.SongVolume = (float)slider.Value;
 }
-</code></pre><pre><code class="lang-csharp">private void HandleMusicSliderValueChangeCompleted(object sender, EventArgs args)
+</code></pre>
+<p>Similar to how we handled the &quot;Sound Effect Volume&quot; slider value changes, when the &quot;Music Volume&quot; slider value changes and this method is called, a reference to the slider is captured and then the global music volume is adjusted based on the value of the slider.</p>
+<p>Next is the handler when the &quot;Music Volume&quot; slider value has completed a value change.  Add the following method to the <code>TitleScene</code> class after the <code>HandleMusicSliderValueChanged</code> method:</p>
+<pre><code class="lang-csharp">private void HandleMusicSliderValueChangeCompleted(object sender, EventArgs args)
 {
     // A UI interaction occurred, play the sound effect
     Core.Audio.PlaySoundEffect(_uiSoundEffect);
 }
-</code></pre><pre><code class="lang-csharp">private void HandleOptionsButtonBack(object sender, EventArgs e)
+</code></pre>
+<p>When the value of the &quot;Music Volume&quot; slider has completed a change, the UI sound effect is played to provide auditory feedback.</p>
+<p>Finally, we need to add the handler for when the &quot;Back&quot; button is clicked on the options panel.  Add the following method to the <code>TitleScene</code> class after the <code>HandleMusicSliderValueChangeCompleted</code> method:</p>
+<pre><code class="lang-csharp">private void HandleOptionsButtonBack(object sender, EventArgs e)
 {
     // A UI interaction occurred, play the sound effect
     Core.Audio.PlaySoundEffect(_uiSoundEffect);
@@ -789,7 +806,7 @@ private Button _optionsBackButton;
     _optionsButton.IsFocused = true;
 }
 </code></pre>
-<p>These handlers update our audio settings in real-time as the player adjusts the sliders.</p>
+<p>This method plays the UI sound effect for auditory feedback, then hides the options panel and shows the title panel.</p>
 <div class="TIP">
 <h5>Tip</h5>
 <p>Notice that for both sliders, we registered a method for the <code>ValueChangeCompleted</code> event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the <code>ValueChanged</code> event, then the UI sound effect would trigger constantly while the slider is being adjusted if using a mouse to drag it.</p>
@@ -966,7 +983,7 @@ private Button _resumeButton;
 // The UI sound effect to play when a UI event is triggered.
 private SoundEffect _uiSoundEffect;
 </code></pre><h4 id="pausing-the-game">Pausing the Game</h4>
-<p>To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the <code>GameScene</code> class after the fields:</p>
+<p>To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the <code>GameScene</code> class after the <code>CheckGamePadInput</code> method:</p>
 <pre><code class="lang-csharp">private void PauseGame()
 {
     // Make the pause panel UI element visible.
@@ -1006,7 +1023,7 @@ private SoundEffect _uiSoundEffect;
     // Existing gamepad input code
     // ...
 </code></pre><h4 id="creating-the-pause-panel">Creating the Pause Panel</h4>
-<p>Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the <code>GameScene</code> class:</p>
+<p>Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the <code>GameScene</code> class after the <code>LoadContent</code> method:</p>
 <pre><code class="lang-csharp">private void CreatePausePanel()
 {
     _pausePanel = new Panel();
@@ -1072,7 +1089,7 @@ private SoundEffect _uiSoundEffect;
 </code></pre>
 <p>This method as well plays the UI sound effect for auditory feedback, then quits the game by changing scenes back to the title scene.</p>
 <h4 id="initializing-the-game-ui">Initializing the Game UI</h4>
-<p>Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the <code>GameScene</code> class after the <code>CreatePausePanel</code> method:</p>
+<p>Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the <code>GameScene</code> class after the <code>HandleQuitButtonClicked</code> method:</p>
 <pre><code class="lang-csharp">private void InitializeUI()
 {
     GumService.Default.Root.Children.Clear();

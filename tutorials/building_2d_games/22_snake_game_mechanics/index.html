@@ -227,7 +227,7 @@
 <h3 id="the-gamecontroller-class">The GameController Class</h3>
 <p>Currently, we have two methods dedicated to handling input in the game scene, <code>CheckKeyboardInput</code> and <code>CheckGamePadInput</code>, both of these methods essentially perform the same logic across different input devices. This presents an opportunity to improve our code.</p>
 <p>To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the &quot;what&quot; (game actions) from the &quot;how&quot; (specific input devices and buttons).</p>
-<p>In the <em>DungeonSlime</em> project (your main game project), create a new file named <code>GameController.cs</code> in the root directory and add the following code:</p>
+<p>Create a new file named <code>GameController.cs</code> in the root of the <em>DungeonSlime</em> project (your main game project) and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
