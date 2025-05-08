@@ -129,6 +129,11 @@
 <li>Build a reusable collision system for your game.</li>
 </ul>
 <p>We will first start by understanding the basics of collision detection and the different approaches that can be used.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There is a lot to understand when it comes to collision detection and the many complex ways that two objects can be considered IN collsion or NEAR collision.  It is critical to get an understanding of the basics before jumping into code.  So buckle up, we have a story to tell before you can get back to the keyboard.</p>
+<p>Feel free to keep coming back to this chapter and refer to the content when you need to, with a fresh cup of coffee.</p>
+</div>
 <h2 id="understanding-collision-detection">Understanding Collision Detection</h2>
 <p>Before we start implementing collision detection, we should discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:</p>
 <h3 id="proximity-collision-detection">Proximity Collision Detection</h3>
@@ -141,12 +146,12 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/circle-distance-right-triangle.svg" alt="Figure 12-1: Showing the distance between the center of two circles forms a right triange"></th>
+<th style="text-align: center;"><img src="images/circle-distance-right-triangle.svg" alt="Figure 12-1: Showing the distance between the center of two circles forms a right triangle"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 12-1: Showing the distance between the center of two circles forms a right triange</strong></td>
+<td style="text-align: center;"><strong>Figure 12-1: Showing the distance between the center of two circles forms a right triangle</strong></td>
 </tr>
 </tbody>
 </table>
@@ -288,7 +293,7 @@ bool isColliding = rect1.Intersects(rect2); // returns true
 </tbody>
 </table>
 <h4 id="complex-polygon-collision-detection">Complex Polygon Collision Detection</h4>
-<p>Complex polygon collision detection uses a method called <em>Separating Axis Theorem</em> (SAT) to determine if two polygon shapes overlap.  SAT uses more complex calculations that can determine if any ploygon shape overlaps another polygon shape, including if they are rotated. There are performance considerations to consider when using SAT.</p>
+<p>Complex polygon collision detection uses a method called <em>Separating Axis Theorem</em> (SAT) to determine if two polygon shapes overlap.  SAT uses more complex calculations that can determine if any polygon shape overlaps with another polygon shape, including if they are rotated. There are performance considerations to consider when using SAT.</p>
 <p>Implementing SAT is out-of-scope for this tutorial. If you are interested in further reading about this, please see the following articles as a good starting point:</p>
 <ul>
 <li><a href="https://www.sevenson.com.au/actionscript/sat/">Separating Axis Theorem (SAT) Explanation</a>.</li>
@@ -530,9 +535,13 @@ _ballVelocity = newPosition;
 <li>Narrow Phase: A more precise check only performed on objects that passed the broad phase.</li>
 </ol>
 <p>For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Time to get back to the code!  The fun starts again here.</p>
+</div>
 <h2 id="the-circle-struct">The Circle Struct</h2>
 <p>For our game, we are going to implement circle based collision detection.   MonoGame does not have a <code>Circle</code> struct to represent a circle like it does with <a href="xref:Microsoft.Xna.Framework.Rectangle"><strong>Rectangle</strong></a>.  Before we can perform circle collision, we will need to create our own.</p>
-<p>In the <em>MonoGameLibrary</em> project, add a new file named <em>Circle.cs</em>.  Add the following code as the foundation of the <code>Circle</code> struct:</p>
+<p>In the root of the <em>MonoGameLibrary</em> project, add a new file named <code>Circle.cs</code>.  Add the following code as the foundation of the <code>Circle</code> struct:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
@@ -545,8 +554,9 @@ public readonly struct Circle : IEquatable&lt;Circle&gt;
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Notice that the struct will implement <a href="https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1"><code>IEquatable&lt;T&gt;</code></a>.  When creating value types like this, it is recommended to implement <code>IEquatable&lt;T&gt;</code> because it has better performance and can help avoid boxing.</p>
+<p>Notice that the struct has declared it will implement the <a href="https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1"><code>IEquatable&lt;T&gt;</code></a> Interface.  When creating value types like this, it is recommended to implement <code>IEquatable&lt;T&gt;</code> because it has better performance for comparing objects and can help avoid boxing.</p>
 <p>For more information on recommended design guidelines for structs, see <a href="https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/struct">Struct Design - Framework Design Guidelines | Microsoft Learn</a></p>
+<p>Ignore the red squiggles for now, they will be resolved as we add more code.</p>
 </div>
 <h3 id="circle-fields">Circle Fields</h3>
 <p>The <code>Circle</code> struct uses both private and public fields to store its state.</p>
@@ -649,7 +659,11 @@ public Circle(Point location, int radius)
     Radius = radius;
 }
 </code></pre>
-<p>The first constructor accepts individual x and y coordinates for the circle's center, while the second accepts a <a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a> struct that combines both coordinates. Both constructors require a radius value that defines the circle's size.</p>
+<ul>
+<li>The first constructor accepts individual x and y coordinates for the circle's center.</li>
+<li>The second accepts a <a href="xref:Microsoft.Xna.Framework.Point"><strong>Point</strong></a> struct that combines both coordinates.</li>
+</ul>
+<p>Both constructors require a radius value that defines the circle's size.</p>
 <h3 id="circle-methods">Circle Methods</h3>
 <p>The <code>Circle</code> struct implements several methods to support equality comparison between circles. These methods allow us to check if two circles are identical (have the same center position and radius).</p>
 <p>First, add the following method that will check if two circles are overlapping with each other:</p>
@@ -665,7 +679,7 @@ public bool Intersects(Circle other)
     return distanceSquared &lt; radiiSquared;
 }
 </code></pre>
-<p>Next, add the following methods for comparing a circle with another object:</p>
+<p>Next we start implementing the <a href="https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1"><code>IEquatable&lt;T&gt;</code></a> Interface, add the following methods for comparing a circle with another object:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Returns a value that indicates whether this circle and the specified object are equal
 /// &lt;/summary&gt;
@@ -708,6 +722,7 @@ public static bool operator ==(Circle lhs, Circle rhs) =&gt; lhs.Equals(rhs);
 /// &lt;returns&gt;true if the two circle are not equal; otherwise, false.&lt;/returns&gt;
 public static bool operator !=(Circle lhs, Circle rhs) =&gt; !lhs.Equals(rhs);
 </code></pre>
+<p>IEquatable interface implemented, red squiggles be gone.</p>
 <div class="TIP">
 <h5>Tip</h5>
 <p>The operator overloads allow you to compare circles using familiar syntax:</p>
@@ -723,8 +738,8 @@ bool areEqual = circle1 == circle2;    // Returns true
 <li>Nothing occurs when the slime collides with the bat.</li>
 <li>The bat does not move, providing no challenge in the game.</li>
 </ol>
-<p>To resolve this, we can update our game to implement these changes using collision detection and response.  In the <em>DungeonSlime</em> project (your main game project), open the <em>Game1.cs</em> file and make the following changes to the <code>Game1</code> class:</p>
-<pre><code class="lang-csharp" highlight-lines="1,5,25-29,40-45,79-179,184-196,296-297">using System;
+<p>We can now implement these features using collision detection and response in our game.  In the <em>DungeonSlime</em> project (your main game project), open the <code>Game1.cs</code> file and make the following changes to the <code>Game1</code> class:</p>
+<pre><code class="lang-csharp" highlight-lines="25-29,40-45,81-181,186-198,298-299">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -783,6 +798,8 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -1031,7 +1048,6 @@ public class Game1 : Core
 </code></pre>
 <p>The key changes made here are:</p>
 <ol>
-<li>The <code>using MonoGameLibrary</code> using directive was added so we can use the new <code>Circle</code> struct.</li>
 <li>The field <code>_batPosition</code> was added to track the position of the bat.</li>
 <li>The field <code>_batVelocity</code> was added to track the velocity of the bat.</li>
 <li>The <code>AssignRandomBatVelocity()</code> method was added which calculates a random x and y velocity for the bat to move at when called.</li>

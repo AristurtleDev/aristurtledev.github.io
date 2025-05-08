@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-16-working-with-spritefonts">Chapter 16: Working with SpriteFonts</h1>
 <p class="text-secondary">Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.</p>
-<p>In <a href="../06_working_with_textures/index.html">Chapter 06</a>, you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class to handle text rendering, which works together with the familiar <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> we have already been using for drawing textures.</p>
+<p>In <a href="../06_working_with_textures/index.html">Chapter 06</a>, you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> class to handle text rendering, which works together with the familiar <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> we have been using for drawing textures.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Learn how MonoGame handles text rendering with SpriteFonts.</li>
@@ -143,13 +143,14 @@
 <li>Data that tracks the position, size, and spacing of each character.</li>
 <li>Kerning information for adjusting spacing between specific character pairs.</li>
 </ol>
-<p>The texture atlas approach means fonts are rendered as sprites, using the same <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> system you learned about for drawing textures.  When you draw text, MonoGame is actually drawing small portions of the texture atlas for each character assembled together to form complete words and sentences.</p>
+<p>The texture atlas approach means fonts are rendered as sprites, using the same <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> system you learned about for drawing textures (<a href="../07_optimizing_texture_rendering/index.html">Chapter 7: Optimized Texture Rendering</a>).  When you draw text, MonoGame is actually drawing small portions of the texture atlas for each character assembled together to form complete words and sentences.</p>
 <h2 id="creating-a-spritefont-description">Creating a SpriteFont Description</h2>
-<p>To use text in your game, you first need to create a SpriteFont Description file and process it through the Content Pipeline. The MGCB Editor makes this process straightforward.  In the MGCB Editor</p>
+<p>To use text in your game, you first need to create a SpriteFont Description file and process it through the Content Pipeline, thankfully the MGCB Editor makes this process straightforward.</p>
+<p>For example, in the MGCB Editor:</p>
 <ol>
 <li>Right-click the content project node where the SpriteFont Description will be created and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
-<li>Select <em>SpriteFont Description (.spritefont)</em> from the options.</li>
-<li>Specify a name for the SpriteFont Description file and click <em>Create</em>.</li>
+<li>Select <code>SpriteFont Description (.spritefont)</code> from the options.</li>
+<li>Specify a name for the SpriteFont Description file and click <code>Create</code>.</li>
 </ol>
 <p>This will create a default SpriteFont Description file that look something like this:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -220,16 +221,16 @@ with.
 <p>The <code>&lt;FontName&gt;</code> element specifies which font to use. By default, it references &quot;Arial&quot;.  When a font name is specified just by name like this, it is required that the font be installed on the system where the content is built.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame recommends using <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>.</p>
+<p>MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame currently recommends using <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>.</p>
 </div>
 <p>Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this</p>
 <ol>
 <li><p>Download or locate a TTF or OTF font file.</p>
 </li>
-<li><p>Place it in the same folder as the <em>.spritefont</em> file.</p>
+<li><p>Place it in the <strong>same folder</strong> as the <code>.spritefont</code> file.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>You place the font file in the same folder as the <em>.spritefont</em> file directly, not through the MGCB Editor.</p>
+<p>You place the font file in the <strong>same folder</strong> as the <code>.spritefont</code> file directly, not through the MGCB Editor.</p>
 </div>
 </li>
 <li><p>Update the <code>&lt;FontName&gt;</code> element to include the exact filename with extension.</p>
@@ -237,7 +238,8 @@ with.
 </ol>
 <div class="TIP">
 <h5>Tip</h5>
-<p>Use fonts with permissive licenses (like <a href="https://openfontlicense.org/">SIL Open Font License</a>) to ensure you can legally use them in your game.  Always check the license of any font you use!</p>
+<p>Use fonts with permissive licenses (like <a href="https://openfontlicense.org/">SIL Open Font License</a>) to ensure you can <strong>legally</strong> use them in your game.</p>
+<p><strong>Always check the license of any font you use!</strong></p>
 </div>
 <h4 id="size">Size</h4>
 <p>The <code>&lt;Size&gt;</code> element controls the font size in points. While it might seem straightforward, font sizing requires consideration and can be dependent on several factors.  When choosing a font size, consider:</p>
@@ -273,8 +275,12 @@ with.
 <h4 id="characterregions">CharacterRegions</h4>
 <p>The <code>&lt;CharacterRegions&gt;</code> element defines which Unicode character ranges to include in the font. The default range (32-126) covers basic Latin characters, which is sufficient for English text. Including more characters increases the font texture size but allows support for more languages or special symbols.</p>
 <p>For most games, the default range is sufficient.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>ALthough for fun, TRY using the Wingdings font :D</p>
+</div>
 <h2 id="loading-a-spritefont-description">Loading a SpriteFont Description</h2>
-<p>To load  a SpritFont Description, we use the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load</strong></a> method with the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> type:</p>
+<p>To load a SpritFont Description, we use the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load</strong></a> method with the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> type:</p>
 <pre><code class="lang-cs">// Loading a SpriteFont Description using the content pipeline
 SpriteFont font = Content.Load&lt;SpriteFont&gt;(&quot;font&quot;);
 </code></pre>
@@ -365,10 +371,10 @@ _spriteBatch.DrawString(
 <h3 id="adding-the-spritefont-description">Adding the SpriteFont Description</h3>
 <p>First, we will need to create a SpriteFont Definition.  Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
 <ol>
-<li>Create a new folder called <em>fonts</em> (right-click <em>Content</em> &gt; <em>Add</em> &gt; <em>New Folder</em>).</li>
-<li>Right-click the new <em>fonts</em> folder and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
-<li>Select <em>SpriteFont Description (.spritefont)</em> from the options.</li>
-<li>Name the file <em>04B_30.spritefont</em> and click <em>Create</em>.</li>
+<li>Create a new folder called <code>fonts</code> (right-click <em>Content</em> &gt; <em>Add</em> &gt; <em>New Folder</em>).</li>
+<li>Right-click the new <code>fonts</code> folder and choose <code>Add &gt; New Item...</code>.</li>
+<li>Select <code>SpriteFont Description (.spritefont)</code> from the options.</li>
+<li>Name the file <code>04B_30</code> and click <code>Create</code>.</li>
 </ol>
 <table>
 <thead>
@@ -392,7 +398,7 @@ _spriteBatch.DrawString(
 <li><a href="files/04B_30.ttf" download="">04B_30.ttf</a></li>
 </ul>
 <h3 id="update-the-spritefont-description">Update the SpriteFont Description</h3>
-<p>Next, open the <em>04B_30.spritefont</em> file and make the following changes:</p>
+<p>Next, open the <em>04B_30.spritefont</em> file in your code editor and make the following changes:</p>
 <pre><code class="lang-csharp" highlight-lines="4,5">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;XnaContent xmlns:Graphics=&quot;Microsoft.Xna.Framework.Content.Pipeline.Graphics&quot;&gt;
   &lt;Asset Type=&quot;Graphics:FontDescription&quot;&gt;
@@ -416,8 +422,8 @@ _spriteBatch.DrawString(
 <li>The <code>&lt;Size&gt;</code> element was updated to be <code>32</code>.</li>
 </ol>
 <h3 id="updating-the-game">Updating the Game</h3>
-<p>Finally, open the <em>Game1.cs</em> file and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,244-245,389-400">using System;
+<p>Finally, open the <code>Game1.cs</code> file and make the following changes:</p>
+<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,246-247,391-402">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -516,7 +522,6 @@ public class Game1 : Core
         // Set the origin of the text so it is left-centered.
         float scoreTextYOrigin = _font.MeasureString(&quot;Score&quot;).Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
-
     }
 
     protected override void LoadContent()
@@ -547,6 +552,8 @@ public class Game1 : Core
 
         // Load the font
         _font = Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

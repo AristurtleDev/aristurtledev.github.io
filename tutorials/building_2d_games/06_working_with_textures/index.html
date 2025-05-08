@@ -142,8 +142,8 @@
 <p>The order of method calls when rendering using the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> is important.  <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> must be called before any <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)"><strong>SpriteBatch.Draw</strong></a> calls are made.  When finished, <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"><strong>SpriteBatch.End</strong></a> must be called before another <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> can be called.  If these methods are called out of order, an exception will be thrown.</p>
 </div>
 <p>As mentioned in <a href="../03_the_game1_file/index.html#the-game-loop">Chapter 03</a>, all rendering should be done inside the <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method. The <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> method's responsibility is to render the game state that was calculated in <a href="xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)"><strong>Update</strong></a>; it should not contain any game logic or complex calculations.</p>
-<p>At the end of <a href="../05_content_pipeline/index.html#loading-assets">Chapter 05</a>, you added the following code to <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> in the <em>Game1.cs</em> file:</p>
-<pre><code class="lang-csharp">protected override void Draw(GameTime gameTime)
+<p>At the end of <a href="../05_content_pipeline/index.html#loading-assets">Chapter 05</a>, you added the following code to <a href="xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)"><strong>Draw</strong></a> in the <code>Game1.cs</code> file:</p>
+<pre><code class="lang-csharp" highlight-lines="6-7,9-10,12-13">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
     GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -200,7 +200,10 @@
 </tr>
 </tbody>
 </table>
+<div class="TIP">
+<h5>Tip</h5>
 <p>Try adjusting the position and color parameters and see how they can affect the image being drawn.</p>
+</div>
 <p>MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, we wil try to center the logo on the game window.</p>
 <p>To center content on the screen, we need to find the window's center point. We can access this using the <a href="xref:Microsoft.Xna.Framework.GameWindow.ClientBounds"><strong>Window.ClientBounds</strong></a> property from the <a href="xref:Microsoft.Xna.Framework.Game"><strong>Game</strong></a> class, which represents the rectangular bounds of the game window.  <a href="xref:Microsoft.Xna.Framework.GameWindow.ClientBounds"><strong>Window.ClientBounds</strong></a> exposes both  <a href="xref:Microsoft.Xna.Framework.Rectangle.Width"><strong>Width</strong></a> and <a href="xref:Microsoft.Xna.Framework.Rectangle.Height"><strong>Height</strong></a> properties for the window's dimensions in pixels.  By dividing these dimensions in half, we can can calculate the window's center coordinates.  We can update our <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)"><strong>Draw</strong></a> method to use this:</p>
 <pre><code class="lang-csharp" highlight-lines="9-16">protected override void Draw(GameTime gameTime)
@@ -211,12 +214,13 @@
     // Begin the sprite batch to prepare for rendering.
     SpriteBatch.Begin();
 
-    // Draw the texture
+    // Draw the logo texture
     SpriteBatch.Draw(
         _logo,          // texture
         new Vector2(    // position
             Window.ClientBounds.Width, 
-            Window.ClientBounds.Height) * 0.5f,
+            Window.ClientBounds.Height)
+            * 0.5f,
         Color.White     // color
     );
 
@@ -243,7 +247,7 @@
 </tr>
 </tbody>
 </table>
-<p>The logo is not centered as we expected it to be.  Even though we set the <em>position</em> parameter to the center of the game window, the texture starts drawing from its <em>origin</em>, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not its center.</p>
+<p>The logo is not centered as we expected it to be.  Even though we set the <em>position</em> parameter to the center of the game window, the texture starts drawing from its <em>origin</em>, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not the center of the texture.</p>
 <p>One way to correct this is to subtract half the width and height of the texture from the game window's center position like so:</p>
 <pre><code class="lang-csharp" highlight-lines="12-14">protected override void Draw(GameTime gameTime)
 {
@@ -253,7 +257,7 @@
     // Begin the sprite batch to prepare for rendering.
     SpriteBatch.Begin();
 
-    // Draw the texture
+    // Draw the logo texture
     SpriteBatch.Draw(
         _logo,          // texture
         new Vector2(    // position
@@ -281,7 +285,8 @@
 </tr>
 </tbody>
 </table>
-<p>While this works, there is a better approach.  There is a different overload of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)"><strong>SpriteBatch.Draw</strong></a> method that provides additional parameters for complete control over the draw operation. Update your code to:</p>
+<p>While this works, there is a better approach.  There is a different overload of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)"><strong>SpriteBatch.Draw</strong></a> method that provides additional parameters for complete control over the draw operation, which we will use in the upcoming sections.</p>
+<p>Update your code to:</p>
 <pre><code class="lang-csharp" highlight-lines="10-22">protected override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.

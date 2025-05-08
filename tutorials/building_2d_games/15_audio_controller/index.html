@@ -139,9 +139,9 @@
 <h2 id="the-audiocontroller-class">The AudioController Class</h2>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new folder named <em>Audio</em>.</p>
+<li><p>Create a new folder named <code>Audio</code>.</p>
 </li>
-<li><p>Add a new class file named <em>AudioController.cs</em> to the <em>Audio</em> folder you just created.</p>
+<li><p>Add a new class file named <code>AudioController.cs</code> to the <code>Audio</code> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class</p>
 <pre><code class="lang-csharp">using System;
@@ -163,7 +163,8 @@ public class AudioController : IDisposable
 </li>
 </ol>
 <h3 id="audiocontroller-properties-and-fields">AudioController Properties and Fields</h3>
-<p>The <code>AudioController</code> will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.  Add the following fields and properties:</p>
+<p>The <code>AudioController</code> will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.</p>
+<p>Add the following fields and properties:</p>
 <pre><code class="lang-csharp">    // Tracks sound effect instances created so they can be paused, unpaused, and/or disposed.
     private readonly List&lt;SoundEffectInstance&gt; _activeSoundEffectInstances;
 
@@ -241,7 +242,8 @@ public class AudioController : IDisposable
     /// &lt;/summary&gt;
     public bool IsDisposed {get; private set; }
 </code></pre><h3 id="audiocontroller-constructor">AudioController Constructor</h3>
-<p>The constructor just initializes the collection used to track the sound effect instances.  Add the following constructor and finalizer:</p>
+<p>The constructor just initializes the collection used to track the sound effect instances.</p>
+<p>Add the following constructor and finalizer:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new audio controller instance.
 /// &lt;/summary&gt;
@@ -258,7 +260,7 @@ public AudioController()
 <p>The <code>AudioController</code> class implements a <a href="https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers">finalizer</a> method <code>~AudioManager()</code>.  This method is called when an instance of the class is collected by the garbage collector and is here as part of the <code>IDisposable</code> implementation.</p>
 </div>
 <h3 id="audiocontroller-methods">AudioController Methods</h3>
-<p>The <code>AudioController</code> will need methods to:</p>
+<p>The <code>AudioController</code> needs methods to:</p>
 <ul>
 <li>Update it to check for resources to clean up.</li>
 <li>Playing sound effects and songs</li>
@@ -266,6 +268,7 @@ public AudioController()
 <li>Volume control</li>
 <li>Implement the <code>IDisposable</code> interface.</li>
 </ul>
+<p>So lets add them below.</p>
 <h4 id="audiocontroller-update">AudioController Update</h4>
 <p>The <code>Update</code> method will check for existing sound effect instances that have expired and properly dispose of them.  Add the following method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -288,7 +291,8 @@ public void Update()
     }
 }
 </code></pre><h4 id="audiocontroller-playback">AudioController Playback</h4>
-<p>While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the <code>AudioController</code> that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:</p>
+<p>While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the <code>AudioController</code> that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.</p>
+<p>Add the following methods:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Plays the given sound effect.
 /// &lt;/summary&gt;
@@ -347,7 +351,8 @@ public void PlaySong(Song song, bool isRepeating = true)
     MediaPlayer.IsRepeating = isRepeating;
 }
 </code></pre><h4 id="audiocontroller-state-control">AudioController State Control</h4>
-<p>The <code>AudioController</code> provides methods to control the state of audio playback including pausing and resuming audio as well as muting and unmuting.  Add the following methods:</p>
+<p>The <code>AudioController</code> provides methods to control the state of audio playback including pausing and resuming audio as well as muting and unmuting.</p>
+<p>Add the following methods:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Pauses all audio.
 /// &lt;/summary&gt;
@@ -421,7 +426,7 @@ public void ToggleMute()
     }
 }
 </code></pre><h4 id="audiocontroller-idisposable-implementation">AudioController IDisposable Implementation</h4>
-<p>Finally, the <code>AudioController</code> implements the <code>IDisposable</code> interface.  Add the following methods:</p>
+<p>Finally, the <code>AudioController</code> is required to implement the <code>IDisposable</code> interface, to complete this add the following methods:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Disposes of this audio controller and cleans up resources.
 /// &lt;/summary&gt;
@@ -454,7 +459,7 @@ protected void Dispose(bool disposing)
     IsDisposed = true;
 }
 </code></pre>
-<p>Games often use limited system resources like audio channels. When we are done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the <code>IDisposable</code> interface.</p>
+<p>Games often use limited system resources like audio channels, when we are done with these resources we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the <code>IDisposable</code> interface.</p>
 <p>Think of <code>IDisposable</code> like a cleanup checklist that runs when you are finished with something:</p>
 <ol>
 <li>The interface provides a <code>Dispose</code> method that contains all cleanup logic.</li>
@@ -473,7 +478,7 @@ protected void Dispose(bool disposing)
 <li>Update the <code>Game1</code> class to use the global audio controller from <code>Core</code>.</li>
 </ol>
 <h3 id="updating-the-core-class">Updating the Core Class</h3>
-<p>The <code>Core</code> class serves as our the base game class, so we will update it first to add and expose the <code>AudioController</code> globally.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
+<p>The <code>Core</code> class serves as our the base game class, so we will update it first to add and expose the <code>AudioController</code> globally.  Open the <code>Core.cs</code> file in the <em>MonoGameLibrary</em> project and update it to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="6,50-53,112-113,116-122,129-130">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -623,8 +628,8 @@ public class Core : Game
 <li>The audio controller is updated in the <code>Update</code> method.</li>
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
-<p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,197-198,216-217,270-288">using System;
+<p>Next, update the <code>Game1</code> class to use the audio controller for audio playback.  Open <code>Game1.cs</code> and make the following updates:</p>
+<pre><code class="lang-csharp" highlight-lines="45-46,77-78,104-105,199-200,218-219,272-290">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -729,6 +734,8 @@ public class Game1 : Core
 
         // Load the background theme music
         _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -991,6 +998,10 @@ public class Game1 : Core
     }
 }
 </code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Note there were a lot of replacements in the <code>LoadContent</code> method, switching from loading and initializing the background Song and replacing it with a call to the new <code>AudioController</code> to do all the work managing the Song reference.  Much cleaner.</p>
+</div>
 <p>The key changes made here are:</p>
 <ol>
 <li>The <code>_themeSong</code> field is added to store a reference to the background song to play.</li>
@@ -1018,6 +1029,11 @@ public class Game1 : Core
 </tr>
 </tbody>
 </table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad.  This is simply becuase this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.</p>
+<p>Later in <a href="../20_implementing_ui_with_gum/index.html">Chapter 20: Implementing UI with GUM</a> we will add an Options screen to adjust all the audio values for the game.</p>
+</div>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>
 <ul>

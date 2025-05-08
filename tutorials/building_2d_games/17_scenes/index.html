@@ -126,7 +126,8 @@
 <li><strong>Simplified state handling</strong>: Each scene maintains its own state without affecting others.</li>
 <li><strong>Code reusability</strong>: Create reusable scene templates for common game screens.</li>
 </ol>
-<p>Our game logic is currently contained within the single <code>Game1</code> class.  Adding more screens to it would make the code harder to manage, so instead we need to start thinking about breaking it down into scenes.  In this chapter, you will:</p>
+<p>Our game logic is currently contained within the single <code>Game1</code> class.  Adding more screens to it would make the code harder to manage, so instead we need to start thinking about breaking it down into scenes.</p>
+<p>In this chapter, you will:</p>
 <ul>
 <li>Learn the concept of scene management and its benefits</li>
 <li>Create a base Scene class with a consistent lifecycle</li>
@@ -139,7 +140,7 @@
 <p>In Chapter 03, you learned the basic <a href="../03_the_game1_file/index.html#exploring-the-game1-class">lifecycle of the <code>Game</code> class</a>.  To be consistent, we can borrow from this lifecycle and adapt it for our scenes. The order of operations for this lifecycle will be:</p>
 <ol>
 <li>A scene is created and set as the active scene.</li>
-<li>The active scene is first initialized and content loaded.</li>
+<li>The first screen is made active and is initialized and content loaded.</li>
 <li>The active scene is updated and drawn each cycle.</li>
 <li>When transitioning to a new scene, or when the scene ends:
 <ol>
@@ -153,9 +154,9 @@
 <p>The base <code>Scene</code> class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we will create concrete implementations of this, like a title scene.</p>
 <p>To get started, in the <em>MonoGameLibrary</em> project:</p>
 <ol>
-<li><p>Create a new folder named <em>Scenes</em>.</p>
+<li><p>Create a new folder named <code>Scenes</code>.</p>
 </li>
-<li><p>Add a new class file named <em>Scene.cs</em> to the <em>Scenes</em> folder you just created.</p>
+<li><p>Add a new class file named <code>Scene.cs</code> to the <code>Scenes</code> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class:</p>
 <pre><code class="lang-csharp">using System;
@@ -260,7 +261,7 @@ public virtual void Draw(GameTime gameTime) { }
 <li><code>Initialize</code> is called only once when the scene becomes the active scene.  It can be overridden by the derived class to provide scene specific initialization logic.  It also calls the <code>LoadContent</code> method the same way the <code>Game</code> class is done for consistency.</li>
 <li><code>LoadContent</code> is called only once, at the end of the <code>Initialize</code> method.  It can be overridden by the derived class to load scene specific content.</li>
 <li><code>UnloadContent</code> is called only once when a scene is ending due to a transition to a new scene.  It can be overridden by the derived class to perform unloading of any scene specific content.</li>
-<li><code>Update</code> is called once at the start of every game cycle. It can be overidden to provide the update logic for the scene.</li>
+<li><code>Update</code> is called once at the start of every game cycle. It can be overridden to provide the update logic for the scene.</li>
 <li><code>Draw</code> is called once every game cycle, directly after <code>Update</code>.  It can be overridden to provide the draw logic for the scene.</li>
 </ul>
 <h4 id="idisposable-implementation">IDisposable Implementation</h4>
@@ -294,8 +295,10 @@ protected virtual void Dispose(bool disposing)
         Content.Dispose();
     }
 }
-</code></pre><h2 id="scene-management">Scene Management</h2>
-<p>With the base <code>Scene</code> class defined, the <code>Core</code> class needs to be updated to handle management of the scenes, including update, drawing, and changing scenes.  Open the <em>Core.cs</em> file in the <em>MonoGameLibrary</em> project and make the following changes:</p>
+</code></pre>
+<p>This completes our Base scene implementation that we will use to create actual scenes from in our project, next we need a manager that will organise the screens for use in the game.</p>
+<h2 id="scene-management">Scene Management</h2>
+<p>With the base <code>Scene</code> class defined, the <code>Core</code> class needs to be updated to handle management of the scenes, including update, drawing, and changing scenes.  Open the <code>Core.cs</code> file in the <em>MonoGameLibrary</em> project and make the following changes:</p>
 <pre><code class="lang-csharp" highlight-lines="8,21-25,144-155,160-169,171-179,181-205">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -531,9 +534,9 @@ public class Core : Game
 <h2 id="updating-the-game">Updating the Game</h2>
 <p>With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the <em>Content.mgcb</em> content project file in the MGCB Editor and perform the following:</p>
 <ol>
-<li>Right-click the <em>fonts</em> folder and choose <em>Add</em> &gt; <em>New Item...</em>.</li>
-<li>Select <em>SpriteFont Description (.spritefont)</em> from the options</li>
-<li>Name the file <em>04B_30_5x.spritefont</em> and click <em>Create</em>.</li>
+<li>Right-click the <code>fonts</code> folder and choose <code>Add &gt; New Item...</code>.</li>
+<li>Select <code>SpriteFont Description (.spritefont)</code> from the options.</li>
+<li>Name the file <code>04B_30_5x</code> and click <code>Create</code>.</li>
 </ol>
 <table>
 <thead>
@@ -547,7 +550,7 @@ public class Core : Game
 </tr>
 </tbody>
 </table>
-<p>Next, open the <em>04B_30_5x.spritefont</em> file and make the following changes:</p>
+<p>Next, open the <em>04B_30_5x.spritefont</em> file in your code editor and make the following changes:</p>
 <pre><code class="lang-xml" highlight-lines="4-5">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;XnaContent xmlns:Graphics=&quot;Microsoft.Xna.Framework.Content.Pipeline.Graphics&quot;&gt;
   &lt;Asset Type=&quot;Graphics:FontDescription&quot;&gt;
@@ -566,11 +569,16 @@ public class Core : Game
 &lt;/XnaContent&gt;
 </code></pre><h3 id="the-title-scene">The Title Scene</h3>
 <p>The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We will use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>As the following screens are specific to our game and are not reusable bits, these will be added to your game project.</p>
+<p>Although, if you do end up making screens that are completely reusable, there is nothing wrong with putting them in your Game Library, it is completely up to you.</p>
+</div>
 <p>To get started, first:</p>
 <ol>
-<li><p>Create a new folder named <em>Scenes</em>.  We will put all of our game specific scenes here.</p>
+<li><p>In your Game project, create a new folder named <code>Scenes</code>.  We will put all of our game specific scenes here.</p>
 </li>
-<li><p>Add a new class file named <em>TitleScene.cs</em> to the <em>Scenes</em> folder you just created.</p>
+<li><p>Add a new class file named <code>TitleScene.cs</code> to the <code>Scenes</code> folder you just created.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class.</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
@@ -658,6 +666,10 @@ private Vector2 _pressEnterOrigin;
 <li>We set the <code>Core.ExitOnEscape</code> to true to allow players to exit the game when on the title screen by pressing the escape key.</li>
 <li>The position and origin for the &quot;Dungeon&quot;, &quot;Slime&quot;, and &quot;Press Enter To Start&quot; texts are set.</li>
 </ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can see here we are using the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)"><strong>MeasureString</strong></a> method for the font to work out how long the text to draw is, we then multiply this by <code>0.5</code> to work out the middle of the text so that we can properly set the origin of the text to its middle.</p>
+</div>
 <h5 id="title-scene-loadcontent">Title Scene LoadContent</h5>
 <p>Add the following override for the <code>LoadContent</code> method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">public override void LoadContent()
@@ -696,8 +708,12 @@ private Vector2 _pressEnterOrigin;
 <h5>Note</h5>
 <p>Your editor might show an error here since we have not created the <code>GameScene</code> class yet.  We will create it in a moment after finishing the title scene.</p>
 </div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You will also notice the Title screen is only checking if the player hits the enter key to start the game, but we are not checking if they hit escape to quit the game, that is because it is already handled in the <code>Core</code> class <code>Update</code> method, if <code>ExitOnEscape</code> is true (as it is here), the game will automatically exit.</p>
+</div>
 <h5 id="title-scene-draw">Title Scene Draw</h5>
-<p>Add the following override for the <code>Draw</code> method to the <code>TitleScene</code> class:</p>
+<p>For the final act, add the following override for the <code>Draw</code> method to the <code>TitleScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
 {
     Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
@@ -731,15 +747,16 @@ private Vector2 _pressEnterOrigin;
 </code></pre>
 <ul>
 <li>The back buffer is cleared.</li>
-<li>The <code>dropShadowColor</code> is created which is the color black with half transparency.</li>
-<li>The &quot;Dungeon&quot; text is draw, first 10px down and to the left of the actual position using the drop shadow color, then it is drawn again at its normal position overtop.  Layering this way creates the drop shadow effect.</li>
-<li>The &quot;Slime&quot; text is draw, again offset from its position first using the drop shadow color and then drawn again at its normal position overtop.</li>
-<li>The &quot;Press Enter To Start&quot; text is drawn.</li>
+<li>A <code>dropShadowColor</code> is created which is the color black with half transparency.</li>
+<li>The &quot;Dungeon&quot; text is drawn, first 10px down and to the left of the actual position using the drop shadow color, then again at its normal position overtop.  Layering this way creates the drop shadow effect.</li>
+<li>The &quot;Slime&quot; text is drawn, again offset from its position first using the drop shadow color and then drawn again at its normal position overtop.</li>
+<li>Finally, the &quot;Press Enter To Start&quot; text is drawn.</li>
 </ul>
+<p>With our Title screen in place, it is time to get started with the Game Scene, lets play.</p>
 <h3 id="the-game-scene">The Game Scene</h3>
 <p>The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our <code>Game1</code> class in previous chapters, but now we will move it into a dedicated scene class. In the <em>Scenes</em> folder:</p>
 <ol>
-<li><p>Add a new class file named <em>GameScene.cs</em>.</p>
+<li><p>Add a new class file named <code>GameScene.cs</code> in the Game projects <code>Scenes</code> folder.</p>
 </li>
 <li><p>Add the following code as the initial structure for the class:</p>
 <pre><code class="lang-csharp">using System;
@@ -760,6 +777,7 @@ public class GameScene : Scene
 }
 </code></pre></li>
 </ol>
+<p>The following code is effectively replacing the code we have already written in the original <code>Game1.cs</code> class, so it should look very familiar.  Once complete, we can return to <code>Game1</code> and clear out all the redundant code because it is all nicely tidied up in the new <code>GameScene</code> class.</p>
 <h4 id="game-scene-fields">Game Scene Fields</h4>
 <p>Add the following fields to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">// Defines the slime animated sprite.
@@ -1033,7 +1051,7 @@ private Vector2 _scoreTextOrigin;
 <li>When the slime eats the bat, the bat respawns in a random location within the room bounds, given a new velocity, the collect sound is played, and the score is increased.</li>
 </ul>
 <h5 id="game-scene-helper-methods">Game Scene Helper Methods</h5>
-<p>Add these helper methods to the <code>GameScene</code> class:</p>
+<p>Next, add these helper methods to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">private void AssignRandomBatVelocity()
 {
     // Generate a random angle
@@ -1171,7 +1189,7 @@ private void CheckGamePadInput()
 <li><code>CheckGamePadInput</code>: Handles gamepad controls for moving the slime.</li>
 </ul>
 <h5 id="game-scene-draw">Game Scene Draw</h5>
-<p>Add the following override for the <code>Draw</code> method to the <code>GameScene</code> class:</p>
+<p>Finally, add the following override for the <code>Draw</code> method to the <code>GameScene</code> class:</p>
 <pre><code class="lang-csharp">public override void Draw(GameTime gameTime)
 {
     // Clear the back buffer.
@@ -1212,8 +1230,9 @@ private void CheckGamePadInput()
 <li>The slime and bat animated sprites are drawn at their current positions.</li>
 <li>The player's score is drawn at using its precalculated position and origin so that it is in the top left of the room bounds centered on the wall sprite.</li>
 </ul>
+<p>This concludes the <code>GameScene</code> class.  With all the logic for our actual gameplay now housed in a single place, we can clean up our project to use it.</p>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
-<p>With our scene system and scene classes in place, we can now simplify our main <code>Game1</code> class to just initialize the game and start with the title scene. Open the <em>Game1.cs</em> file and replace its entire contents with this simplified implementation:</p>
+<p>With our scene system and scene classes in place, we can now simplify our main <code>Game1</code> class to just initialize the game and start with the title scene. Open the <code>Game1.cs</code> file and replace its content with the following:</p>
 <pre><code class="lang-csharp">using DungeonSlime.Scenes;
 using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
@@ -1243,14 +1262,20 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
+        base.LoadContent();
+
         // Load the background theme music
         _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
     }
 }
 </code></pre>
-<p>The <code>Game1</code> class is now much simpler as most of the game logic has been moved to the appropriate scene classes. It:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Feel free to check your homework and compare the original <code>Game1</code> class with the updated version, as well as checking the <code>GameScene</code> class did not lose any functionality (it has not, but you have to be sure!).  Refactoring code to be cleaner and more organised is a careful task.</p>
+</div>
+<p>The <code>Game1</code> class is now much simpler as most of the game logic has been moved to the appropriate scene classes.</p>
+<p>The updates include:</p>
 <ol>
-<li>Inherits from our <code>Core</code> class instead of the MonoGame Game class.</li>
 <li>Sets up the game window with the constructor parameters.</li>
 <li>Overrides the <code>Initialize</code> method to set the title scene as the starting scene.</li>
 <li>Overrides the <code>LoadContent</code> method to load the background theme song and start playing it.</li>

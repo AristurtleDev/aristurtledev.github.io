@@ -182,7 +182,7 @@
 <p>We will now take this concept and implement it in our game by creating a <code>Tileset</code> class and a <code>Tilemap</code> class.</p>
 <h2 id="the-tileset-class">The Tileset Class</h2>
 <p>The <code>Tileset</code> class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a <code>TextureRegion</code>, building on the tools in the library we created earlier.</p>
-<p>In the <em>Graphics</em> folder of the <em>MonoGameLibrary</em> project, create a new file named <em>Tileset.cs</em> with the following code as the initial structure:</p>
+<p>In the <code>Graphics</code> folder of the <em>MonoGameLibrary</em> project, create a new file named <code>Tileset.cs</code> with the following code as the initial structure:</p>
 <pre><code class="lang-csharp">namespace MonoGameLibrary.Graphics;
 
 public class Tileset
@@ -218,7 +218,8 @@ public int Rows { get; }
 /// &lt;/summary&gt;
 public int Count { get; }
 </code></pre><h3 id="tileset-constructor">Tileset Constructor</h3>
-<p>The <code>Tileset</code> class constructor should require a source <code>TextureRegion</code> that represents the tileset and the width and height of the tiles.  Based on these parameters provided, it can automatically divide the source <code>TextureRegion</code> into a grid of smaller texture regions and calculate the total number of rows, columns, and tiles. Add the following constructor:</p>
+<p>The <code>Tileset</code> class constructor requires a source <code>TextureRegion</code> that represents the tileset and the width and height of the tiles.  Based on these parameters provided, it can automatically divide the source <code>TextureRegion</code> into a grid of smaller texture regions and calculate the total number of rows, columns, and tiles.</p>
+<p>Add the following constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new tileset based on the given texture region with the specified
 /// tile width and height.
@@ -266,7 +267,7 @@ public TextureRegion GetTile(int column, int row)
 }
 </code></pre><h2 id="the-tilemap-class">The Tilemap Class</h2>
 <p>Now that we have a <code>Tileset</code> class to define our tile collection, we need a <code>Tilemap</code> class to arrange these tiles into a game level.  The <code>Tilemap</code> class will store which tile goes where in our game world and provide methods to draw the entire map.</p>
-<p>In the <em>Graphics</em> folder of the <em>MonoGameLibrary</em> project, create a new file named <em>Tilemap.cs</em> with the following code as the initial structure:</p>
+<p>In the <code>Graphics</code> folder of the <em>MonoGameLibrary</em> project, create a new file named <code>Tilemap.cs</code> with the following code as the initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using System.IO;
 using System.Xml;
@@ -316,7 +317,8 @@ public float TileWidth =&gt; _tileset.TileWidth * Scale.X;
 /// &lt;/summary&gt;
 public float TileHeight =&gt; _tileset.TileHeight * Scale.Y;
 </code></pre><h3 id="tilemap-constructor">Tilemap Constructor</h3>
-<p>The <code>Tilemap</code> constructor should require the <code>Tilemap</code> to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.  Add the following constructor:</p>
+<p>The <code>Tilemap</code> constructor requires the <code>Tilemap</code> to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.</p>
+<p>Add the following constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new tilemap.
 /// &lt;/summary&gt;
@@ -381,7 +383,7 @@ public TextureRegion GetTile(int column, int row)
     return GetTile(index);
 }
 </code></pre><h3 id="tilemap-draw-method">Tilemap Draw Method</h3>
-<p>The <code>Tilemap</code> class should provide a method to draw the tilemap by iterating through each of the tiles and drawing the <code>TextureRegion</code> for that tile at its correct position.  Add the following method:</p>
+<p>The <code>Tilemap</code> class needs a method to draw the tilemap by iterating through each of the tiles and drawing the <code>TextureRegion</code> for that tile at its correct position.  Add the following method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Draws this tilemap using the given sprite batch.
 /// &lt;/summary&gt;
@@ -401,7 +403,7 @@ public void Draw(SpriteBatch spriteBatch)
     }
 }
 </code></pre><h3 id="tilemap-fromfile-method">Tilemap FromFile Method</h3>
-<p>The <code>Tilemap</code> class should also provide a method to load and create an instance of the tilemap from an external configuration file.  This allows us to separate level design from code. Add the following method:</p>
+<p>The <code>Tilemap</code> class also requires a method to load and create an instance of the tilemap from an external configuration file.  This allows us to separate level design from code. Add the following method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new tilemap based on a tilemap xml configuration file.
 /// &lt;/summary&gt;
@@ -513,7 +515,12 @@ public static Tilemap FromFile(ContentManager content, string filename)
 <li>Update the game to load the tilemap from the configuration file and draw it.</li>
 </ol>
 <h3 id="update-the-texture-atlas">Update the Texture Atlas</h3>
-<p>Currently, the texture atlas we have been using only contains the sprites for the slime and bat animations. We need update it to a new version that contains the tileset as well.  RIght-click the following image and save it as <em>atlas.png</em> in the <em>Content/images</em> directory of the <em>DungeonSlime</em> project (your main game project), overwriting the existing on.</p>
+<p>Currently, the texture atlas we have been using only contains the sprites for the slime and bat animations. We need update it to a new version that contains the tileset as well.</p>
+<p>Right-click the following image and save it as <code>atlas.png</code> in the <code>Content/images</code> directory of the <em>DungeonSlime</em> project (your main game project), overwriting the existing one.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You do not need to do this in the MGCB editor as you are simply replacing the file and not altering any of its import properties.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -532,7 +539,30 @@ public static Tilemap FromFile(ContentManager content, string filename)
 </div>
 <h2 id="creating-a-tilemap-xml-configuration">Creating a Tilemap XML Configuration</h2>
 <p>Now that we have the texture atlas updated to include the tileset, we need to create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.</p>
-<p>Create a new file named <em>tilemap-definition.xml</em> in the <em>Content/images</em> folder of the game project and add the following:</p>
+<p>We need to add this configuration file to our content project in the <em>Content/images</em> folder with the MGCB Editor, in the same way we did with the &quot;atlas-definition.xml&quot;:</p>
+<ol>
+<li>Open the <em>Content.mgcb</em> content project file in the MGCB Editor.</li>
+<li>Right-click the <em>images</em> folder and choose <em>Add &gt; New Item...</em>.</li>
+<li>Select the <em>Xml Content (.xml)</em> type and name it <code>tilemap-definition</code></li>
+<li>Select the <code>tilemap-definition.xml</code> file you just created.</li>
+<li>In the Properties panel, change the <em>Build Action</em> property from <em>Build</em> to <em>Copy</em>.</li>
+<li>Save the changes in the MGCB Editor.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img src="images/mgcb-editor.png" alt="Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy</strong></td>
+</tr>
+</tbody>
+</table>
+<ol start="7">
+<li>Open the <code>tilemap-definition.xml</code> file in your code editor and replace its contents with the following and save it:</li>
+</ol>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Tilemap&gt;
     &lt;Tileset region=&quot;0 40 80 80&quot; tileWidth=&quot;20&quot; tileHeight=&quot;20&quot;&gt;images/atlas&lt;/Tileset&gt;
@@ -558,29 +588,9 @@ public static Tilemap FromFile(ContentManager content, string filename)
 <li><code>09</code>: Standard floor tile.</li>
 <li><code>10</code>: Decorated floor tile with a crack in it.</li>
 </ul>
-<p>Next, we need to add this configuration file to our content project with the MGCB Editor:</p>
-<ol>
-<li>Open the <em>Content.mgcb</em> content project file in the MGCB Editor.</li>
-<li>Right-click the <em>images</em> folder and choose <em>Add &gt; Existing Item...</em>.</li>
-<li>Select the <em>tilemap-definition.xml</em> file you just created.</li>
-<li>In the Properties panel, change the <em>Build Action</em> property from <em>Build</em> to <em>Copy</em>.</li>
-<li>Save the changes in the MGCB Editor.</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><img src="images/mgcb-editor.png" alt="Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy</strong></td>
-</tr>
-</tbody>
-</table>
 <h3 id="update-the-game1-class">Update the Game1 Class</h3>
-<p>With all of the assets now in place and configured, we can update the <code>Game1</code> class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <em>Game1.cs</em> and make the following updates:</p>
-<pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,112,114,116,128,121,123,125,127,145,148,150,153,156,159,161,164,179-181,303-304">using System;
+<p>With all of the assets now in place and configured, we can update the <code>Game1</code> class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open <code>Game1.cs</code> and make the following updates:</p>
+<pre><code class="lang-csharp" highlight-lines="31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -662,6 +672,8 @@ public class Game1 : Core
         // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, &quot;images/tilemap-definition.xml&quot;);
         _tilemap.Scale = new Vector2(4.0f, 4.0f);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -932,6 +944,10 @@ public class Game1 : Core
 </table>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>While the method provided in this chapter offers a straightforward approach to loading tilemaps from external configuration files, several dedicated tools exist specifically for creating tilemaps for games. Popular options include <a href="https://www.mapeditor.org/">Tiled</a>, <a href="https://ldtk.io/">LDtk</a>, and <a href="https://ogmo-editor-3.github.io/">Ogmo</a>. These specialized tools export map configurations in various formats such as XML (similar to what we implemented) or JSON, and often include additional features like multiple layers, object placement, and custom properties for tiles.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>In order to utilize Tilemaps from other tools, you will need a way to import those maps as MonoGame does not natively support them, one option is to use <a href="https://www.monogameextended.net/">MonoGame.Extended</a> which provides Tilemap importers for Tiled (and more in the future) as well as a host of other features.</p>
+</div>
 <p>Although these tools are more robust than our implementation, the underlying concept remains the same: a tilemap is fundamentally a grid layout where each cell references a tile ID from a tileset. The principles you have learned in this chapter form the foundation for working with any tilemap system, regardless of which tool you might use.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>

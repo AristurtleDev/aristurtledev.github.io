@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-02-getting-started">Chapter 02: Getting Started</h1>
 <p class="text-secondary">Setup your development environment for .NET development and MonoGame using Visual Studio Code as your IDE.</p>
-<p>Unlike game engines, MonoGame is a <em>framework</em>. This means it does not come as a standalone program that you download and install, and does not include a graphical user interface used to create games. Instead, MonoGame integrates into the standard .NET development workflow, offering a code-first approach to game development. This approach offers several advantages:</p>
+<p>Unlike game engines (such as Unity, Unreal or Godot), MonoGame is a <em>framework</em>. This means it does not come as a standalone program that you download and install, and does not include a graphical user interface used to create games. Instead, MonoGame integrates into the standard .NET development workflow, offering a code-first approach to game development. This approach offers several advantages:</p>
 <ul>
 <li><strong>Flexibility</strong>: Developers are not locked into using a specific editor or interface, allowing them to use their preferred development tools.</li>
 <li><strong>Integration</strong>: As a .NET library itself, MonoGame can easily integrate with other .NET libraries and tools.</li>
@@ -244,10 +244,10 @@ dotnet workload install android
 </section>
 </div>
 <h2 id="install-the-c-dev-kit-extension">Install the C# Dev Kit Extension</h2>
-<p>For C# development using VSCode, it is recommended to use the official <em>C# Dev Kit</em> extension provided by Microsoft. Installing this extension will add additional features to VSCode such as a project system and <em>Solution Explorer</em> for C# projects. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.</p>
+<p>For C# development using VSCode, it is recommended to use the official <em><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit</a></em> extension provided by Microsoft. Installing this extension will add additional features to VSCode such as a project system and <em>Solution Explorer</em> for C# projects. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <em>Solution Explorer</em> panel is a hierarchial view provided by the C# Dev Kit extension that displays your solution structure similar  to Visual Studio's Solution Explorer.</p>
+<p>The <em>Solution Explorer</em> panel is a hierarchical view provided by the C# Dev Kit extension that displays your solution structure similar  to Visual Studio's Solution Explorer.</p>
 <p>When you open a workspace in Visual Studio Code containing a .NET solution file (<em>.sln</em>), the <em>Solution Explorer</em> panel automatically appears and loads your solution.  From this panel, you can perform common operations like:</p>
 <ul>
 <li>Adding new files.</li>
@@ -336,13 +336,28 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 <h2 id="creating-your-first-monogame-application">Creating Your First MonoGame Application</h2>
 <p>With your development environment setup, it is time to create your first MonoGame application.</p>
 <ol>
-<li>Launch the VSCode application</li>
-<li>Open the <em>Command Palette</em> by clicking <em>View &gt; Command Palette</em> or by using the keyboard shortcut <code>CTRL+SHIFT+P</code>.</li>
-<li>Type <code>.NET New Project</code> in the <em>Command Palette</em> and choose the <em>.NET New Project</em> command</li>
-<li>Next, you will be presented with a list of the available .NET project templates. Enter <code>MonoGame</code> into the prompt to filter the project templates to only show the MonoGame ones, then choose the <em>MonoGame Cross-Platform Desktop Application</em> project template.</li>
-<li>After choosing the template, a dialog window will appear asking you to choose a location to save the project.</li>
-<li>Next, you will be prompted to enter a name for the project. Enter the name <code>DungeonSlime</code>.</li>
-<li>Finally, select the <em>Create Project</em> prompt.</li>
+<li><p>Launch the VSCode application</p>
+</li>
+<li><p>Open the <em>Command Palette</em> by clicking <em>View &gt; Command Palette</em> or by using the keyboard shortcut <code>CTRL+SHIFT+P</code> (<code>CMD+SHIFT+P</code> on Mac).</p>
+</li>
+<li><p>Type <code>.NET New Project</code> in the <em>Command Palette</em> and choose the <em>.NET New Project</em> command</p>
+</li>
+<li><p>Next, you will be presented with a list of the available .NET project templates. Enter <code>MonoGame</code> into the prompt to filter the project templates to only show the MonoGame ones, then choose the <em>MonoGame Cross-Platform Desktop Application</em> project template.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If the MonoGame templates are not showing up, then you skipped the step to install the templates, exit the project creation and click <code>Terminal -&gt; New Terminal</code> in VSCode and run the following command:</p>
+<pre><code class="lang-sh">   dotnet new install MonoGame.Templates.CSharp
+</code></pre>
+</div>
+</li>
+<li><p>After choosing the template, a dialog window will appear asking you to choose a location to save the project, this is a folder where your projects will will be created by default.</p>
+</li>
+<li><p>Next, you will be prompted to enter a name for the project. Enter the name <code>DungeonSlime</code>, which will create your project in a new folder with the same name.</p>
+</li>
+<li><p>If this is your first time creating your project, you will be asked to choose a solution format, simply select the default <code>.sln</code> option and click <code>Next</code> to continue. (This does not occur with subsequent projects)</p>
+</li>
+<li><p>Finally, select the <em>Create Project</em> prompt.</p>
+</li>
 </ol>
 <p>After selecting <em>Create Project</em>, a new C# project will be generated based on the chosen MonoGame template and opened automatically in VSCode.</p>
 <table>
@@ -386,7 +401,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 <h5>Note</h5>
 <p>Above, I mentioned that a loop is entered. This is commonly referred to as the <em>game loop</em>, which we will discuss in more detail in the next chapter. The reason the application enters this loop is because game applications work differently than traditional desktop applications, such as your web browser.</p>
 <p>Desktop applications are event based, meaning once loaded, they do not do much at all while waiting for input from the user. They respond to user interactions and redraw the window only when necessary.</p>
-<p>In games, things are always happening, such as objects moving around like the player or particle effects. To handle this, games implement a loop structure that runs continuously, first calling a method to update the game logic, and then a draw method to render the current frame, until it is told to exit.</p>
+<p>In games, things are always happening, such as objects moving around like the player or particle effects. To handle this, games implement a loop structure that runs continuously, first calling a method to <strong><code>update</code></strong> the game logic, and then a <strong><code>draw</code></strong> method to render the current frame, until it is told to exit.</p>
 </div>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>
@@ -396,7 +411,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 <li>You installed VSCode and the necessary extension to develop C# applications with VSCode</li>
 <li>You created and ran your first MonoGame project.</li>
 </ul>
-<p>Now that your development environment is setup and ready to go, you can dive in and start building your first game. In the next chapter, we will cover the contents of the <em>Game1.cs</em> file that was included in the MonoGame project you just created.</p>
+<p>Now that your development environment is setup and ready to go, you can dive in and start building your first game. In the next chapter, we will cover the contents of the <code>Game1.cs</code> file that was included in the MonoGame project you just created.</p>
 <h2 id="test-your-knowledge">Test Your Knowledge</h2>
 <ol>
 <li><p>What are two advantages of MonoGame being a framework rather than an engine?</p>

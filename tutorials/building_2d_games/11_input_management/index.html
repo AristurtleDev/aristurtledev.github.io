@@ -135,7 +135,7 @@
 <li>An input was just pressed for one frame (like pressing a jump button).</li>
 </ul>
 <p>Now, we will look at the difference using keyboard input as an example. With our current implementation, we can check if a key is down using <a href="xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)"><strong>KeyboardState.IsKeyDown</strong></a>:</p>
-<pre><code>// Get the current state of keyboard input.
+<pre><code class="lang-csharp">// Get the current state of keyboard input.
 KeyboardState keyboardState = Keyboard.GetState();
 
 // Check if the space key is down.
@@ -173,10 +173,11 @@ protected override void Update(GameTime gameTime)
     base.Update(gameTime);
 }
 </code></pre>
+<p>If you need to know the inverse state, when the key was just released, then it is simply a matter of swiching the checking of the states, for example, is the key up this frame and was it down in the previous frame.</p>
 <p>This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a &quot;just pressed&quot; or &quot;just released&quot; state, you will need to compare the current input state with the previous frame's state.</p>
-<p>So far, we have only been working with our game within the <em>Game1.cs</em> file.  This has been fine for the examples given.  Overtime, as the game grows, we are going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable <code>InputManager</code> class to simplify this for us.</p>
+<p>So far, we have only been working with our game within the <code>Game1.cs</code> file.  This has been fine for the examples given.  Overtime, as the game grows, we are going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable <code>InputManager</code> class to simplify this for us.</p>
 <p>Before we create the <code>InputManager</code> class, we should first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the <code>InputManager</code>.</p>
-<p>To get started, create a new folder called <em>Input</em> in the <em>MonoGameLibrary</em> project.  We will put all of our input related classes here.</p>
+<p>To get started, create a new folder called <code>Input</code> in the <em>MonoGameLibrary</em> project.  We will put all of our input related classes here.</p>
 <h2 id="the-keyboardinfo-class">The KeyboardInfo Class</h2>
 <p>We will start our input management system by creating a class to handle keyboard input. The <code>KeyboardInfo</code> class will encapsulate all keyboard-related functionality, making it easier to:</p>
 <ul>
@@ -184,7 +185,7 @@ protected override void Update(GameTime gameTime)
 <li>Detect when keys are pressed or released</li>
 <li>Check if keys are being held down</li>
 </ul>
-<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>KeyboardInfo.cs</em> with this initial structure:</p>
+<p>In the <code>Input</code> folder of the <em>MonoGameLibrary</em> project, add a new file named <code>KeyboardInfo.cs</code> with this initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input;
@@ -207,7 +208,8 @@ public KeyboardState CurrentState { get; private set; }
 <p>These properties use a public getter but private setter pattern. This allows other parts of the game to read the keyboard states if needed, while ensuring only the <code>KeyboardInfo</code> class can update them.</p>
 </div>
 <h3 id="keyboardinfo-constructor">KeyboardInfo Constructor</h3>
-<p>The <code>KeyboardInfo</code> class needs a constructor to initialize the keyboard states. Add this constructor:</p>
+<p>The <code>KeyboardInfo</code> class constructor needs to initialize the keyboard states.</p>
+<p>Add this constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new KeyboardInfo 
 /// &lt;/summary&gt;
@@ -296,7 +298,7 @@ public bool WasKeyJustReleased(Keys key)
 <p>That's it for the <code>KeyboardInfo</code> class, now we can move on to mouse input next.</p>
 <h2 id="mousebutton-enum">MouseButton Enum</h2>
 <p>Recall from the <a href="../10_handling_input/index.html#mouse-input">Mouse Input</a> section of the previous chapter that the <a href="xref:Microsoft.Xna.Framework.Input.MouseState"><strong>MouseState</strong></a> struct provides button states through properties rather than methods like <code>IsButtonDown</code>/<code>IsButtonUp</code>. To keep our input management API consistent across devices, we will create a <code>MouseButton</code> enum that lets us reference mouse buttons in a similar way to how we use <a href="xref:Microsoft.Xna.Framework.Input.Keys"><strong>Keys</strong></a> for keyboard input and <a href="xref:Microsoft.Xna.Framework.Input.Buttons"><strong>Buttons</strong></a> for gamepad input.</p>
-<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>MouseButton.cs</em> with the following code:</p>
+<p>In the <code>Input</code> folder of the <em>MonoGameLibrary</em> project, add a new file named <code>MouseButton.cs</code> with the following code:</p>
 <pre><code class="lang-csharp">namespace MonoGameLibrary.Input;
 
 public enum MouseButton
@@ -329,7 +331,7 @@ public enum MouseButton
 <li>Detect when mouse buttons are pressed or released</li>
 <li>Check if mouse buttons are being held down</li>
 </ul>
-<p>To get started, in the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, create a new file named <em>MouseInfo.cs</em> with the following initial structure:</p>
+<p>To get started, in the <code>Input</code> folder of the <em>MonoGameLibrary</em> project, create a new file named <code>MouseInfo.cs</code> with the following initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -340,7 +342,7 @@ public class MouseInfo
     
 }
 </code></pre><h3 id="mouseinfo-properties">MouseInfo Properties</h3>
-<p>The <code>MouseInfo</code> class needs properties to track both mouse states and provide easy access to common mouse information. Add the following proerties to the <code>MouseInfo</code> class:</p>
+<p>The <code>MouseInfo</code> class needs properties to track both mouse states and provide easy access to common mouse information. Add the following properties to the <code>MouseInfo</code> class:</p>
 <p>First, we need properties for tracking mouse states:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// The state of mouse input during the previous update cycle.
@@ -439,7 +441,8 @@ public int ScrollWheelDelta =&gt; CurrentState.ScrollWheelValue - PreviousState.
 <p>Use <code>ScrollWheelDelta</code> when you need to respond to how much the user just scrolled, rather than tracking the total scroll amount.</p>
 </div>
 <h3 id="mouseinfo-constructor">MouseInfo Constructor</h3>
-<p>The <code>MouseInfo</code> class needs a constructor to initialize the mouse states. Add this constructor:</p>
+<p>The <code>MouseInfo</code> class constructor needs to initialize the mouse states.</p>
+<p>Add this constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new MouseInfo.
 /// &lt;/summary&gt;
@@ -614,7 +617,7 @@ public void SetPosition(int x, int y)
 <li>Check if gamepad buttons are being held down.</li>
 <li>Start and Stop vibration of a gamepad.</li>
 </ul>
-<p>To get started, in the <em>Input</em> folder f the <em>MonoGameLibrary</em> project, create a new file name <em>GamePadInfo.cs</em> with the following initial structure:</p>
+<p>To get started, in the <code>Input</code> folder f the <em>MonoGameLibrary</em> project, create a new file name <code>GamePadInfo.cs</code> with the following initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -629,7 +632,7 @@ public class GamePadInfo
 <p>We use vibration in gamepads to provide haptic feedback to the player.  The <a href="xref:Microsoft.Xna.Framework.Input.GamePad"><strong>GamePad</strong></a> class provides the <a href="xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)"><strong>SetVibration</strong></a> method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the <code>GamePadInfo</code> class:</p>
 <pre><code class="lang-csharp">private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
 </code></pre>
-<p>Recall from the <a href="../10_handling_input/index.html#gamepad-input">previous chapter</a> that a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we will need a property to track the player index this gamepad info is for.</p>
+<p>If you recall from the <a href="../10_handling_input/index.html#gamepad-input">previous chapter</a>, a <a href="xref:Microsoft.Xna.Framework.PlayerIndex"><strong>PlayerIndex</strong></a> value needs to be supplied when calling <a href="xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)"><strong>Gamepad.GetState</strong></a>.   Doing this returns the state of the gamepad connected at that player index.  So we will need a property to track the player index this gamepad info is for.</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Gets the index of the player this gamepad is for.
 /// &lt;/summary&gt;
@@ -673,7 +676,8 @@ public float LeftTrigger =&gt; CurrentState.Triggers.Left;
 /// &lt;/summary&gt;
 public float RightTrigger =&gt; CurrentState.Triggers.Right;
 </code></pre><h3 id="gamepadinfo-constructor">GamePadInfo Constructor</h3>
-<p>The <code>GamePadInfo</code> class needs a constructor to initialize the gamepad states.  Add this constructor</p>
+<p>The <code>GamePadInfo</code> class constructor needs to initialize the gamepad states.</p>
+<p>Add this constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new GamePadInfo for the gamepad connected at the specified player index.
 /// &lt;/summary&gt;
@@ -801,15 +805,13 @@ public void StopVibration()
 <p>That's it for the <code>GamePadInfo</code> class.  Next, we can create the actual input manager.</p>
 <h2 id="the-inputmanager-class">The InputManager Class</h2>
 <p>Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling.</p>
-<p>In the <em>Input</em> folder of the <em>MonoGameLibrary</em> project, add a new file named <em>InputManager.cs</em> with this initial structure:</p>
+<p>In the <code>Input</code> folder of the <em>MonoGameLibrary</em> project, add a new file named <code>InputManager.cs</code> with this initial structure:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
 
-public class InputManager
-{
+public class InputManager { }
 
-}
 </code></pre><h3 id="inputmanager-properties">InputManager Properties</h3>
 <p>The <code>InputManager</code> class needs properties to access each type of input device. Add these properties:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -832,7 +834,8 @@ public GamePadInfo[] GamePads { get; private set; }
 <p>The <code>GamePads</code> property is an array because MonoGame supports up to four gamepads simultaneously. Each gamepad is associated with a PlayerIndex (0-3).</p>
 </div>
 <h3 id="inputmanager-constructor">InputManager Constructor</h3>
-<p>The constructor for the <code>InputManager</code> initializes the keybaord, mouse, and gamepad states. Add the following constructor:</p>
+<p>The constructor for the <code>InputManager</code> initializes the keybaord, mouse, and gamepad states.</p>
+<p>Add the following constructor:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new InputManager.
 /// &lt;/summary&gt;
@@ -1006,8 +1009,9 @@ public class Core : Game
 </li>
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
-<p>Now we can update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <em>Game1.cs</em> in the game project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="6,74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150">using Microsoft.Xna.Framework;
+<p>Now we can update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <code>Game1.cs</code> in the game project and update it to the following:</p>
+<pre><code class="lang-csharp" highlight-lines="1,7,77,83,89,95,101,109,114,117,121,127,129-130,135,141,147,153">using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -1054,6 +1058,8 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

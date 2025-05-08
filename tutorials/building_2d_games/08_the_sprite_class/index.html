@@ -130,9 +130,9 @@
 </ul>
 <p>Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we will solve this by creating a class that encapsulates sprite information and handles rendering.</p>
 <h2 id="the-sprite-class">The Sprite Class</h2>
-<p>A sprite in our game represents a visual object created from a texture region along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.</p>
+<p>A sprite in our game represents a visual object created from a texture region, along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.</p>
 <p>By creating a <code>Sprite</code> class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.</p>
-<p>In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Sprite.cs</em>.  Add the following code for the foundation of the <code>Sprite</code> class to the <em>Sprite.cs</em> file:</p>
+<p>In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <code>Sprite.cs</code> and add the following code for the foundation of the <code>Sprite</code> class to the file:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -219,7 +219,8 @@ public float Height =&gt; Region.Height * Scale.Y;
 <p>The calculated <code>Width</code> and <code>Height</code> properties make it easier to position sprites relative to each other without manually applying scale factors.</p>
 </div>
 <h3 id="constructors">Constructors</h3>
-<p>The <code>Sprite</code> class will provide two ways to create a new sprite.  Add the following constructors:</p>
+<p>The <code>Sprite</code> class provides two ways to create a new sprite.</p>
+<p>Add the following constructors:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new sprite.
 /// &lt;/summary&gt;
@@ -234,7 +235,10 @@ public Sprite(TextureRegion region)
     Region = region;
 }
 </code></pre>
-<p>The default constructor creates an empty sprite that can be configured later, while the parameterized constructor allows you to specify the source texture region for the sprite.</p>
+<ul>
+<li>The default constructor creates an empty sprite that can be configured later.</li>
+<li>The parameterized constructor allows you to specify the source texture region for the sprite.</li>
+</ul>
 <h3 id="methods">Methods</h3>
 <p>Finally, add the following two method to the <code>Sprite</code> class:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -272,7 +276,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position)
 <li>Store it in a variable.</li>
 <li>Create a new sprite with that region.</li>
 </ol>
-<p>We can simplify this process by adding a sprite creation method to the <code>TextureAtlas</code> class. Open <em>TextureAtlas.cs</em> and add the following method:</p>
+<p>We can simplify this process by adding a sprite creation method to the <code>TextureAtlas</code> class. Open the <code>TextureAtlas.cs</code> and add the following method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new sprite using the region from this texture atlas with the specified name.
 /// &lt;/summary&gt;
@@ -284,8 +288,8 @@ public Sprite CreateSprite(string regionName)
     return new Sprite(region);
 }
 </code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
-<p>Now we can adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Replace the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-40,61-65">using Microsoft.Xna.Framework;
+<p>Now we can adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Update the contents of <code>Game1.cs</code> with the following:</p>
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,63-67">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -325,6 +329,8 @@ public class Game1 : Core
         // Create the bat sprite from the atlas.
         _bat = atlas.CreateSprite(&quot;bat&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

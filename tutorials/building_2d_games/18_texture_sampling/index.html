@@ -149,7 +149,13 @@
 <h3 id="filtering-modes">Filtering Modes</h3>
 <p>One aspect of sampler states if the filtering mode.  Filtering in computer graphics refers to how the graphics hardware decides to blend or select pixels when a texture is displayed at a different size than its original dimensions.  The filter mode determines how pixels are interpolated (calculated and combined) when a texture is scaled up or down.</p>
 <p>Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that did not exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.</p>
-<p>There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.</p>
+<p>There are three filtering modes available in MonoGame:</p>
+<ul>
+<li>Point</li>
+<li>Linear</li>
+<li>Anisotropic.</li>
+</ul>
+<p>Each mode offers a different balance between performance and visual quality.</p>
 <h4 id="point-filtering-mode">Point Filtering Mode</h4>
 <p>Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.  Point filtering is the least computationally expensive filtering mode of the three since it only samples a single pixel without any blending calculations. This makes it the fastest option, especially on lower-end hardware or when rendering many textures simultaneously.</p>
 <table>
@@ -308,8 +314,8 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 <p>The default sampler state for <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch"><strong>SpriteBatch</strong></a> is <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp"><strong>SamplerState.LinearClamp</strong></a> in MonoGame, though <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"><strong>SamplerState.PointClamp</strong></a> is often preferred for pixel art games to prevent blurring.</p>
 </div>
 <h2 id="adding-a-scrolling-background-to-the-title-scene">Adding a Scrolling Background to the Title Scene</h2>
-<p>We will now update title scene of our game by adding a scrolling background pattern using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.</p>
-<p>First, download the following image of a repeatable background pattern by right-clicking it and saving it as <em>background-pattern.png</em> in the <em>Content/images</em> folder of the game project:</p>
+<p>We will now update title scene of our game by adding a scrolling background pattern using <a href="xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap"><strong>SamplerState.PointWrap</strong></a>.  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.</p>
+<p>First, download the following image of a repeatable background pattern by right-clicking it and saving it as <code>background-pattern.png</code> in the <code>Content/images</code> folder of the game project:</p>
 <table>
 <thead>
 <tr>
@@ -324,9 +330,9 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 </table>
 <p>Next, add this texture to your content project using the MGCB Editor:</p>
 <ol>
-<li>Open the <em>Content.mgcb</em> content project file in the MGCB Editor.</li>
-<li>Right-click the images folder and choose <em>Add</em> &gt; <em>Existing item...</em>.</li>
-<li>Navigate to and select the <em>background-pattern.png</em> file.</li>
+<li>Open the <code>Content.mgcb</code> content project file in the MGCB Editor.</li>
+<li>Right-click the images folder and choose <code>Add &gt; Existing item...</code>.</li>
+<li>Navigate to and select the <code>background-pattern.png</code> file.</li>
 <li>Save the changes and close the MGCB Editor.</li>
 </ol>
 <table>
@@ -342,8 +348,8 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 </tbody>
 </table>
 <h3 id="updating-the-title-scene">Updating the Title Scene</h3>
-<p>Now that we have the background pattern texture added, we can update the <code>TitleScene</code> class to implement the scrolling background. Open the <em>TitleScene.cs</em> file in the game project and update it to the following</p>
-<pre><code class="lang-csharp" highlight-lines="39-50,79-81,92-93,104-113,120-123">using Microsoft.Xna.Framework;
+<p>Now that we have the background pattern texture added, we can update the <code>TitleScene</code> class to implement the scrolling background. Open the <code>TitleScene.cs</code> file in the game project and update it to the following</p>
+<pre><code class="lang-csharp" highlight-lines="39-50,76-81,92-93,104-113,120-123">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;

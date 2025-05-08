@@ -124,7 +124,7 @@
 <h5>Note</h5>
 <p>The term &quot;frame&quot; in animation refers to a single image in an animation sequence. This is different from a game frame, which represents one complete render cycle of your game.</p>
 </div>
-<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 9-1 below shows three frames that make up a bat's wing-flapping animation:</p>
+<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, <code>Figure 9-1</code> below shows three frames that make up a bat's wing-flapping animation:</p>
 <table>
 <thead>
 <tr>
@@ -140,7 +140,7 @@
 <p>By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.</p>
 <p>In this chapter, we will build off of the <code>Sprite</code> class we created in <a href="../08_the_sprite_class/index.html">Chapter 08</a> to create an <code>AnimatedSprite</code> class we can use to bring animations to life.</p>
 <h2 id="the-animation-class">The Animation Class</h2>
-<p>Before we can create animated sprites, we need a way to manage animation data. We will create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>Animation.cs</em> with this initial structure:</p>
+<p>Before we can create animated sprites, we need a way to manage animation data. We will create an <code>Animation</code> class to encapsulate this information. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <code>Animation.cs</code> with this initial structure:</p>
 <pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 
@@ -163,14 +163,19 @@ public List&lt;TextureRegion&gt; Frames { get; set; }
 /// &lt;/summary&gt;
 public TimeSpan Delay { get; set; }
 </code></pre>
-<p>The <code>Frames</code> property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they will be displayed in the same sequence they are added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.</p>
-<p>The <code>Delay</code> property defines how long each frame should be displayed before moving to the next one. This timing control allows us to adjust the speed of our animations; a shorter delay creates faster animations, while a longer delay creates slower ones.</p>
+<ul>
+<li><p>The <code>Frames</code> property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they will be displayed in the same sequence they are added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.</p>
+</li>
+<li><p>The <code>Delay</code> property defines how long each frame should be displayed before moving to the next one. This timing control allows us to adjust the speed of our animations; a shorter delay creates faster animations, while a longer delay creates slower ones.</p>
+</li>
+</ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Using <code>TimeSpan</code> for the delay allows us to specify precise timing intervals, making it easier to synchronize animations with game time. In other scenarios, you could opt to use <code>float</code> values instead.</p>
+<p>Using <code>TimeSpan</code> for the delay allows us to specify precise timing intervals, making it easier to synchronize animations with game time. In other scenarios, you could opt to just use <code>float</code> values instead.</p>
 </div>
 <h3 id="animation-constructors">Animation Constructors</h3>
-<p>The <code>Animation</code> class will provide two ways to create an animation.  Add the following constructors:</p>
+<p>The <code>Animation</code> class provides two ways to create an animation.</p>
+<p>Add the following constructors:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animation.
 /// &lt;/summary&gt;
@@ -191,13 +196,17 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
     Delay = delay;
 }
 </code></pre>
-<p>The default constructor creates an animation with an empty collection of frames and a default delay of 100 milliseconds between each frame.  The parameterized constructor allows you to specify the frames of animation and the delay for the animation.</p>
+<ul>
+<li>The default constructor creates an animation with an empty collection of frames and a default delay of 100 milliseconds between each frame.</li>
+<li>The parameterized constructor allows you to specify the frames of animation and the delay for the animation.</li>
+</ul>
 <div class="TIP">
 <h5>Tip</h5>
 <p>The default 100 milliseconds delay provides a good starting point for most animations, roughly equivalent to 10 animation frame changes per second.</p>
 </div>
 <h2 id="creating-animations-with-the-textureatlas-class">Creating Animations With The TextureAtlas Class</h2>
-<p>The <code>TextureAtlas</code> class we created in <a href="../07_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 07</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <em>atlas.png</em> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our <em>atlas-definition.xml</em> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.  Open the <em>atlas-definition.xml</em> file and replace the contents with the following:</p>
+<p>The <code>TextureAtlas</code> class we created in <a href="../07_optimizing_texture_rendering/index.html#the-textureatlas-class">Chapter 07</a> can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The <code>atlas.png</code> image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our <code>atlas-definition.xml</code> file to include all regions in the atlas, as well as add new <code>&lt;Animation&gt;</code> elements to define the animations.</p>
+<p>Open the <code>atlas-definition.xml</code> file in your code editor and replace the contents with the following:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;TextureAtlas&gt;
     &lt;Texture&gt;images/atlas&lt;/Texture&gt;
@@ -232,7 +241,7 @@ public Animation(List&lt;TextureRegion&gt; frames, TimeSpan delay)
 <h5>Note</h5>
 <p>In the bat animation, we reuse frame &quot;bat-1&quot; in the sequence (bat-1, bat-2, bat-1, bat-3). This creates a smoother wing-flapping animation by returning to the neutral position between up and down wing positions.</p>
 </div>
-<p>Now that we have a fully configured XML configuration for the atlas, we need to update the <code>TextureAtlas</code> class to manage animation data.  Open the <em>TextureAtlas.cs</em> file and make the following changes:</p>
+<p>Now that we have a fully configured XML configuration for the atlas, we need to update the <code>TextureAtlas</code> class to manage animation data.  Open the <code>TextureAtlas.cs</code> file and make the following changes:</p>
 <ol>
 <li><p>Add the following using statement so we can reference the <code>TimeSpan</code> struct:</p>
 <pre><code class="lang-csharp" highlight-lines="1">using System;
@@ -244,7 +253,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 </code></pre></li>
-<li><p>Add storage for animations</p>
+<li><p>Add storage for animations after the <code>Texture</code> property:</p>
 <pre><code class="lang-csharp">// Stores animations added to this atlas.
 private Dictionary&lt;string, Animation&gt; _animations;
 </code></pre></li>
@@ -415,13 +424,13 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 </li>
 </ul>
 <h2 id="the-animatedsprite-class">The AnimatedSprite Class</h2>
-<p>With our <code>Animation</code> class handling animation data, and the <code>TextureAtlas</code> updated to store the animation data, we can now create a class that represents an animated sprites. Since an animated sprite is essentially a sprite that changes its texture region over time, we can build upon our existing <code>Sprite</code> class through inheritance.</p>
+<p>With our <code>Animation</code> class handling animation data, and the <code>TextureAtlas</code> updated to store the animation data, we can now create a class that represents an animated sprites. Since an animated sprite is essentially a sprite that changes its texture region over time, we can build upon our existing <code>Sprite</code> class through <a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/inheritance">inheritance</a>.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>By inheriting from <code>Sprite</code>, our <code>AnimatedSprite</code> class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding animation-specific functionality.</p>
+<p>By inheriting from <code>Sprite</code>, our <code>AnimatedSprite</code> class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding new animation-specific functionality.</p>
 </div>
 <p>The key to this design is the <code>Sprite.Region</code> property. Our <code>Sprite</code> class already knows how to render whatever region is currently set, so our <code>AnimatedSprite</code> class just needs to update this region property to the correct animation frame at the right time.</p>
-<p>Now we will create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <em>AnimatedSprite.cs</em>:</p>
+<p>We will now create the initial structure for our <code>AnimatedSprite</code> class. In the <em>Graphics</em> folder within the <em>MonoGameLibrary</em> project, add a new file named <code>AnimatedSprite.cs</code>:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 
@@ -462,7 +471,8 @@ public Animation Animation
 <p>Starting with the first frame when setting a new animation ensures consistent behavior when switching between different animations.</p>
 </div>
 <h3 id="animatedsprite-constructors">AnimatedSprite Constructors</h3>
-<p>The <code>AnimatedSprite</code> class will provide two ways to create an animated sprite.  Add the following constructors:</p>
+<p>The <code>AnimatedSprite</code> class provides two ways to create an animated sprite.</p>
+<p>Add the following constructors:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animated sprite.
 /// &lt;/summary&gt;
@@ -477,13 +487,16 @@ public AnimatedSprite(Animation animation)
     Animation = animation;
 }
 </code></pre>
-<p>The default constructor creates an empty animated sprite that can be configured later. The parameterized constructor creates an animated sprite with a specified animation, which automatically sets the sprite's initial region to the first frame of that animation through the <code>Animation</code> property.</p>
+<ul>
+<li>The default constructor creates an empty animated sprite that can be configured later.</li>
+<li>The parameterized constructor creates an animated sprite with a specified animation, which automatically sets the sprite's initial region to the first frame of that animation through the <code>Animation</code> property.</li>
+</ul>
 <div class="NOTE">
 <h5>Note</h5>
 <p>Both constructors inherit from the base <code>Sprite</code> class, so an <code>AnimatedSprite</code> will have all the same rendering properties (position, rotation, scale, etc.) as a regular sprite.</p>
 </div>
 <h3 id="animatedsprite-methods">AnimatedSprite Methods</h3>
-<p>The <code>AnimatedSprite</code> class needs a way to update its animation state over time. This is handled by a single <code>Update</code> method:</p>
+<p>The <code>AnimatedSprite</code> class needs a way to update its animation state over time. This is handled by adding an <code>Update</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates this animated sprite.
 /// &lt;/summary&gt;
@@ -530,7 +543,7 @@ public void Update(GameTime gameTime)
 <li>Store it in a variable.</li>
 <li>Create a new animated sprite with that animation.</li>
 </ol>
-<p>We can simplify this process by adding an animated spirte creation method to the <code>TextureAtlas</code> class. Open <em>TextureAtlas.cs</em> and add the following method:</p>
+<p>We can simplify this process by adding an animated sprite creation method to the <code>TextureAtlas</code> class. Open <code>TextureAtlas.cs</code> and add the following method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Creates a new animated sprite using the animation from this texture atlas with the specified name.
 /// &lt;/summary&gt;
@@ -542,8 +555,8 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
     return new AnimatedSprite(animation);
 }
 </code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
-<p>We can now adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Replaces the contents of <em>Game1.cs</em> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-40,48-52">using Microsoft.Xna.Framework;
+<p>We can now adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Update the contents of <code>Game1.cs</code> with the following:</p>
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,50-54">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -583,6 +596,8 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
