@@ -126,7 +126,7 @@
 <ol>
 <li>Add the image file to your project.</li>
 <li>Configure the project to copy the image file on build to the build output folder.</li>
-<li>Load the image file as a texture at runtime using the <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)"><strong>Texture2D.FromFile</strong></a> method.</li>
+<li>Load the image file as a texture at runtime using the <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.html#Microsoft_Xna_Framework_Graphics_Texture2D_FromFile_Microsoft_Xna_Framework_Graphics_GraphicsDevice_System_String_"><strong>Texture2D.FromFile</strong></a> method.</li>
 </ol>
 <div class="IMPORTANT">
 <h5>Important</h5>
@@ -194,6 +194,14 @@
 </section>
 </div>
 
+<p>[!TIP]</p>
+<blockquote>
+<p>If for any reason the MGCB editor fails to load or you are hit with MGCB errors when you build your project, it is likely the MGCB references from the <code>dotnet-tools.json</code> configuration located in your projects <code>.config</code> folder have not been loaded/initialized.</p>
+<p>To correct this, simply run the following from a terminal/command prompt in your projects directory (there the <code>.config</code> folder is located)</p>
+<pre><code class="lang-sh">  dotnet tool restore
+</code></pre>
+<p>This should restore the tool with the version that is configured.  If at any time you update your <code>dotnet-tools.json</code> configuration, e.g. when upgrading to a newer version of MonoGame, <strong>you will need to run this command again</strong></p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -209,7 +217,7 @@
 <p>In Figure 5-2 above, you can see the user interface for the MGCB Editor:</p>
 <ul>
 <li><strong>Toolbar</strong>: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.</li>
-<li><strong>Project Panel</strong>: Located on the left of the MGCB Editor, displays a hierarchial tree view of all content items added to the content project.  The root node <em>Content</em> represents the root of the content project.</li>
+<li><strong>Project Panel</strong>: Located on the left of the MGCB Editor, displays a hierarchical tree view of all content items added to the content project.  The root node <em>Content</em> represents the root of the content project.</li>
 <li><strong>Properties Panel</strong>: Located on the bottom left of the MGCB Editor, shows the properties of the currently selected item in the project panel.  The properties available are based on the item type selected.</li>
 <li><strong>Build Output Panel</strong>: The large area to the right side outputs build messages, warnings, and errors when content is processed.</li>
 </ul>
@@ -232,7 +240,11 @@
 </tr>
 </tbody>
 </table>
-<p>You hae now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.</p>
+<p>You have now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use &quot;Add Existing Folder&quot; instead.</p>
+</div>
 <h3 id="adding-your-first-asset">Adding Your First Asset</h3>
 <p>Now that we have a folder structure, we can add our first image asset to the project.  For this example, we will use the MonoGame logo.  Perform the following</p>
 <ol>
@@ -354,7 +366,7 @@
 </div>
 <h2 id="understanding-content-paths">Understanding Content Paths</h2>
 <p>When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>RootDirectory</strong></a> property, which is set to &quot;Content&quot; by default in the <code>Game1</code> constructor.</p>
-<p>For example, with our newly dded logo in the &quot;images&quot; folder,the path would be &quot;images/logo&quot; (without the file extension).  The reason for this relates to the build process.  When you build your project, the <em>MonoGame.Content.Builder.Tasks</em> NuGet reference <a href="#understanding-the-content-pipeline-workflow">compiles your assets and copies them to the game's output folder</a>.</p>
+<p>For example, with our newly added logo in the &quot;images&quot; folder,the path would be &quot;images/logo&quot; (without the file extension).  The reason for this relates to the build process.  When you build your project, the <em>MonoGame.Content.Builder.Tasks</em> NuGet reference <a href="#understanding-the-content-pipeline-workflow">compiles your assets and copies them to the game's output folder</a>.</p>
 <p>This creates a folder structure in your output directory similar to:</p>
 <pre><code class="lang-sh">DungeonSlime/
     └── bin/
@@ -520,7 +532,7 @@ public class Game1 : Core
 <ol>
 <li><p>Directly from file using <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)"><strong>Texture2D.FromFile</strong></a>.   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.</p>
 </li>
-<li><p>Using the content pipeline with <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>Content.Load<texture2d></texture2d></strong></a>.  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.</p>
+<li><p>Using the content pipeline with <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.html#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_"><strong>Content.Load&lt;Texture2D&gt;</strong></a>.  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.</p>
 </li>
 </ol>
 </div>
