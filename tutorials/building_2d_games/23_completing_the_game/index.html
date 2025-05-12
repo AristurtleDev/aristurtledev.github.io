@@ -1043,7 +1043,16 @@ private void GameOver()
 <p>For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered. When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely. This occurs because the second input overwrites the first one before the game has a chance to process it, leading to frustrating gameplay.</p>
 <p>Let's implement the input buffering technique we introduced in <a href="../10_handling_input/index.html#input-buffering">Chapter 10</a> to solve this problem in our <code>Slime</code> class.</p>
 <h3 id="implementing-input-buffering-in-the-slime-class">Implementing Input Buffering in the Slime Class</h3>
-<p>To add input buffering for the <code>Slime</code> class, we will begin by adding the necessary fields to store our input queue. In the <em>GameObjects</em> directory of the <em>DungeonSlime</em> project (your main game project), open the <em>Slime.cs</em> file and add the following fields after the <code>_sprite</code> field:</p>
+<p>For the <code>Slime</code> class, we will implement input buffering based on the example given using a <code>Queue&lt;T&gt;</code> in <a href="../10_handling_input/index.html#implementing-a-simple-input-buffer">Chapter 10</a>.  In the <code>GameObject</code> folder of the <code>DungeonSlime</code> project (your main game project), open the <code>Slime.cs</code> file so we can make the changes.</p>
+<p>First, update the using statements at the top of the <code>Slime</code> class so that we can use the <code>Queue&lt;T&gt;</code> type:</p>
+<pre><code class="lang-csharp" highlight-lines="3">using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+</code></pre>
+<p>Next, add the following fields to the <code>Slime</code> class after the <code>_sprite</code> field:</p>
 <pre><code class="lang-csharp">// Buffer to queue inputs input by player during input polling.
 private Queue&lt;Vector2&gt; _inputBuffer;
 
