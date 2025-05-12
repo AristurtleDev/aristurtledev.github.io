@@ -2587,6 +2587,26 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/images/dungeon-slime-game.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/images/dungeon-slime-game.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "tutorials/building_2d_games/images/dungeon-slime-title.png",
+      "output": {
+        "resource": {
+          "relative_path": "tutorials/building_2d_games/images/dungeon-slime-title.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "log_codes": [
         "UidNotFound"
       ],
