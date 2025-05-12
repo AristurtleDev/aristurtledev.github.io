@@ -455,7 +455,7 @@ if(gamePadState.DPad.Down == ButtonState.Pressed)
 <li>X-axis: A value between <code>-1.0f</code> (pushed fully to the left) and <code>1.0f</code> (pushed fully to the right).</li>
 <li>Y-axis: A value between <code>-1.0f</code> (pushed fully downward) and <code>1.0f</code> (pushed fully upward).</li>
 </ul>
-<p>For example, if you wanted to move a sprite using the left thumbstick, you could do the following</p>
+<p>For example, if you wanted to move a sprite using the left thumbstick, you could do the following:</p>
 <pre><code class="lang-csharp">// Get the current state of player one's gamepad
 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
@@ -854,7 +854,7 @@ foreach(TouchLocation touchLocation in touchCollection)
 </tr>
 </tbody>
 </table>
-<p>Open <code>Game1.cs</code> and update it with the following:</p>
+<p>Open <code>Game1.cs</code> the <em>DungeonSlime</em> project and update it with the following:</p>
 <pre><code class="lang-csharp" highlight-lines="17-21,60-64,69-157,168">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -1135,7 +1135,7 @@ if(_inputBuffer.COunt &gt; 0)
 <p>The <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0%3E"><code>Queue&lt;T&gt;</code></a> is a First In, First Out (FIFO) collection in C#. When you add items with <code>Enqueue()</code>, they join the end of the line, and when you retrieve items with <code>Dequeue()</code>, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.</p>
 <p>This contrasts with a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0%3E"><code>Stack&lt;T&gt;</code></a>, which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.</p>
 </div>
-<p>The size of an input buffer is an important design decision. If it's too small, players might still feel the game isn't responsive enough. If it's too large, the game might feel like it's playing itself by working through a backlog of commands.</p>
+<p>The size of an input buffer is an important design decision. If it is too small, players might still feel the game is not responsive enough. If it is too large, the game might feel like it is playing itself by working through a backlog of commands.</p>
 <h3 id="when-to-use-input-buffering">When to Use Input Buffering</h3>
 <p>Consider implementing input buffering in your game when:</p>
 <ul>
@@ -1144,7 +1144,7 @@ if(_inputBuffer.COunt &gt; 0)
 <li>Actions require precise timing that is difficult for players to hit consistently.</li>
 <li>You want to allow players to &quot;queue up&quot; their next few moves.</li>
 </ul>
-<p>We'll see a practical implementation of input buffering in <a href="../23_completing_the_game/index.html">Chapter 23</a> when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.</p>
+<p>We will see a practical implementation of input buffering in <a href="../23_completing_the_game/index.html">Chapter 23</a> when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>
 <ul>

@@ -277,7 +277,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>This moves the <code>Content</code> directory to the expected location for resources in a macOS application bundles.</p>
 </div>
 </li>
-<li><p>Create a new file called <em>Info.plist</em> in the <em>Contents</em> directory of the application bundle with the following command:</p>
+<li><p>Create a new file called <code>Info.plist</code> in the <code>Contents</code> directory of the application bundle with the following command:</p>
 <pre><code class="lang-sh">touch bin/Release/DungeonSlime.app/Contents/Info.plist
 </code></pre>
 <div class="NOTE">
@@ -285,7 +285,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>The <code>touch</code> command creates an empty file if it does not exist or updates the modification time if it does exist.  We are using it here to create a blank file that we will populate with content in the next step.</p>
 </div>
 </li>
-<li><p>Open the <em>Info.plist</em> file you just created in a text editor and add the following content to the file and save it.</p>
+<li><p>Open the <code>Info.plist</code> file you just created in a text editor and add the following content to the file and save it.</p>
 <pre><code class="lang-xml" highlight-lines="8,10,12,16,30">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
 &lt;plist version=&quot;1.0&quot;&gt;
@@ -352,7 +352,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>For more information on the <code>Info.plist</code> manifest file, refer to the <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html">About Info.plist Keys and Values</a> Apple Developer documentation.</p>
 </div>
 </li>
-<li><p>Next, create the application bundle <em>.icns</em> icon file. To do this, perform the following:</p>
+<li><p>Next, create the application bundle <code>.icns</code> icon file. To do this, perform the following:</p>
 <ol>
 <li><p>First, you will need a <code>.png</code> file that can be used to create the icon set for the final <code>.icns</code> output.  If you already have a <code>.png</code> icon for your game, ensure it is in the root of the main project directory and is named <code>Icon.png</code>.  If you do not have one already prepared, you can use the <code>Icon.bmp</code> that was generated in the root of the main project directory when you initially created the project.  However, it will need to be converted to a <code>.png</code> first. To do this, execute the following command:</p>
 <pre><code class="lang-sh">sips -s format png Icon.bmp --out Icon.png        
