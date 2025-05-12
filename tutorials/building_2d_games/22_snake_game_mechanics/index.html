@@ -119,7 +119,7 @@
         <article data-uid="">
 <h1 id="chapter-22-snake-game-mechanics">Chapter 22: Snake Game Mechanics</h1>
 <p class="text-secondary">Learn how to implement classic snake-like game mechanics and organize game objects into reusable components.</p>
-<p>In the previous chapters, we've built all the fundamental systems needed for our game: <a href="../07_optimizing_texture_rendering/index.html">graphics</a>, <a href="../11_input_management/index.html">input</a>, <a href="../12_collision_detection/index.html">collision detection</a>, <a href="../15_audio_controller/index.html">audio</a>, <a href="../17_scenes/index.html">scene management</a>, and a <a href="../19_user_interface/index.html">user interface</a>.  Now it's time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.</p>
+<p>In the previous chapters, we have built all the fundamental systems needed for our game: <a href="../07_optimizing_texture_rendering/index.html">graphics</a>, <a href="../11_input_management/index.html">input</a>, <a href="../12_collision_detection/index.html">collision detection</a>, <a href="../15_audio_controller/index.html">audio</a>, <a href="../17_scenes/index.html">scene management</a>, and a <a href="../19_user_interface_fundamentals/index.html">user interface</a>.  Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.</p>
 <p>In this chapter, you will:</p>
 <ul>
 <li>Understand the core mechanics that define a classic snake-like game.</li>
@@ -227,7 +227,7 @@
 <h3 id="the-gamecontroller-class">The GameController Class</h3>
 <p>Currently, we have two methods dedicated to handling input in the game scene, <code>CheckKeyboardInput</code> and <code>CheckGamePadInput</code>, both of these methods essentially perform the same logic across different input devices. This presents an opportunity to improve our code.</p>
 <p>To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the &quot;what&quot; (game actions) from the &quot;how&quot; (specific input devices and buttons).</p>
-<p>Create a new file named <code>GameController.cs</code> in the root of the <em>DungeonSlime</em> project (your main game project) and add the following code:</p>
+<p>Create a new file named <code>GameController.cs</code> in the root of the <code>DungeonSlime</code> project (your main game project) and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -311,7 +311,7 @@ public static class GameController
 <p>The <code>GameController</code> class implements an important design pattern in game development known as <strong>&quot;Input Abstraction&quot;</strong> or the <strong>&quot;Command&quot;</strong> pattern.  This pattern separates what happens in the game (the actions) from how players trigger those actions (the inputs).</p>
 <p>This separation provides several benefits, including:</p>
 <ol>
-<li><strong>Input Device Independence</strong>: The game logic does not need to know which input device the player is using. Whether they're playing with a keyboard, gamepad, or touch screen, the game only cares that a &quot;move up&quot; action was triggered, not which specific button or key caused it.</li>
+<li><strong>Input Device Independence</strong>: The game logic does not need to know which input device the player is using. Whether they are playing with a keyboard, gamepad, or touch screen, the game only cares that a &quot;move up&quot; action was triggered, not which specific button or key caused it.</li>
 <li><strong>Simplified Input Handling</strong>: Instead of checking multiple input combinations throughout the codebase, game objects can simply ask &quot;Should I move up?&quot; through a clean API call.</li>
 <li><strong>Easy Rebinding</strong>: If you want to add key rebinding features, you only need to modify the <code>GameController</code> class, not every piece of code that uses input.</li>
 <li><strong>Consistent Input Logic</strong>: The rules for determining if an action occurred (like checking if a button was just pressed version being held down) are defined in one place.</li>
@@ -320,11 +320,9 @@ public static class GameController
 <p>By implementing this pattern in our game, we are not only making our current input handling cleaner, but we are also establishing a foundation that would make it easier to add features like input customization or support for new input devices in the future.</p>
 <p>With our input handling system in place, now we can turn our attention to implementing the core mechanics of our snake-like game. First, we need to create a structure that will represent each segment of the slime's body.</p>
 <h3 id="the-slimesegment-struct">The SlimeSegment Struct</h3>
-<p>Next, we will need to implement a structure that can represent each segment of the slime.  This structure will store the position and movement data for each segment.</p>
-<ul>
-<li>In the <em>DungeonSlime</em> project (your main game project), create a new directory named <code>GameObjects</code>. We will be putting all of our code related to the objects within the game here.</li>
-</ul>
-<p>Next, create a new file named <code>SlimeSegment.cs</code> inside the <code>GameObjects</code> directory you just created and add the following code:</p>
+<p>We will need to implement a structure that can represent each segment of the slime, this structure will store the position and movement data for each segment.</p>
+<p>In the <em>DungeonSlime</em> project (your main game project), create a new directory named <code>GameObjects</code>. We will be putting all of our code related to the objects within the game here.
+Then create a new file named <code>SlimeSegment.cs</code> inside the <code>GameObjects</code> directory you just created and add the following code:</p>
 <pre><code class="lang-csharp">using Microsoft.Xna.Framework;
 
 namespace DungeonSlime.GameObjects;
@@ -361,7 +359,7 @@ public struct SlimeSegment
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p>We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they're allocated on the stack rather than the heap, reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will be copying segment data during movement operations.</p>
+<p>We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they are allocated on the <a href="https://learn.microsoft.com/en-us/dotnet/standard/automatic-memory-management">stack rather than the heap</a>, reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will be copying segment data during movement operations.</p>
 </div>
 <div class="IMPORTANT">
 <h5>Important</h5>
@@ -369,7 +367,8 @@ public struct SlimeSegment
 </div>
 <p>By tracking both the current (<code>At</code>) and target (<code>To</code>) positions, we can implement smooth visual movement between grid positions, creating more fluid animations than the traditional stutter step movement seen in classic snake games.  We will explore this concept a little further in this chapter.</p>
 <h3 id="the-slime-class">The Slime Class</h3>
-<p>Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime. In the <code>GameObjects</code> directory of the DungeonSlime project (your main game project), create a new file named <code>Slime.cs</code> and add the following initial code:</p>
+<p>Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime.</p>
+<p>In the <code>GameObjects</code> directory of the <em>DungeonSlime</em> project (your main game project), create a new file named <code>Slime.cs</code> and add the following initial code:</p>
 <pre><code class="lang-csharp">using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -414,7 +413,7 @@ private List&lt;SlimeSegment&gt; _segments;
 // The AnimatedSprite used when drawing each slime segment
 private AnimatedSprite _sprite;
 </code></pre>
-<p>Let's break down what each of these fields is responsible for:</p>
+<p>Each of these fields is responsible for:</p>
 <ul>
 <li><code>s_movementTime</code>: This constant represents how long the slime waits between movement cycles (300ms). This creates the classic snake game's grid-based movement feel, where the snake moves at regular intervals rather than continuously.</li>
 <li><code>_movementTime</code>: This field accumulates elapsed time until it reaches the movement threshold. When it does, the slime moves one grid cell and the timer resets.</li>
@@ -520,7 +519,7 @@ public void Initialize(Vector2 startingPosition, float stride)
 <p>This method implements the following:</p>
 <ol>
 <li>Determine if the player is attempting to change directions instead of directly moving the slime.  This direction change will be applied later during the movement cycle update.</li>
-<li>Uses <a href="xref:xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> to prevent the slime from reversing into itself, causing an immediate collision and game over state.</li>
+<li>Uses <a href="xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"><strong>Vector2.Dot</strong></a> to prevent the slime from reversing into itself, causing an immediate collision and game over state.</li>
 <li>Updates the <code>_nextDirection</code> value only if the direction input is valid.</li>
 </ol>
 <div class="NOTE">
@@ -620,7 +619,8 @@ public void Grow()
 <li>Finally, it inserts this new tail into the segments collection.</li>
 </ol>
 <h4 id="slime-update">Slime Update</h4>
-<p>With most of the core snake-like mechanics now added to the <code>Slime</code> class within their own methods, let's add the <code>Update</code> method.  Add the following method to the <code>Slime</code> class after the <code>Grow</code> method:</p>
+<p>With most of the core snake-like mechanics now added to the <code>Slime</code> class within their own methods we can now work on what happens while the slime is operating.</p>
+<p>Add the following <code>Update</code> method to the <code>Slime</code> class after the <code>Grow</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Updates the slime.
 /// &lt;/summary&gt;
@@ -699,7 +699,7 @@ public void Draw()
     }
 }
 </code></pre>
-<p>This draw method iterates each segment of the slime and calculates the visual position to draw each segment at by performing linear interpolation (lerp) to determine the position of the segment between its current position (<code>At</code>) and the position it is moving to (<code>To</code>) based on the <code>_movementProgress</code> calculation.</p>
+<p>This draw method iterates each segment of the slime and calculates the visual position to draw each segment at by performing <a href="https://www.corykoseck.com/2018/08/29/programming-in-c-lerp/">linear interpolation (lerp)</a> to determine the position of the segment between its current position (<code>At</code>) and the position it is moving to (<code>To</code>) based on the <code>_movementProgress</code> calculation.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p><a href="xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"><strong>Vector2.Lerp</strong></a> performs a linear interpolation between two vectors, creating a smooth transition from start to end based on an amount parameter.  The formula is:</p>
@@ -749,7 +749,7 @@ public Circle GetBounds()
 <p>This encapsulation allows us to manage all slime-related behavior in one place while exposing only the necessary interfaces to the game scene.</p>
 <p>Now that we have our player-controlled character implemented, we can create the object that the slime will try to collect; the bat.</p>
 <h3 id="the-bat-class">The Bat Class</h3>
-<p>In the <code>GameObjects</code> directory of the DungeonSlime project (your main game project), create a new file named <code>Bat.cs</code> and add the following initial code:</p>
+<p>In the <code>GameObjects</code> directory of the <em>DungeonSlime</em> project (your main game project), create a new file named <code>Bat.cs</code> and add the following initial code:</p>
 <pre><code class="lang-csharp">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -764,7 +764,7 @@ public class Bat
 }
 </code></pre>
 <p>This code establishes the foundation for our <code>Bat</code> class. We have included the necessary using statements for MonoGame components, audio functionality, and our library references. The class is placed in the same <code>DungeonSlime.GameObjects</code> namespace as our Slime class to maintain a consistent organization.</p>
-<p>Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game. Add each of the following sections to the <code>Bat</code> class in the order they are presented.</p>
+<p>Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game.  Add each of the following sections to the <code>Bat</code> class in the order they are presented.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>As with the Slime class, you may encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.</p>
@@ -833,7 +833,8 @@ public void RandomizeVelocity()
     _velocity = direction * MOVEMENT_SPEED;
 }
 </code></pre><h4 id="bat-bounce">Bat Bounce</h4>
-<p>We are also going to take the logic from the <code>GameScene</code> class that bounces the bat off the walls and move it into a dedicated method in the <code>Bat</code> class.  Add the following method to the <code>Bat</code> class after the <code>RandomizeVelocity</code> method:</p>
+<p>We are also going to take the logic from the <code>GameScene</code> class that bounces the bat off the walls and move it into a dedicated method in the <code>Bat</code> class.</p>
+<p>Add the following method to the <code>Bat</code> class after the <code>RandomizeVelocity</code> method:</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Handles a bounce event when the bat collides with a wall or boundary.
 /// &lt;/summary&gt;

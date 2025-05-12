@@ -419,7 +419,7 @@
 </table>
 <p>The reason the sprite did not rotate as expected is because of the <code>origin</code> parameter.</p>
 <h3 id="origin">Origin</h3>
-<p>The <code>origin</code> parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a>, the upper-left corner of the sprite.  To visualize this, see Figure 6-5 below.  The red square represents where the origin is for the sprite, and we can see how it is rotated around this origin point.</p>
+<p>The <code>origin</code> parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be <a href="xref:Microsoft.Xna.Framework.Vector2.Zero"><strong>Vector2.Zero</strong></a>, the upper-left corner of the sprite.  To visualize this, see <em>Figure 6-5</em> below.  The red square represents where the origin is for the sprite, and we can see how it is rotated around this origin point.</p>
 <table>
 <thead>
 <tr>
@@ -853,7 +853,7 @@ Final Blue = Sprite Blue * 1.0f;
 </tr>
 </tbody>
 </table>
-<p>We can see from Figure 6-14 above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the <code>sourceRectangle</code>.</p>
+<p>We can see from <em>Figure 6-14</em> above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the <code>sourceRectangle</code>.</p>
 <p>We can see this in action by drawing the icon and the wordmark separately from the same texture. Update the code to the following:</p>
 <pre><code class="lang-csharp" highlight-lines="6-7,9-10,15-30,32-47">protected override void Draw(GameTime gameTime)
 {
@@ -934,7 +934,7 @@ Final Blue = Sprite Blue * 1.0f;
 <p>Making use of the <code>sourceRectangle</code> parameter to draw different sprites from the same texture is optimization technique that we will explore further in the next chapter.</p>
 </div>
 <h3 id="layer-depth">Layer Depth</h3>
-<p>The final parameter to discuss is the <code>layerDepth</code> parameter. Notice that in Figure 6-15 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.</p>
+<p>The final parameter to discuss is the <code>layerDepth</code> parameter. Notice that in <em>Figure 6-15</em> above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.</p>
 <p>The <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable%7BMicrosoft.Xna.Framework.Matrix%7D)"><strong>SpriteBatch.Begin</strong></a> method contains several optional parameters, one of which is the <code>sortMode</code> parameter.  By default, this value is <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a>, which means what is drawn is done so in the order of the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> calls.  Each subsequent call will be drawn visually on top of the previous call.</p>
 <p>When <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred"><strong>SpriteSortMode.Deferred</strong></a> is used, then the <code>layerDepth</code> parameter in the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)"><strong>SpriteBatch.Draw</strong></a> call is essentially ignored.  For instance, in the first <code>_spriteBatch.Draw</code> method call, update the <code>layerDepth</code> parameter to <code>1.0f</code>.</p>
 <pre><code class="lang-csharp" highlight-lines="29">protected override void Draw(GameTime gameTime)
@@ -1070,12 +1070,12 @@ Final Blue = Sprite Blue * 1.0f;
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img src="images/icon-on-top-of-wordmark.png" alt="Figure 5-17: The MonoGame icon drawn on top of the wordmark"></th>
+<th style="text-align: center;"><img src="images/icon-on-top-of-wordmark.png" alt="Figure 6-16: The MonoGame icon drawn on top of the wordmark"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Figure 5-17: The MonoGame icon drawn on top of the wordmark</strong></td>
+<td style="text-align: center;"><strong>Figure 6-16: The MonoGame icon drawn on top of the wordmark</strong></td>
 </tr>
 </tbody>
 </table>

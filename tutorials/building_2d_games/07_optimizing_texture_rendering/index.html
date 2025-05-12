@@ -168,7 +168,7 @@ _spriteBatch.Draw(ballTexture, _ballPosition, Color.White);
 <h5>Note</h5>
 <p>Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you are loading and tracking a single texture instead of many individual ones.</p>
 </div>
-<p>In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 7-1 below:</p>
+<p>In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in <em>Figure 7-1</em> below:</p>
 <table>
 <thead>
 <tr>
@@ -564,7 +564,7 @@ public static TextureAtlas FromFile(ContentManager content, string fileName)
 <p>If you need a refresher on adding content using the MGCB Editor, you can revisit the <a href="../05_content_pipeline/index.html">Chapter 05: The Content Pipeline</a>.</p>
 </div>
 <p>First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of <code>Game1.cs</code> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="5,11-15,31-47,67-77">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="5,11-15,31-47,65-75">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -611,8 +611,6 @@ public class Game1 : Core
 
         // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -756,8 +754,6 @@ public class Game1 : Core
 
         // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion(&quot;bat&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -799,7 +795,7 @@ public class Game1 : Core
 <li>Removed the manual creation of regions in code.</li>
 </ul>
 <p>This configuration based approached is advantageous because we can now add new and modify existing regions within the atlas without having to change code and/or recompile.  This also keeps the sprite definitions separate from the game logic.</p>
-<p>Running the game now will show the same results as <code>Figure 7-4</code> above, with the slime and bat texture regions rendered in the upper-left corner of the game window.</p>
+<p>Running the game now will show the same results as <em>Figure 7-4</em> above, with the slime and bat texture regions rendered in the upper-left corner of the game window.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>
 <ul>

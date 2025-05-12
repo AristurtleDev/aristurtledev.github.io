@@ -126,7 +126,7 @@
 <ol>
 <li>Add the image file to your project.</li>
 <li>Configure the project to copy the image file on build to the build output folder.</li>
-<li>Load the image file as a texture at runtime using the <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.html#Microsoft_Xna_Framework_Graphics_Texture2D_FromFile_Microsoft_Xna_Framework_Graphics_GraphicsDevice_System_String_"><strong>Texture2D.FromFile</strong></a> method.</li>
+<li>Load the image file as a texture at runtime using the <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)"><strong>Texture2D.FromFile</strong></a> method.</li>
 </ol>
 <div class="IMPORTANT">
 <h5>Important</h5>
@@ -194,14 +194,14 @@
 </section>
 </div>
 
-<p>[!TIP]</p>
-<blockquote>
+<div class="TIP">
+<h5>Tip</h5>
 <p>If for any reason the MGCB editor fails to load or you are hit with MGCB errors when you build your project, it is likely the MGCB references from the <code>dotnet-tools.json</code> configuration located in your projects <code>.config</code> folder have not been loaded/initialized.</p>
 <p>To correct this, simply run the following from a terminal/command prompt in your projects directory (there the <code>.config</code> folder is located)</p>
 <pre><code class="lang-sh">  dotnet tool restore
 </code></pre>
 <p>This should restore the tool with the version that is configured.  If at any time you update your <code>dotnet-tools.json</code> configuration, e.g. when upgrading to a newer version of MonoGame, <strong>you will need to run this command again</strong></p>
-</blockquote>
+</div>
 <table>
 <thead>
 <tr>
@@ -214,7 +214,7 @@
 </tr>
 </tbody>
 </table>
-<p>In Figure 5-2 above, you can see the user interface for the MGCB Editor:</p>
+<p>In <em>Figure 5-2</em> above, you can see the user interface for the MGCB Editor:</p>
 <ul>
 <li><strong>Toolbar</strong>: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.</li>
 <li><strong>Project Panel</strong>: Located on the left of the MGCB Editor, displays a hierarchical tree view of all content items added to the content project.  The root node <em>Content</em> represents the root of the content project.</li>
@@ -224,9 +224,9 @@
 <h3 id="creating-folders-to-organize-content">Creating Folders to Organize Content</h3>
 <p>Organizing your game assets into folders helps keep your content project manageable as it grows. For now, we will add a new folder that will hold the image assets we will add to the game throughout this tutorial series.  In the MGCB Editor:</p>
 <ol>
-<li>In the Project Panel, select the root <em>Content</em> node.</li>
-<li>Right-click it and choose <em>Add</em> &gt; <em>New Folder...</em> from the context menu.</li>
-<li>Type &quot;images&quot; for the folder name and click the &quot;Ok&quot; button.</li>
+<li>In the Project Panel, select the root <code>Content</code> node.</li>
+<li>Right-click it and choose <code>Add &gt; New Folder...</code> from the context menu.</li>
+<li>Type <code>images</code> for the folder name and click the <code>Ok</code> button.</li>
 </ol>
 <table>
 <thead>
@@ -243,7 +243,7 @@
 <p>You have now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use &quot;Add Existing Folder&quot; instead.</p>
+<p>If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use <code>Add Existing Folder</code> instead.</p>
 </div>
 <h3 id="adding-your-first-asset">Adding Your First Asset</h3>
 <p>Now that we have a folder structure, we can add our first image asset to the project.  For this example, we will use the MonoGame logo.  Perform the following</p>
@@ -262,15 +262,15 @@
 </tbody>
 </table>
 </li>
-<li><p>In the MGCB Editor, select the <em>images</em> folder you created earlier.</p>
+<li><p>In the MGCB Editor, select the <code>images</code> folder you created earlier.</p>
 </li>
-<li><p>Right-click it and choose <em>Add</em> &gt; <em>Existing Item...</em> from the context menu.</p>
+<li><p>Right-click it and choose <code>Add &gt; Existing Item...</code> from the context menu.</p>
 </li>
 <li><p>Navigate to the location of the <code>logo.png</code> file you just downloaded and select it.</p>
 </li>
-<li><p>Click the &quot;Open&quot; button</p>
+<li><p>Click the <code>Open</code> button</p>
 </li>
-<li><p>When prompted in the add existing file popup, choose <em>Copy the file to the directory.</em></p>
+<li><p>When prompted in the add existing file popup, choose <code>Copy the file to the directory.</code></p>
 <table>
 <thead>
 <tr>
@@ -284,7 +284,7 @@
 </tbody>
 </table>
 </li>
-<li><p>Save the changes to the content project by selecting <em>File</em> &gt; <em>Save</em> from the top menu or pressing <code>CTRL+S</code>.</p>
+<li><p>Save the changes to the content project by selecting <code>File &gt; Save</code> from the top menu or pressing <code>CTRL+S</code>.</p>
 </li>
 </ol>
 <table>
@@ -365,7 +365,7 @@
 <p>When an asset is loaded for the first time, the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager"><strong>ContentManager</strong></a> internally caches it.  Loading the same asset again will return the cached version, avoiding extra disk reads.</p>
 </div>
 <h2 id="understanding-content-paths">Understanding Content Paths</h2>
-<p>When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>RootDirectory</strong></a> property, which is set to &quot;Content&quot; by default in the <code>Game1</code> constructor.</p>
+<p>When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory"><strong>RootDirectory</strong></a> property, which is set to <strong>&quot;Content&quot;</strong> by default in the <code>Game1</code> constructor.</p>
 <p>For example, with our newly added logo in the &quot;images&quot; folder,the path would be &quot;images/logo&quot; (without the file extension).  The reason for this relates to the build process.  When you build your project, the <em>MonoGame.Content.Builder.Tasks</em> NuGet reference <a href="#understanding-the-content-pipeline-workflow">compiles your assets and copies them to the game's output folder</a>.</p>
 <p>This creates a folder structure in your output directory similar to:</p>
 <pre><code class="lang-sh">DungeonSlime/
@@ -480,11 +480,11 @@ public class Game1 : Core
 </tbody>
 </table>
 <h2 id="adding-build-in-asset-types">Adding Build-In Asset Types</h2>
-<p>The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, <a href="#opening-the-mgcb-editor">open the MGCB Editor</a> and perform the following:</p>
+<p>The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, <a href="#the-mgcb-editor">open the MGCB Editor</a> and perform the following:</p>
 <ol>
-<li><p>Select the <em>Content</em> node.</p>
+<li><p>Select the <code>Content</code> node.</p>
 </li>
-<li><p>Right-click it and choose <em>Add</em> &gt; <em>New Item...</em> from the context menu.</p>
+<li><p>Right-click it and choose <code>Add &gt; New Item...</code> from the context menu.</p>
 </li>
 <li><p>In the dialog that appears, you will see the available built-in types.</p>
 <table>
@@ -513,7 +513,7 @@ public class Game1 : Core
 <h5>Note</h5>
 <p>Each built-in asset type comes with a template that includes the minimum required structure and settings.</p>
 </div>
-<p>For now, click the &quot;Cancel&quot; button on the new file dialog.  We will explore these built-in types further in later chapters when we need them.</p>
+<p>For now, click the <code>Cancel</code> button on the new file dialog.  We will explore these built-in types further in later chapters when we need them.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this chapter, you accomplished the following:</p>
 <ul>
@@ -532,7 +532,7 @@ public class Game1 : Core
 <ol>
 <li><p>Directly from file using <a href="xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)"><strong>Texture2D.FromFile</strong></a>.   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.</p>
 </li>
-<li><p>Using the content pipeline with <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.html#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_"><strong>Content.Load&lt;Texture2D&gt;</strong></a>.  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.</p>
+<li><p>Using the content pipeline with <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>Content.Load&lt;Texture2D&gt;</strong></a>.  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.</p>
 </li>
 </ol>
 </div>

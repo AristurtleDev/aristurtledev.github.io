@@ -155,7 +155,7 @@
 </tr>
 </tbody>
 </table>
-<p>In the Figure 12-1 above</p>
+<p>In the <em>Figure 12-1</em> above</p>
 <ul>
 <li><span class="math">\(a\)</span> is the distance between the center of the two on the x-axis (horizontal).</li>
 <li><span class="math">\(b\)</span> is the distance between the center of the two circles on the y-axis (vertical).</li>
@@ -739,7 +739,7 @@ bool areEqual = circle1 == circle2;    // Returns true
 <li>The bat does not move, providing no challenge in the game.</li>
 </ol>
 <p>We can now implement these features using collision detection and response in our game.  In the <em>DungeonSlime</em> project (your main game project), open the <code>Game1.cs</code> file and make the following changes to the <code>Game1</code> class:</p>
-<pre><code class="lang-csharp" highlight-lines="25-29,40-45,81-181,186-198,298-299">using System;
+<pre><code class="lang-csharp" highlight-lines="1,5,25-29,40-45,79-179,184-196,296-297">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -798,8 +798,6 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

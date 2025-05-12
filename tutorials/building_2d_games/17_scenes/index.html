@@ -172,7 +172,7 @@ public abstract class Scene : IDisposable
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Just like with the <code>AudioController</code> in <a href="../14_audio_controller/index.md#audiocontroller-idisposable-implementation">Chapter 14</a>, each <code>Scene</code> implements the <code>IDisposable</code> interface.  This provides a standardized in method to release the resources held by a scene when it is no longer needed.</p>
+<p>Just like with the <code>AudioController</code> in <a href="../15_audio_controller/index.html#audiocontroller-idisposable-implementation">Chapter 15</a>, each <code>Scene</code> implements the <code>IDisposable</code> interface.  This provides a standardized in method to release the resources held by a scene when it is no longer needed.</p>
 </div>
 </li>
 </ol>
@@ -1262,8 +1262,6 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        base.LoadContent();
-
         // Load the background theme music
         _themeSong = Content.Load&lt;Song&gt;(&quot;audio/theme&quot;);
     }

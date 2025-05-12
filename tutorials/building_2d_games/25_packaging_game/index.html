@@ -144,15 +144,15 @@
 <p>Before packaging your game for distribution, you should take some preparatory steps:</p>
 <ol>
 <li><strong>Set Release Configuration</strong>: Ensure your build configuration is set to &quot;Release&quot; rather than &quot;Debug&quot; for better performance and smaller executable size.</li>
-<li><strong>Update Game Information</strong>: Verify your game's title, version, and other information in the project's properties file (<em>.csproj</em>).</li>
+<li><strong>Update Game Information</strong>: Verify your game's title, version, and other information in the project's properties file (<code>.csproj</code>).</li>
 <li><strong>Final Testing</strong>: Perform thorough testing in Release mode ot catch any issue that might not appear in Debug mode.</li>
 <li><strong>Asset Optimization</strong>: Consider optimizing larger content files to reduce the final package size.</li>
 </ol>
 <h2 id="platform-specific-packaging">Platform-Specific Packaging</h2>
-<p>Now that we understand the general packaging concepts, we will explore how to create distributions for WIndows, macOS, and Linux.  Each platform has specific requirements and tooling that we will need to navigate.  Choose the instructions below based on the platform you are using.</p>
+<p>Now that we understand the general packaging concepts, we will explore how to create distributions for Windows, macOS, and Linux.  Each platform has specific requirements and tooling that we will need to navigate.  Choose the instructions below based on the platform you are using.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>The packaging instructions for each platform are designed to be executed on that same platform.  This is because each operating system provides specific tools needed for proper packaging (like <code>lipo</code> on macOS or permission settings on Unix-based systems).  When building on Windows for macOS or Linux, the executable permissions cannot be set since Windows lacks this concept.</p>
+<p>The packaging instructions for each platform are designed to be executed on that same platform.  This is because each operating system provides specific tools needed for proper packaging (like <code>lipo</code> on macOS or <code>permission settings</code> on Unix-based systems).  When building on Windows for macOS or Linux, the executable permissions cannot be set since Windows lacks these concepts.</p>
 <p>While you will need access to each platform for the steps below, do not worry if you do not have all these systems available.  At the end of this chapter, third party libraries provided by MonoGame community members are included that can automate these processes for you without requiring you to own each type of machine.</p>
 </div>
 <div class="tabGroup" id="tabgroup_1">
@@ -171,7 +171,7 @@
 
 <p>Windows is the most straightforward platform to target since MonoGame development typically happens on Windows machines.</p>
 <h4 id="building-for-windows">Building for Windows</h4>
-<p>To create a self-contained application for Window, open a new command prompt window in the same folder as the as the main game project (in our case the folder with the <em>DungeonSlime.csproj</em> file) and execute the following .NET CLI command:</p>
+<p>To create a self-contained application for Window, open a new command prompt window in the same folder as the as the main game project (in our case the folder with the <code>DungeonSlime.csproj</code> file) and execute the following .NET CLI command:</p>
 <pre><code class="lang-sh">dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
 </code></pre>
 <p>This command specifies:</p>
@@ -182,7 +182,12 @@
 <li><code>-p:TieredCompilation=false</code>: Disables Tiered Compilation (explained later).</li>
 <li><code>--self-contained</code>: Includes the .NET runtime in the package.</li>
 </ul>
-<p>The output will be placed in a directory like <em>bin/Release/net8.0/win-x64/publish/</em>, relative to the game's <em>.csproj</em> file.  This directory will contain the executable and all necessary files to run your game.</p>
+<p>The output will be placed in a directory like <code>bin/Release/net8.0/win-x64/publish/</code>, relative to the game's <code>.csproj</code> file.  This directory will contain the executable and all necessary files to run your game.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If your base game project is created with <strong>dotnet 9.0</strong> (which at the time of writing is the default), the above folder will be more like <code>bin/Release/net9.0/win-x64/publish/</code>, just so you are aware.
+Noting the change in folder from <code>net8.0</code> to <code>net9.0</code>.</p>
+</div>
 <h4 id="creating-a-windows-distribution">Creating a Windows Distribution</h4>
 <p>Once you have created a build for Windows, to create a Windows distribution, you can simply:</p>
 <ol>
@@ -197,12 +202,12 @@
 </section>
 <section id="tabpanel_1_macOS" role="tabpanel" data-tab="macOS" aria-hidden="true" hidden="hidden">
 
-<p>Packaging for macOS requires creating an <strong>Application Bundle</strong> (<em>.app</em>), which is a directory structure that macOS recognizes as an application.</p>
+<p>Packaging for macOS requires creating an <strong>Application Bundle</strong> (<code>.app</code>), which is a directory structure that macOS recognizes as an application.</p>
 <h4 id="building-for-macos">Building for macOS</h4>
-<p>For macOS, you will need to build for both the Intel (x64) and Apple Silicon (arm64) to support all modern mac computers.  Open a new terminal window in the same folder as the <em>DungeonSlime.csproj</em> file (the main game project).</p>
+<p>For macOS, you will need to build for both the Intel (x64) and Apple Silicon (arm64) to support all modern mac computers.  Open a new terminal window in the same folder as the <code>DungeonSlime.csproj</code> file (the main game project).</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>The following sections will guide you through several terminal commands that build on each other.  It is best to use a single terminal window located in your projects root directory (where the <em>DungeonSlime.csproj</em> file is) for all of these steps to ensure paths remain consistent.</p>
+<p>The following sections will guide you through several terminal commands that build on each other.  It is best to use a single terminal window located in your projects root directory (where the <code>DungeonSlime.csproj</code> file is) for all of these steps to ensure paths remain consistent.</p>
 </div>
 <p>First, to create the Intel (x64) self contained application, execute the following .NET CLI command in the terminal:</p>
 <pre><code class="lang-sh">dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
@@ -215,12 +220,17 @@
 <li><code>-p:TieredCompilation=false</code>: Disables Tiered Compilation (explained later).</li>
 <li><code>--self-contained</code>: Includes the .NET runtime in the package.</li>
 </ul>
-<p>The output from this command will be placed in a directory like <em>bin/Release/net8.0/osx-x64/publish/</em>, relative to the game's <em>.csproj</em> file.</p>
+<p>The output from this command will be placed in a directory like <code>bin/Release/net8.0/osx-x64/publish/</code>, relative to the game's <code>.csproj</code> file.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If your base game project is created with <strong>dotnet 9.0</strong> (which at the time of writing is the default), the above folder will be more like <code>bin/Release/net9.0/osx-x64/publish/</code>, just so you are aware.
+Noting the change in folder from <code>net8.0</code> to <code>net9.0</code>.</p>
+</div>
 <p>Next, to create the Apple Silicon (arm64) self contained application for macOS, in the same terminal window, execute the following .NET CLI command:</p>
 <pre><code class="lang-sh">dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
 </code></pre>
 <p>The only difference in this command is the use of <code>-r osx-arm64</code> which specifies to target the Apple Silicon (arm64) macOS platform.</p>
-<p>The output from this command will be placed in a directory like <em>bin/Release/net8.0/osx-arm64/publish/</em>, relative to the game's <em>.csproj</em> file.</p>
+<p>The output from this command will be placed in a directory like <code>bin/Release/net8.0/osx-arm64/publish/</code>, relative to the game's <code>.csproj</code> file.</p>
 <h4 id="creating-a-macos-application-bundle">Creating a macOS Application Bundle</h4>
 <p>With the Intel (x64) and Apple Silicon (arm64) builds completed, we can now create the macOS <strong>Application Bundle</strong>.  macOS applications follow a very specific directory structure:</p>
 <pre><code class="lang-sh">YourGame.app/
@@ -319,7 +329,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <em>Info.plist</em> file is a critical component of any macOS application bundle.  It contains essential metadata that macOS uses to:</p>
+<p>The <code>Info.plist</code> file is a critical component of any macOS application bundle.  It contains essential metadata that macOS uses to:</p>
 <ul>
 <li>Identify the application (bundle identifier, name, version).</li>
 <li>Display the application correctly in Finder and the Dock.</li>
@@ -327,25 +337,25 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <li>Define the application's capabilities and requirements.</li>
 <li>Provide copyright and developer information.</li>
 </ul>
-<p>Without a properly formatted <em>Info.plist</em> file, macOS would not recognize your game as a valid application, and users would be unable to launch it through normal means.</p>
+<p>Without a properly formatted <code>Info.plist</code> file, macOS would not recognize your game as a valid application, and users would be unable to launch it through normal means.</p>
 </div>
 <div class="TIP">
 <h5>Tip</h5>
-<p>The highlighted sections in the <em>Info.plist</em> file need to be customized for your game:</p>
+<p>The highlighted sections in the <code>Info.plist</code> file need to be customized for your game:</p>
 <ul>
 <li>Replace all instances of &quot;DungeonSlime&quot; with your game's name.</li>
-<li>The <code>CFBundleIconFile</code> value (line 10) must exactly match the name of your .icns file that we will create in the next step.</li>
+<li>The <code>CFBundleIconFile</code> value (line 10) must exactly match the name of your <code>.icns</code> file that we will create in the next step.</li>
 <li>Update the bundle identifier on line 12 with your domain.</li>
 <li>Modify the copyright information on line 30 as needed.</li>
 </ul>
 <p>Getting these values right, especially the icon filename, ensures your game appears correctly on macOS.</p>
-<p>For more information on the <em>Info.plist</em> manifest file, refer to the <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html">About Info.plist Keys and Values</a> Apple Developer documentation.</p>
+<p>For more information on the <code>Info.plist</code> manifest file, refer to the <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html">About Info.plist Keys and Values</a> Apple Developer documentation.</p>
 </div>
 </li>
 <li><p>Next, create the application bundle <em>.icns</em> icon file. To do this, perform the following:</p>
 <ol>
 <li><p>First, you will need a <code>.png</code> file that can be used to create the icon set for the final <code>.icns</code> output.  If you already have a <code>.png</code> icon for your game, ensure it is in the root of the main project directory and is named <code>Icon.png</code>.  If you do not have one already prepared, you can use the <code>Icon.bmp</code> that was generated in the root of the main project directory when you initially created the project.  However, it will need to be converted to a <code>.png</code> first. To do this, execute the following command:</p>
-<pre><code class="lang-sh">sips -s format png Icon.bmp --out Icon.png
+<pre><code class="lang-sh">sips -s format png Icon.bmp --out Icon.png        
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
@@ -388,14 +398,14 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>the <code>chmod +x</code> command changes the file permissions to make it executable. WIthout this step, macOS would not be able to run the application.</p>
+<p>the <code>chmod +x</code> command changes the file permissions to make it executable. Without this step, macOS would not be able to run the application.</p>
 </div>
 </li>
 </ol>
 <h4 id="distributing-for-macos">Distributing for macOS</h4>
 <p>For macOS distribution:</p>
 <ol>
-<li><p>Archive the application bundle using the tar.gz archive format to preserve the executable permissions that were set.  To do this, execute the following command in the same terminal window:</p>
+<li><p>Archive the application bundle using the <code>tar.gz</code> archive format to preserve the executable permissions that were set.  To do this, execute the following command in the same terminal window:</p>
 <pre><code class="lang-sh">tar -czf DungeonSlime-osx.tar.gz -C bin/Release/DungeonSlime.app
 </code></pre>
 <div class="NOTE">
@@ -407,12 +417,12 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <li><code>-f</code> specifies the filename to create</li>
 <li><code>-C</code> changes to the specified directory before adding files.</li>
 </ul>
-<p>Unlike ZIP files, the tar.gz format preserves Unix file permissions, which is crucial for maintaining the executable permission we set in the previous steps.</p>
+<p>Unlike <strong>ZIP</strong> files, the <code>tar.gz</code> format preserves Unix file permissions, which is crucial for maintaining the executable permission we set in the previous steps.</p>
 </div>
 </li>
-<li><p>Distribute the tar.gz archive file to players.</p>
+<li><p>Distribute the <code>tar.gz</code> archive file to players.</p>
 </li>
-<li><p>Players can extract the tar.gz archive file and run the application bundle to play the game.</p>
+<li><p>Players can extract the <code>tar.gz</code> archive file and run the application bundle to play the game.</p>
 </li>
 </ol>
 </section>
@@ -420,7 +430,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 
 <p>Linux packaging is relatively straightforward, but requires attention to ensure executable permission are set.</p>
 <h4 id="building-for-linux">Building for Linux</h4>
-<p>To create a self-contained application for LInux, open a new Terminal window in the same folder as the <em>DungeonSlime.csproj</em> file (your main game project folder) and execute the following .NET CLI command:</p>
+<p>To create a self-contained application for Linux, open a new Terminal window in the same folder as the <code>DungeonSlime.csproj</code> file (your main game project folder) and execute the following .NET CLI command:</p>
 <pre><code class="lang-sh">dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
 </code></pre>
 <ul>
@@ -430,7 +440,12 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <li><code>-p:TieredCompilation=false</code>: Disables Tiered Compilation (explained later).</li>
 <li><code>--self-contained</code>: Includes the .NET runtime in the package.</li>
 </ul>
-<p>The output will be placed in a directory like <em>bin/Release/net8.0/linux-x64/publish</em>, relative to the <em>DungeonSlime.csproj</em> file.  This folder will contain the executable and all necessary files to run the game.</p>
+<p>The output will be placed in a directory like <code>bin/Release/net8.0/linux-x64/publish</code>, relative to the <code>DungeonSlime.csproj</code> file.  This folder will contain the executable and all necessary files to run the game.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If your base game project is created with <strong>dotnet 9.0</strong> (which at the time of writing is the default), the above folder will be more like <code>bin/Release/net9.0/linux-x64/publish/</code>, just so you are aware.
+Noting the change in folder from <code>net8.0</code> to <code>net9.0</code>.</p>
+</div>
 <h4 id="creating-a-linux-distribution">Creating a Linux Distribution</h4>
 <p>Once you have created a build for Linux, to create a distributable archive:</p>
 <ol>
@@ -439,10 +454,10 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>the <code>chmod +x</code> command changes the file permissions to make it executable. WIthout this step, Linux would not be able to run the application.</p>
+<p>the <code>chmod +x</code> command changes the file permissions to make it executable. Without this step, Linux would not be able to run the application.</p>
 </div>
 </li>
-<li><p>Package the game using the tar.gz archive format to preserve executable permissions by executing the following command:</p>
+<li><p>Package the game using the <code>tar.gz</code> archive format to preserve executable permissions by executing the following command:</p>
 <pre><code class="lang-sh">tar -czf DungeonSlime-linux-x64.tar.gz -C bin/Release/net8.0/linux-x64/publish/
 </code></pre>
 <div class="NOTE">
@@ -454,7 +469,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <li><code>-f</code> specifies the filename to create</li>
 <li><code>-C</code> changes to the specified directory before adding files.</li>
 </ul>
-<p>Unlike ZIP files, the tar.gz format preserves Unix file permissions, which is crucial for maintaining the executable permission we set in the previous step.</p>
+<p>Unlike <strong>ZIP</strong> files, the <code>tar.gz</code> format preserves Unix file permissions, which is crucial for maintaining the executable permission we set in the previous step.</p>
 </div>
 </li>
 </ol>
@@ -506,7 +521,7 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <h3 id="file-paths">File Paths</h3>
 <p>Different operating systems use different path separators (Windows uses backslashes, macOS and Linux use forward slashes).  Always use <code>Path.Combine</code> in your code rather than hardcoding path separators.</p>
 <pre><code class="lang-cs">// Incorrect approach - will fail on some platforms
-string path = &quot;Content\\images\\atlas-definition.xml&quot;;
+string path = &quot;Content\\images\\atlas-definition.xml&quot;; 
 
 // Correct approach, works on all platforms
 string path = Path.Combine(&quot;Content&quot;, &quot;images&quot;, &quot;atlas-definition.xml&quot;);
@@ -517,7 +532,7 @@ string path = Path.Combine(&quot;Content&quot;, &quot;images&quot;, &quot;atlas-
 // images/Atlas.xnb
 
 // On Windows, this would work fine since windows is case-insensitive.
-// ON macOS and Linux, this would fail since they are case-sensitive.
+// On macOS and Linux, this would fail since they are case-sensitive.
 Texture2D text = Content.Load&lt;Texture2D&gt;(&quot;images/atlas&quot;);
 </code></pre>
 <h3 id="external-dependencies">External Dependencies</h3>
@@ -578,8 +593,8 @@ Texture2D text = Content.Load&lt;Texture2D&gt;(&quot;images/atlas&quot;);
 <div class="question-answer"><p>ReadyToRun and Tiered Compilation both initially produce lower-quality code that gets optimized during runtime. This dynamic optimization process causes micro-stutters during gameplay as the Just-In-Time compiler triggers to improve code quality. Disabling these features results in slightly longer startup times but provides smoother gameplay without performance hitches.</p>
 </div>
 </li>
-<li><p>What is the purpose of the <em>Info.plist</em> file when creating a macOS application bundle?</p>
-<div class="question-answer"><p>The <em>Info.plist</em> file contains essential metadata about the macOS application, including the bundle identifier, application name, version, copyright information, minimum system requirements, and other configuration details. macOS requires this file to properly recognize and display the application in the Finder and Dock, and to associate the correct icon and file types with the application.</p>
+<li><p>What is the purpose of the <code>Info.plist</code> file when creating a macOS application bundle?</p>
+<div class="question-answer"><p>The <code>Info.plist</code> file contains essential metadata about the macOS application, including the bundle identifier, application name, version, copyright information, minimum system requirements, and other configuration details. macOS requires this file to properly recognize and display the application in the Finder and Dock, and to associate the correct icon and file types with the application.</p>
 </div>
 </li>
 <li><p>What is the advantage of using a tar.gz archive over zip file when distributing for macOS and Linux?</p>

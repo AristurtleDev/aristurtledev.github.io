@@ -289,7 +289,7 @@ public Sprite CreateSprite(string regionName)
 }
 </code></pre><h2 id="using-the-sprite-class">Using the Sprite Class</h2>
 <p>Now we can adjust our game now to use the <code>Sprite</code> class instead of just the texture regions.  Update the contents of <code>Game1.cs</code> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-40,63-67">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,61-65">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -329,8 +329,6 @@ public class Game1 : Core
         // Create the bat sprite from the atlas.
         _bat = atlas.CreateSprite(&quot;bat&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

@@ -124,7 +124,7 @@
 <h5>Note</h5>
 <p>The term &quot;frame&quot; in animation refers to a single image in an animation sequence. This is different from a game frame, which represents one complete render cycle of your game.</p>
 </div>
-<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, <code>Figure 9-1</code> below shows three frames that make up a bat's wing-flapping animation:</p>
+<p>In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, <em>Figure 9-1</em> below shows three frames that make up a bat's wing-flapping animation:</p>
 <table>
 <thead>
 <tr>
@@ -556,7 +556,7 @@ public AnimatedSprite CreateAnimatedSprite(string animationName)
 }
 </code></pre><h2 id="using-the-animatedsprite-class">Using the AnimatedSprite Class</h2>
 <p>We can now adjust our game now to use the <code>AnimatedSprite</code> class to see our sprites come to life. Update the contents of <code>Game1.cs</code> with the following:</p>
-<pre><code class="lang-csharp" highlight-lines="11-15,34-40,50-54">using Microsoft.Xna.Framework;
+<pre><code class="lang-csharp" highlight-lines="11-15,34-40,48-52">using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -596,8 +596,6 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

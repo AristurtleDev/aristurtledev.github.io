@@ -277,7 +277,7 @@ with.
 <p>For most games, the default range is sufficient.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>ALthough for fun, TRY using the Wingdings font :D</p>
+<p>Although for fun, TRY using the Wingdings font :D</p>
 </div>
 <h2 id="loading-a-spritefont-description">Loading a SpriteFont Description</h2>
 <p>To load a SpritFont Description, we use the <a href="xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)"><strong>ContentManager.Load</strong></a> method with the <a href="xref:Microsoft.Xna.Framework.Graphics.SpriteFont"><strong>SpriteFont</strong></a> type:</p>
@@ -423,7 +423,7 @@ _spriteBatch.DrawString(
 </ol>
 <h3 id="updating-the-game">Updating the Game</h3>
 <p>Finally, open the <code>Game1.cs</code> file and make the following changes:</p>
-<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,246-247,391-402">using System;
+<pre><code class="lang-csharp" highlight-lines="48-58,93-99,129-130,244-245,389-400">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -552,8 +552,6 @@ public class Game1 : Core
 
         // Load the font
         _font = Content.Load&lt;SpriteFont&gt;(&quot;fonts/04B_30&quot;);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

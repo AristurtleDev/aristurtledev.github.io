@@ -1010,7 +1010,7 @@ public class Core : Game
 </ol>
 <h3 id="updating-the-game1-class">Updating the Game1 Class</h3>
 <p>Now we can update our <code>Game1</code> class to use the new input management system through the <code>Core</code> class.  Open <code>Game1.cs</code> in the game project and update it to the following:</p>
-<pre><code class="lang-csharp" highlight-lines="1,7,77,83,89,95,101,109,114,117,121,127,129-130,135,141,147,153">using System;
+<pre><code class="lang-csharp" highlight-lines="6,74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150">using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -1058,8 +1058,6 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite(&quot;bat-animation&quot;);
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
