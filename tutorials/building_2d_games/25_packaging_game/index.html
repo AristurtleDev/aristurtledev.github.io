@@ -243,7 +243,15 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>The <code>mkdir -p</code> command creates directories including any necessary parent directories.  The <code>-p</code> flag ensures all intermediate directories are created without error if they do not exist yet.</p>
 </div>
 </li>
-<li><p>Combine the Intel (x64) and Apple Silicon (arm64) builds into a <em>universal binary</em>.  To do this, execute the following commands:</p>
+<li><p>Copy all files from the Intel (x64) build to the MacOS directory. This ensures all the required dependencies are included. To do this, execute the following command:</p>
+<pre><code class="lang-sh">cp -R bin/Release/net8.0/osx-x64/publish/* bin/Release/DungeonSlime.app/Contents/MacOS/
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This copies all files from the publish directory, including the executable, all dependent <code>.dll</code> files, and the <code>Content</code> directory that contains your game assets.</p>
+</div>
+</li>
+<li><p>Replace the executable with a universal binary that works on both Intel and Apple Silicon Macs. To do this, execute the following command:</p>
 <pre><code class="lang-sh">lipo -create bin/Release/net8.0/osx-arm64/publish/DungeonSlime bin/Release/net8.0/osx-x64/publish/DungeonSlime -output bin/Release/DungeonSlime.app/Contents/MacOS/DungeonSlime
 </code></pre>
 <div class="NOTE">
@@ -251,12 +259,12 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>The <code>lipo</code> command is a macOS utility that works with multi-architecture binaries.  Here, it combines the Intel (x64) and Apple Silicon (arm64) executables into a single &quot;universal binary&quot; that can run natively on both Apple Silicon and Intel processor based Macs.</p>
 </div>
 </li>
-<li><p>Next, copy the your content files to the expected location within the application bundle structure.  To do this, execute the following commands:</p>
-<pre><code class="lang-sh">cp -R bin/Release/net8.0/Content bin/Release/DungeonSlime.app/Contents/Resources/Content
+<li><p>Move the Content directory from the MacOS directory to the Resources directory, following macOS application bundle conventions. To do this, execute the following command:</p>
+<pre><code class="lang-sh">mv bin/Release/DungeonSlime.app/Contents/MacOS/Content bin/Release/DungeonSlime.app/Contents/Resources/
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <code>cp -R</code> command copies files recursively, meaning it will copy the entire directory structure.  The <code>-R</code> flag ensures all subdirectories and their contents are copied.</p>
+<p>This moves the <code>Content</code> directory to the expected location for resources in a macOS application bundles.</p>
 </div>
 </li>
 <li><p>Create a new file called <em>Info.plist</em> in the <em>Contents</em> directory of the application bundle with the following command:</p>
@@ -334,29 +342,46 @@ mkdir -p bin/Release/DungeonSlime.app/Contents/Resources/Content
 <p>For more information on the <em>Info.plist</em> manifest file, refer to the <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html">About Info.plist Keys and Values</a> Apple Developer documentation.</p>
 </div>
 </li>
-<li><p>Next, create the application bundle <em>.icns</em> icon file.  To do this, execute the following commands:</p>
-<pre><code class="lang-sh">mkdir -p bin/Release/DungeonSlime.iconset
-sips -z 16 16 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16.png
-sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16@2x.png
-sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32.png
-sips -z 64 64 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32@2x.png
-sips -z 128 128 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128.png
-sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128@2x.png
-sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256.png
-sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256@2x.png
-sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512.png
-sips -z 1024 1024 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512@2x.png
-iconutil -c icns bin/Release/DungeonSlime.iconset --output bin/Release/DungeonSlime.app/Contents/Resources/DungeonSlime.icns
+<li><p>Next, create the application bundle <em>.icns</em> icon file. To do this, perform the following:</p>
+<ol>
+<li><p>First, you will need a <code>.png</code> file that can be used to create the icon set for the final <code>.icns</code> output.  If you already have a <code>.png</code> icon for your game, ensure it is in the root of the main project directory and is named <code>Icon.png</code>.  If you do not have one already prepared, you can use the <code>Icon.bmp</code> that was generated in the root of the main project directory when you initially created the project.  However, it will need to be converted to a <code>.png</code> first. To do this, execute the following command:</p>
+<pre><code class="lang-sh">sips -s format png Icon.bmp --out Icon.png
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>These commands create a macOS icon file (<em>.icns</em>) with multiple resolutions:</p>
-<ul>
-<li><code>sips</code> (Scriptable Image Processing System) resizes the source image to create different icon sizes.</li>
-<li>Each size is necessary for different display scenarios in macOS (Dock, Finder, etc.).</li>
-<li>The <code>iconutil</code> command then compiles these images into a single <em>.icns</em> file that macOS recognizes as an application icon.</li>
-</ul>
+<p><code>sips</code> (Scriptable Image Processing System) is a command line tool in macOS for image manipulation.  Here we are using it to convert a <code>.bmp</code> to a <code>.png</code>.  In a moment, we will also use it to resize the <code>.png</code> into different icon sizes required for the application bundle.</p>
 </div>
+</li>
+<li><p>Next, create a directory that we can output each of the generated <code>.png</code> icon files to for the icon set.  Execute the following command:</p>
+<pre><code class="lang-sh">mkdir -p bin/Release/DungeonSlime.iconset
+</code></pre>
+</li>
+<li><p>Now we use the <code>sips</code> command to generate the icon for each size required for a mac app bundle.  Each size generated is neccessary for different display scenarios in macOS (Dock, Finder, etc.).  To do this, execute the following commands:</p>
+<pre><code class="lang-sh"> sips -z 16 16 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16.png
+ sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16@2x.png
+ sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32.png
+ sips -z 64 64 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32@2x.png
+ sips -z 128 128 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128.png
+ sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128@2x.png
+ sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256.png
+ sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256@2x.png
+ sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512.png
+ sips -z 1024 1024 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512@2x.png
+</code></pre>
+</li>
+<li><p>Finally, combine all of the generated icons for the icon set into a <code>.icns</code> file.  To do this, execute the following:</p>
+<pre><code class="lang-sh">iconutil -c icns bin/Release/DungeonSlime.iconset --output bin/Release/DungeonSlime.app/Contents/Resources/DungeonSlime.icns
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>iconutil</code> is a command line tool in macOS used to convert icon sets into a single high-resolution <code>.icns</code> file.</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>After creating the <code>.icns</code> file using the above command, if you open the folder in Finder with <code>DungeonSlime.app</code> and it shows a blank square as the icon instead of the one you just created, right-click on <code>DungeonSlime.app</code> and choose <code>Get Info</code> from the context menu.  This will force it to do a refresh and show the icon properly.  After doing this, if the icon still does not show, then you need to double check that the <code>CFBundleIconFile</code> value in the <code>Info.plist</code> is named <strong>exactly</strong> the same as the <code>.icns</code> file that was created (minus the extension).</p>
+</div>
+</li>
+</ol>
 </li>
 <li><p>Set executable permissions for the game executable.  To do this, execute the following command:</p>
 <pre><code class="lang-sh">chmod +x bin/Release/DungeonSlime.app/Contents/MacOS/DungeonSlime
@@ -481,7 +506,7 @@ iconutil -c icns bin/Release/DungeonSlime.iconset --output bin/Release/DungeonSl
 <h3 id="file-paths">File Paths</h3>
 <p>Different operating systems use different path separators (Windows uses backslashes, macOS and Linux use forward slashes).  Always use <code>Path.Combine</code> in your code rather than hardcoding path separators.</p>
 <pre><code class="lang-cs">// Incorrect approach - will fail on some platforms
-string path = &quot;Content\\images\\atlas-definition.xml&quot;; 
+string path = &quot;Content\\images\\atlas-definition.xml&quot;;
 
 // Correct approach, works on all platforms
 string path = Path.Combine(&quot;Content&quot;, &quot;images&quot;, &quot;atlas-definition.xml&quot;);
