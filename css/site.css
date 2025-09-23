@@ -37,6 +37,7 @@ header {
     top: 0;
     width: 100%;
     backdrop-filter: blur(20px);
+    height: 70px;
     background: rgba(26, 26, 26, 0.8);
     border-bottom: 1px solid rgba(74, 155, 74, 0.2);
     z-index: 1000;
@@ -113,6 +114,7 @@ nav {
 
 /* Hero Section */
 .hero {
+    padding-top: 70px;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -372,6 +374,10 @@ footer {
 
     .cta-buttons {
         justify-content: center;
+    }
+
+    .btn {
+        flex:1;
     }
 }
 
