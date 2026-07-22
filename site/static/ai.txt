@@ -1,0 +1,9 @@
+ai_crawling: disallowed
+ai_training: disallowed
+ai_summarization: disallowed
+
+blocked_agents:
+openai
+anthropic
+google-gemini
+perplexity

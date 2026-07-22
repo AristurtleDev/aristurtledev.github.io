@@ -1,0 +1,23 @@
+/* TEAM */
+Creator: Christopher Whitley
+Handle: AristurtleDev
+Site: https://aristurtle.net
+Twitter: https://twitter.com/aristurtledev
+Bluesky: https://bsky.app/profile/aristurtle.net
+YouTube: https://www.youtube.com/@aristurtledev
+GitHub: https://github.com/AristurtleDev
+Location: United States
+
+/* SITE */
+Name: Aristurtle Dev
+Type: Personal website and blog
+Stack: HTML, CSS, Node.js, Markdown
+Generator: Custom static site generator
+Hosting: GitHub Pages
+
+/* CONTENT */
+Topics: MonoGame, game development, C#, .NET, Aseprite, tools, tutorials
+Writing: Blog posts, tutorials, dev logs
+
+/* THANKS */
+Built by hand, powered by stubbornness.
