@@ -1,0 +1,8 @@
+{
+  "rootDir": ".",
+  "siteBaseUrl": "https://aristurtle.net",
+  "blogDir": "content/blog",
+  "tutorialDir": "content/tutorials",
+  "siteDir": "site",
+  "outputDir": "dist"
+}

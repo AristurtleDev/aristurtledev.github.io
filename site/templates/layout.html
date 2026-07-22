@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}" />
+    <link rel="canonical" href="{{canonicalUrl}}" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:image" content="https://aristurtle.net/images/og-image.png" />
+    <meta property="og:url" content="{{canonicalUrl}}" />
+    <meta property="og:type" content="{{ogType}}" />
+    <meta property="og:site_name" content="Aristurtle Dev" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aristurtledev" />
+    <meta name="twitter:creator" content="@aristurtledev" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    <meta name="twitter:image" content="https://aristurtle.net/images/og-image.png" />
+    <meta name="author" content="Christopher Whitley (AristurtleDev)" />
+    <meta
+      name="keywords"
+      content="MonoGame, game development, C#, .NET, Aseprite, game dev tools, indie games, open source"
+    />
+    <meta name="theme-color" content="#0a0f0c" />
+  </head>
+  <body class="{{bodyClass}}">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <div class="site-shell nav-shell">
+          <a class="site-brand" href="/">
+            <img class="site-brand-icon" src="/images/aristurtle-head.svg" alt="" />
+            <span>
+              <strong>Aristurtle Dev</strong>
+            </span>
+          </a>
+          <ul class="site-nav-list">
+            <li class="site-nav-item">
+              <a class="site-nav-link" href="/#projects"{{projectsCurrent}}>Projects</a>
+            </li>
+            <li class="site-nav-item">
+              <a class="site-nav-link" href="/blog/"{{blogCurrent}}>Writing</a>
+            </li>
+            <li class="site-nav-item">
+              <a class="site-nav-link" href="/tutorials/"{{tutorialsCurrent}}>Tutorials</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    {{content}}
+    <footer class="site-footer">
+      <div class="site-shell footer-inner">
+        <span>&copy; 2026 Christopher Whitley</span>
+        <span>Built by hand · powered by stubbornness</span>
+        <div>
+          <a href="https://github.com/AristurtleDev">GitHub</a>
+          <a href="https://twitter.com/aristurtledev">Twitter</a>
+          <a href="https://bsky.app/profile/aristurtle.net">Bluesky</a>
+          <a href="https://www.youtube.com/@aristurtledev">YouTube</a>
+          <a href="/blog/">Writing</a>
+          <a href="/tutorials/">Tutorials</a>
+        </div>
+      </div>
+    </footer>
+    {{pageScripts}}
+  </body>
+</html>
