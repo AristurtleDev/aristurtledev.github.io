@@ -14,6 +14,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
+import { buildBlogRssXml, buildSitemapXml } from './feeds.js';
 import { collectTutorialToc } from './tutorial-toc.js';
 
 const require = createRequire(import.meta.url);
@@ -46,13 +47,19 @@ async function main() {
   console.info('[build:info] Starting site build.');
   await prepareOutputDirectory(paths.outputDir);
   await copyStaticDirectory(paths.staticDir, paths.outputDir);
-  await renderCustomPages(paths, templates.layout, config.siteBaseUrl);
+  const customPageRoutes = await renderCustomPages(paths, templates.layout, config.siteBaseUrl);
 
   const blogEntries = await loadCollectionEntries(paths.blogDir, 'blog');
   const tutorialEntries = await loadCollectionEntries(paths.tutorialDir, 'tutorials');
 
-  await renderCollectionEntries(blogEntries, paths.outputDir, templates.layout, templates.blog, config.siteBaseUrl);
-  await renderCollectionEntries(
+  const blogRoutes = await renderCollectionEntries(
+    blogEntries,
+    paths.outputDir,
+    templates.layout,
+    templates.blog,
+    config.siteBaseUrl,
+  );
+  const tutorialRoutes = await renderCollectionEntries(
     tutorialEntries,
     paths.outputDir,
     templates.layout,
@@ -60,7 +67,7 @@ async function main() {
     config.siteBaseUrl,
   );
 
-  await renderCollectionIndex(
+  const blogIndexRoute = await renderCollectionIndex(
     blogEntries,
     paths.outputDir,
     templates.layout,
@@ -68,7 +75,7 @@ async function main() {
     templates.partials,
     config.siteBaseUrl,
   );
-  await renderCollectionIndex(
+  const tutorialIndexRoute = await renderCollectionIndex(
     tutorialEntries,
     paths.outputDir,
     templates.layout,
@@ -76,6 +83,12 @@ async function main() {
     templates.partials,
     config.siteBaseUrl,
   );
+  await renderSitemap(
+    paths.outputDir,
+    config.siteBaseUrl,
+    customPageRoutes.concat(blogRoutes, tutorialRoutes, blogIndexRoute, tutorialIndexRoute),
+  );
+  await renderBlogRss(paths.outputDir, config.siteBaseUrl, blogEntries);
 
   console.info('[build:info] Site build completed.');
 }
@@ -162,10 +175,11 @@ async function copyStaticDirectory(staticDir, outputDir) {
 
 async function renderCustomPages(paths, layoutTemplate, siteBaseUrl) {
   if (!(await pathExists(paths.pagesDir))) {
-    return;
+    return [];
   }
 
   const pageFiles = await collectFiles(paths.pagesDir, '.html');
+  const routes = [];
 
   for (const pageFile of pageFiles) {
     const pageTemplate = await loadTemplateFile(pageFile);
@@ -183,7 +197,10 @@ async function renderCustomPages(paths, layoutTemplate, siteBaseUrl) {
     });
 
     await writeOutputFile(path.join(paths.outputDir, route.outputPath), html);
+    routes.push({ lastModified: null, path: route.canonicalPath });
   }
+
+  return routes;
 }
 
 async function loadCollectionEntries(collectionDir, collectionName) {
@@ -238,6 +255,8 @@ async function loadCollectionEntries(collectionDir, collectionName) {
 }
 
 async function renderCollectionEntries(entries, outputDir, layoutTemplate, pageTemplate, siteBaseUrl) {
+  const routes = [];
+
   for (const entry of entries) {
     const outputFile = path.join(outputDir, entry.collectionName, entry.slug, 'index.html');
 
@@ -266,7 +285,13 @@ async function renderCollectionEntries(entries, outputDir, layoutTemplate, pageT
     });
 
     await writeOutputFile(outputFile, html);
+    routes.push({
+      lastModified: entry.date,
+      path: buildContentHref(entry),
+    });
   }
+
+  return routes;
 }
 
 async function renderCollectionIndex(entries, outputDir, layoutTemplate, indexTemplate, partials, siteBaseUrl) {
@@ -308,10 +333,33 @@ async function renderCollectionIndex(entries, outputDir, layoutTemplate, indexTe
     title: readRequiredString(indexTemplate.data.title, 'title', indexTemplate.file),
   });
 
-  await writeOutputFile(
-    path.join(outputDir, readRequiredString(indexTemplate.data.outputPath, 'outputPath', indexTemplate.file)),
-    html,
+  const outputPath = readRequiredString(indexTemplate.data.outputPath, 'outputPath', indexTemplate.file);
+  const canonicalPath = readRequiredString(indexTemplate.data.canonicalPath, 'canonicalPath', indexTemplate.file);
+  await writeOutputFile(path.join(outputDir, outputPath), html);
+
+  return {
+    lastModified: entries.find((entry) => entry.date)?.date ?? null,
+    path: canonicalPath,
+  };
+}
+
+async function renderSitemap(outputDir, siteBaseUrl, routes) {
+  const sitemapXml = buildSitemapXml(siteBaseUrl, dedupeRoutes(routes));
+  await writeOutputFile(path.join(outputDir, 'sitemap.xml'), sitemapXml);
+}
+
+async function renderBlogRss(outputDir, siteBaseUrl, blogEntries) {
+  const feedXml = buildBlogRssXml(
+    siteBaseUrl,
+    blogEntries.map((entry) => ({
+      date: entry.date,
+      description: entry.description,
+      path: buildContentHref(entry),
+      title: entry.title,
+    })),
   );
+
+  await writeOutputFile(path.join(outputDir, 'blog', 'rss.xml'), feedXml);
 }
 
 function normalizeFrontMatter(data, file) {
@@ -953,6 +1001,16 @@ function titleize(value) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
+}
+
+function dedupeRoutes(routes) {
+  const uniqueRoutes = new Map();
+
+  for (const route of routes) {
+    uniqueRoutes.set(route.path, route);
+  }
+
+  return [...uniqueRoutes.values()].sort((left, right) => left.path.localeCompare(right.path));
 }
 
 function toPosix(value) {
