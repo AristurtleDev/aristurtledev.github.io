@@ -8,7 +8,7 @@ function escapeXml(value) {
 }
 
 function formatRfc822Date(value) {
-  return new Date(`${value}T00:00:00Z`).toUTCString();
+  return new Date(value).toUTCString();
 }
 
 export function buildSitemapXml(siteBaseUrl, pages) {
@@ -37,7 +37,8 @@ export function buildSitemapXml(siteBaseUrl, pages) {
 export function buildBlogRssXml(siteBaseUrl, entries) {
   const feedUrl = new URL('/blog/rss.xml', `${siteBaseUrl}/`).toString();
   const blogUrl = new URL('/blog/', `${siteBaseUrl}/`).toString();
-  const latestDate = entries.find((entry) => entry.date)?.date ?? null;
+  const latestPublishedAt = entries.find((entry) => entry.publishedAt)?.publishedAt ?? null;
+  const latestDate = latestPublishedAt ?? entries.find((entry) => entry.date)?.date ?? null;
   const itemXml = entries
     .map((entry) => {
       const itemUrl = new URL(entry.path, `${siteBaseUrl}/`).toString();
@@ -49,8 +50,10 @@ export function buildBlogRssXml(siteBaseUrl, entries) {
         `      <description>${escapeXml(entry.description)}</description>`,
       ];
 
-      if (entry.date) {
-        lines.push(`      <pubDate>${escapeXml(formatRfc822Date(entry.date))}</pubDate>`);
+      if (entry.publishedAt) {
+        lines.push(`      <pubDate>${escapeXml(formatRfc822Date(entry.publishedAt))}</pubDate>`);
+      } else if (entry.date) {
+        lines.push(`      <pubDate>${escapeXml(formatRfc822Date(`${entry.date}T00:00:00Z`))}</pubDate>`);
       }
 
       lines.push('    </item>');

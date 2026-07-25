@@ -22,7 +22,10 @@ const matter = require('gray-matter');
 
 const CALLOUT_MARKER_PATTERN = /^\[!([a-z]+)\][ \t]*/iu;
 const CALLOUT_TYPES = new Set(['caution', 'important', 'info', 'note', 'success', 'tip', 'warning']);
+const DATE_DIRECTORY_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+const TWELVE_HOUR_TIME_PATTERN = /^(0?[1-9]|1[0-2]):([0-5]\d)\s*([AaPp][Mm])$/u;
+const TWENTY_FOUR_HOUR_TIME_PATTERN = /^([01]?\d|2[0-3]):([0-5]\d)$/u;
 const IMAGE_PATTERN = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/gu;
 const CODE_LANGUAGE_ALIASES = new Map([
   ['c', 'c'],
@@ -215,10 +218,12 @@ async function loadCollectionEntries(collectionDir, collectionName) {
     const parsed = matter(await readFile(file, 'utf8'));
     const frontMatter = normalizeFrontMatter(parsed.data, file);
     const body = parsed.content.trim();
-    const slug = frontMatter.slug ?? path.basename(path.dirname(file));
+    const slug = frontMatter.slug ?? resolveDefaultSlug(file, collectionDir, collectionName);
     const title = frontMatter.title ?? extractMarkdownTitle(body) ?? titleize(slug);
     const description = frontMatter.description ?? extractDescription(body, title);
     const date = frontMatter.date ?? null;
+    const time = frontMatter.time ?? null;
+    const route = resolveCollectionEntryRoute(collectionName, collectionDir, file, slug, date);
 
     if (!SLUG_PATTERN.test(slug)) {
       throw new Error(`Invalid slug "${slug}" in ${file}. Use lowercase kebab-case.`);
@@ -230,25 +235,45 @@ async function loadCollectionEntries(collectionDir, collectionName) {
       date,
       description,
       file,
+      href: route.canonicalPath,
+      outputPath: route.outputPath,
+      publishedAt: buildPublishedAt(date, time),
       slug,
+      time,
       title,
     });
   }
 
   entries.sort((left, right) => {
-    if (left.date && right.date) {
-      return right.date.localeCompare(left.date);
-    }
+    if (left.publishedAt && right.publishedAt) {
+      const timeComparison = right.publishedAt.localeCompare(left.publishedAt);
 
-    if (left.date) {
+      if (timeComparison !== 0) {
+        return timeComparison;
+      }
+    } else if (left.publishedAt) {
       return -1;
-    }
+    } else if (right.publishedAt) {
+      return 1;
+    } else if (left.date && right.date) {
+      const dateComparison = right.date.localeCompare(left.date);
 
-    if (right.date) {
+      if (dateComparison !== 0) {
+        return dateComparison;
+      }
+    } else if (left.date) {
+      return -1;
+    } else if (right.date) {
       return 1;
     }
 
-    return left.title.localeCompare(right.title);
+    const titleComparison = left.title.localeCompare(right.title);
+
+    if (titleComparison !== 0) {
+      return titleComparison;
+    }
+
+    return left.href.localeCompare(right.href);
   });
 
   return entries;
@@ -258,7 +283,7 @@ async function renderCollectionEntries(entries, outputDir, layoutTemplate, pageT
   const routes = [];
 
   for (const entry of entries) {
-    const outputFile = path.join(outputDir, entry.collectionName, entry.slug, 'index.html');
+    const outputFile = path.join(outputDir, entry.outputPath);
 
     await copyMarkdownAssets(entry.body, entry.file, path.dirname(outputFile));
 
@@ -275,7 +300,7 @@ async function renderCollectionEntries(entries, outputDir, layoutTemplate, pageT
 
     const html = renderLayout(layoutTemplate.content, {
       bodyClass: readOptionalString(pageTemplate.data.bodyClass),
-      canonicalUrl: buildCanonicalUrl(siteBaseUrl, buildContentHref(entry)),
+      canonicalUrl: buildCanonicalUrl(siteBaseUrl, entry.href),
       content,
       currentSection: readOptionalString(pageTemplate.data.currentSection),
       description: entry.description,
@@ -287,7 +312,7 @@ async function renderCollectionEntries(entries, outputDir, layoutTemplate, pageT
     await writeOutputFile(outputFile, html);
     routes.push({
       lastModified: entry.date,
-      path: buildContentHref(entry),
+      path: entry.href,
     });
   }
 
@@ -306,7 +331,7 @@ async function renderCollectionIndex(entries, outputDir, layoutTemplate, indexTe
               return applyTemplate(partials.indexCard, {
                 dateDisplay: entry.date ? escapeHtml(formatDate(entry.date)) : 'Undated',
                 dateIso: entry.date ?? '',
-                href: escapeHtml(buildContentHref(entry)),
+                href: escapeHtml(entry.href),
                 indexNumber: String(index + 1).padStart(2, '0'),
                 summary: escapeHtml(entry.description),
                 title: escapeHtml(entry.title),
@@ -354,7 +379,8 @@ async function renderBlogRss(outputDir, siteBaseUrl, blogEntries) {
     blogEntries.map((entry) => ({
       date: entry.date,
       description: entry.description,
-      path: buildContentHref(entry),
+      path: entry.href,
+      publishedAt: entry.publishedAt,
       title: entry.title,
     })),
   );
@@ -385,6 +411,10 @@ function normalizeFrontMatter(data, file) {
     normalized.date = readDateString(data.date, file);
   }
 
+  if (Reflect.has(data, 'time')) {
+    normalized.time = readTimeString(data.time, file);
+  }
+
   return normalized;
 }
 
@@ -413,6 +443,29 @@ function readDateString(value, file) {
   }
 
   return raw.slice(0, 10);
+}
+
+function readTimeString(value, file) {
+  if (typeof value !== 'string') {
+    throw new Error(`Expected "time" in ${file} to be a valid time string.`);
+  }
+
+  const trimmed = value.trim();
+  const twelveHourMatch = trimmed.match(TWELVE_HOUR_TIME_PATTERN);
+
+  if (twelveHourMatch !== null) {
+    const [, hours, minutes, meridiem] = twelveHourMatch;
+    return `${hours.padStart(2, '0')}:${minutes} ${meridiem.toUpperCase()}`;
+  }
+
+  const twentyFourHourMatch = trimmed.match(TWENTY_FOUR_HOUR_TIME_PATTERN);
+
+  if (twentyFourHourMatch !== null) {
+    const [, hours, minutes] = twentyFourHourMatch;
+    return `${hours.padStart(2, '0')}:${minutes}`;
+  }
+
+  throw new Error(`Expected "time" in ${file} to use "HH:MM", "H:MM", or "HH:MM AM/PM" format.`);
 }
 
 async function renderMarkdown(markdown) {
@@ -941,10 +994,6 @@ function buildCanonicalUrl(siteBaseUrl, pathname) {
   return new URL(pathname, `${siteBaseUrl}/`).toString();
 }
 
-function buildContentHref(entry) {
-  return `/${entry.collectionName}/${entry.slug}/`;
-}
-
 function resolveHtmlRoute(relativePath) {
   const parsed = path.posix.parse(relativePath);
   const directory = parsed.base === 'index.html' ? parsed.dir : path.posix.join(parsed.dir, parsed.name);
@@ -984,6 +1033,93 @@ async function collectFiles(directory, extension) {
   }
 
   return files;
+}
+
+function resolveDefaultSlug(file, collectionDir, collectionName) {
+  if (collectionName === 'blog') {
+    return path.basename(file, path.extname(file));
+  }
+
+  return path.basename(path.dirname(file));
+}
+
+function resolveCollectionEntryRoute(collectionName, collectionDir, file, slug, date) {
+  if (collectionName === 'blog') {
+    return resolveBlogEntryRoute(collectionName, collectionDir, file, slug, date);
+  }
+
+  return {
+    canonicalPath: `/${collectionName}/${slug}/`,
+    outputPath: path.posix.join(collectionName, slug, 'index.html'),
+  };
+}
+
+function resolveBlogEntryRoute(collectionName, collectionDir, file, slug, date) {
+  const relativePath = toPosix(path.relative(collectionDir, file));
+  const parsed = path.posix.parse(relativePath);
+  const directorySegments = parsed.dir.split('/').filter(Boolean);
+
+  if (directorySegments.length !== 1) {
+    throw new Error(
+      `Blog posts must live directly inside a dated folder like content/blog/YYYY-MM-DD/post.md. Received ${file}.`,
+    );
+  }
+
+  const [dateDirectory] = directorySegments;
+
+  if (!DATE_DIRECTORY_PATTERN.test(dateDirectory) || Number.isNaN(Date.parse(`${dateDirectory}T00:00:00Z`))) {
+    throw new Error(`Blog directory "${dateDirectory}" in ${file} must use the YYYY-MM-DD format.`);
+  }
+
+  if (date !== null && date !== dateDirectory) {
+    throw new Error(`Blog post date "${date}" in ${file} must match its parent directory "${dateDirectory}".`);
+  }
+
+  return {
+    canonicalPath: `/${collectionName}/${slug}/`,
+    outputPath: path.posix.join(collectionName, slug, 'index.html'),
+  };
+}
+
+function buildPublishedAt(date, time) {
+  if (date === null) {
+    return null;
+  }
+
+  const normalizedTime = normalizePublishedTime(time);
+  return `${date}T${normalizedTime}:00Z`;
+}
+
+function normalizePublishedTime(time) {
+  if (time === null) {
+    return '00:00';
+  }
+
+  const twelveHourMatch = time.match(TWELVE_HOUR_TIME_PATTERN);
+
+  if (twelveHourMatch !== null) {
+    let hours = Number.parseInt(twelveHourMatch[1], 10);
+    const minutes = twelveHourMatch[2];
+    const meridiem = twelveHourMatch[3].toUpperCase();
+
+    if (hours === 12) {
+      hours = 0;
+    }
+
+    if (meridiem === 'PM') {
+      hours += 12;
+    }
+
+    return `${String(hours).padStart(2, '0')}:${minutes}`;
+  }
+
+  const twentyFourHourMatch = time.match(TWENTY_FOUR_HOUR_TIME_PATTERN);
+
+  if (twentyFourHourMatch !== null) {
+    return `${twentyFourHourMatch[1].padStart(2, '0')}:${twentyFourHourMatch[2]}`;
+  }
+
+  throw new Error(`Unable to normalize time value "${time}".`);
 }
 
 async function pathExists(target) {
