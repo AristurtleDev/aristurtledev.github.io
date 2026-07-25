@@ -167,7 +167,7 @@ main .gsc-comment {
 
 main .gsc-comment-author-avatar,
 main .gsc-reply-author-avatar {
-  border: 1px solid rgba(188, 255, 203, 0.18);
+  border: 0;
 }
 
 main .gsc-comment-author,

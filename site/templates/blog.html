@@ -13,5 +13,29 @@ ogType: article
     <div class="article-body prose-flow">
       {{content}}
     </div>
+    <section class="article-discussion" aria-labelledby="discussion-heading">
+      <header class="article-discussion-header">
+        <p class="section-label">Discussion/</p>
+        <h2 id="discussion-heading" class="article-discussion-title">Join the conversation</h2>
+        <p class="article-discussion-copy">Comments, questions, and follow-up notes live here.</p>
+      </header>
+      <div class="giscus"></div>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="AristurtleDev/aristurtledev.github.io"
+        data-repo-id="R_kgDOP0_9mQ"
+        data-category="Giscus"
+        data-category-id="DIC_kwDOP0_9mc4DB7Ne"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="https://aristurtle.net/css/giscus-custom.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </section>
   </article>
 </main>
