@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/2026-07-25/project-araneus-the-beginning.md",
+                "file": "blog/2026-07-26/project-araneus-the-next-layer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "project-araneus-the-beginning"
+              "title": "project-araneus-the-next-layer"
             }
           }
         ]
@@ -183,10 +183,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "ea3e783ec9f077b1",
+  "active": "cb6f9bd646dda0d9",
   "lastOpenFiles": [
-    "blog/first-post/index.md",
     "blog/2026-07-25/project-araneus-the-beginning.md",
+    "blog/2026-07-26/project-araneus-the-next-layer.md",
+    "blog/2026-07-26",
+    "blog/first-post/index.md",
     "blog/first-post/attachments/monogame-aseprite-banner.png",
     "blog/2026-07-25",
     "tutorials/2d-camera/index.md",
@@ -211,7 +213,6 @@
     "tutorials",
     "blog/first-post/attachments",
     "blog/first-post/First Post.md",
-    "blog/first-post",
-    "blog"
+    "blog/first-post"
   ]
 }
