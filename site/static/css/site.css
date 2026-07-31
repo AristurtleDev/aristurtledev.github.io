@@ -557,6 +557,25 @@ h3 {
   padding: 0.6rem;
 }
 
+.embedded-media {
+  margin: 2rem 0;
+}
+
+.embedded-media-player {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-code);
+}
+
+.embedded-media figcaption {
+  margin-top: 0.75rem;
+  color: var(--text-faint);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
 .callout {
   margin: 2rem 0;
   padding: 1.2rem;

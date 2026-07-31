@@ -27,6 +27,11 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const TWELVE_HOUR_TIME_PATTERN = /^(0?[1-9]|1[0-2]):([0-5]\d)\s*([AaPp][Mm])$/u;
 const TWENTY_FOUR_HOUR_TIME_PATTERN = /^([01]?\d|2[0-3]):([0-5]\d)$/u;
 const IMAGE_PATTERN = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/gu;
+const MARKDOWN_LINK_PATTERN = /\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/gu;
+const HTML_MEDIA_ATTRIBUTE_PATTERN = /<(?:audio|img|source|track|video)\b[^>]*\s(?:src|poster)=["']([^"']+)["'][^>]*>/giu;
+const SKIPPED_ASSET_EXTENSIONS = new Set(['.html', '.htm', '.md', '.markdown']);
+const VIDEO_FILE_EXTENSIONS = new Set(['.mp4', '.m4v', '.mov', '.ogv', '.webm']);
+const AUDIO_FILE_EXTENSIONS = new Set(['.aac', '.flac', '.m4a', '.mp3', '.oga', '.ogg', '.wav']);
 const CODE_LANGUAGE_ALIASES = new Map([
   ['c', 'c'],
   ['cpp', 'cpp'],
@@ -474,6 +479,7 @@ async function renderMarkdown(markdown) {
     .use(remarkGfm)
     .use(remarkTutorialToc)
     .use(remarkObsidianCallouts)
+    .use(remarkEmbeddedMedia)
     .use(remarkHighlightCodeBlocks)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeStringify, { allowDangerousHtml: true });
@@ -555,6 +561,37 @@ function remarkHighlightCodeBlocks() {
       parent.children[index] = {
         type: 'html',
         value: renderHighlightedCodeBlock(node.lang, node.value),
+      };
+    });
+  };
+}
+
+function remarkEmbeddedMedia() {
+  return (tree) => {
+    visitMarkdownNodes(tree, (node, index, parent) => {
+      if (node.type !== 'paragraph' || parent === null || index === null || !Array.isArray(parent.children)) {
+        return;
+      }
+
+      if (!Array.isArray(node.children) || node.children.length !== 1) {
+        return;
+      }
+
+      const [child] = node.children;
+
+      if (child?.type !== 'image') {
+        return;
+      }
+
+      const mediaKind = getMediaKindFromTarget(child.url);
+
+      if (mediaKind === null) {
+        return;
+      }
+
+      parent.children[index] = {
+        type: 'html',
+        value: renderEmbeddedMedia(child.url, child.alt ?? '', mediaKind),
       };
     });
   };
@@ -845,8 +882,8 @@ async function copyMarkdownAssets(markdown, markdownFile, outputDir) {
   const sourceDir = path.dirname(markdownFile);
   const copiedTargets = new Set();
 
-  for (const match of markdown.matchAll(IMAGE_PATTERN)) {
-    const target = normalizeAssetTarget(match[1]);
+  for (const rawTarget of collectReferencedAssetTargets(markdown)) {
+    const target = normalizeAssetTarget(rawTarget);
 
     if (target === null || copiedTargets.has(target)) {
       continue;
@@ -860,6 +897,30 @@ async function copyMarkdownAssets(markdown, markdownFile, outputDir) {
     await mkdir(path.dirname(outputFile), { recursive: true });
     await copyFile(sourceFile, outputFile);
   }
+}
+
+function collectReferencedAssetTargets(markdown) {
+  const targets = [];
+
+  for (const match of markdown.matchAll(IMAGE_PATTERN)) {
+    targets.push(match[1]);
+  }
+
+  for (const match of markdown.matchAll(MARKDOWN_LINK_PATTERN)) {
+    const target = match[1];
+
+    if (shouldSkipAssetTarget(target)) {
+      continue;
+    }
+
+    targets.push(target);
+  }
+
+  for (const match of markdown.matchAll(HTML_MEDIA_ATTRIBUTE_PATTERN)) {
+    targets.push(match[1]);
+  }
+
+  return targets;
 }
 
 function normalizeAssetTarget(target) {
@@ -881,6 +942,13 @@ function normalizeAssetTarget(target) {
   }
 
   return safeTarget;
+}
+
+function shouldSkipAssetTarget(target) {
+  const normalized = target.trim().replace(/^<|>$/gu, '').split(/[?#]/u, 1)[0];
+  const extension = path.posix.extname(normalized.toLowerCase());
+
+  return SKIPPED_ASSET_EXTENSIONS.has(extension);
 }
 
 async function resolveAssetSourceFile(sourceDir, target, markdownFile) {
@@ -992,6 +1060,62 @@ function clipText(value, maxLength) {
 
 function buildCanonicalUrl(siteBaseUrl, pathname) {
   return new URL(pathname, `${siteBaseUrl}/`).toString();
+}
+
+function getMediaKindFromTarget(target) {
+  const extension = getTargetExtension(target);
+
+  if (VIDEO_FILE_EXTENSIONS.has(extension)) {
+    return 'video';
+  }
+
+  if (AUDIO_FILE_EXTENSIONS.has(extension)) {
+    return 'audio';
+  }
+
+  return null;
+}
+
+function getTargetExtension(target) {
+  const normalized = target.trim().replace(/^<|>$/gu, '').split(/[?#]/u, 1)[0];
+  return path.posix.extname(normalized.toLowerCase());
+}
+
+function renderEmbeddedMedia(target, alt, mediaKind) {
+  const escapedTarget = escapeHtml(target);
+  const escapedAlt = escapeHtml(alt);
+
+  if (mediaKind === 'video') {
+    const titleAttribute = escapedAlt.length > 0 ? ` title="${escapedAlt}"` : '';
+    const ariaLabelAttribute = escapedAlt.length > 0 ? ` aria-label="${escapedAlt}"` : ' aria-label="Embedded video"';
+
+    return [
+      '<figure class="embedded-media embedded-media-video">',
+      `  <video class="embedded-media-player" controls preload="metadata"${titleAttribute}${ariaLabelAttribute}>`,
+      `    <source src="${escapedTarget}">`,
+      '    Your browser does not support the video tag.',
+      '  </video>',
+      escapedAlt.length > 0 ? `  <figcaption>${escapedAlt}</figcaption>` : '',
+      '</figure>',
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  const titleAttribute = escapedAlt.length > 0 ? ` title="${escapedAlt}"` : '';
+  const ariaLabelAttribute = escapedAlt.length > 0 ? ` aria-label="${escapedAlt}"` : ' aria-label="Embedded audio"';
+
+  return [
+    '<figure class="embedded-media embedded-media-audio">',
+    `  <audio class="embedded-media-player" controls preload="metadata"${titleAttribute}${ariaLabelAttribute}>`,
+    `    <source src="${escapedTarget}">`,
+    '    Your browser does not support the audio element.',
+    '  </audio>',
+    escapedAlt.length > 0 ? `  <figcaption>${escapedAlt}</figcaption>` : '',
+    '</figure>',
+  ]
+    .filter(Boolean)
+    .join('\n');
 }
 
 function resolveHtmlRoute(relativePath) {
